@@ -22,6 +22,7 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
 
     var pageData: [String] = []
     var pages: [CSViewController] = [];
+    var pageList = ["SummaryViewController","AbilityScoreViewController"];
 
 
     override init() {
@@ -44,12 +45,19 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
         
         
         if (!(pages.isEmpty)) {
-            return pages[0];
+            return pages[index];
         }
         
-        let summaryViewController = storyboard.instantiateViewControllerWithIdentifier("SummaryViewController") as! SummaryViewController;
-        pages.insert(summaryViewController, atIndex: 0);
-        return summaryViewController;
+        for (var i = 0; i < pageList.count; i++){
+            let viewController = storyboard.instantiateViewControllerWithIdentifier(pageList[i]) as! CSViewController;
+            pages.append(viewController);
+            if (i > 0){
+                viewController.prevViewController = pages[i - 1];
+                pages[i-1].nextViewController = viewController;
+            }
+        }//for
+        
+        return pages[index];
         
         // Create a new view controller and pass suitable data.
         /*
@@ -71,7 +79,10 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
 
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
-        return nil;
+        let myViewController = viewController as! CSViewController;
+        return myViewController.prevViewController;
+        
+
         /*
         var index = self.indexOfViewController(viewController as! DataViewController)
         if (index == 0) || (index == NSNotFound) {
@@ -85,7 +96,10 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
 
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
-        return nil;
+        let myViewController = viewController as! CSViewController;
+        return myViewController.nextViewController;
+        
+
         /*
         var index = self.indexOfViewController(viewController as! DataViewController)
         if index == NSNotFound {
