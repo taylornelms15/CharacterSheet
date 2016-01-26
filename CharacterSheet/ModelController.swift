@@ -21,7 +21,7 @@ import UIKit
 class ModelController: NSObject, UIPageViewControllerDataSource {
 
     var pageData: [String] = []
-    var pages: [UIViewController] = [];
+    var pages: [CSViewController] = [];
 
 
     override init() {
@@ -41,6 +41,8 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
         }
         */
 
+        
+        
         if (!(pages.isEmpty)) {
             return pages[0];
         }

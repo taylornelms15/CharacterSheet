@@ -19,7 +19,7 @@
 		958CBAD41C56E11000AD833A /* CharacterSheetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAD31C56E11000AD833A /* CharacterSheetUITests.swift */; };
 		958CBAE31C56E17900AD833A /* AScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE21C56E17900AD833A /* AScores.swift */; settings = {ASSET_TAGS = (); }; };
 		958CBAE51C56E27600AD833A /* AScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE41C56E27600AD833A /* AScore.swift */; settings = {ASSET_TAGS = (); }; };
-		958CBAE71C56FE4600AD833A /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE61C56FE4600AD833A /* SummaryViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		958CBAE71C56FE4600AD833A /* MyViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE61C56FE4600AD833A /* MyViewControllers.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +58,7 @@
 		958CBAD51C56E11000AD833A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		958CBAE21C56E17900AD833A /* AScores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AScores.swift; sourceTree = "<group>"; };
 		958CBAE41C56E27600AD833A /* AScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AScore.swift; sourceTree = "<group>"; };
-		958CBAE61C56FE4600AD833A /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		958CBAE61C56FE4600AD833A /* MyViewControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewControllers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +91,7 @@
 			children = (
 				958CBAB11C56E10F00AD833A /* RootViewController.swift */,
 				958CBAB31C56E10F00AD833A /* DataViewController.swift */,
-				958CBAE61C56FE4600AD833A /* SummaryViewController.swift */,
+				958CBAE61C56FE4600AD833A /* MyViewControllers.swift */,
 				958CBAB51C56E10F00AD833A /* ModelController.swift */,
 				955662A71C570B8E00F5C014 /* CSViewController.swift */,
 			);
@@ -294,7 +294,7 @@
 				958CBAB41C56E10F00AD833A /* DataViewController.swift in Sources */,
 				958CBAE31C56E17900AD833A /* AScores.swift in Sources */,
 				958CBAE51C56E27600AD833A /* AScore.swift in Sources */,
-				958CBAE71C56FE4600AD833A /* SummaryViewController.swift in Sources */,
+				958CBAE71C56FE4600AD833A /* MyViewControllers.swift in Sources */,
 				955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */,
 				958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */,
 			);

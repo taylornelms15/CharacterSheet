@@ -11,3 +11,7 @@ import UIKit;
 class SummaryViewController: CSViewController{
     
 }//SummaryViewController
+
+class AbilityScoreViewController: CSViewController{
+    
+}//AbilityScoreViewController
