@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AScores{
+class AScores : CustomStringConvertible{
     
     var ascores = [String: AScore]();//makes empty dictionary for the scores
     
@@ -111,5 +111,28 @@ class AScores{
     func setCha(cha: Int){
         ascores["CHA"]?.score = cha;
     }//setCha
+    
+    //MARK: modifiers:large format
+    
+    func addValues(strmod: Int, dexmod: Int, conmod: Int, intmod: Int, wismod: Int, chamod: Int){
+        ascores["STR"]?.score += strmod;
+        ascores["DEX"]?.score += dexmod;
+        ascores["CON"]?.score += conmod;
+        ascores["INT"]?.score += intmod;
+        ascores["WIS"]?.score += wismod;
+        ascores["CHA"]?.score += chamod;
+    }//addValues
+    
+    //MARK: toString
+    
+    var description: String{
+        let str = ascores["STR"]!.score;
+        let dex = ascores["DEX"]!.score;
+        let con = ascores["CON"]!.score;
+        let intl = ascores["INT"]!.score;
+        let wis = ascores["WIS"]!.score;
+        let cha = ascores["CHA"]!.score;
+        return "Ability Scores\nStrength: \(str)\nDexterity: \(dex)\nConditioning: \(con)\nIntellect: \(intl)\nWisdom: \(wis)\nCharisma: \(cha)\n"
+    }//description
     
 }//AScores
