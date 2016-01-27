@@ -49,22 +49,78 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
         }//else
     }
     @IBAction func setDexValue(sender: UITextField) {
+        sender.resignFirstResponder();
+        let newValue: Int = NSNumberFormatter().numberFromString(sender.text!)!.integerValue;
+        scores.setDex(newValue);
+        sender.text = "\(newValue)";//force an int conversion to cut down on trash input
+        let modval: Int = scores.getDexMod();
+        if (modval >= 0){
+            dexModLabel.text = "+\(modval)";
+        }//if
+        else{
+            dexModLabel.text = "\(modval)";
+        }//else
     }
     @IBAction func setConValue(sender: UITextField) {
+        sender.resignFirstResponder();
+        let newValue: Int = NSNumberFormatter().numberFromString(sender.text!)!.integerValue;
+        scores.setCon(newValue);
+        sender.text = "\(newValue)";//force an int conversion to cut down on trash input
+        let modval: Int = scores.getConMod();
+        if (modval >= 0){
+            conModLabel.text = "+\(modval)";
+        }//if
+        else{
+            conModLabel.text = "\(modval)";
+        }//else
     }
     @IBAction func setIntValue(sender: UITextField) {
+        sender.resignFirstResponder();
+        let newValue: Int = NSNumberFormatter().numberFromString(sender.text!)!.integerValue;
+        scores.setInt(newValue);
+        sender.text = "\(newValue)";//force an int conversion to cut down on trash input
+        let modval: Int = scores.getIntMod();
+        if (modval >= 0){
+            intModLabel.text = "+\(modval)";
+        }//if
+        else{
+            intModLabel.text = "\(modval)";
+        }//else
     }
     @IBAction func setWisValue(sender: UITextField) {
+        sender.resignFirstResponder();
+        let newValue: Int = NSNumberFormatter().numberFromString(sender.text!)!.integerValue;
+        scores.setWis(newValue);
+        sender.text = "\(newValue)";//force an int conversion to cut down on trash input
+        let modval: Int = scores.getWisMod();
+        if (modval >= 0){
+            wisModLabel.text = "+\(modval)";
+        }//if
+        else{
+            wisModLabel.text = "\(modval)";
+        }//else
     }
     @IBAction func setChaValue(sender: UITextField) {
+        sender.resignFirstResponder();
+        let newValue: Int = NSNumberFormatter().numberFromString(sender.text!)!.integerValue;
+        scores.setCha(newValue);
+        sender.text = "\(newValue)";//force an int conversion to cut down on trash input
+        let modval: Int = scores.getChaMod();
+        if (modval >= 0){
+            chaModLabel.text = "+\(modval)";
+        }//if
+        else{
+            chaModLabel.text = "\(modval)";
+        }//else
     }
-
+    
     // MARK: UITextFieldDelegate
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true;
     }
+
     
 
     
