@@ -20,6 +20,7 @@
 		958CBAE31C56E17900AD833A /* AScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE21C56E17900AD833A /* AScores.swift */; settings = {ASSET_TAGS = (); }; };
 		958CBAE51C56E27600AD833A /* AScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE41C56E27600AD833A /* AScore.swift */; settings = {ASSET_TAGS = (); }; };
 		958CBAE71C56FE4600AD833A /* MyViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE61C56FE4600AD833A /* MyViewControllers.swift */; settings = {ASSET_TAGS = (); }; };
+		959307061C5841D2000AD6C4 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 959307041C5841D2000AD6C4 /* DataModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		958CBAE21C56E17900AD833A /* AScores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AScores.swift; sourceTree = "<group>"; };
 		958CBAE41C56E27600AD833A /* AScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AScore.swift; sourceTree = "<group>"; };
 		958CBAE61C56FE4600AD833A /* MyViewControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewControllers.swift; sourceTree = "<group>"; };
+		959307051C5841D2000AD6C4 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			children = (
 				958CBAE11C56E15B00AD833A /* Model */,
 				958CBAAF1C56E10E00AD833A /* AppDelegate.swift */,
+				959307041C5841D2000AD6C4 /* DataModel.xcdatamodeld */,
 				955662A61C570B7600F5C014 /* ViewControllers */,
 				958CBAB71C56E10F00AD833A /* Main.storyboard */,
 				958CBABA1C56E10F00AD833A /* Assets.xcassets */,
@@ -295,6 +298,7 @@
 				958CBAE31C56E17900AD833A /* AScores.swift in Sources */,
 				958CBAE51C56E27600AD833A /* AScore.swift in Sources */,
 				958CBAE71C56FE4600AD833A /* MyViewControllers.swift in Sources */,
+				959307061C5841D2000AD6C4 /* DataModel.xcdatamodeld in Sources */,
 				955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */,
 				958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */,
 			);
@@ -544,6 +548,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		959307041C5841D2000AD6C4 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				959307051C5841D2000AD6C4 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 959307051C5841D2000AD6C4 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 958CBAA41C56E10E00AD833A /* Project object */;
 }
