@@ -123,6 +123,10 @@ class AScores : CustomStringConvertible{
         ascores["CHA"]?.score += chamod;
     }//addValues
     
+    func addScores(scores: AScores){
+        self.addValues(scores.getStr(), dexmod: scores.getDex(), conmod: scores.getCon(), intmod: scores.getInt(), wismod: scores.getWis(), chamod: scores.getCha());
+    }//addScores
+    
     //MARK: toString
     
     var description: String{

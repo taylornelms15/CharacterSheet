@@ -7,8 +7,53 @@
 //
 
 import UIKit;
+import CoreData;
 
 class SummaryViewController: CSViewController{
+    
+    override func viewDidLoad() {
+        super.viewDidLoad();
+        
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let entity =  NSEntityDescription.entityForName("Race",
+            inManagedObjectContext:managedContext)
+        
+        let race = NSManagedObject(entity: entity!,
+            insertIntoManagedObjectContext: managedContext)
+        
+        race.setValue(1, forKey: "id");
+        race.setValue("Hill Dwarf", forKey: "name");
+        race.setValue(2, forKey: "strmod");
+        race.setValue(0, forKey: "dexmod");
+        race.setValue(2, forKey: "conmod");
+        race.setValue(0, forKey: "intmod");
+        race.setValue(0, forKey: "wismod");
+        race.setValue(0, forKey: "chamod");
+        
+        do{
+            try managedContext.save()
+        } catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+        let fetchRequest = NSFetchRequest(entityName: "Race");
+        
+        do{
+            let results = try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject];
+            for a: NSManagedObject in results{
+                let x = a as! Race;
+                print("\(x.name) \(x.id) \(x.strmod) \(x.conmod)");
+            }
+  //          print (results);
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+    }
     
 }//SummaryViewController
 

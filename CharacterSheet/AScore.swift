@@ -16,9 +16,7 @@ struct AScore{
     }//modifier
 
     init(score: Int){
-        if (score < 1) {self.score = 1;}
-        else if (score > 30) {self.score = 30;}
-        else {self.score = score;}
+        self.score = score;
         return;
     }//init
     
