@@ -106,6 +106,17 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Pick a Race" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bag-6p-QP8">
+                                <rect key="frame" x="20" y="134" width="97" height="30"/>
+                                <accessibility key="accessibilityConfiguration" label="">
+                                    <accessibilityTraits key="traits" adjustable="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="setRaceField:" destination="tY0-ja-mAV" eventType="editingDidEnd" id="8kZ-Cg-UzB"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -114,6 +125,9 @@
                             <constraint firstItem="utu-Fg-VwW" firstAttribute="leading" secondItem="BbY-CR-q44" secondAttribute="leadingMargin" id="lHF-T1-SAO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="raceTextField" destination="Bag-6p-QP8" id="IDr-GS-vQj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LRF-tu-pyV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

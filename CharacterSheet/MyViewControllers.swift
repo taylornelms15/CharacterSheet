@@ -9,7 +9,20 @@
 import UIKit;
 import CoreData;
 
-class SummaryViewController: CSViewController{
+class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerViewDelegate{
+
+    //MARK: Properties
+    var racePicker: UIPickerView = UIPickerView();
+    var pickerData: [[String]] = [["Hill Dwarf", "Mountain Dwarf", "High Elf", "Wood Elf", "Dark Elf", "Lightfoot Halfling", "Stout Halfling", "Human", "Dragonborn", "Forest Gnome", "Rock Gnome", "Half-Elf", "Half-Orc", "Tiefling"]];
+    
+    //MARK: Outlets
+    @IBOutlet weak var raceTextField: UITextField!
+    
+    //MARK: Actions
+    
+    @IBAction func setRaceField(sender: UITextField) {
+        print("did the thing!");
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -17,43 +30,77 @@ class SummaryViewController: CSViewController{
         let appDelegate =
         UIApplication.sharedApplication().delegate as! AppDelegate
         
+        //MARK: Init Race Data
         let managedContext = appDelegate.managedObjectContext!
         
         let entity =  NSEntityDescription.entityForName("Race",
             inManagedObjectContext:managedContext)
-        
-        let race = NSManagedObject(entity: entity!,
-            insertIntoManagedObjectContext: managedContext)
-        
-        race.setValue(1, forKey: "id");
-        race.setValue("Hill Dwarf", forKey: "name");
-        race.setValue(2, forKey: "strmod");
-        race.setValue(0, forKey: "dexmod");
-        race.setValue(2, forKey: "conmod");
-        race.setValue(0, forKey: "intmod");
-        race.setValue(0, forKey: "wismod");
-        race.setValue(0, forKey: "chamod");
-        
-        do{
-            try managedContext.save()
-        } catch let error as NSError{
-            print("Could not save \(error), \(error.userInfo)")
-        }
-        
         let fetchRequest = NSFetchRequest(entityName: "Race");
+
+        var error: NSError? = nil;
+        let count = managedContext.countForFetchRequest(fetchRequest, error: &error)
+        if (count == 0){
+            racesInit(entity!, context: managedContext)
+        }//if
         
-        do{
-            let results = try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject];
-            for a: NSManagedObject in results{
-                let x = a as! Race;
-                print("\(x.name) \(x.id) \(x.strmod) \(x.conmod)");
-            }
-  //          print (results);
-        }catch let error as NSError{
-            print("Could not save \(error), \(error.userInfo)")
-        }
+        raceTextField.inputView = racePicker;
         
+        racePicker.dataSource = self;
+        racePicker.delegate = self;
+
     }
+    
+    //MARK: Picker functions
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return pickerData.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData[component].count
+    }
+    
+    //Get column label
+    func pickerView(
+        pickerView: UIPickerView,
+        titleForRow row: Int,
+        forComponent component: Int
+        ) -> String? {
+            return pickerData[component][row]
+    }
+    
+    //On row select
+    func pickerView(
+        pickerView: UIPickerView,
+        didSelectRow row: Int,
+        inComponent component: Int)
+    {
+        updateLabel()
+        
+        confirmRaceAlert(pickerData[0][row]);
+        
+        raceTextField.resignFirstResponder();
+    }//pickerView
+    
+    
+    //MARK: Helper functions
+    func updateLabel(){
+        let race = pickerData[0][racePicker.selectedRowInComponent(0)]
+        raceTextField.text = race;
+    }//updateLabel
+    
+    func confirmRaceAlert(choice: String){
+        let alertController = UIAlertController(title: "Change class to " + choice + "?", message: "This will modify your ability scores accordingly", preferredStyle: UIAlertControllerStyle.Alert);
+        alertController.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default,handler: nil))
+        alertController.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default,handler: {
+            (alert: UIAlertAction!) in
+            //what happens when they say yes
+            raceTextField.endEditing(true); //closes the picker
+            
+        }))
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }//confirmRaceAlert
     
 }//SummaryViewController
 
