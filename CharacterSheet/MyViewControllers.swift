@@ -16,12 +16,15 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
     var pickerData: [[String]] = [["Hill Dwarf", "Mountain Dwarf", "High Elf", "Wood Elf", "Dark Elf", "Lightfoot Halfling", "Stout Halfling", "Human", "Dragonborn", "Forest Gnome", "Rock Gnome", "Half-Elf", "Half-Orc", "Tiefling"]];
     
     //MARK: Outlets
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var levelTextField: UITextField!
     @IBOutlet weak var raceTextField: UITextField!
+    @IBOutlet weak var classTextField: UITextField!
     
     //MARK: Actions
     
     @IBAction func setRaceField(sender: UITextField) {
-        print("did the thing!");
+        //Note: this happens whether or not
     }
     
     override func viewDidLoad() {
@@ -30,18 +33,47 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         let appDelegate =
         UIApplication.sharedApplication().delegate as! AppDelegate
         
-        //MARK: Init Race Data
+        //Init Race Data
         let managedContext = appDelegate.managedObjectContext!
         
-        let entity =  NSEntityDescription.entityForName("Race",
+        var entity =  NSEntityDescription.entityForName("Race",
             inManagedObjectContext:managedContext)
-        let fetchRequest = NSFetchRequest(entityName: "Race");
+        var fetchRequest = NSFetchRequest(entityName: "Race");
 
         var error: NSError? = nil;
-        let count = managedContext.countForFetchRequest(fetchRequest, error: &error)
+        var count = managedContext.countForFetchRequest(fetchRequest, error: &error)
         if (count == 0){
             racesInit(entity!, context: managedContext)
         }//if
+        
+        //Init Character
+        entity = NSEntityDescription.entityForName("PCharacter", inManagedObjectContext: managedContext);
+        fetchRequest = NSFetchRequest(entityName: "PCharacter");
+        
+        count = managedContext.countForFetchRequest(fetchRequest, error: &error)
+        if (count == 0){
+            characterInit(entity!, context: managedContext);
+        }//if
+        
+        //Update some fields
+        fetchRequest = NSFetchRequest(entityName: "PCharacter");
+        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        
+        var results: [AnyObject] = [];
+        do{
+            results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        let charName = results[0].name;
+        nameTextField.text = charName;
+        print(results[0]);
+        
+        let myCharacter: PCharacter = results[0] as! PCharacter;
+        
+        print(myCharacter);
+        
+        //Put the race picker view together
         
         raceTextField.inputView = racePicker;
         
