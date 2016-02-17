@@ -9,7 +9,7 @@
 import UIKit;
 import CoreData;
 
-class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerViewDelegate{
+class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate{
 
     //MARK: Properties
     var racePicker: UIPickerView = UIPickerView();
@@ -24,6 +24,42 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var classTextField: UITextField!
     
     //MARK: Actions
+    @IBAction func setNameField(sender: UITextField) {
+        
+        nameTextField.resignFirstResponder();
+        
+        //Get our character out
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        var fetchRequest = NSFetchRequest(entityName: "PCharacter");
+        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        var results: [PCharacter] = [];
+        do{
+            results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        results[0].updateAScores()
+        //Note that now results[0] is our character
+        
+        results[0].name = nameTextField.text!;
+        
+        do{
+            try managedContext.save()
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+    }
+    
+    
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.endEditing(true);
+        return true;
+    }
+    
+
     
     @IBAction func setRaceField(sender: UITextField) {
         //Note: this happens whether or not the user hits yes on the alert. And apparently happens twice. Blegh.
@@ -198,7 +234,9 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
             raceTextField.text = "Please Select"
         }//else
             
-        //Put the race picker view together
+        //Deal with delegates
+        
+        nameTextField.delegate = self;
         
         raceTextField.inputView = racePicker;
         racePicker.dataSource = self;

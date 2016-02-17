@@ -101,7 +101,10 @@
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Ba'al" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AqQ-b5-uUB">
                                                 <rect key="frame" x="80" y="0.0" width="480" height="30"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                <connections>
+                                                    <action selector="setNameField:" destination="tY0-ja-mAV" eventType="editingDidEnd" id="Sw5-hI-SCS"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
