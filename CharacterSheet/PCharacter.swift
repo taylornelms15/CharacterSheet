@@ -21,6 +21,7 @@ class PCharacter: NSManagedObject{
     @NSManaged var wis: Int16
     @NSManaged var cha: Int16
     @NSManaged var race: Race
+    @NSManaged var pclass: PClass
     
     var ascores: AScores = AScores();
     

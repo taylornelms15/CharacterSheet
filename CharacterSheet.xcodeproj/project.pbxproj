@@ -23,6 +23,7 @@
 		958CBAE71C56FE4600AD833A /* MyViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE61C56FE4600AD833A /* MyViewControllers.swift */; settings = {ASSET_TAGS = (); }; };
 		95B029D51C601D5300DC0F3C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		95F7D6201C73D55A00FE3D58 /* PCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7D61F1C73D55A00FE3D58 /* PCharacter.swift */; settings = {ASSET_TAGS = (); }; };
+		95F7D6261C7405EC00FE3D58 /* PClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7D6241C7405EC00FE3D58 /* PClass.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		958CBAE61C56FE4600AD833A /* MyViewControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewControllers.swift; sourceTree = "<group>"; };
 		95B029D41C601D5300DC0F3C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		95F7D61F1C73D55A00FE3D58 /* PCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCharacter.swift; sourceTree = "<group>"; };
+		95F7D6241C7405EC00FE3D58 /* PClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				958CBAE41C56E27600AD833A /* AScore.swift */,
 				95692EB71C5AFE1700DD591D /* Race.swift */,
 				95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */,
+				95F7D6241C7405EC00FE3D58 /* PClass.swift */,
 				95F7D61F1C73D55A00FE3D58 /* PCharacter.swift */,
 			);
 			name = Model;
@@ -306,6 +309,7 @@
 				958CBAE31C56E17900AD833A /* AScores.swift in Sources */,
 				95692EB81C5AFE1700DD591D /* Race.swift in Sources */,
 				958CBAE51C56E27600AD833A /* AScore.swift in Sources */,
+				95F7D6261C7405EC00FE3D58 /* PClass.swift in Sources */,
 				958CBAE71C56FE4600AD833A /* MyViewControllers.swift in Sources */,
 				955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */,
 				958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */,

@@ -14,6 +14,8 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
     //MARK: Properties
     var racePicker: UIPickerView = UIPickerView();
     var pickerData: [[String]] = [["Hill Dwarf", "Mountain Dwarf", "High Elf", "Wood Elf", "Dark Elf", "Lightfoot Halfling", "Stout Halfling", "Human", "Dragonborn", "Forest Gnome", "Rock Gnome", "Half-Elf", "Half-Orc", "Tiefling"]];
+    var classPicker: UIPickerView = UIPickerView();
+    var cpickerData: [[String]] = [["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]];
     
     //MARK: Outlets
     @IBOutlet weak var nameTextField: UITextField!
@@ -88,6 +90,44 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
 
     }
     
+    @IBAction func setClassField(sender: UITextField) {
+        //Get our character out
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        var fetchRequest = NSFetchRequest(entityName: "PCharacter");
+        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        var results: [PCharacter] = [];
+        do{
+            results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        results[0].updateAScores()
+        //Note that now results[0] is our character
+        
+        //find the class we're switching to
+        fetchRequest = NSFetchRequest(entityName: "PClass");
+        fetchRequest.predicate = NSPredicate(format: "name = %@", classTextField.text!);
+        var classResults: [PClass] = [];
+        do{
+            classResults = try managedContext.executeFetchRequest(fetchRequest) as! [PClass]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        _ = classResults[0].name;
+        
+        
+        //Change the class in the database
+        results[0].pclass = classResults[0];
+        
+        do{
+            try managedContext.save()
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         
@@ -107,6 +147,16 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
             racesInit(entity!, context: managedContext)
         }//if
         
+        //Init Class Data
+        entity =  NSEntityDescription.entityForName("PClass",
+            inManagedObjectContext:managedContext)
+        fetchRequest = NSFetchRequest(entityName: "PClass");
+        
+        count = managedContext.countForFetchRequest(fetchRequest, error: &error)
+        if (count == 0){
+            classesInit(entity!, context: managedContext)
+        }
+        
         //Init Character
         entity = NSEntityDescription.entityForName("PCharacter", inManagedObjectContext: managedContext);
         fetchRequest = NSFetchRequest(entityName: "PCharacter");
@@ -116,7 +166,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
             characterInit(entity!, context: managedContext);
         }//if
         
-        //Update some fields
+        //Update text fields
         fetchRequest = NSFetchRequest(entityName: "PCharacter");
         fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
         
@@ -131,7 +181,15 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
         results[0].updateAScores();
         levelTextField.text = "\(results[0].level)";
-        classTextField.text = "Rogue";
+        
+        let myClass: PClass? = results[0].pclass;
+        if (myClass != nil){
+            classTextField.text = results[0].pclass.name;
+        }//if
+        else{
+            classTextField.text = "Please Select"
+        }
+        
         let myRace: Race? = results[0].race;
         if (myRace != nil){
             raceTextField.text = results[0].race.name;
@@ -143,20 +201,37 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         //Put the race picker view together
         
         raceTextField.inputView = racePicker;
-        
         racePicker.dataSource = self;
         racePicker.delegate = self;
+        
+        classTextField.inputView = classPicker;
+        classPicker.dataSource = self;
+        classPicker.delegate = self;
 
     }
     
     //MARK: Picker functions
     
+    //num columns
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return pickerData.count
+        if (pickerView == racePicker){
+            return pickerData.count
+        }
+        if (pickerView == classPicker){
+            return cpickerData.count
+        }
+        return 0;
     }
     
+    //options per column
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData[component].count
+        if (pickerView == racePicker){
+            return pickerData[component].count
+        }
+        if (pickerView == classPicker){
+            return cpickerData[component].count
+        }
+        return 0;
     }
     
     //Get column label
@@ -165,7 +240,13 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         titleForRow row: Int,
         forComponent component: Int
         ) -> String? {
-            return pickerData[component][row]
+            if (pickerView == racePicker){
+                return pickerData[component][row]
+            }
+            if (pickerView == classPicker){
+                return cpickerData[component][row]
+            }
+            return nil;
     }
     
     //On row select
@@ -174,11 +255,21 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         didSelectRow row: Int,
         inComponent component: Int)
     {
-        updateLabel()
+        if (pickerView == racePicker){
+            updateLabel()
         
-        confirmRaceAlert(pickerData[0][row]);
+            //confirmRaceAlert(pickerData[0][row]);
         
-        raceTextField.resignFirstResponder();
+            //raceTextField.resignFirstResponder();
+
+            raceTextField.endEditing(true);
+            
+        }
+        if (pickerView == classPicker){
+            updateCLabel()
+            
+            classTextField.endEditing(true);
+        }//pickerView
     }//pickerView
     
     
@@ -186,6 +277,11 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
     func updateLabel(){
         let race = pickerData[0][racePicker.selectedRowInComponent(0)]
         raceTextField.text = race;
+    }//updateLabel
+    
+    func updateCLabel(){
+        let pclass = cpickerData[0][classPicker.selectedRowInComponent(0)]
+        classTextField.text = pclass;
     }//updateLabel
     
     func confirmRaceAlert(choice: String){
@@ -209,6 +305,12 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
     var scores: AScores = AScores.init();
     
     //MARK: Outlets
+    @IBOutlet weak var strLabel: UILabel!
+    @IBOutlet weak var dexLabel: UILabel!
+    @IBOutlet weak var conLabel: UILabel!
+    @IBOutlet weak var intLabel: UILabel!
+    @IBOutlet weak var wisLabel: UILabel!
+    @IBOutlet weak var chaLabel: UILabel!
     
     @IBOutlet weak var strTextField: UITextField!
     @IBOutlet weak var dexTextField: UITextField!
@@ -223,6 +325,14 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
     @IBOutlet weak var intModLabel: UILabel!
     @IBOutlet weak var wisModLabel: UILabel!
     @IBOutlet weak var chaModLabel: UILabel!
+    
+    @IBOutlet weak var strSavSwitch: UISwitch!
+    @IBOutlet weak var dexSavSwitch: UISwitch!
+    @IBOutlet weak var conSavSwitch: UISwitch!
+    @IBOutlet weak var intSavSwitch: UISwitch!
+    @IBOutlet weak var wisSavSwitch: UISwitch!
+    @IBOutlet weak var chaSavSwitch: UISwitch!
+    
     
     //MARK: Actions
     
@@ -356,7 +466,15 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
         
         updateTextFields(scores);
         
-    }//viewDidLoad
+        let myClass: PClass? = results[0].pclass;
+        if (myClass != nil){
+            clearPrimAbil()
+            updatePrimAbil(myClass!.primAbil)
+            clearSavThrows()
+            updateSavThrows(myClass!.saveThrows)
+        }//if
+        
+    }//viewDidAppear
     
     func updateScoresInCore(){
         let appDelegate =
@@ -453,6 +571,72 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
         
     }//updateTextFields
 
+    func updateSavThrows(saveThrows: Int16){
+        if (saveThrows % 10 == 1 || saveThrows / 10 == 1){
+            strSavSwitch.setOn(true, animated: false)
+        }//if
+        
+        if (saveThrows % 10 == 2 || saveThrows / 10 == 2){
+            dexSavSwitch.setOn(true, animated: false)
+        }//if
+        
+        if (saveThrows % 10 == 3 || saveThrows / 10 == 3){
+            conSavSwitch.setOn(true, animated: false)
+        }//if
+        
+        if (saveThrows % 10 == 4 || saveThrows / 10 == 4){
+            intSavSwitch.setOn(true, animated: false)
+        }//if
+        
+        if (saveThrows % 10 == 5 || saveThrows / 10 == 5){
+            wisSavSwitch.setOn(true, animated: false)
+        }//if
+        
+        if (saveThrows % 10 == 6 || saveThrows / 10 == 6){
+            chaSavSwitch.setOn(true, animated: false)
+        }//if
+    }//updateSavThrows
+    
+    func clearSavThrows(){
+        strSavSwitch.setOn(false, animated: false)
+        dexSavSwitch.setOn(false, animated: false)
+        conSavSwitch.setOn(false, animated: false)
+        intSavSwitch.setOn(false, animated: false)
+        wisSavSwitch.setOn(false, animated: false)
+        chaSavSwitch.setOn(false, animated: false)
+    }//clearSavThrows
+    
+    func updatePrimAbil(primAbil: Int16){
+        
+        if (primAbil % 10 == 1 || primAbil / 10 == 1){
+            strLabel.backgroundColor = UIColor.lightGrayColor();
+        }//if
+        if (primAbil % 10 == 2 || primAbil / 10 == 2){
+            dexLabel.backgroundColor = UIColor.lightGrayColor();
+        }//if
+        if (primAbil % 10 == 3 || primAbil / 10 == 3){
+            conLabel.backgroundColor = UIColor.lightGrayColor();
+        }//if
+        if (primAbil % 10 == 4 || primAbil / 10 == 4){
+            intLabel.backgroundColor = UIColor.lightGrayColor();
+        }//if
+        if (primAbil % 10 == 5 || primAbil / 10 == 5){
+            wisLabel.backgroundColor = UIColor.lightGrayColor();
+        }//if
+        if (primAbil % 10 == 6 || primAbil / 10 == 6){
+            chaLabel.backgroundColor = UIColor.lightGrayColor();
+        }//if
+        
+    }//updatePrimAbil
+    
+    func clearPrimAbil(){
+        strLabel.backgroundColor = UIColor.clearColor();
+        dexLabel.backgroundColor = UIColor.clearColor();
+        conLabel.backgroundColor = UIColor.clearColor();
+        intLabel.backgroundColor = UIColor.clearColor();
+        wisLabel.backgroundColor = UIColor.clearColor();
+        chaLabel.backgroundColor = UIColor.clearColor();
+    }
     
 
     
