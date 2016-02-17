@@ -24,7 +24,68 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
     //MARK: Actions
     
     @IBAction func setRaceField(sender: UITextField) {
-        //Note: this happens whether or not
+        //Note: this happens whether or not the user hits yes on the alert. And apparently happens twice. Blegh.
+        
+        //Get our character out
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        var fetchRequest = NSFetchRequest(entityName: "PCharacter");
+        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        var results: [PCharacter] = [];
+        do{
+            results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        results[0].updateAScores()
+        //Note that now results[0] is our character
+        
+        //take off previous racial bonuses
+        let prevRace: Race? = results[0].race;
+        
+        if (prevRace != nil){
+            results[0].ascores.subValues(
+                Int(prevRace!.strmod),
+                dexmod: Int(prevRace!.dexmod),
+                conmod: Int(prevRace!.conmod),
+                intmod: Int(prevRace!.intmod),
+                wismod: Int(prevRace!.wismod),
+                chamod: Int(prevRace!.chamod))
+        }//if
+        
+        
+        //find the race we're switching to
+        fetchRequest = NSFetchRequest(entityName: "Race");
+        fetchRequest.predicate = NSPredicate(format: "name = %@", raceTextField.text!);
+        var raceResults: [Race] = [];
+        do{
+            raceResults = try managedContext.executeFetchRequest(fetchRequest) as! [Race]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+        results[0].race = raceResults[0];
+        results[0].ascores.addValues(
+            Int(raceResults[0].strmod),
+            dexmod: Int(raceResults[0].dexmod),
+            conmod: Int(raceResults[0].conmod),
+            intmod: Int(raceResults[0].intmod),
+            wismod: Int(raceResults[0].wismod),
+            chamod: Int(raceResults[0].chamod))
+        
+        results[0].str = Int16(results[0].ascores.getStr())
+        results[0].dex = Int16(results[0].ascores.getDex())
+        results[0].con = Int16(results[0].ascores.getCon())
+        results[0].intl = Int16(results[0].ascores.getInt())
+        results[0].wis = Int16(results[0].ascores.getWis())
+        results[0].cha = Int16(results[0].ascores.getCha())
+        
+        do{
+            try managedContext.save()
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+
     }
     
     override func viewDidLoad() {
@@ -59,7 +120,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         fetchRequest = NSFetchRequest(entityName: "PCharacter");
         fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
         
-        var results: [AnyObject] = [];
+        var results: [PCharacter] = [];
         do{
             results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
         }catch let error as NSError{
@@ -68,11 +129,17 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         let charName = results[0].name;
         nameTextField.text = charName;
         
-        let myCharacter: PCharacter = results[0] as! PCharacter;
-        myCharacter.updateAScores();
-        levelTextField.text = "\(myCharacter.level)";
+        results[0].updateAScores();
+        levelTextField.text = "\(results[0].level)";
         classTextField.text = "Rogue";
-        
+        let myRace: Race? = results[0].race;
+        if (myRace != nil){
+            raceTextField.text = results[0].race.name;
+        }//if
+        else{
+            raceTextField.text = "Please Select"
+        }//else
+            
         //Put the race picker view together
         
         raceTextField.inputView = racePicker;
@@ -258,9 +325,10 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
     }
     
     // MARK: Helper functions
-    
-    override func viewDidLoad(){
-        super.viewDidLoad();
+
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated);
         
         let appDelegate =
         UIApplication.sharedApplication().delegate as! AppDelegate

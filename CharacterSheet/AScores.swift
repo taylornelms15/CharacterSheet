@@ -123,6 +123,15 @@ class AScores : CustomStringConvertible{
         ascores["CHA"]?.score += chamod;
     }//addValues
     
+    func subValues(strmod: Int, dexmod: Int, conmod: Int, intmod: Int, wismod: Int, chamod: Int){
+        ascores["STR"]?.score -= strmod;
+        ascores["DEX"]?.score -= dexmod;
+        ascores["CON"]?.score -= conmod;
+        ascores["INT"]?.score -= intmod;
+        ascores["WIS"]?.score -= wismod;
+        ascores["CHA"]?.score -= chamod;
+    }//addValues
+    
     func addScores(scores: AScores){
         self.addValues(scores.getStr(), dexmod: scores.getDex(), conmod: scores.getCon(), intmod: scores.getInt(), wismod: scores.getWis(), chamod: scores.getCha());
     }//addScores
