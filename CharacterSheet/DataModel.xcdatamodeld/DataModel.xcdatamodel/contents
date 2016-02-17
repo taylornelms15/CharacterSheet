@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F1021" minimumToolsVersion="Xcode 7.0">
-    <entity name="PCharacter" syncable="YES">
+    <entity name="PCharacter" representedClassName=".PCharacter" syncable="YES">
         <attribute name="cha" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="con" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="dex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -23,7 +23,7 @@
         <attribute name="wismod" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Race" positionX="-63" positionY="-18" width="128" height="165"/>
         <element name="PCharacter" positionX="-63" positionY="45" width="128" height="195"/>
+        <element name="Race" positionX="-63" positionY="-18" width="128" height="165"/>
     </elements>
 </model>

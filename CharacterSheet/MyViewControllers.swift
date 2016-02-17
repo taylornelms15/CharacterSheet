@@ -67,11 +67,11 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         }
         let charName = results[0].name;
         nameTextField.text = charName;
-        print(results[0]);
         
         let myCharacter: PCharacter = results[0] as! PCharacter;
-        
-        print(myCharacter);
+        myCharacter.updateAScores();
+        levelTextField.text = "\(myCharacter.level)";
+        classTextField.text = "Rogue";
         
         //Put the race picker view together
         
@@ -171,6 +171,8 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
         else{
             strModLabel.text = "\(modval)";
         }//else
+        
+        updateScoresInCore()
     }
     @IBAction func setDexValue(sender: UITextField) {
         sender.resignFirstResponder();
@@ -184,6 +186,8 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
         else{
             dexModLabel.text = "\(modval)";
         }//else
+        
+        updateScoresInCore()
     }
     @IBAction func setConValue(sender: UITextField) {
         sender.resignFirstResponder();
@@ -197,6 +201,8 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
         else{
             conModLabel.text = "\(modval)";
         }//else
+        
+        updateScoresInCore()
     }
     @IBAction func setIntValue(sender: UITextField) {
         sender.resignFirstResponder();
@@ -210,6 +216,8 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
         else{
             intModLabel.text = "\(modval)";
         }//else
+        
+        updateScoresInCore()
     }
     @IBAction func setWisValue(sender: UITextField) {
         sender.resignFirstResponder();
@@ -223,6 +231,8 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
         else{
             wisModLabel.text = "\(modval)";
         }//else
+        
+        updateScoresInCore()
     }
     @IBAction func setChaValue(sender: UITextField) {
         sender.resignFirstResponder();
@@ -236,6 +246,8 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
         else{
             chaModLabel.text = "\(modval)";
         }//else
+        
+        updateScoresInCore()
     }
     
     // MARK: UITextFieldDelegate
@@ -244,6 +256,134 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
         textField.resignFirstResponder()
         return true;
     }
+    
+    // MARK: Helper functions
+    
+    override func viewDidLoad(){
+        super.viewDidLoad();
+        
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        //let entity =  NSEntityDescription.entityForName("PCharacter", inManagedObjectContext:managedContext)
+        let fetchRequest = NSFetchRequest(entityName: "PCharacter");
+        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        
+        var results: [PCharacter] = [];
+        do{
+            results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+        //make the scores match what's in the database
+        scores = AScores(
+            str: Int(results[0].str),
+            dex: Int(results[0].dex),
+            con: Int(results[0].con),
+            intl: Int(results[0].intl),
+            wis: Int(results[0].wis),
+            cha: Int(results[0].cha))
+        
+        updateTextFields(scores);
+        
+    }//viewDidLoad
+    
+    func updateScoresInCore(){
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        //let entity =  NSEntityDescription.entityForName("PCharacter", inManagedObjectContext:managedContext)
+        
+        //getting the most recent version, just to be safe.
+        let fetchRequest = NSFetchRequest(entityName: "PCharacter");
+        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        
+        var results: [PCharacter] = [];
+        do{
+            results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        results[0].updateAScores();
+        
+        results[0].ascores = scores;
+        results[0].str = Int16(scores.getStr())
+        results[0].dex = Int16(scores.getDex())
+        results[0].con = Int16(scores.getCon())
+        results[0].intl = Int16(scores.getInt())
+        results[0].wis = Int16(scores.getWis())
+        results[0].cha = Int16(scores.getCha())
+        
+        do{
+            try managedContext.save()
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+    }//updateScoresInCore
+    
+    func updateTextFields(newscores: AScores){
+        strTextField.text = "\(newscores.getStr())"
+        dexTextField.text = "\(newscores.getDex())"
+        conTextField.text = "\(newscores.getCon())"
+        intTextField.text = "\(newscores.getInt())"
+        wisTextField.text = "\(newscores.getWis())"
+        chaTextField.text = "\(newscores.getCha())"
+        
+        var modval: Int = 0;
+        
+        modval = newscores.getStrMod();
+        if (modval >= 0){
+            strModLabel.text = "+\(modval)";
+        }//if
+        else{
+            strModLabel.text = "\(modval)";
+        }//else
+        
+        modval = newscores.getDexMod();
+        if (modval >= 0){
+            dexModLabel.text = "+\(modval)";
+        }//if
+        else{
+            dexModLabel.text = "\(modval)";
+        }//else
+        
+        modval = newscores.getConMod();
+        if (modval >= 0){
+            conModLabel.text = "+\(modval)";
+        }//if
+        else{
+            conModLabel.text = "\(modval)";
+        }//else
+        
+        modval = newscores.getIntMod();
+        if (modval >= 0){
+            intModLabel.text = "+\(modval)";
+        }//if
+        else{
+            intModLabel.text = "\(modval)";
+        }//else
+        
+        modval = newscores.getWisMod();
+        if (modval >= 0){
+            wisModLabel.text = "+\(modval)";
+        }//if
+        else{
+            wisModLabel.text = "\(modval)";
+        }//else
+        
+        modval = newscores.getChaMod();
+        if (modval >= 0){
+            chaModLabel.text = "+\(modval)";
+        }//if
+        else{
+            chaModLabel.text = "\(modval)";
+        }//else
+        
+    }//updateTextFields
 
     
 
