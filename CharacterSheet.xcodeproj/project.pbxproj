@@ -21,7 +21,9 @@
 		958CBAE31C56E17900AD833A /* AScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE21C56E17900AD833A /* AScores.swift */; settings = {ASSET_TAGS = (); }; };
 		958CBAE51C56E27600AD833A /* AScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE41C56E27600AD833A /* AScore.swift */; settings = {ASSET_TAGS = (); }; };
 		958CBAE71C56FE4600AD833A /* MyViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE61C56FE4600AD833A /* MyViewControllers.swift */; settings = {ASSET_TAGS = (); }; };
+		959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A30581C790AC900ED83A1 /* SkillViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		95B029D51C601D5300DC0F3C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		95DA20C01C79149F001E66A2 /* SkillProfs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DA20BE1C79149F001E66A2 /* SkillProfs.swift */; settings = {ASSET_TAGS = (); }; };
 		95F7D6201C73D55A00FE3D58 /* PCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7D61F1C73D55A00FE3D58 /* PCharacter.swift */; settings = {ASSET_TAGS = (); }; };
 		95F7D6261C7405EC00FE3D58 /* PClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7D6241C7405EC00FE3D58 /* PClass.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -64,7 +66,9 @@
 		958CBAE21C56E17900AD833A /* AScores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AScores.swift; sourceTree = "<group>"; };
 		958CBAE41C56E27600AD833A /* AScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AScore.swift; sourceTree = "<group>"; };
 		958CBAE61C56FE4600AD833A /* MyViewControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewControllers.swift; sourceTree = "<group>"; };
+		959A30581C790AC900ED83A1 /* SkillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillViewController.swift; sourceTree = "<group>"; };
 		95B029D41C601D5300DC0F3C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		95DA20BE1C79149F001E66A2 /* SkillProfs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillProfs.swift; sourceTree = "<group>"; };
 		95F7D61F1C73D55A00FE3D58 /* PCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCharacter.swift; sourceTree = "<group>"; };
 		95F7D6241C7405EC00FE3D58 /* PClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +106,7 @@
 				958CBAE61C56FE4600AD833A /* MyViewControllers.swift */,
 				958CBAB51C56E10F00AD833A /* ModelController.swift */,
 				955662A71C570B8E00F5C014 /* CSViewController.swift */,
+				959A30581C790AC900ED83A1 /* SkillViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -165,6 +170,7 @@
 				958CBAE41C56E27600AD833A /* AScore.swift */,
 				95692EB71C5AFE1700DD591D /* Race.swift */,
 				95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */,
+				95DA20BE1C79149F001E66A2 /* SkillProfs.swift */,
 				95F7D6241C7405EC00FE3D58 /* PClass.swift */,
 				95F7D61F1C73D55A00FE3D58 /* PCharacter.swift */,
 			);
@@ -309,8 +315,10 @@
 				958CBAE31C56E17900AD833A /* AScores.swift in Sources */,
 				95692EB81C5AFE1700DD591D /* Race.swift in Sources */,
 				958CBAE51C56E27600AD833A /* AScore.swift in Sources */,
+				95DA20C01C79149F001E66A2 /* SkillProfs.swift in Sources */,
 				95F7D6261C7405EC00FE3D58 /* PClass.swift in Sources */,
 				958CBAE71C56FE4600AD833A /* MyViewControllers.swift in Sources */,
+				959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */,
 				955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */,
 				958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */,
 			);

@@ -22,6 +22,7 @@ class PCharacter: NSManagedObject{
     @NSManaged var cha: Int16
     @NSManaged var race: Race
     @NSManaged var pclass: PClass
+    @NSManaged var skillProfs: SkillProfs
     
     var ascores: AScores = AScores();
     
@@ -34,6 +35,10 @@ class PCharacter: NSManagedObject{
 func characterInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     
     let character1 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
+    let skillProfs1 = NSManagedObject(entity: NSEntityDescription.entityForName("SkillProfs",
+        inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
+    skillProfs1.setValue(0, forKey: "profList")
+    
     
     character1.setValue(1, forKey: "id");
     character1.setValue("Jason", forKey: "name");
@@ -44,6 +49,7 @@ func characterInit(entity: NSEntityDescription, context: NSManagedObjectContext)
     character1.setValue(10, forKey: "intl");
     character1.setValue(10, forKey: "wis");
     character1.setValue(10, forKey: "cha");
+    character1.setValue(skillProfs1, forKey: "SkillProfs")
     //character1.setValue(nil, forKey: "race");
     
     do{
