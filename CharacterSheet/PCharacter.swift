@@ -23,12 +23,21 @@ class PCharacter: NSManagedObject{
     @NSManaged var race: Race
     @NSManaged var pclass: PClass
     @NSManaged var skillProfs: SkillProfs
+    @NSManaged var background: Background
     
     var ascores: AScores = AScores();
     
     func updateAScores(){
         ascores = AScores(str: Int(str), dex: Int(dex), con: Int(con), intl: Int(intl), wis: Int(wis), cha: Int(cha));
     }//updateAScores
+    
+    func getProfBonus()->Int{
+        if (level < 5) {return 2}
+        if (level < 9) {return 3}
+        if (level < 13) {return 4}
+        if (level < 17) {return 5}
+        return 6
+    }//getProfBonus
     
 }//character
 

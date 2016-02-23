@@ -16,12 +16,15 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
     var pickerData: [[String]] = [["Hill Dwarf", "Mountain Dwarf", "High Elf", "Wood Elf", "Dark Elf", "Lightfoot Halfling", "Stout Halfling", "Human", "Dragonborn", "Forest Gnome", "Rock Gnome", "Half-Elf", "Half-Orc", "Tiefling"]];
     var classPicker: UIPickerView = UIPickerView();
     var cpickerData: [[String]] = [["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]];
+    var backgroundPicker: UIPickerView = UIPickerView();
+    var bpickerData: [[String]] = [["Acolyte", "Charlatan", "Criminal", "Entertainer", "Folk Hero", "Guild Artisan", "Hermit", "Noble", "Outlander", "Sage", "Sailor", "Soldier", "Urchin"]];
     
     //MARK: Outlets
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var levelTextField: UITextField!
     @IBOutlet weak var raceTextField: UITextField!
     @IBOutlet weak var classTextField: UITextField!
+    @IBOutlet weak var backgroundTextField: UITextField!
     
     //MARK: Actions
     @IBAction func setNameField(sender: UITextField) {
@@ -164,6 +167,33 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
 
     }
     
+    @IBAction func setBackgroundField(sender: UITextField) {
+        //Get our character out
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        var fetchRequest = NSFetchRequest(entityName: "PCharacter");
+        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        var results: [PCharacter] = [];
+        do{
+            results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        results[0].updateAScores()
+        //Note that now results[0] is our character
+        
+        //find the background we're switching to
+        fetchRequest = NSFetchRequest(entityName: "Background");
+        fetchRequest.predicate = NSPredicate(format: "name = %@", backgroundTextField.text!);
+        var backgroundResults: [Background] = [];
+        do{
+            backgroundResults = try managedContext.executeFetchRequest(fetchRequest) as! [Background]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        _ = backgroundResults[0].name;
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         
@@ -245,6 +275,8 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         classTextField.inputView = classPicker;
         classPicker.dataSource = self;
         classPicker.delegate = self;
+        
+        
 
     }
     
@@ -258,6 +290,9 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         if (pickerView == classPicker){
             return cpickerData.count
         }
+        if (pickerView == backgroundPicker){
+            return bpickerData.count
+        }
         return 0;
     }
     
@@ -268,6 +303,9 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         }
         if (pickerView == classPicker){
             return cpickerData[component].count
+        }
+        if (pickerView == backgroundPicker){
+            return bpickerData[component].count
         }
         return 0;
     }
@@ -283,6 +321,9 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
             }
             if (pickerView == classPicker){
                 return cpickerData[component][row]
+            }
+            if (pickerView == backgroundPicker){
+                return bpickerData[component][row]
             }
             return nil;
     }
@@ -308,6 +349,11 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
             
             classTextField.endEditing(true);
         }//pickerView
+        if (pickerView == backgroundPicker){
+            updateBLabel()
+            
+            backgroundTextField.endEditing(true);
+        }//pickerView
     }//pickerView
     
     
@@ -321,6 +367,11 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         let pclass = cpickerData[0][classPicker.selectedRowInComponent(0)]
         classTextField.text = pclass;
     }//updateLabel
+    
+    func updateBLabel(){
+        let background = bpickerData[0][backgroundPicker.selectedRowInComponent(0)]
+        backgroundTextField.text = background;
+    }
     
     func confirmRaceAlert(choice: String){
         let alertController = UIAlertController(title: "Change class to " + choice + "?", message: "This will modify your ability scores accordingly", preferredStyle: UIAlertControllerStyle.Alert);

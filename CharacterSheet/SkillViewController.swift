@@ -56,11 +56,46 @@ class SkillViewController: CSViewController, UIScrollViewDelegate{
     @IBOutlet weak var prfBonusLabel: UILabel!
     @IBOutlet weak var prsBonusLabel: UILabel!
     
+    
+    //MARK: variables
+    
     var statBonusLabels: [UILabel] = []
     var profSwitches: [UISwitch] = []
     var getSkillProfFuncArray: [()->Bool] = []
     var profBonusLabels: [UILabel] = []
+    
+    //MARK: Actions
 
+    @IBAction func profChanged(sender: UISwitch) {
+        //Get our character out
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: "PCharacter");
+        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        var results: [PCharacter] = [];
+        do{
+            results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        results[0].updateAScores()
+        //Note that now results[0] is our character
+    
+        let index: Int = profSwitches.indexOf(sender)!
+        
+        results[0].skillProfs.toggleProficiency(index)
+        
+        do{
+            try managedContext.save()
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+        updateLabels()
+    }
+    
+    
+    //MARK: Other functions
     
     func scrollViewDidScroll(sender: UIScrollView) {
         if (sender.contentOffset.x != 0) {
@@ -125,7 +160,13 @@ class SkillViewController: CSViewController, UIScrollViewDelegate{
             SkillProfs.getIntProf(mySkillProfs), SkillProfs.getPrfProf(mySkillProfs),
             SkillProfs.getPrsProf(mySkillProfs)]
         
-        updateProfSwitches();
+        updateProfSwitches()
+        
+        updateProfBonusLabels(results[0])
+        
+        let profBonus = results[0].getProfBonus();
+        if (profBonus >= 0) {profBonusLabel.text = "+\(profBonus)"}
+        else {profBonusLabel.text = "\(profBonus)"}
         
     }//updateLabels
     
@@ -152,10 +193,42 @@ class SkillViewController: CSViewController, UIScrollViewDelegate{
         
     }//updateProfSwitches
     
-    func updateProfBonusLabels(){
+    func updateProfBonusLabels(myChar: PCharacter){
         
         for (var i = 0; i < getSkillProfFuncArray.count; i++){
+            let isProf: Bool = getSkillProfFuncArray[i]();
+            var bonus: Int = 0;
             
+            if (i == 0){//Strength
+                bonus = myChar.ascores.getStrMod();
+                if isProf {bonus += myChar.getProfBonus()}
+                if (bonus >= 0){profBonusLabels[i].text = "+\(bonus)"}
+                else {profBonusLabels[i].text = "\(bonus)"}
+            }
+            else if (i < 4){//Dexterity
+                bonus = myChar.ascores.getDexMod();
+                if isProf {bonus += myChar.getProfBonus()}
+                if (bonus >= 0){profBonusLabels[i].text = "+\(bonus)"}
+                else {profBonusLabels[i].text = "\(bonus)"}
+            }
+            else if (i < 9){//Intelligence
+                bonus = myChar.ascores.getIntMod();
+                if isProf {bonus += myChar.getProfBonus()}
+                if (bonus >= 0){profBonusLabels[i].text = "+\(bonus)"}
+                else {profBonusLabels[i].text = "\(bonus)"}
+            }
+            else if (i < 14){//Wisdom
+                bonus = myChar.ascores.getWisMod();
+                if isProf {bonus += myChar.getProfBonus()}
+                if (bonus >= 0){profBonusLabels[i].text = "+\(bonus)"}
+                else {profBonusLabels[i].text = "\(bonus)"}
+            }
+            else{//Charisma
+                bonus = myChar.ascores.getChaMod();
+                if isProf {bonus += myChar.getProfBonus()}
+                if (bonus >= 0){profBonusLabels[i].text = "+\(bonus)"}
+                else {profBonusLabels[i].text = "\(bonus)"}
+            }
         }//for
         
     }//updateProfBonusLabels

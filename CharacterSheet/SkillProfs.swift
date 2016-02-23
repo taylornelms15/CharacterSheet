@@ -12,6 +12,8 @@ import CoreData
 class SkillProfs: NSManagedObject {
 
     @NSManaged var profList: Int32
+    @NSManaged var pCharacter: PCharacter?
+    @NSManaged var background: Background?
     
     let athMask: Int32 = 0b00000000000000000000000000000001
     let acrMask: Int32 = 0b00000000000000000000000000000010
@@ -107,4 +109,23 @@ class SkillProfs: NSManagedObject {
         return (profList&prsMask != 0)
     }
     
+    //MARK: Setting Proficiency functions
+    
+    func toggleProficiency(atIndex: Int){
+        
+        let myMask: Int32 = athMask << Int32(atIndex);
+        
+        profList = profList^myMask;
+        
+    }//toggleProficiency
+    
+    //MARK: SkillProfs arithmetic
+    
+    func subtractSkillProfs(secondProfs: SkillProfs){
+        profList = profList & secondProfs.profList
+    }//subtractSkillProfs
+    
+    func addSkillProfs(secondProfs: SkillProfs){
+        profList = profList | secondProfs.profList
+    }//addSkillProfs
 }
