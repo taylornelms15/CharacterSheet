@@ -15,105 +15,111 @@ class SkillProfs: NSManagedObject {
     @NSManaged var pCharacter: PCharacter?
     @NSManaged var background: Background?
     
-    let athMask: Int32 = 0b00000000000000000000000000000001
-    let acrMask: Int32 = 0b00000000000000000000000000000010
-    let sleMask: Int32 = 0b00000000000000000000000000000100
-    let steMask: Int32 = 0b00000000000000000000000000001000
-    let arcMask: Int32 = 0b00000000000000000000000000010000
-    let hisMask: Int32 = 0b00000000000000000000000000100000
-    let invMask: Int32 = 0b00000000000000000000000001000000
-    let natMask: Int32 = 0b00000000000000000000000010000000
-    let relMask: Int32 = 0b00000000000000000000000100000000
-    let aniMask: Int32 = 0b00000000000000000000001000000000
-    let insMask: Int32 = 0b00000000000000000000010000000000
-    let medMask: Int32 = 0b00000000000000000000100000000000
-    let perMask: Int32 = 0b00000000000000000001000000000000
-    let surMask: Int32 = 0b00000000000000000010000000000000
-    let decMask: Int32 = 0b00000000000000000100000000000000
-    let intMask: Int32 = 0b00000000000000001000000000000000
-    let prfMask: Int32 = 0b00000000000000010000000000000000
-    let prsMask: Int32 = 0b00000000000000100000000000000000
+    static let athMask: Int32 = 0b00000000000000000000000000000001
+    static let acrMask: Int32 = 0b00000000000000000000000000000010
+    static let sleMask: Int32 = 0b00000000000000000000000000000100
+    static let steMask: Int32 = 0b00000000000000000000000000001000
+    static let arcMask: Int32 = 0b00000000000000000000000000010000
+    static let hisMask: Int32 = 0b00000000000000000000000000100000
+    static let invMask: Int32 = 0b00000000000000000000000001000000
+    static let natMask: Int32 = 0b00000000000000000000000010000000
+    static let relMask: Int32 = 0b00000000000000000000000100000000
+    static let aniMask: Int32 = 0b00000000000000000000001000000000
+    static let insMask: Int32 = 0b00000000000000000000010000000000
+    static let medMask: Int32 = 0b00000000000000000000100000000000
+    static let perMask: Int32 = 0b00000000000000000001000000000000
+    static let surMask: Int32 = 0b00000000000000000010000000000000
+    static let decMask: Int32 = 0b00000000000000000100000000000000
+    static let intMask: Int32 = 0b00000000000000001000000000000000
+    static let prfMask: Int32 = 0b00000000000000010000000000000000
+    static let prsMask: Int32 = 0b00000000000000100000000000000000
+    let descs = ["ath": SkillProfs.athMask, "acr": SkillProfs.acrMask, "sle": SkillProfs.sleMask,
+                "ste": SkillProfs.sleMask, "arc": SkillProfs.arcMask, "his": SkillProfs.hisMask,
+                "inv": SkillProfs.invMask, "nat": SkillProfs.natMask, "rel": SkillProfs.relMask,
+                "ani": SkillProfs.aniMask, "ins": SkillProfs.insMask, "med": SkillProfs.medMask,
+                "per": SkillProfs.perMask, "sur": SkillProfs.surMask, "dec": SkillProfs.decMask,
+                "int": SkillProfs.intMask, "prf": SkillProfs.prfMask, "prs": SkillProfs.prsMask]
 
     
     //MARK: Get proficiency booleans
     
     func getAthProf()->Bool{
-        return (profList&athMask != 0)
+        return (profList&SkillProfs.athMask != 0)
     }
     
     func getAcrProf()->Bool{
-        return (profList&acrMask != 0)
+        return (profList&SkillProfs.acrMask != 0)
     }
     
     func getSleProf()->Bool{
-        return (profList&sleMask != 0)
+        return (profList&SkillProfs.sleMask != 0)
     }
     
     func getSteProf()->Bool{
-        return (profList&steMask != 0)
+        return (profList&SkillProfs.steMask != 0)
     }
     
     func getArcProf()->Bool{
-        return (profList&arcMask != 0)
+        return (profList&SkillProfs.arcMask != 0)
     }
     
     func getHisProf()->Bool{
-        return (profList&hisMask != 0)
+        return (profList&SkillProfs.hisMask != 0)
     }
     
     func getInvProf()->Bool{
-        return (profList&invMask != 0)
+        return (profList&SkillProfs.invMask != 0)
     }
     
     func getNatProf()->Bool{
-        return (profList&natMask != 0)
+        return (profList&SkillProfs.natMask != 0)
     }
     
     func getRelProf()->Bool{
-        return (profList&relMask != 0)
+        return (profList&SkillProfs.relMask != 0)
     }
     
     func getAniProf()->Bool{
-        return (profList&aniMask != 0)
+        return (profList&SkillProfs.aniMask != 0)
     }
     
     func getInsProf()->Bool{
-        return (profList&insMask != 0)
+        return (profList&SkillProfs.insMask != 0)
     }
     
     func getMedProf()->Bool{
-        return (profList&medMask != 0)
+        return (profList&SkillProfs.medMask != 0)
     }
     
     func getPerProf()->Bool{
-        return (profList&perMask != 0)
+        return (profList&SkillProfs.perMask != 0)
     }
     
     func getSurProf()->Bool{
-        return (profList&surMask != 0)
+        return (profList&SkillProfs.surMask != 0)
     }
     
     func getDecProf()->Bool{
-        return (profList&decMask != 0)
+        return (profList&SkillProfs.decMask != 0)
     }
     
     func getIntProf()->Bool{
-        return (profList&intMask != 0)
+        return (profList&SkillProfs.intMask != 0)
     }
     
     func getPrfProf()->Bool{
-        return (profList&prfMask != 0)
+        return (profList&SkillProfs.prfMask != 0)
     }
     
     func getPrsProf()->Bool{
-        return (profList&prsMask != 0)
+        return (profList&SkillProfs.prsMask != 0)
     }
     
     //MARK: Setting Proficiency functions
     
     func toggleProficiency(atIndex: Int){
         
-        let myMask: Int32 = athMask << Int32(atIndex);
+        let myMask: Int32 = SkillProfs.athMask << Int32(atIndex);
         
         profList = profList^myMask;
         
@@ -122,10 +128,23 @@ class SkillProfs: NSManagedObject {
     //MARK: SkillProfs arithmetic
     
     func subtractSkillProfs(secondProfs: SkillProfs){
-        profList = profList & secondProfs.profList
+        profList = profList & ~secondProfs.profList
     }//subtractSkillProfs
     
     func addSkillProfs(secondProfs: SkillProfs){
         profList = profList | secondProfs.profList
+        print(self.shortDesc())
     }//addSkillProfs
+    
+    func shortDesc()->String{
+        var results = "["
+        for a in descs{
+            if (profList & a.1 != 0){
+                results.appendContentsOf(a.0)
+                results.appendContentsOf(", ")
+            }//if match
+        }//descs
+        results.append(Character("]"));
+        return results
+    }//shortDesc
 }

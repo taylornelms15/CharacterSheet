@@ -182,6 +182,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         results[0].updateAScores()
         //Note that now results[0] is our character
         
+        
         //find the background we're switching to
         fetchRequest = NSFetchRequest(entityName: "Background");
         fetchRequest.predicate = NSPredicate(format: "name = %@", backgroundTextField.text!);
@@ -192,6 +193,25 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
             print("Could not save \(error), \(error.userInfo)")
         }
         _ = backgroundResults[0].name;
+        
+        //find old background
+        let prevBackground: Background? = results[0].background;
+        
+        if (prevBackground != nil){
+            results[0].skillProfs.subtractSkillProfs(prevBackground!.skillProfs!);
+        }//if
+        
+        //put new skill profs on
+        results[0].background = backgroundResults[0];
+        results[0].skillProfs.addSkillProfs(backgroundResults[0].skillProfs!)
+        
+        do{
+            try managedContext.save()
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+        
     }
     
     override func viewDidLoad() {
@@ -220,7 +240,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
         count = managedContext.countForFetchRequest(fetchRequest, error: &error)
         if (count == 0){
-            classesInit(entity!, context: managedContext)
+            PClass.classesInit(entity!, context: managedContext)
         }
         
         //Init Character
@@ -230,6 +250,15 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         count = managedContext.countForFetchRequest(fetchRequest, error: &error)
         if (count == 0){
             characterInit(entity!, context: managedContext);
+        }//if
+        
+        //Init Background
+        entity = NSEntityDescription.entityForName("Background", inManagedObjectContext: managedContext);
+        fetchRequest = NSFetchRequest(entityName: "Background");
+        
+        count = managedContext.countForFetchRequest(fetchRequest, error: &error)
+        if (count == 0){
+            Background.backgroundInit(managedContext);
         }//if
         
         //Update text fields
@@ -263,7 +292,15 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         else{
             raceTextField.text = "Please Select"
         }//else
-            
+        
+        let myBackground: Background? = results[0].background;
+        if (myBackground != nil){
+            backgroundTextField.text = results[0].background.name;
+        }//if
+        else{
+            raceTextField.text = "Please Select"
+        }//else
+        
         //Deal with delegates
         
         nameTextField.delegate = self;
@@ -275,6 +312,10 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         classTextField.inputView = classPicker;
         classPicker.dataSource = self;
         classPicker.delegate = self;
+        
+        backgroundTextField.inputView = backgroundPicker
+        backgroundPicker.dataSource = self
+        backgroundPicker.delegate = self
         
         
 
@@ -373,6 +414,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         backgroundTextField.text = background;
     }
     
+    //Note: deprecated?
     func confirmRaceAlert(choice: String){
         let alertController = UIAlertController(title: "Change class to " + choice + "?", message: "This will modify your ability scores accordingly", preferredStyle: UIAlertControllerStyle.Alert);
         alertController.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default,handler: nil))
