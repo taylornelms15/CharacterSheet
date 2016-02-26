@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955662A71C570B8E00F5C014 /* CSViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		95692EB81C5AFE1700DD591D /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95692EB71C5AFE1700DD591D /* Race.swift */; settings = {ASSET_TAGS = (); }; };
+		957E15BD1C7E891900391977 /* FeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E15BC1C7E891900391977 /* FeaturesViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAAF1C56E10E00AD833A /* AppDelegate.swift */; };
 		958CBAB21C56E10F00AD833A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAB11C56E10F00AD833A /* RootViewController.swift */; };
 		958CBAB41C56E10F00AD833A /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAB31C56E10F00AD833A /* DataViewController.swift */; };
@@ -23,6 +24,10 @@
 		958CBAE71C56FE4600AD833A /* MyViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE61C56FE4600AD833A /* MyViewControllers.swift */; settings = {ASSET_TAGS = (); }; };
 		959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A30581C790AC900ED83A1 /* SkillViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		95B029D51C601D5300DC0F3C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		95B7A59E1C7FD910008895CA /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A59C1C7FD910008895CA /* Feature.swift */; settings = {ASSET_TAGS = (); }; };
+		95B7A5A21C7FDB27008895CA /* BackgroundFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */; settings = {ASSET_TAGS = (); }; };
+		95B7A5A61C7FDB4D008895CA /* RaceFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */; settings = {ASSET_TAGS = (); }; };
+		95B7A5AA1C7FDB76008895CA /* FeatureList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A81C7FDB76008895CA /* FeatureList.swift */; settings = {ASSET_TAGS = (); }; };
 		95DA20C01C79149F001E66A2 /* SkillProfs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DA20BE1C79149F001E66A2 /* SkillProfs.swift */; settings = {ASSET_TAGS = (); }; };
 		95EDE1F21C7BEF0500554520 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EDE1F01C7BEF0500554520 /* Background.swift */; settings = {ASSET_TAGS = (); }; };
 		95F7D6201C73D55A00FE3D58 /* PCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7D61F1C73D55A00FE3D58 /* PCharacter.swift */; settings = {ASSET_TAGS = (); }; };
@@ -49,6 +54,7 @@
 /* Begin PBXFileReference section */
 		955662A71C570B8E00F5C014 /* CSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSViewController.swift; sourceTree = "<group>"; };
 		95692EB71C5AFE1700DD591D /* Race.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
+		957E15BC1C7E891900391977 /* FeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturesViewController.swift; sourceTree = "<group>"; };
 		958CBAAC1C56E10E00AD833A /* CharacterSheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CharacterSheet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		958CBAAF1C56E10E00AD833A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		958CBAB11C56E10F00AD833A /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +75,10 @@
 		958CBAE61C56FE4600AD833A /* MyViewControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewControllers.swift; sourceTree = "<group>"; };
 		959A30581C790AC900ED83A1 /* SkillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillViewController.swift; sourceTree = "<group>"; };
 		95B029D41C601D5300DC0F3C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		95B7A59C1C7FD910008895CA /* Feature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
+		95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundFeature.swift; sourceTree = "<group>"; };
+		95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RaceFeature.swift; path = ../RaceFeature.swift; sourceTree = "<group>"; };
+		95B7A5A81C7FDB76008895CA /* FeatureList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureList.swift; sourceTree = "<group>"; };
 		95DA20BE1C79149F001E66A2 /* SkillProfs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillProfs.swift; sourceTree = "<group>"; };
 		95EDE1F01C7BEF0500554520 /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		95F7D61F1C73D55A00FE3D58 /* PCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCharacter.swift; sourceTree = "<group>"; };
@@ -109,6 +119,7 @@
 				958CBAB51C56E10F00AD833A /* ModelController.swift */,
 				955662A71C570B8E00F5C014 /* CSViewController.swift */,
 				959A30581C790AC900ED83A1 /* SkillViewController.swift */,
+				957E15BC1C7E891900391977 /* FeaturesViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -168,10 +179,14 @@
 		958CBAE11C56E15B00AD833A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */,
 				958CBAE21C56E17900AD833A /* AScores.swift */,
 				958CBAE41C56E27600AD833A /* AScore.swift */,
 				95692EB71C5AFE1700DD591D /* Race.swift */,
 				95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */,
+				95B7A5A81C7FDB76008895CA /* FeatureList.swift */,
+				95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */,
+				95B7A59C1C7FD910008895CA /* Feature.swift */,
 				95EDE1F01C7BEF0500554520 /* Background.swift */,
 				95DA20BE1C79149F001E66A2 /* SkillProfs.swift */,
 				95F7D6241C7405EC00FE3D58 /* PClass.swift */,
@@ -315,16 +330,21 @@
 				95F7D6201C73D55A00FE3D58 /* PCharacter.swift in Sources */,
 				958CBAB61C56E10F00AD833A /* ModelController.swift in Sources */,
 				958CBAB41C56E10F00AD833A /* DataViewController.swift in Sources */,
+				957E15BD1C7E891900391977 /* FeaturesViewController.swift in Sources */,
 				958CBAE31C56E17900AD833A /* AScores.swift in Sources */,
 				95692EB81C5AFE1700DD591D /* Race.swift in Sources */,
+				95B7A5AA1C7FDB76008895CA /* FeatureList.swift in Sources */,
 				958CBAE51C56E27600AD833A /* AScore.swift in Sources */,
 				95DA20C01C79149F001E66A2 /* SkillProfs.swift in Sources */,
+				95B7A5A61C7FDB4D008895CA /* RaceFeature.swift in Sources */,
 				95F7D6261C7405EC00FE3D58 /* PClass.swift in Sources */,
 				95EDE1F21C7BEF0500554520 /* Background.swift in Sources */,
 				958CBAE71C56FE4600AD833A /* MyViewControllers.swift in Sources */,
 				959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */,
 				955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */,
 				958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */,
+				95B7A5A21C7FDB27008895CA /* BackgroundFeature.swift in Sources */,
+				95B7A59E1C7FD910008895CA /* Feature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

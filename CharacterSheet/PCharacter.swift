@@ -20,10 +20,11 @@ class PCharacter: NSManagedObject{
     @NSManaged var intl: Int16
     @NSManaged var wis: Int16
     @NSManaged var cha: Int16
-    @NSManaged var race: Race
-    @NSManaged var pclass: PClass
+    @NSManaged var race: Race?
+    @NSManaged var pclass: PClass?
     @NSManaged var skillProfs: SkillProfs
-    @NSManaged var background: Background
+    @NSManaged var background: Background?
+    @NSManaged var featureList: FeatureList?
     
     var ascores: AScores = AScores();
     
@@ -39,12 +40,81 @@ class PCharacter: NSManagedObject{
         return 6
     }//getProfBonus
     
+    func changeRaceTo(newRace: Race){
+        
+        //remove previous racial bonuses
+        if (race != nil){
+            ascores.subValues(
+                Int(race!.strmod),
+                dexmod: Int(race!.dexmod),
+                conmod: Int(race!.conmod),
+                intmod: Int(race!.intmod),
+                wismod: Int(race!.wismod),
+                chamod: Int(race!.chamod))
+            for feat in race!.features!.allObjects as! [Feature]{
+                featureList!.subtractFeature(feat)
+            }//for all
+        }//if
+        
+        //set new race
+        race = newRace;
+        
+        //add racial bonuses
+        ascores.addValues(Int(race!.strmod), dexmod: Int(race!.dexmod),
+            conmod: Int(race!.conmod), intmod: Int(race!.intmod),
+                wismod: Int(race!.wismod), chamod: Int(race!.chamod))
+        for feat in race!.features!.allObjects as! [Feature]{
+            featureList!.addFeature(feat)
+        }//for all
+        
+        
+        //make the values right
+        str = Int16(ascores.getStr())
+        dex = Int16(ascores.getDex())
+        con = Int16(ascores.getCon())
+        intl = Int16(ascores.getInt())
+        wis = Int16(ascores.getWis())
+        cha = Int16(ascores.getCha())
+        
+    }//changeRaceTo
+    
+    func changeClassTo(newClass: PClass){
+        
+        pclass = newClass
+        
+    }//changeClassTo
+    
+    func changeBackgroundTo(newBackground: Background){
+        
+        //remove previous background proficiencies
+        if (background != nil){
+            skillProfs.subtractSkillProfs(background!.skillProfs!)
+            for feat in background!.features!.allObjects as! [Feature]{
+                featureList!.subtractFeature(feat)
+            }//for all
+        }//if
+        
+        background = newBackground
+        skillProfs.addSkillProfs(background!.skillProfs!)
+        let newFeatList: [Feature] = newBackground.features!.allObjects as! [Feature]
+        for feat in newFeatList{
+            _ = feat.name
+            featureList!.addFeature(feat)
+        }//for all
+
+        
+    }//changeBackgroundTo
+    
 }//character
+
+
 
 func characterInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     
     let character1 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
     let skillProfs1 = NSManagedObject(entity: NSEntityDescription.entityForName("SkillProfs",
+        inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
+    let featureList1 = NSManagedObject(entity: NSEntityDescription.entityForName("FeatureList",
         inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
     skillProfs1.setValue(0, forKey: "profList")
     
@@ -59,7 +129,7 @@ func characterInit(entity: NSEntityDescription, context: NSManagedObjectContext)
     character1.setValue(10, forKey: "wis");
     character1.setValue(10, forKey: "cha");
     character1.setValue(skillProfs1, forKey: "SkillProfs")
-    //character1.setValue(nil, forKey: "race");
+    character1.setValue(featureList1, forKey: "featureList")
     
     do{
         try context.save()

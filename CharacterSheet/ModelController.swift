@@ -22,7 +22,7 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
 
     var pageData: [String] = []
     var pages: [CSViewController] = [];
-    var pageList = ["SummaryViewController","AbilityScoreViewController", "SkillViewController"];
+    var pageList = ["SummaryViewController","AbilityScoreViewController", "SkillViewController", "FeaturesViewController"];
 
 
     override init() {

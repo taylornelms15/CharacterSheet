@@ -20,6 +20,7 @@ class Race: NSManagedObject{
     @NSManaged var intmod: Int16
     @NSManaged var wismod: Int16
     @NSManaged var chamod: Int16
+    @NSManaged var features: NSSet?
     
     func printShort()->NSString{
         return "\(id): " + name! + "\nstr:\(strmod)\ndex:\(dexmod)\ncon:\(conmod)\nint:\(intmod)\nwis:\(wismod)\ncha:\(chamod)\n"
@@ -29,9 +30,11 @@ class Race: NSManagedObject{
 
 func racesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     
+    let rfEntity = NSEntityDescription.entityForName("RaceFeature", inManagedObjectContext: context)!
     
     let race1 = NSManagedObject(entity: entity,
-        insertIntoManagedObjectContext: context)
+        insertIntoManagedObjectContext: context) as! Race
+    
     
     race1.setValue(1, forKey: "id");
     race1.setValue("Hill Dwarf", forKey: "name");
@@ -43,7 +46,7 @@ func racesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     race1.setValue(0, forKey: "chamod");
     
     let race2 = NSManagedObject(entity: entity,
-        insertIntoManagedObjectContext: context)
+        insertIntoManagedObjectContext: context) as! Race
     
     race2.setValue(2, forKey: "id");
     race2.setValue("Mountain Dwarf", forKey: "name");
@@ -55,7 +58,7 @@ func racesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     race2.setValue(0, forKey: "chamod");
     
     let race3 = NSManagedObject(entity: entity,
-        insertIntoManagedObjectContext: context)
+        insertIntoManagedObjectContext: context) as! Race
     
     race3.setValue(3, forKey: "id");
     race3.setValue("High Elf", forKey: "name");
@@ -67,7 +70,7 @@ func racesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     race3.setValue(0, forKey: "chamod");
     
     let race4 = NSManagedObject(entity: entity,
-        insertIntoManagedObjectContext: context)
+        insertIntoManagedObjectContext: context) as! Race
     
     race4.setValue(4, forKey: "id");
     race4.setValue("Wood Elf", forKey: "name");
@@ -79,7 +82,7 @@ func racesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     race4.setValue(0, forKey: "chamod");
     
     let race5 = NSManagedObject(entity: entity,
-        insertIntoManagedObjectContext: context)
+        insertIntoManagedObjectContext: context) as! Race
     
     race5.setValue(5, forKey: "id");
     race5.setValue("Dark Elf", forKey: "name");
@@ -91,7 +94,7 @@ func racesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     race5.setValue(1, forKey: "chamod");
     
     let race6 = NSManagedObject(entity: entity,
-        insertIntoManagedObjectContext: context)
+        insertIntoManagedObjectContext: context) as! Race
     
     race6.setValue(6, forKey: "id");
     race6.setValue("Lightfoot Halfling", forKey: "name");
@@ -103,7 +106,7 @@ func racesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     race6.setValue(1, forKey: "chamod");
     
     let race7 = NSManagedObject(entity: entity,
-        insertIntoManagedObjectContext: context)
+        insertIntoManagedObjectContext: context) as! Race
     
     race7.setValue(7, forKey: "id");
     race7.setValue("Stout Halfling", forKey: "name");
@@ -115,7 +118,7 @@ func racesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     race7.setValue(0, forKey: "chamod");
     
     let race8 = NSManagedObject(entity: entity,
-        insertIntoManagedObjectContext: context)
+        insertIntoManagedObjectContext: context) as! Race
     
     race8.setValue(8, forKey: "id");
     race8.setValue("Human", forKey: "name");
@@ -127,7 +130,7 @@ func racesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     race8.setValue(1, forKey: "chamod");
     
     let race9 = NSManagedObject(entity: entity,
-        insertIntoManagedObjectContext: context)
+        insertIntoManagedObjectContext: context) as! Race
     
     race9.setValue(9, forKey: "id");
     race9.setValue("Dragonborn", forKey: "name");
@@ -139,7 +142,7 @@ func racesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     race9.setValue(1, forKey: "chamod");
     
     let race10 = NSManagedObject(entity: entity,
-        insertIntoManagedObjectContext: context)
+        insertIntoManagedObjectContext: context) as! Race
     
     race10.setValue(10, forKey: "id");
     race10.setValue("Forest Gnome", forKey: "name");
@@ -151,7 +154,7 @@ func racesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     race10.setValue(0, forKey: "chamod");
     
     let race11 = NSManagedObject(entity: entity,
-        insertIntoManagedObjectContext: context)
+        insertIntoManagedObjectContext: context) as! Race
     
     race11.setValue(11, forKey: "id");
     race11.setValue("Rock Gnome", forKey: "name");
@@ -163,7 +166,7 @@ func racesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     race11.setValue(0, forKey: "chamod");
     
     let race12 = NSManagedObject(entity: entity,
-        insertIntoManagedObjectContext: context)
+        insertIntoManagedObjectContext: context) as! Race
     
     race12.setValue(12, forKey: "id");
     race12.setValue("Half-Elf", forKey: "name");
@@ -175,7 +178,7 @@ func racesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     race12.setValue(2, forKey: "chamod");
     
     let race13 = NSManagedObject(entity: entity,
-        insertIntoManagedObjectContext: context)
+        insertIntoManagedObjectContext: context) as! Race
     
     race13.setValue(13, forKey: "id");
     race13.setValue("Half-Orc", forKey: "name");
@@ -187,7 +190,7 @@ func racesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     race13.setValue(0, forKey: "chamod");
     
     let race14 = NSManagedObject(entity: entity,
-        insertIntoManagedObjectContext: context)
+        insertIntoManagedObjectContext: context) as! Race
     
     race14.setValue(14, forKey: "id");
     race14.setValue("Tiefling", forKey: "name");
@@ -198,6 +201,25 @@ func racesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
     race14.setValue(0, forKey: "wismod");
     race14.setValue(2, forKey: "chamod");
 
+    let raceFeature1 = NSManagedObject(entity: rfEntity, insertIntoManagedObjectContext: context) as! RaceFeature
+    raceFeature1.setValue(21, forKey: "id")
+    raceFeature1.setValue("Darkvision 60ft", forKey: "name")
+    raceFeature1.setValue("You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light (albeit without color vision).", forKey: "details")
+    raceFeature1.races = Set<Race>(arrayLiteral: race1, race2, race3, race4, race10, race11, race12, race13, race14)
+    
+    let raceFeature2 = NSManagedObject(entity: rfEntity, insertIntoManagedObjectContext: context) as! RaceFeature
+    raceFeature2.setValue(22, forKey: "id")
+    raceFeature2.setValue("Dwarven Resilience", forKey: "name")
+    raceFeature2.setValue("You have advantage on saving throws against poison, and you have resistance against poison damage.", forKey: "details")
+    raceFeature2.races = Set<Race>(arrayLiteral: race1, race2)
+    
+    let raceFeature3 = NSManagedObject(entity: rfEntity, insertIntoManagedObjectContext: context) as! RaceFeature
+    raceFeature3.setValue(23, forKey: "id")
+    raceFeature3.setValue("Stonecunning", forKey: "name")
+    raceFeature3.setValue("When you make a History check related to the origin of stonework, you are considered proficient and add double your proficiency bonus to the check.", forKey: "details")
+    raceFeature3.races = Set<Race>(arrayLiteral: race1, race2)
+    
+    
     do{
         try context.save()
     }catch let error as NSError{

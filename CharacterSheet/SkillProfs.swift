@@ -133,7 +133,6 @@ class SkillProfs: NSManagedObject {
     
     func addSkillProfs(secondProfs: SkillProfs){
         profList = profList | secondProfs.profList
-        print(self.shortDesc())
     }//addSkillProfs
     
     func shortDesc()->String{

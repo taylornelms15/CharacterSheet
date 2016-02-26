@@ -34,7 +34,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         //Get our character out
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
-        var fetchRequest = NSFetchRequest(entityName: "PCharacter");
+        let fetchRequest = NSFetchRequest(entityName: "PCharacter");
         fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
         var results: [PCharacter] = [];
         do{
@@ -81,20 +81,6 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         results[0].updateAScores()
         //Note that now results[0] is our character
         
-        //take off previous racial bonuses
-        let prevRace: Race? = results[0].race;
-        
-        if (prevRace != nil){
-            results[0].ascores.subValues(
-                Int(prevRace!.strmod),
-                dexmod: Int(prevRace!.dexmod),
-                conmod: Int(prevRace!.conmod),
-                intmod: Int(prevRace!.intmod),
-                wismod: Int(prevRace!.wismod),
-                chamod: Int(prevRace!.chamod))
-        }//if
-        
-        
         //find the race we're switching to
         fetchRequest = NSFetchRequest(entityName: "Race");
         fetchRequest.predicate = NSPredicate(format: "name = %@", raceTextField.text!);
@@ -105,22 +91,10 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
             print("Could not save \(error), \(error.userInfo)")
         }
         
-        results[0].race = raceResults[0];
-        results[0].ascores.addValues(
-            Int(raceResults[0].strmod),
-            dexmod: Int(raceResults[0].dexmod),
-            conmod: Int(raceResults[0].conmod),
-            intmod: Int(raceResults[0].intmod),
-            wismod: Int(raceResults[0].wismod),
-            chamod: Int(raceResults[0].chamod))
+        //change the race
+        results[0].changeRaceTo(raceResults[0]);
         
-        results[0].str = Int16(results[0].ascores.getStr())
-        results[0].dex = Int16(results[0].ascores.getDex())
-        results[0].con = Int16(results[0].ascores.getCon())
-        results[0].intl = Int16(results[0].ascores.getInt())
-        results[0].wis = Int16(results[0].ascores.getWis())
-        results[0].cha = Int16(results[0].ascores.getCha())
-        
+        //save
         do{
             try managedContext.save()
         }catch let error as NSError{
@@ -157,7 +131,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
         
         //Change the class in the database
-        results[0].pclass = classResults[0];
+        results[0].changeClassTo(classResults[0])
         
         do{
             try managedContext.save()
@@ -194,17 +168,10 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         }
         _ = backgroundResults[0].name;
         
-        //find old background
-        let prevBackground: Background? = results[0].background;
+        //change background
+        results[0].changeBackgroundTo(backgroundResults[0])
         
-        if (prevBackground != nil){
-            results[0].skillProfs.subtractSkillProfs(prevBackground!.skillProfs!);
-        }//if
-        
-        //put new skill profs on
-        results[0].background = backgroundResults[0];
-        results[0].skillProfs.addSkillProfs(backgroundResults[0].skillProfs!)
-        
+        //save
         do{
             try managedContext.save()
         }catch let error as NSError{
@@ -279,7 +246,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
         let myClass: PClass? = results[0].pclass;
         if (myClass != nil){
-            classTextField.text = results[0].pclass.name;
+            classTextField.text = results[0].pclass!.name;
         }//if
         else{
             classTextField.text = "Please Select"
@@ -287,7 +254,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
         let myRace: Race? = results[0].race;
         if (myRace != nil){
-            raceTextField.text = results[0].race.name;
+            raceTextField.text = results[0].race!.name;
         }//if
         else{
             raceTextField.text = "Please Select"
@@ -295,7 +262,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
         let myBackground: Background? = results[0].background;
         if (myBackground != nil){
-            backgroundTextField.text = results[0].background.name;
+            backgroundTextField.text = results[0].background!.name;
         }//if
         else{
             raceTextField.text = "Please Select"
