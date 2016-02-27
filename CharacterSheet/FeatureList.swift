@@ -23,21 +23,40 @@ class FeatureList: NSManagedObject {
         }//if backgroundfeature
         else if(newFeat.isMemberOfClass(RaceFeature)){
             raceFeatures.insert(newFeat)
-              print(character!.race!.name!)
-              print(newFeat.name)
         }//if
         
     }//addFeature
     
     func subtractFeature(oldFeat: Feature){
         
-        if (backgroundFeatures.contains(oldFeat)){
-            backgroundFeatures.remove(oldFeat)
-        }//if backgroundfeature
-        else if(raceFeatures.contains(oldFeat)){
-            raceFeatures.remove(oldFeat);
-        }//if
-
+        for feat in backgroundFeatures{
+            if (feat.id == oldFeat.id){
+                backgroundFeatures.remove(feat)
+                break;
+            }
+        }
+        
+        for feat in raceFeatures{
+            if (feat.id == oldFeat.id){
+                raceFeatures.remove(feat)
+                break;
+            }
+        }
         
     }//subtractFeature
+    
+    func printAll()->String{
+        var results: String = ""
+        for feat in backgroundFeatures{
+            results.appendContentsOf(feat.name)
+            results.appendContentsOf(" ")
+        }
+        for feat in raceFeatures{
+            results.appendContentsOf(feat.name)
+            results.appendContentsOf(" ")
+        }
+        
+        
+        return results
+    }
 }
