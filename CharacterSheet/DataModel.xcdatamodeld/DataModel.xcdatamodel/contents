@@ -14,6 +14,10 @@
     <entity name="CurrentId" syncable="YES">
         <attribute name="currentId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="Feat" representedClassName=".Feat" parentEntity="Feature" syncable="YES">
+        <attribute name="canon" attributeType="Boolean" syncable="YES"/>
+        <relationship name="inv_featureList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FeatureList" inverseName="feats" inverseEntity="FeatureList" syncable="YES"/>
+    </entity>
     <entity name="Feature" representedClassName=".Feature" isAbstract="YES" syncable="YES">
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -22,6 +26,7 @@
     <entity name="FeatureList" representedClassName=".FeatureList" syncable="YES">
         <relationship name="backgroundFeatures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BackgroundFeature" inverseName="inv_featureList" inverseEntity="BackgroundFeature" syncable="YES"/>
         <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="featureList" inverseEntity="PCharacter" syncable="YES"/>
+        <relationship name="feats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Feat" inverseName="inv_featureList" inverseEntity="Feat" syncable="YES"/>
         <relationship name="raceFeatures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RaceFeature" inverseName="inv_featureList" inverseEntity="RaceFeature" syncable="YES"/>
     </entity>
     <entity name="PCharacter" representedClassName=".PCharacter" syncable="YES">
@@ -70,15 +75,16 @@
         <relationship name="pCharacter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="skillProfs" inverseEntity="PCharacter" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Background" positionX="-261" positionY="540" width="128" height="118"/>
-        <element name="BackgroundFeature" positionX="-434" positionY="570" width="128" height="75"/>
-        <element name="Feature" positionX="-441" positionY="396" width="128" height="90"/>
-        <element name="FeatureList" positionX="-297" positionY="54" width="128" height="90"/>
-        <element name="PCharacter" positionX="-108" positionY="126" width="128" height="253"/>
-        <element name="PClass" positionX="214" positionY="36" width="128" height="133"/>
-        <element name="Race" positionX="-441" positionY="159" width="128" height="193"/>
-        <element name="RaceFeature" positionX="-90" positionY="333" width="128" height="75"/>
-        <element name="SkillProfs" positionX="-90" positionY="441" width="128" height="88"/>
-        <element name="CurrentId" positionX="-234" positionY="189" width="128" height="60"/>
+        <element name="Background" positionX="-749" positionY="647" width="128" height="118"/>
+        <element name="BackgroundFeature" positionX="-551" positionY="648" width="128" height="75"/>
+        <element name="CurrentId" positionX="-704" positionY="39" width="128" height="60"/>
+        <element name="Feature" positionX="-308" positionY="495" width="128" height="90"/>
+        <element name="FeatureList" positionX="-362" positionY="297" width="128" height="105"/>
+        <element name="PCharacter" positionX="-576" positionY="126" width="128" height="253"/>
+        <element name="PClass" positionX="-731" positionY="173" width="128" height="133"/>
+        <element name="Race" positionX="-729" positionY="423" width="128" height="193"/>
+        <element name="RaceFeature" positionX="-567" positionY="504" width="128" height="75"/>
+        <element name="SkillProfs" positionX="-893" positionY="315" width="128" height="88"/>
+        <element name="Feat" positionX="-558" positionY="735" width="128" height="75"/>
     </elements>
 </model>

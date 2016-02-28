@@ -60,3 +60,11 @@ class FeatureList: NSManagedObject {
         return results
     }
 }
+
+/*
+Feature id ranges:
+1-13: Background Features
+21-50: Race Features
+61-102: Feats (canon)
+111+: User-defined feats
+*/
