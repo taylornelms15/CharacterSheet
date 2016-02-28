@@ -35,7 +35,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         let fetchRequest = NSFetchRequest(entityName: "PCharacter");
-        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
         var results: [PCharacter] = [];
         do{
             results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
@@ -55,6 +55,37 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
     }
     
+    @IBAction func setLevelField(sender: UITextField) {
+        
+        levelTextField.resignFirstResponder()
+        
+        //Get our character out
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: "PCharacter");
+        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
+        var results: [PCharacter] = [];
+        do{
+            results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        results[0].updateAScores()
+        //Note that now results[0] is our character
+        
+        var newLevel: Int = Int(levelTextField.text!)!
+        if (newLevel < 1) {newLevel = 1}
+        if (newLevel > 20) {newLevel = 20}
+        
+        results[0].level = Int16(newLevel)
+        
+        do{
+            try managedContext.save()
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+    }
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -65,13 +96,12 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
 
     
     @IBAction func setRaceField(sender: UITextField) {
-        //Note: this happens whether or not the user hits yes on the alert. And apparently happens twice. Blegh.
         
         //Get our character out
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         var fetchRequest = NSFetchRequest(entityName: "PCharacter");
-        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
         var results: [PCharacter] = [];
         do{
             results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
@@ -108,7 +138,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         var fetchRequest = NSFetchRequest(entityName: "PCharacter");
-        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
         var results: [PCharacter] = [];
         do{
             results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
@@ -146,7 +176,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         var fetchRequest = NSFetchRequest(entityName: "PCharacter");
-        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
         var results: [PCharacter] = [];
         do{
             results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
@@ -228,16 +258,43 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
             Background.backgroundInit(managedContext);
         }//if
         
-        //Update text fields
-        fetchRequest = NSFetchRequest(entityName: "PCharacter");
-        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        //do delegate things
+        nameTextField.delegate = self;
+        levelTextField.delegate = self;
         
+        raceTextField.inputView = racePicker;
+        racePicker.dataSource = self;
+        racePicker.delegate = self;
+        
+        classTextField.inputView = classPicker;
+        classPicker.dataSource = self;
+        classPicker.delegate = self;
+        
+        backgroundTextField.inputView = backgroundPicker
+        backgroundPicker.dataSource = self
+        backgroundPicker.delegate = self
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        //Get our character out
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: "PCharacter");
+        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
         var results: [PCharacter] = [];
         do{
             results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
         }catch let error as NSError{
             print("Could not save \(error), \(error.userInfo)")
         }
+        results[0].updateAScores()
+        //Note that now results[0] is our character
+        
+        //Update text fields
+        
         let charName = results[0].name;
         nameTextField.text = charName;
         
@@ -267,25 +324,6 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         else{
             raceTextField.text = "Please Select"
         }//else
-        
-        //Deal with delegates
-        
-        nameTextField.delegate = self;
-        
-        raceTextField.inputView = racePicker;
-        racePicker.dataSource = self;
-        racePicker.delegate = self;
-        
-        classTextField.inputView = classPicker;
-        classPicker.dataSource = self;
-        classPicker.delegate = self;
-        
-        backgroundTextField.inputView = backgroundPicker
-        backgroundPicker.dataSource = self
-        backgroundPicker.delegate = self
-        
-        
-
     }
     
     //MARK: Picker functions
@@ -364,6 +402,8 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         }//pickerView
     }//pickerView
     
+    //MARK: UITextFieldDelegate
+
     
     //MARK: Helper functions
     func updateLabel(){
@@ -544,7 +584,7 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
         
         //let entity =  NSEntityDescription.entityForName("PCharacter", inManagedObjectContext:managedContext)
         let fetchRequest = NSFetchRequest(entityName: "PCharacter");
-        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
         
         var results: [PCharacter] = [];
         do{
@@ -583,7 +623,7 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
         
         //getting the most recent version, just to be safe.
         let fetchRequest = NSFetchRequest(entityName: "PCharacter");
-        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
         
         var results: [PCharacter] = [];
         do{

@@ -71,7 +71,7 @@ class SkillViewController: CSViewController, UIScrollViewDelegate{
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         let fetchRequest = NSFetchRequest(entityName: "PCharacter");
-        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
         var results: [PCharacter] = [];
         do{
             results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
@@ -131,7 +131,7 @@ class SkillViewController: CSViewController, UIScrollViewDelegate{
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         let fetchRequest = NSFetchRequest(entityName: "PCharacter");
-        fetchRequest.predicate = NSPredicate(format: "id = 1", argumentArray: nil);
+        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
         var results: [PCharacter] = [];
         do{
             results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]

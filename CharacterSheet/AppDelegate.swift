@@ -13,10 +13,37 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var currentCharacterId: Int16 = 1;
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let managedContext = self.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: "CurrentId");
+        var results: [NSManagedObject] = []
+        do{
+            results = try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+        if (results.count == 0){
+            let entity = NSEntityDescription.entityForName("CurrentId", inManagedObjectContext: managedContext)!
+            let currentId1 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: managedContext)
+            
+            currentId1.setValue(1, forKey: "currentId")
+            
+            currentCharacterId = 1;
+
+        }//if no CurrentId (init)
+        else{
+            let x = results[0].valueForKey("currentId")!
+            let y: NSNumber = x as! NSNumber
+            let z: Int = y.integerValue
+            self.currentCharacterId = Int16(z)
+        }//else
+        
         return true
     }
 

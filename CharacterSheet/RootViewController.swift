@@ -20,7 +20,7 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
         self.pageViewController = UIPageViewController(transitionStyle: .PageCurl, navigationOrientation: .Horizontal, options: nil)
         self.pageViewController!.delegate = self
 
-        let startingViewController: UIViewController = self.modelController.viewControllerAtIndex(0, storyboard: self.storyboard!)!
+        let startingViewController: UIViewController = self.modelController.viewControllerAtIndex(1, storyboard: self.storyboard!)!
         let viewControllers = [startingViewController]
         self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: {done in })
 
@@ -39,15 +39,11 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
         self.pageViewController!.didMoveToParentViewController(self)
 
         // Add the page view controller's gesture recognizers to the book view controller's view so that the gestures are started more easily.
-        self.view.gestureRecognizers = self.pageViewController!.gestureRecognizers
+        //self.view.gestureRecognizers = self.pageViewController!.gestureRecognizers
+        //NOTE: commenting this got rid of that weird warning, without removing functionality. Nothing is beautiful and everything hurts.
         
         print("Hello world!");
-        
-        //MARK: testing model code here
-        //Yes, I know I shouldn't... but I will
-        
 
-        
         
     }
 
@@ -96,6 +92,7 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
 
         return .Mid
     }
+    
 
 
 }

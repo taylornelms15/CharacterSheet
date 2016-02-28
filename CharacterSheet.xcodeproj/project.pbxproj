@@ -12,7 +12,6 @@
 		957E15BD1C7E891900391977 /* FeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E15BC1C7E891900391977 /* FeaturesViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAAF1C56E10E00AD833A /* AppDelegate.swift */; };
 		958CBAB21C56E10F00AD833A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAB11C56E10F00AD833A /* RootViewController.swift */; };
-		958CBAB41C56E10F00AD833A /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAB31C56E10F00AD833A /* DataViewController.swift */; };
 		958CBAB61C56E10F00AD833A /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAB51C56E10F00AD833A /* ModelController.swift */; };
 		958CBAB91C56E10F00AD833A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 958CBAB71C56E10F00AD833A /* Main.storyboard */; };
 		958CBABB1C56E10F00AD833A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 958CBABA1C56E10F00AD833A /* Assets.xcassets */; };
@@ -29,6 +28,7 @@
 		95B7A5A61C7FDB4D008895CA /* RaceFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */; settings = {ASSET_TAGS = (); }; };
 		95B7A5AA1C7FDB76008895CA /* FeatureList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A81C7FDB76008895CA /* FeatureList.swift */; settings = {ASSET_TAGS = (); }; };
 		95DA20C01C79149F001E66A2 /* SkillProfs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DA20BE1C79149F001E66A2 /* SkillProfs.swift */; settings = {ASSET_TAGS = (); }; };
+		95DD0EE21C82459600D456D2 /* CharacterSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD0EE11C82459600D456D2 /* CharacterSelectViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		95EDE1F21C7BEF0500554520 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EDE1F01C7BEF0500554520 /* Background.swift */; settings = {ASSET_TAGS = (); }; };
 		95F7D6201C73D55A00FE3D58 /* PCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7D61F1C73D55A00FE3D58 /* PCharacter.swift */; settings = {ASSET_TAGS = (); }; };
 		95F7D6261C7405EC00FE3D58 /* PClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7D6241C7405EC00FE3D58 /* PClass.swift */; settings = {ASSET_TAGS = (); }; };
@@ -58,7 +58,6 @@
 		958CBAAC1C56E10E00AD833A /* CharacterSheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CharacterSheet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		958CBAAF1C56E10E00AD833A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		958CBAB11C56E10F00AD833A /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		958CBAB31C56E10F00AD833A /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		958CBAB51C56E10F00AD833A /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
 		958CBAB81C56E10F00AD833A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		958CBABA1C56E10F00AD833A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,6 +79,7 @@
 		95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RaceFeature.swift; path = ../RaceFeature.swift; sourceTree = "<group>"; };
 		95B7A5A81C7FDB76008895CA /* FeatureList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureList.swift; sourceTree = "<group>"; };
 		95DA20BE1C79149F001E66A2 /* SkillProfs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillProfs.swift; sourceTree = "<group>"; };
+		95DD0EE11C82459600D456D2 /* CharacterSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSelectViewController.swift; sourceTree = "<group>"; };
 		95EDE1F01C7BEF0500554520 /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		95F7D61F1C73D55A00FE3D58 /* PCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCharacter.swift; sourceTree = "<group>"; };
 		95F7D6241C7405EC00FE3D58 /* PClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PClass.swift; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				958CBAB11C56E10F00AD833A /* RootViewController.swift */,
-				958CBAB31C56E10F00AD833A /* DataViewController.swift */,
+				95DD0EE11C82459600D456D2 /* CharacterSelectViewController.swift */,
 				958CBAE61C56FE4600AD833A /* MyViewControllers.swift */,
 				958CBAB51C56E10F00AD833A /* ModelController.swift */,
 				955662A71C570B8E00F5C014 /* CSViewController.swift */,
@@ -329,11 +329,11 @@
 				95B029D51C601D5300DC0F3C /* DataModel.xcdatamodeld in Sources */,
 				95F7D6201C73D55A00FE3D58 /* PCharacter.swift in Sources */,
 				958CBAB61C56E10F00AD833A /* ModelController.swift in Sources */,
-				958CBAB41C56E10F00AD833A /* DataViewController.swift in Sources */,
 				957E15BD1C7E891900391977 /* FeaturesViewController.swift in Sources */,
 				958CBAE31C56E17900AD833A /* AScores.swift in Sources */,
 				95692EB81C5AFE1700DD591D /* Race.swift in Sources */,
 				95B7A5AA1C7FDB76008895CA /* FeatureList.swift in Sources */,
+				95DD0EE21C82459600D456D2 /* CharacterSelectViewController.swift in Sources */,
 				958CBAE51C56E27600AD833A /* AScore.swift in Sources */,
 				95DA20C01C79149F001E66A2 /* SkillProfs.swift in Sources */,
 				95B7A5A61C7FDB4D008895CA /* RaceFeature.swift in Sources */,

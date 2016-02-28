@@ -11,6 +11,9 @@
         <relationship name="background" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Background" inverseName="features" inverseEntity="Background" syncable="YES"/>
         <relationship name="inv_featureList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FeatureList" inverseName="backgroundFeatures" inverseEntity="FeatureList" syncable="YES"/>
     </entity>
+    <entity name="CurrentId" syncable="YES">
+        <attribute name="currentId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="Feature" representedClassName=".Feature" isAbstract="YES" syncable="YES">
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -76,5 +79,6 @@
         <element name="Race" positionX="-441" positionY="159" width="128" height="193"/>
         <element name="RaceFeature" positionX="-90" positionY="333" width="128" height="75"/>
         <element name="SkillProfs" positionX="-90" positionY="441" width="128" height="88"/>
+        <element name="CurrentId" positionX="-234" positionY="189" width="128" height="60"/>
     </elements>
 </model>

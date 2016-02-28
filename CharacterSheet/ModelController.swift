@@ -22,7 +22,7 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
 
     var pageData: [String] = []
     var pages: [CSViewController] = [];
-    var pageList = ["SummaryViewController","AbilityScoreViewController", "SkillViewController", "FeaturesViewController"];
+    var pageList = ["CharacterSelectViewController", "SummaryViewController","AbilityScoreViewController", "SkillViewController", "FeaturesViewController"];
 
 
     override init() {
@@ -36,13 +36,7 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
 
     func viewControllerAtIndex(index: Int, storyboard: UIStoryboard) -> UIViewController? {
         // Return the data view controller for the given index.
-        /*
-        if (self.pages.count == 0) || (index >= self.pages.count) {
-            return nil
-        }
-        */
 
-        
         
         if (!(pages.isEmpty)) {
             return pages[index];
@@ -59,12 +53,6 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
         
         return pages[index];
         
-        // Create a new view controller and pass suitable data.
-        /*
-        let dataViewController = storyboard.instantiateViewControllerWithIdentifier("DataViewController") as! DataViewController
-        dataViewController.dataObject = self.pageData[index]
-        return dataViewController
-        */
     }
 
     func indexOfViewController(viewController: UIViewController) -> Int {
@@ -81,38 +69,26 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
         
         let myViewController = viewController as! CSViewController;
         return myViewController.prevViewController;
-        
 
-        /*
-        var index = self.indexOfViewController(viewController as! DataViewController)
-        if (index == 0) || (index == NSNotFound) {
-            return nil
-        }
-        
-        index--
-        return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
-        */
     }
 
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
         let myViewController = viewController as! CSViewController;
-        return myViewController.nextViewController;
-        
-
-        /*
-        var index = self.indexOfViewController(viewController as! DataViewController)
-        if index == NSNotFound {
-            return nil
-        }
-        
-        index++
-        if index == self.pageData.count {
-            return nil
-        }
-        return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
-        */
+        return myViewController.nextViewController
     }
+
+    /*
+    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int{
+        return pages.count
+    }
+    
+    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+        print(pageViewController)
+        
+        return 0;
+    }
+*/
 
 }
 
