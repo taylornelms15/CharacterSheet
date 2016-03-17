@@ -258,6 +258,16 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
             Background.backgroundInit(managedContext);
         }//if
         
+        //Init Feats
+        
+        entity = NSEntityDescription.entityForName("Feat", inManagedObjectContext: managedContext);
+        fetchRequest = NSFetchRequest(entityName: "Feat");
+        
+        count = managedContext.countForFetchRequest(fetchRequest, error: &error)
+        if (count == 0){
+            Feat.featsInit(managedContext)
+        }//if
+        
         //do delegate things
         nameTextField.delegate = self;
         levelTextField.delegate = self;

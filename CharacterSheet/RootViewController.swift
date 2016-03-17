@@ -42,6 +42,19 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
         //self.view.gestureRecognizers = self.pageViewController!.gestureRecognizers
         //NOTE: commenting this got rid of that weird warning, without removing functionality. Nothing is beautiful and everything hurts.
         
+        //Get rid of tap recognizer part of gesture recognizers. Swipe only, bitch!
+        var tapRecognizer: UIGestureRecognizer? = nil
+        for recognizer in self.pageViewController!.gestureRecognizers{
+            if (recognizer.isMemberOfClass(UITapGestureRecognizer)){
+                tapRecognizer = recognizer;
+                break
+            }
+        }//for recognizer
+        if (tapRecognizer != nil){
+            self.pageViewController!.view.removeGestureRecognizer(tapRecognizer!)
+        }
+        
+        
         print("Hello world!");
 
         

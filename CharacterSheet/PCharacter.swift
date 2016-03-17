@@ -176,6 +176,8 @@ func characterInit(entity: NSEntityDescription, context: NSManagedObjectContext)
     character1.setValue(skillProfs1, forKey: "SkillProfs")
     character1.setValue(featureList1, forKey: "featureList")
     
+    /*
+    
     let character2 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
     let skillProfs2 = NSManagedObject(entity: NSEntityDescription.entityForName("SkillProfs",
         inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
@@ -195,6 +197,8 @@ func characterInit(entity: NSEntityDescription, context: NSManagedObjectContext)
     character2.setValue(10, forKey: "cha");
     character2.setValue(skillProfs2, forKey: "SkillProfs")
     character2.setValue(featureList2, forKey: "featureList")
+
+*/
     
     do{
         try context.save()

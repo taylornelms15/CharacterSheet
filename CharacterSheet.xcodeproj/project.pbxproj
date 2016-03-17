@@ -27,6 +27,9 @@
 		95B7A5A21C7FDB27008895CA /* BackgroundFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */; settings = {ASSET_TAGS = (); }; };
 		95B7A5A61C7FDB4D008895CA /* RaceFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */; settings = {ASSET_TAGS = (); }; };
 		95B7A5AA1C7FDB76008895CA /* FeatureList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A81C7FDB76008895CA /* FeatureList.swift */; settings = {ASSET_TAGS = (); }; };
+		95D10E7E1C9605EE00ACDAC8 /* TraitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D10E7D1C9605EE00ACDAC8 /* TraitsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		95D10E801C960A7400ACDAC8 /* Traits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D10E7F1C960A7400ACDAC8 /* Traits.swift */; settings = {ASSET_TAGS = (); }; };
+		95D124D01C9A57E600AC4CDF /* EditTraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D124CF1C9A57E500AC4CDF /* EditTraitViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		95DA20C01C79149F001E66A2 /* SkillProfs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DA20BE1C79149F001E66A2 /* SkillProfs.swift */; settings = {ASSET_TAGS = (); }; };
 		95DD0EE21C82459600D456D2 /* CharacterSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD0EE11C82459600D456D2 /* CharacterSelectViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		95E3DD901C839D42008736D1 /* Feat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E3DD8E1C839D42008736D1 /* Feat.swift */; settings = {ASSET_TAGS = (); }; };
@@ -79,6 +82,9 @@
 		95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundFeature.swift; sourceTree = "<group>"; };
 		95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RaceFeature.swift; path = ../RaceFeature.swift; sourceTree = "<group>"; };
 		95B7A5A81C7FDB76008895CA /* FeatureList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureList.swift; sourceTree = "<group>"; };
+		95D10E7D1C9605EE00ACDAC8 /* TraitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraitsViewController.swift; sourceTree = "<group>"; };
+		95D10E7F1C960A7400ACDAC8 /* Traits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Traits.swift; sourceTree = "<group>"; };
+		95D124CF1C9A57E500AC4CDF /* EditTraitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTraitViewController.swift; sourceTree = "<group>"; };
 		95DA20BE1C79149F001E66A2 /* SkillProfs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillProfs.swift; sourceTree = "<group>"; };
 		95DD0EE11C82459600D456D2 /* CharacterSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSelectViewController.swift; sourceTree = "<group>"; };
 		95E3DD8E1C839D42008736D1 /* Feat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feat.swift; sourceTree = "<group>"; };
@@ -116,12 +122,14 @@
 			isa = PBXGroup;
 			children = (
 				958CBAB11C56E10F00AD833A /* RootViewController.swift */,
-				95DD0EE11C82459600D456D2 /* CharacterSelectViewController.swift */,
-				958CBAE61C56FE4600AD833A /* MyViewControllers.swift */,
 				958CBAB51C56E10F00AD833A /* ModelController.swift */,
 				955662A71C570B8E00F5C014 /* CSViewController.swift */,
+				95DD0EE11C82459600D456D2 /* CharacterSelectViewController.swift */,
+				958CBAE61C56FE4600AD833A /* MyViewControllers.swift */,
 				959A30581C790AC900ED83A1 /* SkillViewController.swift */,
 				957E15BC1C7E891900391977 /* FeaturesViewController.swift */,
+				95D10E7D1C9605EE00ACDAC8 /* TraitsViewController.swift */,
+				95D124CF1C9A57E500AC4CDF /* EditTraitViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -181,19 +189,20 @@
 		958CBAE11C56E15B00AD833A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */,
 				958CBAE21C56E17900AD833A /* AScores.swift */,
 				958CBAE41C56E27600AD833A /* AScore.swift */,
+				95F7D61F1C73D55A00FE3D58 /* PCharacter.swift */,
 				95692EB71C5AFE1700DD591D /* Race.swift */,
+				95F7D6241C7405EC00FE3D58 /* PClass.swift */,
+				95EDE1F01C7BEF0500554520 /* Background.swift */,
 				95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */,
-				95E3DD8E1C839D42008736D1 /* Feat.swift */,
+				95DA20BE1C79149F001E66A2 /* SkillProfs.swift */,
 				95B7A5A81C7FDB76008895CA /* FeatureList.swift */,
+				95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */,
 				95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */,
 				95B7A59C1C7FD910008895CA /* Feature.swift */,
-				95EDE1F01C7BEF0500554520 /* Background.swift */,
-				95DA20BE1C79149F001E66A2 /* SkillProfs.swift */,
-				95F7D6241C7405EC00FE3D58 /* PClass.swift */,
-				95F7D61F1C73D55A00FE3D58 /* PCharacter.swift */,
+				95E3DD8E1C839D42008736D1 /* Feat.swift */,
+				95D10E7F1C960A7400ACDAC8 /* Traits.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -337,8 +346,11 @@
 				95692EB81C5AFE1700DD591D /* Race.swift in Sources */,
 				95B7A5AA1C7FDB76008895CA /* FeatureList.swift in Sources */,
 				95DD0EE21C82459600D456D2 /* CharacterSelectViewController.swift in Sources */,
+				95D124D01C9A57E600AC4CDF /* EditTraitViewController.swift in Sources */,
 				95E3DD901C839D42008736D1 /* Feat.swift in Sources */,
 				958CBAE51C56E27600AD833A /* AScore.swift in Sources */,
+				95D10E7E1C9605EE00ACDAC8 /* TraitsViewController.swift in Sources */,
+				95D10E801C960A7400ACDAC8 /* Traits.swift in Sources */,
 				95DA20C01C79149F001E66A2 /* SkillProfs.swift in Sources */,
 				95B7A5A61C7FDB4D008895CA /* RaceFeature.swift in Sources */,
 				95F7D6261C7405EC00FE3D58 /* PClass.swift in Sources */,

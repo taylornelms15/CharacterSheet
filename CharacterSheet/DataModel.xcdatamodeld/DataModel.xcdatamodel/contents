@@ -6,6 +6,7 @@
         <relationship name="features" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BackgroundFeature" inverseName="background" inverseEntity="BackgroundFeature" syncable="YES"/>
         <relationship name="inv_char" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="background" inverseEntity="PCharacter" syncable="YES"/>
         <relationship name="skillProfs" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkillProfs" inverseName="background" inverseEntity="SkillProfs" syncable="YES"/>
+        <relationship name="traitList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TraitList" inverseName="inv_background" inverseEntity="TraitList" syncable="YES"/>
     </entity>
     <entity name="BackgroundFeature" representedClassName=".BackgroundFeature" parentEntity="Feature" syncable="YES">
         <relationship name="background" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Background" inverseName="features" inverseEntity="Background" syncable="YES"/>
@@ -44,6 +45,7 @@
         <relationship name="pclass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PClass" inverseName="inv_char" inverseEntity="PClass" syncable="YES"/>
         <relationship name="race" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Race" inverseName="inv_char" inverseEntity="Race" syncable="YES"/>
         <relationship name="skillProfs" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkillProfs" inverseName="pCharacter" inverseEntity="SkillProfs" syncable="YES"/>
+        <relationship name="traitList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TraitList" inverseName="inv_character" inverseEntity="TraitList" syncable="YES"/>
     </entity>
     <entity name="PClass" representedClassName=".PClass" syncable="YES">
         <attribute name="hitDie" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -74,17 +76,32 @@
         <relationship name="background" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Background" inverseName="skillProfs" inverseEntity="Background" syncable="YES"/>
         <relationship name="pCharacter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="skillProfs" inverseEntity="PCharacter" syncable="YES"/>
     </entity>
+    <entity name="Trait" representedClassName=".Trait" syncable="YES">
+        <attribute name="canon" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="inv_traitList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TraitList" inverseName="traits" inverseEntity="TraitList" syncable="YES"/>
+    </entity>
+    <entity name="TraitList" representedClassName=".TraitList" syncable="YES">
+        <relationship name="inv_background" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Background" inverseName="traitList" inverseEntity="Background" syncable="YES"/>
+        <relationship name="inv_character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="traitList" inverseEntity="PCharacter" syncable="YES"/>
+        <relationship name="traits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Trait" inverseName="inv_traitList" inverseEntity="Trait" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Background" positionX="-749" positionY="647" width="128" height="118"/>
+        <element name="Background" positionX="-749" positionY="647" width="128" height="133"/>
         <element name="BackgroundFeature" positionX="-551" positionY="648" width="128" height="75"/>
         <element name="CurrentId" positionX="-704" positionY="39" width="128" height="60"/>
+        <element name="Feat" positionX="-558" positionY="735" width="128" height="75"/>
         <element name="Feature" positionX="-308" positionY="495" width="128" height="90"/>
-        <element name="FeatureList" positionX="-362" positionY="297" width="128" height="105"/>
-        <element name="PCharacter" positionX="-576" positionY="126" width="128" height="253"/>
+        <element name="FeatureList" positionX="-362" positionY="297" width="128" height="103"/>
+        <element name="PCharacter" positionX="-576" positionY="126" width="128" height="268"/>
         <element name="PClass" positionX="-731" positionY="173" width="128" height="133"/>
         <element name="Race" positionX="-729" positionY="423" width="128" height="193"/>
         <element name="RaceFeature" positionX="-567" positionY="504" width="128" height="75"/>
         <element name="SkillProfs" positionX="-893" positionY="315" width="128" height="88"/>
-        <element name="Feat" positionX="-558" positionY="735" width="128" height="75"/>
+        <element name="Trait" positionX="-684" positionY="189" width="128" height="133"/>
+        <element name="TraitList" positionX="-675" positionY="198" width="128" height="90"/>
     </elements>
 </model>

@@ -14,7 +14,7 @@ class FeatureList: NSManagedObject {
     @NSManaged var character: PCharacter?
     @NSManaged var backgroundFeatures: Set<Feature>
     @NSManaged var raceFeatures: Set<Feature>
-
+    @NSManaged var feats: Set<Feature>
     
     func addFeature(newFeat: Feature){
         
@@ -23,6 +23,9 @@ class FeatureList: NSManagedObject {
         }//if backgroundfeature
         else if(newFeat.isMemberOfClass(RaceFeature)){
             raceFeatures.insert(newFeat)
+        }//if
+        else if (newFeat.isMemberOfClass(Feat)){
+            feats.insert(newFeat)
         }//if
         
     }//addFeature
@@ -43,6 +46,14 @@ class FeatureList: NSManagedObject {
             }
         }
         
+        for feat in feats{
+            if (feat.id == oldFeat.id){
+                feats.remove(feat)
+                break;
+            }
+        }
+        
+        
     }//subtractFeature
     
     func printAll()->String{
@@ -55,7 +66,10 @@ class FeatureList: NSManagedObject {
             results.appendContentsOf(feat.name)
             results.appendContentsOf(" ")
         }
-        
+        for feat in feats{
+            results.appendContentsOf(feat.name)
+            results.appendContentsOf(" ")
+        }
         
         return results
     }
