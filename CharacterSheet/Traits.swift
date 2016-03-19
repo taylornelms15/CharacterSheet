@@ -71,22 +71,30 @@ class Trait: NSManagedObject{
     */
     func removeFromCoreData(fromContext context: NSManagedObjectContext){
         
-        let fetchRequest = NSFetchRequest(entityName: "Trait")
-        fetchRequest.predicate = NSPredicate(format: "id > %@", String(id))
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-        var results: [Trait] = [];
-        do{
-            results = try context.executeFetchRequest(fetchRequest) as! [Trait]
-        }catch let error as NSError{
-            print("Could not save \(error), \(error.userInfo)")
-        }//catch
-        //results now contains all traits above this one's id
+        let predicateFormatString = "id > \(id)"
+        var error: NSError? = nil
         
-        if (results.count != 0){
+        let fetchRequest = NSFetchRequest(entityName: "Trait")
+        fetchRequest.predicate = NSPredicate(format: predicateFormatString)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        
+        let count = context.countForFetchRequest(fetchRequest, error: &error)
+        
+        if (count != 0){
+            var results: [Trait] = [];
+            do{
+                results = try context.executeFetchRequest(fetchRequest) as! [Trait]
+            }catch let error as NSError{
+                print("Could not save \(error), \(error.userInfo)")
+            }//catch
+            //results now contains all traits above this one's id
+            
             for trait in results{
                 trait.id = trait.id - 1
             }//for all traits in results
-        }//if there are
+            
+        }//if there are any higher-numbered traits
+
         
         context.deleteObject(self) //just like suicide!
         
@@ -209,6 +217,34 @@ class TraitList: NSManagedObject{
                 ["Inflexible", "I am inflecible in my thinking."],
                 ["Suspicious", "I am suspicious of strangers and suspect the worst of them."],
                 ["Obsessed", "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life."]
+            ],
+            [
+                ["Lover", "I fall in and out of love easiler, and am always pursuing someone."],
+                ["Joker", "I have a joke for every occasion, especially occasions where humor is inappropriate."],
+                ["Flatterer", "Flattery is my preferred trick for getting what I want."],
+                ["Gambler", "I'm a born gambler who can't resist taking a risk for a potential payoff."],
+                ["Liar", "I lie about almost everything, even when there's no good reason to."],
+                ["Sarcastic", "Sarcasm and insults are my weapon of choice."],
+                ["Fake Faith", "I keep multiple holy symbols on me and involve whatever deity might come in useful at any given moment."],
+                ["Scavenger", "I pocket anything I see that might have some value."],
+                ["Independence", "I am a free spirit - no one tells me what to do."],
+                ["Fairness", "I never target people who can't afford to lose a few coins."],
+                ["Charity", "I distribute the money I acquire to the people who really need it."],
+                ["Creativity", "I never run the same con twice"],
+                ["Friendship", "Material goods come and go. Bonds of friendship last forever."],
+                ["Aspiration", "I'm determined to make something of myself"],
+                ["Bad Target", "I fleeced the wrong person and must work to ensure that this individual never crosses paths with me or those I care about."],
+                ["Mentor Debt", "I owe everything to my mentor - a horrible person who's probably rotting in jail somewhere."],
+                ["Faraway Child", "Somewhere out there, I have a child who doesn't know me. I'm making the world better for them."],
+                ["Noble's Revenge", "I come from a noble family, and one day I'll reclaim my lands and title from those who stole them from me."],
+                ["Lover's Revenge", "A powerful person killed someone I love. Some day soon, I'll have my revenge."],
+                ["Regret", "I swindled and ruined a person who didn't deserve it. I seek to atone for my misdeeds, but might never be able to forgive myself."],
+                ["Easily Charmed", "I can't resist a pretty face."],
+                ["Debt", "I'm always in debt. I spend my ill-gotted gains on decadent luxuries faster than I bring them in."],
+                ["Pride", "I'm convinced that no one could ever fool me the way I fool others."],
+                ["Greed", "I'm too greedy for my own good. I can't resist taking a risk if there's money involved."],
+                ["Fight the Power", "I can't resist swindling people who are more powerful than I am."],
+                ["Coward", "I hate to admit it and will hate myself for it, but I'll run and preserve my own hide if the going gets tough."]
             ]
         ]
         

@@ -75,7 +75,6 @@ class TraitsViewController: CSViewController, UIScrollViewDelegate{
         
         super.viewWillAppear(animated)
         
-        updateCharacterTraits()
         updateTextsOfViews()
         
     }
@@ -87,6 +86,19 @@ class TraitsViewController: CSViewController, UIScrollViewDelegate{
     }//viewDidAppear
  
     //MARK: Helper functions
+    
+    func updateTextsOfViews(){
+        
+        updateCharacterTraits()
+        
+        setTextOfView(persTrait1TextView, fromTrait: persTrait1)
+        setTextOfView(persTrait2TextView, fromTrait: persTrait2)
+        setTextOfView(idealTextView, fromTrait: idealTrait)
+        setTextOfView(bondTextView, fromTrait: bondTrait)
+        setTextOfView(flawTextView, fromTrait: flawTrait)
+        
+    }//updateTextsOfViews
+
     
     func updateCharacterTraits(){
         
@@ -105,37 +117,56 @@ class TraitsViewController: CSViewController, UIScrollViewDelegate{
         //Note that now results[0] is our character
         
         var onePersTraitSet: Bool = false
+        var removing: Bool = false
         
         for trait in results[0].traitList.traits{
+            
+            //Remove canonical traits not associated with the right background
+            if (trait.canon == true && results[0].background!.traitList!.traits.contains(trait) == false){
+                
+                results[0].traitList.traits.remove(trait)
+                
+                do{
+                    try context.save()
+                }catch let error as NSError{
+                    print("Could not save \(error), \(error.userInfo)")
+                }
+                
+                removing = true
+                
+            }//if it doesn't c
+            else{
+                removing = false
+            }
+            
+            
             if (trait.category == 1 && onePersTraitSet == true){
                 persTrait2 = trait
+                if(removing){persTrait2 = nil}
             }
             if (trait.category == 1 && onePersTraitSet == false){
                 persTrait1 = trait
                 onePersTraitSet = true
+                if(removing){persTrait1 = nil}
             }
             if (trait.category == 2){
                 idealTrait = trait
+                if(removing){idealTrait = nil}
             }
             if (trait.category == 3){
                 bondTrait = trait
+                if(removing){bondTrait = nil}
             }
             if (trait.category == 4){
                 flawTrait = trait
+                if(removing){flawTrait = nil}
             }
+            
+            
         }//for trait
         
     }//updateCharacterTraits
     
-    func updateTextsOfViews(){
-        
-        setTextOfView(persTrait1TextView, fromTrait: persTrait1)
-        setTextOfView(persTrait2TextView, fromTrait: persTrait2)
-        setTextOfView(idealTextView, fromTrait: idealTrait)
-        setTextOfView(bondTextView, fromTrait: bondTrait)
-        setTextOfView(flawTextView, fromTrait: flawTrait)
-        
-    }//updateTextsOfViews
     
     private func setTextOfView(textView: UITextView, fromTrait trait: Trait?){
         var results: String = ""

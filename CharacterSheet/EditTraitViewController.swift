@@ -91,7 +91,7 @@ class EditTraitViewController: UIViewController, UIPickerViewDataSource, UIPicke
         var newTrait: Trait? = nil
         let tEntity = NSEntityDescription.entityForName("Trait", inManagedObjectContext: context)!
         
-        if (currTrait == nil){
+        if (currTrait == nil || (currTrait != nil && currTrait!.canon == false)){
             
             newTrait = (NSManagedObject(entity: tEntity, insertIntoManagedObjectContext: context) as! Trait)
             
@@ -101,6 +101,10 @@ class EditTraitViewController: UIViewController, UIPickerViewDataSource, UIPicke
             newTrait!.category = Trait.getCategoryNumFromName(categoryName)
             
             newTrait!.addToCoreData(intoContext: context)
+            
+            if (currTrait != nil){
+                currTrait!.removeFromCoreData(fromContext: context)
+            }
             
         }//if we're making a non-canon trait
         else{
@@ -148,7 +152,7 @@ class EditTraitViewController: UIViewController, UIPickerViewDataSource, UIPicke
             setCurrTraitToCanonTrait(nameChoice)
         }
         
-        updateTextFields()
+        updateTextFields(toTrait: currTrait)
         
         traitPickerField.resignFirstResponder()
         
@@ -192,8 +196,9 @@ class EditTraitViewController: UIViewController, UIPickerViewDataSource, UIPicke
             currTrait = prevTrait
         }
         
-        updateTextFields()
         updatePickerData()
+        updateTextFields(toTrait: currTrait)
+        
         
     }
     
@@ -324,10 +329,56 @@ class EditTraitViewController: UIViewController, UIPickerViewDataSource, UIPicke
             
         }//set the text fields for the current trait
         
+        if (currTrait != nil && currTrait!.canon){
+            traitPickerField.text = currTrait!.name
+            traitPicker.selectRow(pickerData.indexOf(currTrait!.name!)!, inComponent: 0, animated: false)
+        }
+        else if (currTrait != nil && !currTrait!.canon){
+            traitPickerField.text = "Custom Trait"
+            traitPicker.selectRow(0, inComponent: 0, animated: false)
+        }
+        
         if (pickerData.count > 0){
             traitPickerField.text = pickerData[traitPicker.selectedRowInComponent(0)]
         }
 
     }//updateTextFields
+    
+    func updateTextFields(toTrait trait: Trait?){
+        
+        categoryLabel.text = categoryName
+        
+        if(trait == nil){
+            nameTextField.text = "Enter short name"
+            detailsTextView.text = "Enter details of the trait."
+            
+            nameTextField.enabled = true
+            detailsTextView.editable = true
+            
+            traitPickerField.text = "Custom Trait"
+            traitPicker.selectRow(0, inComponent: 0, animated: false)
+            
+        }
+        else{
+            
+            nameTextField.text = trait!.name
+            detailsTextView.text = trait!.details
+            
+            nameTextField.enabled = !trait!.canon
+            detailsTextView.editable = !trait!.canon
+            
+            if (trait!.canon){
+                traitPickerField.text = trait!.name
+                traitPicker.selectRow(pickerData.indexOf(trait!.name!)!, inComponent: 0, animated: false)
+            }
+            else{
+                traitPickerField.text = "Custom Trait"
+                traitPicker.selectRow(0, inComponent: 0, animated: false)
+            }
+            
+        }//trait exists
+        
+        
+    }//updateTextFieldstoTrait
     
 }//EditTraitViewController
