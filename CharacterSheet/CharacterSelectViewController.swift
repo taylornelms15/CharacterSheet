@@ -139,8 +139,6 @@ class CharacterSelectViewController: CSViewController, UITableViewDataSource, UI
             changeIdTo(newChar.id)
             characterSelectTableView.reloadData();
             
-            //TODO: make this go to next view controller
-            
             return
             
         }//if add new
@@ -187,9 +185,15 @@ class CharacterSelectViewController: CSViewController, UITableViewDataSource, UI
             }
             //results: [PCharacter] now contains, at index 0, the character we want to delete, and at all higher indexes, characters whose id's we want to decrement
             if(results.count == 1){
+                context.deleteObject(results[0].skillProfs)
+                context.deleteObject(results[0].traitList)
+                context.deleteObject(results[0].featureList!)
                 context.deleteObject(results[0])
             }//if we're deleting the last item
             else{
+                context.deleteObject(results[0].skillProfs)
+                context.deleteObject(results[0].traitList)
+                context.deleteObject(results[0].featureList!)
                 context.deleteObject(results[0])
                 for var i = 1; i < results.count; i += 1{
                     results[i].id -= 1

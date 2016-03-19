@@ -90,7 +90,7 @@
         <relationship name="traits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Trait" inverseName="inv_traitList" inverseEntity="Trait" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Background" positionX="-749" positionY="647" width="128" height="133"/>
+        <element name="Background" positionX="-749" positionY="647" width="128" height="135"/>
         <element name="BackgroundFeature" positionX="-551" positionY="648" width="128" height="75"/>
         <element name="CurrentId" positionX="-704" positionY="39" width="128" height="60"/>
         <element name="Feat" positionX="-558" positionY="735" width="128" height="75"/>

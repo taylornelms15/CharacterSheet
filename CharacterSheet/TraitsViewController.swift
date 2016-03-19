@@ -36,7 +36,7 @@ class TraitsViewController: CSViewController, UIScrollViewDelegate{
         super.prepareForSegue(segue, sender: sender)
         
         let thisSender: UIButton = sender! as! UIButton
-        var destController: EditTraitViewController = segue.destinationViewController as! EditTraitViewController
+        let destController: EditTraitViewController = segue.destinationViewController as! EditTraitViewController
         
         switch (thisSender){
         case persTrait1EditButton:
@@ -75,6 +75,7 @@ class TraitsViewController: CSViewController, UIScrollViewDelegate{
         
         super.viewWillAppear(animated)
         
+        updateCharacterTraits()
         updateTextsOfViews()
         
     }
@@ -86,6 +87,45 @@ class TraitsViewController: CSViewController, UIScrollViewDelegate{
     }//viewDidAppear
  
     //MARK: Helper functions
+    
+    func updateCharacterTraits(){
+        
+        //Get our character out
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: "PCharacter");
+        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
+        var results: [PCharacter] = [];
+        do{
+            results = try context.executeFetchRequest(fetchRequest) as! [PCharacter]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        results[0].updateAScores()
+        //Note that now results[0] is our character
+        
+        var onePersTraitSet: Bool = false
+        
+        for trait in results[0].traitList.traits{
+            if (trait.category == 1 && onePersTraitSet == true){
+                persTrait2 = trait
+            }
+            if (trait.category == 1 && onePersTraitSet == false){
+                persTrait1 = trait
+                onePersTraitSet = true
+            }
+            if (trait.category == 2){
+                idealTrait = trait
+            }
+            if (trait.category == 3){
+                bondTrait = trait
+            }
+            if (trait.category == 4){
+                flawTrait = trait
+            }
+        }//for trait
+        
+    }//updateCharacterTraits
     
     func updateTextsOfViews(){
         

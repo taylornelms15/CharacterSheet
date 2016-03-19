@@ -11,10 +11,11 @@ import CoreData
 
 class Background: NSManagedObject {
 
-    @NSManaged var id: Int32
+    @NSManaged var id: Int16
     @NSManaged var name: String
     @NSManaged var skillProfs: SkillProfs?
     @NSManaged var features: NSSet?
+    @NSManaged var traitList: TraitList?
 
     
     static func backgroundInit(context: NSManagedObjectContext){

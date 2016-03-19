@@ -25,6 +25,7 @@ class PCharacter: NSManagedObject{
     @NSManaged var skillProfs: SkillProfs
     @NSManaged var background: Background?
     @NSManaged var featureList: FeatureList?
+    @NSManaged var traitList: TraitList
     
     var ascores: AScores = AScores();
     
@@ -109,6 +110,7 @@ class PCharacter: NSManagedObject{
     static func createBlankCharacter(context: NSManagedObjectContext)->PCharacter{
         
         let entity = NSEntityDescription.entityForName("PCharacter", inManagedObjectContext: context)!
+        let tlEntity = NSEntityDescription.entityForName("TraitList", inManagedObjectContext: context)!
         
         let fetchRequest = NSFetchRequest(entityName: "PCharacter");
         fetchRequest.predicate = NSPredicate(format: "id==max(id)")
@@ -137,10 +139,13 @@ class PCharacter: NSManagedObject{
         let skillProfs1 = NSManagedObject(entity: NSEntityDescription.entityForName("SkillProfs",
             inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
         skillProfs1.setValue(0, forKey: "profList")
+        let traitList1 = NSManagedObject(entity: NSEntityDescription.entityForName("TraitList",
+            inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
+
         
         myCharacter.setValue(skillProfs1, forKey: "SkillProfs")
         myCharacter.setValue(featureList1, forKey: "featureList")
-        
+        myCharacter.setValue(traitList1, forKey: "traitList")
         
         do{
             try context.save()
@@ -162,6 +167,8 @@ func characterInit(entity: NSEntityDescription, context: NSManagedObjectContext)
     let featureList1 = NSManagedObject(entity: NSEntityDescription.entityForName("FeatureList",
         inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
     skillProfs1.setValue(0, forKey: "profList")
+    let traitList1 = NSManagedObject(entity: NSEntityDescription.entityForName("TraitList",
+        inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
     
     
     character1.setValue(1, forKey: "id");
@@ -175,6 +182,7 @@ func characterInit(entity: NSEntityDescription, context: NSManagedObjectContext)
     character1.setValue(10, forKey: "cha");
     character1.setValue(skillProfs1, forKey: "SkillProfs")
     character1.setValue(featureList1, forKey: "featureList")
+    character1.setValue(traitList1, forKey: "traitList")
     
     /*
     
