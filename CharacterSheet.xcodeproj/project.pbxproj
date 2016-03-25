@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955662A71C570B8E00F5C014 /* CSViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		9558A0291CA0DD160037521B /* CollectionViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9558A0281CA0DD160037521B /* CollectionViewCells.swift */; settings = {ASSET_TAGS = (); }; };
 		95692EB81C5AFE1700DD591D /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95692EB71C5AFE1700DD591D /* Race.swift */; settings = {ASSET_TAGS = (); }; };
 		957E15BD1C7E891900391977 /* FeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E15BC1C7E891900391977 /* FeaturesViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAAF1C56E10E00AD833A /* AppDelegate.swift */; };
@@ -20,7 +21,8 @@
 		958CBAD41C56E11000AD833A /* CharacterSheetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAD31C56E11000AD833A /* CharacterSheetUITests.swift */; };
 		958CBAE31C56E17900AD833A /* AScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE21C56E17900AD833A /* AScores.swift */; settings = {ASSET_TAGS = (); }; };
 		958CBAE51C56E27600AD833A /* AScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE41C56E27600AD833A /* AScore.swift */; settings = {ASSET_TAGS = (); }; };
-		958CBAE71C56FE4600AD833A /* MyViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE61C56FE4600AD833A /* MyViewControllers.swift */; settings = {ASSET_TAGS = (); }; };
+		959370B71CA5ADA2000E5734 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959370B61CA5ADA2000E5734 /* SummaryViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		959370B91CA5ADD5000E5734 /* AbilityScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A30581C790AC900ED83A1 /* SkillViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		95B029D51C601D5300DC0F3C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		95B7A59E1C7FD910008895CA /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A59C1C7FD910008895CA /* Feature.swift */; settings = {ASSET_TAGS = (); }; };
@@ -57,6 +59,7 @@
 
 /* Begin PBXFileReference section */
 		955662A71C570B8E00F5C014 /* CSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSViewController.swift; sourceTree = "<group>"; };
+		9558A0281CA0DD160037521B /* CollectionViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCells.swift; sourceTree = "<group>"; };
 		95692EB71C5AFE1700DD591D /* Race.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
 		957E15BC1C7E891900391977 /* FeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturesViewController.swift; sourceTree = "<group>"; };
 		958CBAAC1C56E10E00AD833A /* CharacterSheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CharacterSheet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,7 +78,8 @@
 		958CBAD51C56E11000AD833A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		958CBAE21C56E17900AD833A /* AScores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AScores.swift; sourceTree = "<group>"; };
 		958CBAE41C56E27600AD833A /* AScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AScore.swift; sourceTree = "<group>"; };
-		958CBAE61C56FE4600AD833A /* MyViewControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewControllers.swift; sourceTree = "<group>"; };
+		959370B61CA5ADA2000E5734 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityScoreViewController.swift; sourceTree = "<group>"; };
 		959A30581C790AC900ED83A1 /* SkillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillViewController.swift; sourceTree = "<group>"; };
 		95B029D41C601D5300DC0F3C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		95B7A59C1C7FD910008895CA /* Feature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
@@ -125,7 +129,9 @@
 				958CBAB51C56E10F00AD833A /* ModelController.swift */,
 				955662A71C570B8E00F5C014 /* CSViewController.swift */,
 				95DD0EE11C82459600D456D2 /* CharacterSelectViewController.swift */,
-				958CBAE61C56FE4600AD833A /* MyViewControllers.swift */,
+				959370B61CA5ADA2000E5734 /* SummaryViewController.swift */,
+				959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */,
+				9558A0281CA0DD160037521B /* CollectionViewCells.swift */,
 				959A30581C790AC900ED83A1 /* SkillViewController.swift */,
 				957E15BC1C7E891900391977 /* FeaturesViewController.swift */,
 				95D10E7D1C9605EE00ACDAC8 /* TraitsViewController.swift */,
@@ -338,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				958CBAB21C56E10F00AD833A /* RootViewController.swift in Sources */,
+				959370B71CA5ADA2000E5734 /* SummaryViewController.swift in Sources */,
 				95B029D51C601D5300DC0F3C /* DataModel.xcdatamodeld in Sources */,
 				95F7D6201C73D55A00FE3D58 /* PCharacter.swift in Sources */,
 				958CBAB61C56E10F00AD833A /* ModelController.swift in Sources */,
@@ -347,6 +354,7 @@
 				95B7A5AA1C7FDB76008895CA /* FeatureList.swift in Sources */,
 				95DD0EE21C82459600D456D2 /* CharacterSelectViewController.swift in Sources */,
 				95D124D01C9A57E600AC4CDF /* EditTraitViewController.swift in Sources */,
+				9558A0291CA0DD160037521B /* CollectionViewCells.swift in Sources */,
 				95E3DD901C839D42008736D1 /* Feat.swift in Sources */,
 				958CBAE51C56E27600AD833A /* AScore.swift in Sources */,
 				95D10E7E1C9605EE00ACDAC8 /* TraitsViewController.swift in Sources */,
@@ -355,9 +363,9 @@
 				95B7A5A61C7FDB4D008895CA /* RaceFeature.swift in Sources */,
 				95F7D6261C7405EC00FE3D58 /* PClass.swift in Sources */,
 				95EDE1F21C7BEF0500554520 /* Background.swift in Sources */,
-				958CBAE71C56FE4600AD833A /* MyViewControllers.swift in Sources */,
 				959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */,
 				955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */,
+				959370B91CA5ADD5000E5734 /* AbilityScoreViewController.swift in Sources */,
 				958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */,
 				95B7A5A21C7FDB27008895CA /* BackgroundFeature.swift in Sources */,
 				95B7A59E1C7FD910008895CA /* Feature.swift in Sources */,

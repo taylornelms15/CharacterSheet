@@ -25,6 +25,11 @@ class PClass: NSManagedObject {
         value/10 is the possible second relevant ability score
     */
  
+    func hitDieLabel()->String{
+        
+        return "Hit Die: 1d\(hitDie)"
+
+    }//hitDieLabel
     
     static func classesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
         

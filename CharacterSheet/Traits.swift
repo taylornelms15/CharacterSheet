@@ -190,7 +190,7 @@ class TraitList: NSManagedObject{
     static func traitsInit(context: NSManagedObjectContext){
         
         let traitsData: [[[String]]] = [
-            [
+            [//Acolyte
                 ["Hero-Worshipper", "I idolize a particular hero of my faith and constantly refer to that person's deeds and example."],
                 ["Diplomat", "I can find common ground between the fiercest enemies, empathizing with them and always working toward peace."],
                 ["Omen-Seer", "I see omens in every event and action. The gods try to speak to us; we just need to listen."],
@@ -218,7 +218,7 @@ class TraitList: NSManagedObject{
                 ["Suspicious", "I am suspicious of strangers and suspect the worst of them."],
                 ["Obsessed", "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life."]
             ],
-            [
+            [//Charlatan
                 ["Lover", "I fall in and out of love easiler, and am always pursuing someone."],
                 ["Joker", "I have a joke for every occasion, especially occasions where humor is inappropriate."],
                 ["Flatterer", "Flattery is my preferred trick for getting what I want."],
@@ -245,6 +245,62 @@ class TraitList: NSManagedObject{
                 ["Greed", "I'm too greedy for my own good. I can't resist taking a risk if there's money involved."],
                 ["Fight the Power", "I can't resist swindling people who are more powerful than I am."],
                 ["Coward", "I hate to admit it and will hate myself for it, but I'll run and preserve my own hide if the going gets tough."]
+            ],
+            [//Criminal
+                ["Planner", "I always have a plan for what to do when things go wrong."],
+                ["Calm", "I am always calm, no matter what the situation. I never raise my voice or let my emotions control me."],
+                ["Case the Joint", "The first thing I do in a new place is note the locations of everything valuable - or where such things could be hidden."],
+                ["Friendly", "I would rather make a new friend than a new enemy."],
+                ["Distrustful", "I am incredibly slow to trust. Those who seem the fairest often have the most to hide."],
+                ["Reckless", "I don't pay attention to the risks in a situation. Never tell me the odds."],
+                ["Daring", "The best way to get me to do something is to tell me I can't do it."],
+                ["Easily Insulted", "I blow up at the slightest insult."],
+                ["Honor", "I don't steal from others in the trade."],
+                ["Freedom", "Chains are meant to be broken, as are those who would forge them."],
+                ["Charity", "I steal from the wealthy so that I can help people in need."],
+                ["Greed", "I will do whatever it takes to become wealthy."],
+                ["People", "I'm loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care."],
+                ["Redemption", "There's a spark of good in everyone."],
+                ["Debt", "I'm trying to pay off an old debt I owe to a generous benefactor"],
+                ["Family", "My ill-gotten gains go to support my family"],
+                ["Counter-Theft", "Something important was taken from me, and I aim to steal it back."],
+                ["Aspiration", "I will become the greatest thief that ever lived."],
+                ["Guilt", "I'm guilty of a terrible crime. I hope I can redeem myself for it."],
+                ["Lost Love", "Someone I loved died because of a mistake I made. That will never happen again."],
+                ["Easily Tempted", "When I see something valuable, I can't think about anything but how to steal it."],
+                ["Disloyal", "When faced with a choice between money and my friends, I usually choose the money."],
+                ["Improviser", "If there's a plan, I'l forget it. If I don't forget it, I'll ignore it."],
+                ["Bad Liar", "I have a \"tell\" that reveals when I'm lying."],
+                ["Coward", "I turn tail and run when things look bad."],
+                ["Heartless", "An innocent person is in prison for a crime that I committed. I'm okay with that."]
+            ],
+            [//Entertainer
+                ["Storyteller", "I know a story relevant to almost every situation."],
+                ["Gossip", "Whenever I come to a new place, I collect local rumors and spread gossip."],
+                ["Romantic", "I'm a hopeless romantic, always searching for that \"special someone.\""],
+                ["Calming Presence", "Nobody stays angry at me or around me for long, since I can defuse any amount of tension."],
+                ["Insulting", "I love a good insult, even one directed at me."],
+                ["Attention-Seeker", "I get bitter if I'm not the center of attention."],
+                ["Perfectionist", "I'll settle for nothing less than perfection."],
+                ["Fickle", "I change my mood or my mind as quickly as I change key in a song."],
+                ["Beauty", "When I perform, I make the world better than it was."],
+                ["Tradition", "The stories, legends, and songs of the past must never be forgotten, for they teach us who we are."],
+                ["Creativity", "The world is in need of new udeas and bold action."],
+                ["Greed", "I'm only in it for the money and fame."],
+                ["People", "I like seeing the smiles on people's faces when I perform. That's all that matters."],
+                ["Honesty", "Art should reflect the soul; it should come from within and reveal who we really are."],
+                ["Sentimental Instrument", "My instrument is my most treasured possession, and it reminds me of someone I love."],
+                ["Stolen Instrument", "Someone stole my precious instrument, and someday I'll get it back."],
+                ["Fame", "I want to be famous, whatever it takes."],
+                ["Hero-Worship", "I idolize a hero of the old tales and measure my deeds against that person's."],
+                ["Rival", "I will do anything to prove myself superior to my hated rival."],
+                ["Loyal", "I would do anything for the other members of my old troupe."],
+                ["Cutthroat", "I'll do anything to win fame and renown."],
+                ["Easily Charmed", "I'm a sucker for a pretty face."],
+                ["Scandalized", "A scandal prevents me from ever going home again. That kind of trouble seems to follow me around."],
+                ["Bad Target", "I once satirized a noble who still wants my head. It was a mistake that I will likely repeat."],
+                ["No Filter", "I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble."],
+                ["Unreliable", "Despite my best efforts, I am unreliable to my friends."]
             ]
         ]
         

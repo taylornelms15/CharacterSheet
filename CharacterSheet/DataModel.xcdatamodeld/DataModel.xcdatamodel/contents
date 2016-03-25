@@ -31,12 +31,16 @@
         <relationship name="raceFeatures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RaceFeature" inverseName="inv_featureList" inverseEntity="RaceFeature" syncable="YES"/>
     </entity>
     <entity name="PCharacter" representedClassName=".PCharacter" syncable="YES">
+        <attribute name="alignment" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="armorClass" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="cha" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="con" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="currHp" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="dex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="intl" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="maxHp" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="str" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="wis" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -96,7 +100,7 @@
         <element name="Feat" positionX="-558" positionY="735" width="128" height="75"/>
         <element name="Feature" positionX="-308" positionY="495" width="128" height="90"/>
         <element name="FeatureList" positionX="-362" positionY="297" width="128" height="103"/>
-        <element name="PCharacter" positionX="-576" positionY="126" width="128" height="268"/>
+        <element name="PCharacter" positionX="-576" positionY="126" width="128" height="330"/>
         <element name="PClass" positionX="-731" positionY="173" width="128" height="133"/>
         <element name="Race" positionX="-729" positionY="423" width="128" height="193"/>
         <element name="RaceFeature" positionX="-567" positionY="504" width="128" height="75"/>

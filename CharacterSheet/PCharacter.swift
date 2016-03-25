@@ -20,6 +20,11 @@ class PCharacter: NSManagedObject{
     @NSManaged var intl: Int16
     @NSManaged var wis: Int16
     @NSManaged var cha: Int16
+    @NSManaged var alignment: Int16
+    @NSManaged var currHp: Int64
+    @NSManaged var maxHp: Int64
+    @NSManaged var armorClass: Int64
+    
     @NSManaged var race: Race?
     @NSManaged var pclass: PClass?
     @NSManaged var skillProfs: SkillProfs
@@ -28,6 +33,20 @@ class PCharacter: NSManagedObject{
     @NSManaged var traitList: TraitList
     
     var ascores: AScores = AScores();
+    
+    static let alignmentTable: [Int16: String] = [
+        Int16(0): "",
+        Int16(1): "Lawful Good",
+        Int16(2): "Lawful Neutral",
+        Int16(3): "Lawful Evil",
+        Int16(4): "Neutral Good",
+        Int16(5): "Neutral Neutral",
+        Int16(6): "Neutral Evil",
+        Int16(7): "Chaotic Good",
+        Int16(8): "Chaotic Neutral",
+        Int16(9): "Chaotic Evil"
+    ]
+    
     
     func updateAScores(){
         ascores = AScores(str: Int(str), dex: Int(dex), con: Int(con), intl: Int(intl), wis: Int(wis), cha: Int(cha));
@@ -40,6 +59,62 @@ class PCharacter: NSManagedObject{
         if (level < 17) {return 5}
         return 6
     }//getProfBonus
+    
+    static func getAlignmentStringLong(code: Int16)->String{
+        return PCharacter.alignmentTable[code]!
+    }
+
+    static func getAlignmentStringShort(code: Int16)->String{
+        switch (code){
+        case 1:
+            return "LG"
+        case 2:
+            return "LN"
+        case 3:
+            return "LE"
+        case 4:
+            return "NG"
+        case 5:
+            return "NN"
+        case 6:
+            return "NE"
+        case 7:
+            return "CG"
+        case 8:
+            return "CN"
+        case 9:
+            return "CE"
+        default:
+            return ""
+        }
+    }//getAlignmentStringShort
+    
+    static func getAlignmentCode(name: String)->Int16{
+        
+        switch (name){
+        case "Lawful Good":
+            return 1
+        case "Lawful Neutral":
+            return 2
+        case "Lawful Evil":
+            return 3
+        case "Neutral Good":
+            return 4
+        case "Neutral Neutral":
+            return 5
+        case "Neutral Evil":
+            return 6
+        case "Chaotic Good":
+            return 7
+        case "Chaotic Neutral":
+            return 8
+        case "Chaotic Evil":
+            return 9
+        default:
+            return 0
+        }
+
+    }//getAlignmentCode
     
     func changeRaceTo(newRace: Race){
         
@@ -106,11 +181,54 @@ class PCharacter: NSManagedObject{
         
     }//changeBackgroundTo
     
+    func changeAlignmentTo(newAlignment: Int16){
+        
+        alignment = newAlignment
+        
+    }//changeAlignmentTo
+    
+    /**
+    This returns the Spell Save DC and Spell Attack Mod for the character
+    - Returns: A tuple with two ints. The first is the Spell Save DC, the second is the Spell Attack Mod
+    */
+    func getSpellDCandMod()->(Int, Int){
+        
+        var myDC: Int = 0
+        var myMod: Int = 0
+        
+        switch (pclass!.name!){
+        case "Bard":
+            myDC = 8 + getProfBonus() + ascores.getChaMod()
+            myMod = getProfBonus() + ascores.getChaMod()
+        case "Cleric":
+            myDC = 8 + getProfBonus() + ascores.getWisMod()
+            myMod = getProfBonus() + ascores.getWisMod()
+        case "Druid":
+            myDC = 8 + getProfBonus() + ascores.getWisMod()
+            myMod = getProfBonus() + ascores.getWisMod()
+        case "Paladin":
+            myDC = 8 + getProfBonus() + ascores.getChaMod()
+            myMod = getProfBonus() + ascores.getChaMod()
+        case "Sorcerer":
+            myDC = 8 + getProfBonus() + ascores.getChaMod()
+            myMod = getProfBonus() + ascores.getChaMod()
+        case "Warlock":
+            myDC = 8 + getProfBonus() + ascores.getChaMod()
+            myMod = getProfBonus() + ascores.getChaMod()
+        case "Wizard":
+            myDC = 8 + getProfBonus() + ascores.getIntMod()
+            myMod = getProfBonus() + ascores.getIntMod()
+        default:
+            break
+        }
+        
+        return (myDC, myMod)
+    }//getSpellDCandMod
     
     static func createBlankCharacter(context: NSManagedObjectContext)->PCharacter{
         
         let entity = NSEntityDescription.entityForName("PCharacter", inManagedObjectContext: context)!
-        let tlEntity = NSEntityDescription.entityForName("TraitList", inManagedObjectContext: context)!
+        //let tlEntity = NSEntityDescription.entityForName("TraitList", inManagedObjectContext: context)!
         
         let fetchRequest = NSFetchRequest(entityName: "PCharacter");
         fetchRequest.predicate = NSPredicate(format: "id==max(id)")
@@ -133,6 +251,9 @@ class PCharacter: NSManagedObject{
         myCharacter.setValue(10, forKey: "intl");
         myCharacter.setValue(10, forKey: "wis");
         myCharacter.setValue(10, forKey: "cha");
+        myCharacter.setValue(0, forKey: "alignment")
+        myCharacter.setValue(0, forKey: "currHp")
+        myCharacter.setValue(0, forKey: "maxHp")
 
         let featureList1 = NSManagedObject(entity: NSEntityDescription.entityForName("FeatureList",
             inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
@@ -156,6 +277,8 @@ class PCharacter: NSManagedObject{
         return myCharacter
         
     }//createBlankCharacter
+    
+
     
 }//character
 
@@ -183,6 +306,9 @@ func characterInit(entity: NSEntityDescription, context: NSManagedObjectContext)
     character1.setValue(skillProfs1, forKey: "SkillProfs")
     character1.setValue(featureList1, forKey: "featureList")
     character1.setValue(traitList1, forKey: "traitList")
+    character1.setValue(0, forKey: "alignment")
+    character1.setValue(0, forKey: "currHp")
+    character1.setValue(0, forKey: "maxHp")
     
     /*
     
