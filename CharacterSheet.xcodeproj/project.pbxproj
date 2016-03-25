@@ -11,6 +11,7 @@
 		9558A0291CA0DD160037521B /* CollectionViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9558A0281CA0DD160037521B /* CollectionViewCells.swift */; settings = {ASSET_TAGS = (); }; };
 		95692EB81C5AFE1700DD591D /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95692EB71C5AFE1700DD591D /* Race.swift */; settings = {ASSET_TAGS = (); }; };
 		957E15BD1C7E891900391977 /* FeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E15BC1C7E891900391977 /* FeaturesViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		95809ECC1CA5CF0400863E9D /* Spell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95809ECA1CA5CF0400863E9D /* Spell.swift */; settings = {ASSET_TAGS = (); }; };
 		958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAAF1C56E10E00AD833A /* AppDelegate.swift */; };
 		958CBAB21C56E10F00AD833A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAB11C56E10F00AD833A /* RootViewController.swift */; };
 		958CBAB61C56E10F00AD833A /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAB51C56E10F00AD833A /* ModelController.swift */; };
@@ -62,6 +63,7 @@
 		9558A0281CA0DD160037521B /* CollectionViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCells.swift; sourceTree = "<group>"; };
 		95692EB71C5AFE1700DD591D /* Race.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
 		957E15BC1C7E891900391977 /* FeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturesViewController.swift; sourceTree = "<group>"; };
+		95809ECA1CA5CF0400863E9D /* Spell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spell.swift; sourceTree = "<group>"; };
 		958CBAAC1C56E10E00AD833A /* CharacterSheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CharacterSheet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		958CBAAF1C56E10E00AD833A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		958CBAB11C56E10F00AD833A /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				95F7D6241C7405EC00FE3D58 /* PClass.swift */,
 				95EDE1F01C7BEF0500554520 /* Background.swift */,
 				95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */,
+				95809ECA1CA5CF0400863E9D /* Spell.swift */,
 				95DA20BE1C79149F001E66A2 /* SkillProfs.swift */,
 				95B7A5A81C7FDB76008895CA /* FeatureList.swift */,
 				95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */,
@@ -356,6 +359,7 @@
 				95D124D01C9A57E600AC4CDF /* EditTraitViewController.swift in Sources */,
 				9558A0291CA0DD160037521B /* CollectionViewCells.swift in Sources */,
 				95E3DD901C839D42008736D1 /* Feat.swift in Sources */,
+				95809ECC1CA5CF0400863E9D /* Spell.swift in Sources */,
 				958CBAE51C56E27600AD833A /* AScore.swift in Sources */,
 				95D10E7E1C9605EE00ACDAC8 /* TraitsViewController.swift in Sources */,
 				95D10E801C960A7400ACDAC8 /* Traits.swift in Sources */,

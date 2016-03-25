@@ -316,8 +316,12 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
         chaSavSwitch.setOn(false, animated: false)
     }//clearSavThrows
     
+    /**
+    Designed to highlight the skill that is the class's primary ability.
+    Commented out, as it's not visually clear
+    */
     func updatePrimAbil(primAbil: Int16){
-        
+        /*
         if (primAbil % 10 == 1 || primAbil / 10 == 1){
             strLabel.backgroundColor = UIColor.lightGrayColor();
         }//if
@@ -336,7 +340,7 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
         if (primAbil % 10 == 6 || primAbil / 10 == 6){
             chaLabel.backgroundColor = UIColor.lightGrayColor();
         }//if
-        
+        */
     }//updatePrimAbil
     
     func clearPrimAbil(){

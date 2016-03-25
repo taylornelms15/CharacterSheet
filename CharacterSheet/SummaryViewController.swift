@@ -56,6 +56,8 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
     
     
     //MARK: Actions
+    
+    ///Changes the name field and sets the character name when editing completes
     @IBAction func setNameField(sender: UITextField) {
         
         nameTextField.resignFirstResponder();
@@ -84,6 +86,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
     }
     
+    ///Changes the level field and sets the character level when editing completes
     @IBAction func setLevelField(sender: UITextField) {
         
         levelTextField.resignFirstResponder()
@@ -117,15 +120,8 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         summaryCollectionView.reloadData()
         
     }
-    
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.endEditing(true);
-        return true;
-    }
-    
-    
-    
+
+    ///Changes the race field and sets the character race when editing completes
     @IBAction func setRaceField(sender: UITextField) {
         
         //Get our character out
@@ -164,8 +160,9 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
         summaryCollectionView.reloadData()
         
-    }
+    }//setRaceField
     
+    ///Changes the class field and sets the character class when editing completes
     @IBAction func setClassField(sender: UITextField) {
         //Get our character out
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -204,8 +201,9 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
         summaryCollectionView.reloadData()
         
-    }
+    }//setClassField
     
+    ///Changes the background field and sets the character background when editing completes
     @IBAction func setBackgroundField(sender: UITextField) {
         //Get our character out
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -247,6 +245,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
     }//setBackgroundField
     
+    ///Changes the alignment field and sets the character alignment, pretty much when editing completes (called elsewhere, not an action)
     func setAlignment(newCode: Int16){
         //Get our character out
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -392,6 +391,8 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         }
     }//setMaxHp
     
+    //MARK: ViewDidLoad functions
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         
@@ -507,7 +508,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         summaryCollectionView.delegate = self
         summaryCollectionView.dataSource = self
         
-    }
+    }//viewDidLoad
     
     override func viewWillAppear(animated: Bool){
         super.viewWillAppear(animated)
@@ -565,11 +566,11 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
             backgroundTextField.text = "Please Select"
         }//else
         
-    }
+    }//viewDidAppear
     
     //MARK: Picker functions
     
-    //num columns
+    ///Gets the number of columns in the picker
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         if (pickerView == racePicker){
             return pickerData.count
@@ -586,7 +587,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         return 0;
     }
     
-    //options per column
+    ///Gets the number of rows per column
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if (pickerView == racePicker){
             return pickerData[component].count
@@ -603,12 +604,8 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         return 0;
     }
     
-    //Get column label
-    func pickerView(
-        pickerView: UIPickerView,
-        titleForRow row: Int,
-        forComponent component: Int
-        ) -> String? {
+    ///Gets the row label
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
             if (pickerView == racePicker){
                 return pickerData[component][row]
             }
@@ -624,6 +621,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
             return nil;
     }
     
+    ///Handles pressing the "done" button at the top of a picker
     func donePicker(sender: UIBarButtonItem){
         
         if (sender == racePickerDoneButton){
@@ -655,6 +653,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
     
     //MARK: UICollectionView functions
     
+    ///Get the items in a section
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         //Get our character out
@@ -680,10 +679,12 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
     }
     
+    ///Get the number of sections
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int{
         return 1
     }
     
+    ///Get the cell in the collection
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         //Get our character out
@@ -725,9 +726,10 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
             
             //Hit Die Label
             if (results[0].pclass == nil){
-                hitDieLabel.removeFromSuperview()
+                hitDieLabel.alpha = 0//make transparent
             }//if no class
             else{
+                hitDieLabel.alpha = 1//make opaque
                 hitDieLabel.text = results[0].pclass!.hitDieLabel()
             }//if class exists
             //HpLabels
@@ -771,11 +773,11 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
         return cell
         
-    }//cellForItemAtIndexPathå
-    
+    }//cellForItemAtIndexPath
     
     //MARK: UITextFieldDelegate
     
+    ///Enforces type of text entry
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if ([armorField, currHpField, maxHpField].contains(textField)){
             if (string == "") {
@@ -789,6 +791,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         }//can enter anything
     }//enforce numeric entry
     
+    ///Called upon ending text field editing
     func textFieldDidEndEditing(textField: UITextField) {
         activeField = nil
         
@@ -804,10 +807,16 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         }//switch
     }//end editing for text fields
     
+    ///Called when editing starts
     func textFieldDidBeginEditing(textField: UITextField) {
         activeField = textField
     }
     
+    ///End editing on a return call
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.endEditing(true);
+        return true;
+    }
     
     //MARK: keyboard functions
     
@@ -820,9 +829,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
     }//keyboardWillHide
     
     func adjustingHeight(show: Bool, notification: NSNotification){
-        
-        
-        
+
         var userInfo = notification.userInfo!
         let keyboardFrame: CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
         let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
@@ -836,23 +843,26 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
     }//adjustingHeight
     
-    
     //MARK: Helper functions
+    ///Updates the race field label
     func updateLabel(){
         let race = pickerData[0][racePicker.selectedRowInComponent(0)]
         raceTextField.text = race;
-    }//updateLabel
+    }//updateRaceLabel
     
+    ///Updates the class field label
     func updateCLabel(){
         let pclass = cpickerData[0][classPicker.selectedRowInComponent(0)]
         classTextField.text = pclass;
-    }//updateLabel
+    }//updateClassLabel
     
+    ///Updates the background field label
     func updateBLabel(){
         let background = bpickerData[0][backgroundPicker.selectedRowInComponent(0)]
         backgroundTextField.text = background;
-    }//updateBLabel
+    }//updateBackgroundLabel
     
+    ///Updates the armor class label
     func updateALabel(){
         let alignmentString: String =
         "\(alignmentPickerData[0][alignmentPicker.selectedRowInComponent(0)]) \(alignmentPickerData[1][alignmentPicker.selectedRowInComponent(1)])"//Creates alignment string by concatenating the choices
@@ -862,21 +872,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
         alignmentField.text = PCharacter.getAlignmentStringShort(alignmentCode)
         
-    }//updateALabel
-    
-    //Note: deprecated?
-    func confirmRaceAlert(choice: String){
-        let alertController = UIAlertController(title: "Change class to " + choice + "?", message: "This will modify your ability scores accordingly", preferredStyle: UIAlertControllerStyle.Alert);
-        alertController.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default,handler: nil))
-        alertController.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default,handler: {
-            (alert: UIAlertAction!) in
-            //what happens when they say yes
-            raceTextField.endEditing(true); //closes the picker
-            
-        }))
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }//confirmRaceAlert
+    }//updateArmorClassLabel
     
     
 }//SummaryViewController

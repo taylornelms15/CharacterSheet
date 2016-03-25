@@ -80,6 +80,27 @@
         <relationship name="background" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Background" inverseName="skillProfs" inverseEntity="Background" syncable="YES"/>
         <relationship name="pCharacter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="skillProfs" inverseEntity="PCharacter" syncable="YES"/>
     </entity>
+    <entity name="Spell" representedClassName=".Spell" syncable="YES">
+        <attribute name="castingTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="damageDieNum" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="damageDieType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="details" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="effectRange1" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="effectRange2" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="effectRangeTypeValue" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="material" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="materialComponent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="range" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="rangeTypeValue" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="ritual" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="schoolValue" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="somaticComponent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="verbalComponent" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
     <entity name="Trait" representedClassName=".Trait" syncable="YES">
         <attribute name="canon" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="category" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -96,16 +117,17 @@
     <elements>
         <element name="Background" positionX="-749" positionY="647" width="128" height="135"/>
         <element name="BackgroundFeature" positionX="-551" positionY="648" width="128" height="75"/>
-        <element name="CurrentId" positionX="-704" positionY="39" width="128" height="60"/>
+        <element name="CurrentId" positionX="-747" positionY="126" width="128" height="60"/>
         <element name="Feat" positionX="-558" positionY="735" width="128" height="75"/>
         <element name="Feature" positionX="-308" positionY="495" width="128" height="90"/>
         <element name="FeatureList" positionX="-362" positionY="297" width="128" height="103"/>
         <element name="PCharacter" positionX="-576" positionY="126" width="128" height="330"/>
-        <element name="PClass" positionX="-731" positionY="173" width="128" height="133"/>
+        <element name="PClass" positionX="-767" positionY="270" width="128" height="133"/>
         <element name="Race" positionX="-729" positionY="423" width="128" height="193"/>
         <element name="RaceFeature" positionX="-567" positionY="504" width="128" height="75"/>
-        <element name="SkillProfs" positionX="-893" positionY="315" width="128" height="88"/>
-        <element name="Trait" positionX="-684" positionY="189" width="128" height="133"/>
-        <element name="TraitList" positionX="-675" positionY="198" width="128" height="90"/>
+        <element name="SkillProfs" positionX="-963" positionY="407" width="128" height="88"/>
+        <element name="Trait" positionX="-981" positionY="774" width="128" height="133"/>
+        <element name="TraitList" positionX="-983" positionY="621" width="128" height="90"/>
+        <element name="Spell" positionX="-272" positionY="135" width="128" height="328"/>
     </elements>
 </model>

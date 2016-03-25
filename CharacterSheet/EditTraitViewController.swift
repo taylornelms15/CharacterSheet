@@ -247,6 +247,7 @@ class EditTraitViewController: UIViewController, UIPickerViewDataSource, UIPicke
         fetchRequest = NSFetchRequest(entityName: "Trait");
         //Desired result: I want the trait with the right name, and I'm verifying the background is alright. So duplicate names are fine, but not within a background
         fetchRequest.predicate = NSPredicate(format: "name == %@ AND ANY inv_traitList.inv_background.id == %@", name, String(results[0].background!.id) )
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         
         var traitResults: [Trait] = []
         do{
@@ -280,6 +281,7 @@ class EditTraitViewController: UIViewController, UIPickerViewDataSource, UIPicke
         //Desired result: I want all traits where they have a trait list whose background matches the character's background, and category matches
         //Future expansion: block duplicate personality traits
         fetchRequest.predicate = NSPredicate(format: "category == %@ AND ANY inv_traitList.inv_background.id == %@", String(Trait.getCategoryNumFromName(categoryName)), String(results[0].background!.id) )
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         
         var traitResults: [Trait] = []
         do{
