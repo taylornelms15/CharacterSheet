@@ -35,6 +35,11 @@ class TraitsViewController: CSViewController, UIScrollViewDelegate{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
         
+        //If we're not segue-ing to the edit page, don't do bad things
+        if (sender!.isKindOfClass(UISwipeGestureRecognizer) || sender!.isKindOfClass(UIBarButtonItem)){
+            return
+        }
+        
         let thisSender: UIButton = sender! as! UIButton
         let destController: EditTraitViewController = segue.destinationViewController as! EditTraitViewController
         

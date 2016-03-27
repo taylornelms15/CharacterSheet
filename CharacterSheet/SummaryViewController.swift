@@ -399,70 +399,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
         
-        let appDelegate =
-        UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        //Init Race Data
-        let managedContext = appDelegate.managedObjectContext!
-        
-        var entity =  NSEntityDescription.entityForName("Race",
-            inManagedObjectContext:managedContext)
-        var fetchRequest = NSFetchRequest(entityName: "Race");
-        
-        var error: NSError? = nil;
-        var count = managedContext.countForFetchRequest(fetchRequest, error: &error)
-        if (count == 0){
-            racesInit(entity!, context: managedContext)
-        }//if
-        
-        //Init Class Data
-        entity =  NSEntityDescription.entityForName("PClass",
-            inManagedObjectContext:managedContext)
-        fetchRequest = NSFetchRequest(entityName: "PClass");
-        
-        count = managedContext.countForFetchRequest(fetchRequest, error: &error)
-        if (count == 0){
-            PClass.classesInit(entity!, context: managedContext)
-        }
-        
-        //Init Character
-        entity = NSEntityDescription.entityForName("PCharacter", inManagedObjectContext: managedContext);
-        fetchRequest = NSFetchRequest(entityName: "PCharacter");
-        
-        count = managedContext.countForFetchRequest(fetchRequest, error: &error)
-        if (count == 0){
-            characterInit(entity!, context: managedContext);
-        }//if
-        
-        //Init Background
-        entity = NSEntityDescription.entityForName("Background", inManagedObjectContext: managedContext);
-        fetchRequest = NSFetchRequest(entityName: "Background");
-        
-        count = managedContext.countForFetchRequest(fetchRequest, error: &error)
-        if (count == 0){
-            Background.backgroundInit(managedContext);
-        }//if
-        
-        //Init Feats
-        
-        entity = NSEntityDescription.entityForName("Feat", inManagedObjectContext: managedContext);
-        fetchRequest = NSFetchRequest(entityName: "Feat");
-        
-        count = managedContext.countForFetchRequest(fetchRequest, error: &error)
-        if (count == 0){
-            Feat.featsInit(managedContext)
-        }//if
-        
-        //Init Traits
-        
-        entity = NSEntityDescription.entityForName("Trait", inManagedObjectContext: managedContext);
-        fetchRequest = NSFetchRequest(entityName: "Trait");
-        
-        count = managedContext.countForFetchRequest(fetchRequest, error: &error)
-        if (count == 0){
-            TraitList.traitsInit(managedContext)
-        }//if
-        
+                
         //do delegate things
         nameTextField.delegate = self;
         levelTextField.delegate = self;

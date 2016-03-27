@@ -16,6 +16,7 @@ class PClass: NSManagedObject {
     @NSManaged var hitDie: Int16
     @NSManaged var saveThrows: Int16
     @NSManaged var primAbil: Int16
+    @NSManaged var spellList: SpellList
 
     /*
         A note on saving throw and primary ability values:

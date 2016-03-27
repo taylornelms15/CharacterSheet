@@ -224,7 +224,6 @@ class EditTraitViewController: UIViewController, UIPickerViewDataSource, UIPicke
     
     //MARK: Helper functions
     
-    
     /**
     Sets the current trait to the canonical trait picked in the picker
     - Parameter name: the name of the trait to be chosen

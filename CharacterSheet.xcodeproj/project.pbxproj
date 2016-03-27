@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955662A71C570B8E00F5C014 /* CSViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		9558A0291CA0DD160037521B /* CollectionViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9558A0281CA0DD160037521B /* CollectionViewCells.swift */; settings = {ASSET_TAGS = (); }; };
-		95692EB81C5AFE1700DD591D /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95692EB71C5AFE1700DD591D /* Race.swift */; settings = {ASSET_TAGS = (); }; };
-		957E15BD1C7E891900391977 /* FeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E15BC1C7E891900391977 /* FeaturesViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		95809ECC1CA5CF0400863E9D /* Spell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95809ECA1CA5CF0400863E9D /* Spell.swift */; settings = {ASSET_TAGS = (); }; };
+		955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955662A71C570B8E00F5C014 /* CSViewController.swift */; };
+		9558A0291CA0DD160037521B /* CollectionViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9558A0281CA0DD160037521B /* CollectionViewCells.swift */; };
+		95692EB81C5AFE1700DD591D /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95692EB71C5AFE1700DD591D /* Race.swift */; };
+		957E15BD1C7E891900391977 /* FeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E15BC1C7E891900391977 /* FeaturesViewController.swift */; };
+		95809ECC1CA5CF0400863E9D /* Spell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95809ECA1CA5CF0400863E9D /* Spell.swift */; };
 		958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAAF1C56E10E00AD833A /* AppDelegate.swift */; };
 		958CBAB21C56E10F00AD833A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAB11C56E10F00AD833A /* RootViewController.swift */; };
 		958CBAB61C56E10F00AD833A /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAB51C56E10F00AD833A /* ModelController.swift */; };
@@ -20,25 +20,30 @@
 		958CBABE1C56E10F00AD833A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 958CBABC1C56E10F00AD833A /* LaunchScreen.storyboard */; };
 		958CBAC91C56E10F00AD833A /* CharacterSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAC81C56E10F00AD833A /* CharacterSheetTests.swift */; };
 		958CBAD41C56E11000AD833A /* CharacterSheetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAD31C56E11000AD833A /* CharacterSheetUITests.swift */; };
-		958CBAE31C56E17900AD833A /* AScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE21C56E17900AD833A /* AScores.swift */; settings = {ASSET_TAGS = (); }; };
-		958CBAE51C56E27600AD833A /* AScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE41C56E27600AD833A /* AScore.swift */; settings = {ASSET_TAGS = (); }; };
-		959370B71CA5ADA2000E5734 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959370B61CA5ADA2000E5734 /* SummaryViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		959370B91CA5ADD5000E5734 /* AbilityScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A30581C790AC900ED83A1 /* SkillViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		95B029D51C601D5300DC0F3C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
-		95B7A59E1C7FD910008895CA /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A59C1C7FD910008895CA /* Feature.swift */; settings = {ASSET_TAGS = (); }; };
-		95B7A5A21C7FDB27008895CA /* BackgroundFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */; settings = {ASSET_TAGS = (); }; };
-		95B7A5A61C7FDB4D008895CA /* RaceFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */; settings = {ASSET_TAGS = (); }; };
-		95B7A5AA1C7FDB76008895CA /* FeatureList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A81C7FDB76008895CA /* FeatureList.swift */; settings = {ASSET_TAGS = (); }; };
-		95D10E7E1C9605EE00ACDAC8 /* TraitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D10E7D1C9605EE00ACDAC8 /* TraitsViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		95D10E801C960A7400ACDAC8 /* Traits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D10E7F1C960A7400ACDAC8 /* Traits.swift */; settings = {ASSET_TAGS = (); }; };
-		95D124D01C9A57E600AC4CDF /* EditTraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D124CF1C9A57E500AC4CDF /* EditTraitViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		95DA20C01C79149F001E66A2 /* SkillProfs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DA20BE1C79149F001E66A2 /* SkillProfs.swift */; settings = {ASSET_TAGS = (); }; };
-		95DD0EE21C82459600D456D2 /* CharacterSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD0EE11C82459600D456D2 /* CharacterSelectViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		95E3DD901C839D42008736D1 /* Feat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E3DD8E1C839D42008736D1 /* Feat.swift */; settings = {ASSET_TAGS = (); }; };
-		95EDE1F21C7BEF0500554520 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EDE1F01C7BEF0500554520 /* Background.swift */; settings = {ASSET_TAGS = (); }; };
-		95F7D6201C73D55A00FE3D58 /* PCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7D61F1C73D55A00FE3D58 /* PCharacter.swift */; settings = {ASSET_TAGS = (); }; };
-		95F7D6261C7405EC00FE3D58 /* PClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7D6241C7405EC00FE3D58 /* PClass.swift */; settings = {ASSET_TAGS = (); }; };
+		958CBAE31C56E17900AD833A /* AScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE21C56E17900AD833A /* AScores.swift */; };
+		958CBAE51C56E27600AD833A /* AScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAE41C56E27600AD833A /* AScore.swift */; };
+		959370B71CA5ADA2000E5734 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959370B61CA5ADA2000E5734 /* SummaryViewController.swift */; };
+		959370B91CA5ADD5000E5734 /* AbilityScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */; };
+		959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A30581C790AC900ED83A1 /* SkillViewController.swift */; };
+		95A22B691CA87A44008AA143 /* SpellTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A22B681CA87A44008AA143 /* SpellTableCells.swift */; };
+		95B029D51C601D5300DC0F3C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */; };
+		95B7A59E1C7FD910008895CA /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A59C1C7FD910008895CA /* Feature.swift */; };
+		95B7A5A21C7FDB27008895CA /* BackgroundFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */; };
+		95B7A5A61C7FDB4D008895CA /* RaceFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */; };
+		95B7A5AA1C7FDB76008895CA /* FeatureList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A81C7FDB76008895CA /* FeatureList.swift */; };
+		95CF73AF1CA6E863005AD5C8 /* SpellList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF73AD1CA6E863005AD5C8 /* SpellList.swift */; };
+		95CF73B11CA73F46005AD5C8 /* SpellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF73B01CA73F46005AD5C8 /* SpellViewController.swift */; };
+		95CF73B31CA764C2005AD5C8 /* CSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF73B21CA764C2005AD5C8 /* CSNavigationController.swift */; };
+		95CF73B51CA76DF2005AD5C8 /* AddSpellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF73B41CA76DF2005AD5C8 /* AddSpellViewController.swift */; };
+		95D10E7E1C9605EE00ACDAC8 /* TraitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D10E7D1C9605EE00ACDAC8 /* TraitsViewController.swift */; };
+		95D10E801C960A7400ACDAC8 /* Traits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D10E7F1C960A7400ACDAC8 /* Traits.swift */; };
+		95D124D01C9A57E600AC4CDF /* EditTraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D124CF1C9A57E500AC4CDF /* EditTraitViewController.swift */; };
+		95DA20C01C79149F001E66A2 /* SkillProfs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DA20BE1C79149F001E66A2 /* SkillProfs.swift */; };
+		95DD0EE21C82459600D456D2 /* CharacterSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD0EE11C82459600D456D2 /* CharacterSelectViewController.swift */; };
+		95E3DD901C839D42008736D1 /* Feat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E3DD8E1C839D42008736D1 /* Feat.swift */; };
+		95EDE1F21C7BEF0500554520 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EDE1F01C7BEF0500554520 /* Background.swift */; };
+		95F7D6201C73D55A00FE3D58 /* PCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7D61F1C73D55A00FE3D58 /* PCharacter.swift */; };
+		95F7D6261C7405EC00FE3D58 /* PClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7D6241C7405EC00FE3D58 /* PClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,11 +88,16 @@
 		959370B61CA5ADA2000E5734 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityScoreViewController.swift; sourceTree = "<group>"; };
 		959A30581C790AC900ED83A1 /* SkillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillViewController.swift; sourceTree = "<group>"; };
+		95A22B681CA87A44008AA143 /* SpellTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellTableCells.swift; sourceTree = "<group>"; };
 		95B029D41C601D5300DC0F3C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		95B7A59C1C7FD910008895CA /* Feature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
 		95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundFeature.swift; sourceTree = "<group>"; };
 		95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RaceFeature.swift; path = ../RaceFeature.swift; sourceTree = "<group>"; };
 		95B7A5A81C7FDB76008895CA /* FeatureList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureList.swift; sourceTree = "<group>"; };
+		95CF73AD1CA6E863005AD5C8 /* SpellList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellList.swift; sourceTree = "<group>"; };
+		95CF73B01CA73F46005AD5C8 /* SpellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellViewController.swift; sourceTree = "<group>"; };
+		95CF73B21CA764C2005AD5C8 /* CSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSNavigationController.swift; sourceTree = "<group>"; };
+		95CF73B41CA76DF2005AD5C8 /* AddSpellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSpellViewController.swift; sourceTree = "<group>"; };
 		95D10E7D1C9605EE00ACDAC8 /* TraitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraitsViewController.swift; sourceTree = "<group>"; };
 		95D10E7F1C960A7400ACDAC8 /* Traits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Traits.swift; sourceTree = "<group>"; };
 		95D124CF1C9A57E500AC4CDF /* EditTraitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTraitViewController.swift; sourceTree = "<group>"; };
@@ -127,17 +137,21 @@
 		955662A61C570B7600F5C014 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				95CF73B21CA764C2005AD5C8 /* CSNavigationController.swift */,
 				958CBAB11C56E10F00AD833A /* RootViewController.swift */,
 				958CBAB51C56E10F00AD833A /* ModelController.swift */,
 				955662A71C570B8E00F5C014 /* CSViewController.swift */,
 				95DD0EE11C82459600D456D2 /* CharacterSelectViewController.swift */,
 				959370B61CA5ADA2000E5734 /* SummaryViewController.swift */,
-				959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */,
 				9558A0281CA0DD160037521B /* CollectionViewCells.swift */,
+				959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */,
 				959A30581C790AC900ED83A1 /* SkillViewController.swift */,
 				957E15BC1C7E891900391977 /* FeaturesViewController.swift */,
 				95D10E7D1C9605EE00ACDAC8 /* TraitsViewController.swift */,
 				95D124CF1C9A57E500AC4CDF /* EditTraitViewController.swift */,
+				95CF73B01CA73F46005AD5C8 /* SpellViewController.swift */,
+				95CF73B41CA76DF2005AD5C8 /* AddSpellViewController.swift */,
+				95A22B681CA87A44008AA143 /* SpellTableCells.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -204,7 +218,6 @@
 				95F7D6241C7405EC00FE3D58 /* PClass.swift */,
 				95EDE1F01C7BEF0500554520 /* Background.swift */,
 				95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */,
-				95809ECA1CA5CF0400863E9D /* Spell.swift */,
 				95DA20BE1C79149F001E66A2 /* SkillProfs.swift */,
 				95B7A5A81C7FDB76008895CA /* FeatureList.swift */,
 				95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */,
@@ -212,6 +225,8 @@
 				95B7A59C1C7FD910008895CA /* Feature.swift */,
 				95E3DD8E1C839D42008736D1 /* Feat.swift */,
 				95D10E7F1C960A7400ACDAC8 /* Traits.swift */,
+				95809ECA1CA5CF0400863E9D /* Spell.swift */,
+				95CF73AD1CA6E863005AD5C8 /* SpellList.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -283,6 +298,7 @@
 				TargetAttributes = {
 					958CBAAB1C56E10E00AD833A = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = Q74732HCD9;
 					};
 					958CBAC31C56E10F00AD833A = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -350,12 +366,16 @@
 				959370B71CA5ADA2000E5734 /* SummaryViewController.swift in Sources */,
 				95B029D51C601D5300DC0F3C /* DataModel.xcdatamodeld in Sources */,
 				95F7D6201C73D55A00FE3D58 /* PCharacter.swift in Sources */,
+				95CF73B51CA76DF2005AD5C8 /* AddSpellViewController.swift in Sources */,
 				958CBAB61C56E10F00AD833A /* ModelController.swift in Sources */,
 				957E15BD1C7E891900391977 /* FeaturesViewController.swift in Sources */,
 				958CBAE31C56E17900AD833A /* AScores.swift in Sources */,
+				95CF73AF1CA6E863005AD5C8 /* SpellList.swift in Sources */,
 				95692EB81C5AFE1700DD591D /* Race.swift in Sources */,
 				95B7A5AA1C7FDB76008895CA /* FeatureList.swift in Sources */,
+				95A22B691CA87A44008AA143 /* SpellTableCells.swift in Sources */,
 				95DD0EE21C82459600D456D2 /* CharacterSelectViewController.swift in Sources */,
+				95CF73B31CA764C2005AD5C8 /* CSNavigationController.swift in Sources */,
 				95D124D01C9A57E600AC4CDF /* EditTraitViewController.swift in Sources */,
 				9558A0291CA0DD160037521B /* CollectionViewCells.swift in Sources */,
 				95E3DD901C839D42008736D1 /* Feat.swift in Sources */,
@@ -366,6 +386,7 @@
 				95DA20C01C79149F001E66A2 /* SkillProfs.swift in Sources */,
 				95B7A5A61C7FDB4D008895CA /* RaceFeature.swift in Sources */,
 				95F7D6261C7405EC00FE3D58 /* PClass.swift in Sources */,
+				95CF73B11CA73F46005AD5C8 /* SpellViewController.swift in Sources */,
 				95EDE1F21C7BEF0500554520 /* Background.swift in Sources */,
 				959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */,
 				955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */,
@@ -514,10 +535,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CharacterSheet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Taylor.CharacterSheet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -525,10 +549,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CharacterSheet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Taylor.CharacterSheet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

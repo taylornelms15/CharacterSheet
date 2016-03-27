@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F1021" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1021" minimumToolsVersion="Xcode 7.0">
     <entity name="Background" representedClassName=".Background" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="features" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BackgroundFeature" inverseName="background" inverseEntity="BackgroundFeature" syncable="YES"/>
         <relationship name="inv_char" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="background" inverseEntity="PCharacter" syncable="YES"/>
         <relationship name="skillProfs" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkillProfs" inverseName="background" inverseEntity="SkillProfs" syncable="YES"/>
@@ -21,8 +21,8 @@
     </entity>
     <entity name="Feature" representedClassName=".Feature" isAbstract="YES" syncable="YES">
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
     </entity>
     <entity name="FeatureList" representedClassName=".FeatureList" syncable="YES">
         <relationship name="backgroundFeatures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BackgroundFeature" inverseName="inv_featureList" inverseEntity="BackgroundFeature" syncable="YES"/>
@@ -37,7 +37,7 @@
         <attribute name="con" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="currHp" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="dex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="intl" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="maxHp" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -53,19 +53,20 @@
     </entity>
     <entity name="PClass" representedClassName=".PClass" syncable="YES">
         <attribute name="hitDie" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="primAbil" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="saveThrows" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="inv_char" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="pclass" inverseEntity="PCharacter" syncable="YES"/>
+        <relationship name="spellList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpellList" inverseName="pclass" inverseEntity="SpellList" syncable="YES"/>
     </entity>
     <entity name="Race" representedClassName=".Race" syncable="YES">
         <attribute name="chamod" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="conmod" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="dexmod" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="intmod" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="strmod" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="wismod" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="features" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RaceFeature" inverseName="races" inverseEntity="RaceFeature" syncable="YES"/>
@@ -89,24 +90,29 @@
         <attribute name="effectRange1" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="effectRange2" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="effectRangeTypeValue" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="id" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="material" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="materialComponent" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="range" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="rangeTypeValue" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="ritual" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="schoolValue" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="somaticComponent" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="verbalComponent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="inv_list" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SpellList" inverseName="spells" inverseEntity="SpellList" syncable="YES"/>
+    </entity>
+    <entity name="SpellList" representedClassName=".SpellList" syncable="YES">
+        <relationship name="pclass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PClass" inverseName="spellList" inverseEntity="PClass" syncable="YES"/>
+        <relationship name="spells" toMany="YES" deletionRule="Nullify" destinationEntity="Spell" inverseName="inv_list" inverseEntity="Spell" syncable="YES"/>
     </entity>
     <entity name="Trait" representedClassName=".Trait" syncable="YES">
         <attribute name="canon" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="category" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="inv_traitList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TraitList" inverseName="traits" inverseEntity="TraitList" syncable="YES"/>
     </entity>
     <entity name="TraitList" representedClassName=".TraitList" syncable="YES">
@@ -122,12 +128,13 @@
         <element name="Feature" positionX="-308" positionY="495" width="128" height="90"/>
         <element name="FeatureList" positionX="-362" positionY="297" width="128" height="103"/>
         <element name="PCharacter" positionX="-576" positionY="126" width="128" height="330"/>
-        <element name="PClass" positionX="-767" positionY="270" width="128" height="133"/>
-        <element name="Race" positionX="-729" positionY="423" width="128" height="193"/>
+        <element name="PClass" positionX="-767" positionY="270" width="128" height="150"/>
+        <element name="Race" positionX="-729" positionY="423" width="128" height="195"/>
         <element name="RaceFeature" positionX="-567" positionY="504" width="128" height="75"/>
         <element name="SkillProfs" positionX="-963" positionY="407" width="128" height="88"/>
-        <element name="Trait" positionX="-981" positionY="774" width="128" height="133"/>
+        <element name="Spell" positionX="-272" positionY="135" width="128" height="345"/>
+        <element name="SpellList" positionX="-774" positionY="279" width="128" height="75"/>
+        <element name="Trait" positionX="-981" positionY="774" width="128" height="135"/>
         <element name="TraitList" positionX="-983" positionY="621" width="128" height="90"/>
-        <element name="Spell" positionX="-272" positionY="135" width="128" height="328"/>
     </elements>
 </model>
