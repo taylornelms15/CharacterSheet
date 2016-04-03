@@ -15,6 +15,7 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var spellTableView: UITableView!
     @IBOutlet weak var addSpellButton: UIBarButtonItem!
+    @IBOutlet weak var removeSpellButton: UIBarButtonItem!
     @IBOutlet weak var classNameLabel: UILabel!
     
     var tableHeaders: [(Int, String)] = []
@@ -86,9 +87,16 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        
-        
     }//viewDidAppear
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if (spellTableView.editing){
+            removeSpellButtonPressed(removeSpellButton)//fake an editing toggle
+        }//if editing, switch to not editing
+        
+    }//viewWillDisappear
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,6 +158,7 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         reloadTable()
         
     }//receiveSpell
+
     
     //MARK: UITableView things
     
@@ -179,7 +188,7 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var headerTitle: String = ""
         if (tableHeaders.count == 0){
-            headerTitle = "Please Add a Spell"
+            headerTitle = "Add..."
         }
         else{
             headerTitle = tableHeaders[section].1
@@ -188,20 +197,21 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         let cell = spellTableView.dequeueReusableHeaderFooterViewWithIdentifier("header1")
         let header = cell as! PersonalSpellTableHeader
         header.titleLabel.text = headerTitle
-        
-        header.slotsStackView.removeFromSuperview()
-        
+
         if (tableHeaders.count == 0){
+            header.slotsStackView.alpha = 0.0
             return header
-        }
+        }//if no spells
         
         let level: Int16 = Int16(tableHeaders[section].0)
+
+        if (level == 0){
+            header.slotsStackView.alpha = 0.0
+        }//if cantrip (no slots)
+        else{
+            header.slotsStackView.alpha = 1.0
+        }//if other spell type (slots)
         
-        if (level > 0){
-            header.rowStackView.addArrangedSubview(header.slotsStackView)
-            header.rowStackView.addConstraint(NSLayoutConstraint(item: header.slotsStackView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.GreaterThanOrEqual, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 232.0))
-        }//if not cantrip
-            
         header.level = level
         header.persSpellList = thisSpellList
         
@@ -257,6 +267,60 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         
         self.presentViewController(detailViewController, animated: true, completion: nil)
     }//accessory button tapped
+    
+    //MARK: UITableView removal functions
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete){
+            
+            let level: Int16 = Int16(tableHeaders[indexPath.section].0)
+            let subList: [Spell] = thisSpellList!.getSpellsForLevel(level: level)
+            let thisSpell: Spell = subList[indexPath.row]
+            
+            thisSpellList!.removeSpell(spell: thisSpell)
+            thisSpellList!.updateSpellNamesPerLevel(level: thisSpell.level)
+            
+            buildHeaders()
+            
+            //spellTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            
+            removeSpellButtonPressed(removeSpellButton)//fake a button press
+            
+            spellTableView.reloadData()
+            
+            do{
+                try thisSpellList!.managedObjectContext!.save()
+            }catch let error as NSError{
+                print("Could not save \(error), \(error.userInfo)")
+            }
+            
+        }//if we're deleting
+    }//commitEditingStyle
+    
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.Delete
+    }//editingStyleForRow
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }//canEditRow
+    
+    @IBAction func removeSpellButtonPressed(sender: UIBarButtonItem) {
+        
+        if (spellTableView.editing){
+            spellTableView.setEditing(false, animated: true)
+            
+            addSpellButton.enabled = true
+            removeSpellButton.title = "Remove Spell"
+        }//if canceling
+        else{
+            spellTableView.setEditing(true, animated: true)
+            
+            addSpellButton.enabled = false
+            removeSpellButton.title = "Cancel"
+        }//else deleting
+        
+    }//removeSpellButtonPressed
     
     func titleLevel(header: String)->Int{
         switch(header){

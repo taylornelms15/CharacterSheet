@@ -17,51 +17,57 @@
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="jlP-7p-VcK">
                             <rect key="frame" x="2" y="0.0" width="427" height="32"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="240" verticalHuggingPriority="251" horizontalCompressionResistancePriority="745" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQg-0I-5le">
-                                    <rect key="frame" x="0.0" y="0.0" width="191" height="32"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="240" verticalHuggingPriority="251" horizontalCompressionResistancePriority="755" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQg-0I-5le">
+                                    <rect key="frame" x="0.0" y="0.0" width="203" height="32"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" priority="999" constant="32" id="6tk-1i-oPg"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="K1f-5V-ERH">
-                                    <rect key="frame" x="195" y="0.0" width="232" height="32"/>
+                                    <rect key="frame" x="207" y="0.0" width="220" height="32"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUj-CP-98M">
-                                            <rect key="frame" x="0.0" y="0.0" width="33" height="32"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="30" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="MYa-n3-4zv"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <state key="normal" title="-"/>
                                             <connections>
                                                 <action selector="slotsButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="pgH-Gm-eMF"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUW-7p-ToW">
-                                            <rect key="frame" x="37" y="0.0" width="32" height="32"/>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUW-7p-ToW">
+                                            <rect key="frame" x="34" y="0.0" width="30" height="32"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <state key="normal" title="+"/>
                                             <connections>
                                                 <action selector="slotsButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="6ut-7h-1tN"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHB-bF-zf4">
-                                            <rect key="frame" x="73" y="0.0" width="20" height="32"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHB-bF-zf4">
+                                            <rect key="frame" x="68" y="0.0" width="17" height="32"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Me9-aC-OAp">
-                                            <rect key="frame" x="97" y="0.0" width="6" height="32"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="/" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Me9-aC-OAp">
+                                            <rect key="frame" x="89" y="0.0" width="5" height="32"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYS-eF-tKB">
-                                            <rect key="frame" x="107" y="0.0" width="20" height="32"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <rect key="frame" x="98" y="0.0" width="17" height="32"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slots Expended" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdA-L8-5aw">
-                                            <rect key="frame" x="131" y="0.0" width="101" height="32"/>
+                                            <rect key="frame" x="119" y="0.0" width="101" height="32"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -69,7 +75,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="CUW-7p-ToW" firstAttribute="width" secondItem="BUj-CP-98M" secondAttribute="width" id="Cpu-h1-E5V"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="232" id="EC0-ya-N0W"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="216" id="EC0-ya-N0W"/>
                                     </constraints>
                                 </stackView>
                             </subviews>

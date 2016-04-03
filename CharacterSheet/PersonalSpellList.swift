@@ -176,6 +176,15 @@ class PersonalSpellList: SpellList {
 
     }//getPClassName
     
+    //MARK: override funcs
+    
+    override func removeSpell(spell spell: Spell) {
+        super.removeSpell(spell: spell)
+        
+        markAsNotPrepared(spell)
+        markAsNotFree(spell)
+    }//removeSpell
+    
     //MARK: slot-modifying functions
     
     func getSlotsAvailableForLevel(level level: Int16) -> Int{

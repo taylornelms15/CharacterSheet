@@ -2143,7 +2143,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hVH-kH-DZp">
                                 <rect key="frame" x="0.0" y="628" width="414" height="44"/>
                                 <items>
-                                    <barButtonItem title="Remove Spell" id="tfe-CR-M5X"/>
+                                    <barButtonItem title="Remove Spell" id="tfe-CR-M5X">
+                                        <connections>
+                                            <action selector="removeSpellButtonPressed:" destination="Vm7-j8-T9L" id="OOq-N4-jWb"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="bIF-ba-rOY"/>
                                     <barButtonItem systemItem="add" id="jpU-jd-mPR">
                                         <connections>
@@ -2170,7 +2174,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cJe-Kc-a47">
-                                <rect key="frame" x="20" y="34" width="374" height="594"/>
+                                <rect key="frame" x="20" y="34" width="374" height="593"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="spellCellBasic" id="dpW-Yt-sev" customClass="SpellTableCell" customModule="CharacterSheet" customModuleProvider="target">
@@ -2201,7 +2205,7 @@
                             <constraint firstItem="uBJ-4e-pFF" firstAttribute="centerX" secondItem="8se-Sy-bYB" secondAttribute="centerX" id="EgU-pU-hnd"/>
                             <constraint firstItem="uBJ-4e-pFF" firstAttribute="top" secondItem="1nC-Wy-XBU" secondAttribute="bottom" constant="8" id="Hiw-s8-JLg"/>
                             <constraint firstItem="kre-Ur-NcR" firstAttribute="top" secondItem="hVH-kH-DZp" secondAttribute="bottom" id="MHj-5T-jPc"/>
-                            <constraint firstItem="hVH-kH-DZp" firstAttribute="top" secondItem="cJe-Kc-a47" secondAttribute="bottom" id="MsT-oH-s3B"/>
+                            <constraint firstItem="hVH-kH-DZp" firstAttribute="top" secondItem="cJe-Kc-a47" secondAttribute="bottom" constant="1" id="MsT-oH-s3B"/>
                             <constraint firstAttribute="trailing" secondItem="hVH-kH-DZp" secondAttribute="trailing" id="VFD-gG-C1v"/>
                             <constraint firstItem="cJe-Kc-a47" firstAttribute="centerX" secondItem="8se-Sy-bYB" secondAttribute="centerX" id="aWk-7a-EMc"/>
                             <constraint firstItem="cJe-Kc-a47" firstAttribute="top" secondItem="1nC-Wy-XBU" secondAttribute="bottom" id="d0a-eF-xVC"/>
@@ -2224,6 +2228,7 @@
                     <connections>
                         <outlet property="addSpellButton" destination="jpU-jd-mPR" id="X7f-b0-T1n"/>
                         <outlet property="classNameLabel" destination="6uv-wo-FIo" id="cNB-Uh-Lqq"/>
+                        <outlet property="removeSpellButton" destination="tfe-CR-M5X" id="NA4-dq-Rdi"/>
                         <outlet property="spellTableView" destination="cJe-Kc-a47" id="vrG-ki-CA7"/>
                     </connections>
                 </viewController>

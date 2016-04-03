@@ -94,8 +94,10 @@ class PersonalSpellTableHeader: UITableViewHeaderFooterView{
     }//slotsButtonPressed
     
     func updateSlotsLabels(){
-        slotsExpendedLabel.text = String(persSpellList!.getSlotsExpendedForLevel(level: level))
-        slotsMaxLabel.text = String(persSpellList!.getSlotsAvailableForLevel(level: level))
+        if (slotsStackView != nil){
+            slotsExpendedLabel.text = String(persSpellList!.getSlotsExpendedForLevel(level: level))
+            slotsMaxLabel.text = String(persSpellList!.getSlotsAvailableForLevel(level: level))
+        }
     }//updateSlotsLabels
 
     

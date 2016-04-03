@@ -219,9 +219,10 @@ class SpellList: NSManagedObject {
     
     func addSpell(spell spell: Spell){
         spells.insert(spell)
-        
-        
-        
+    }
+    
+    func removeSpell(spell spell: Spell){
+        spells.remove(spell)
     }
     
     
