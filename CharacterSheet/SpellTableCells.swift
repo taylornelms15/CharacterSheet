@@ -49,22 +49,53 @@ class SpellTableCell: UITableViewCell{
 
 class PersonalSpellTableHeader: UITableViewHeaderFooterView{
     
-    var level: Int = 0
+    var level: Int16 = 0
     var persSpellList: PersonalSpellList? = nil
     
     //MARK: Outlets
     @IBOutlet weak var titleLabel: UILabel!
-    //@IBOutlet weak var slotStepper: UIStepper!
     @IBOutlet weak var slotsExpendedLabel: UILabel!
     @IBOutlet weak var slotsMaxLabel: UILabel!
     @IBOutlet weak var slotsStackView: UIStackView!
     @IBOutlet weak var overallView: UIView!
+    @IBOutlet weak var incSlotsButton: UIButton!
+    @IBOutlet weak var decSlotsButton: UIButton!
     
+    @IBAction func slotsButtonPressed(sender: UIButton) {
+        
+        if (sender == incSlotsButton){
+            
+            persSpellList!.incrementSlotsExpendedForLevel(level: level)
+            
+            do{
+                try persSpellList!.managedObjectContext!.save()
+            }catch let error as NSError{
+                print("Could not save \(error), \(error.userInfo)")
+            }
+            
+            updateSlotsLabels()
+            
+        }//if +
+        else{
+            
+            persSpellList!.decrementSlotsExpendedForLevel(level: level)
+            
+            do{
+                try persSpellList!.managedObjectContext!.save()
+            }catch let error as NSError{
+                print("Could not save \(error), \(error.userInfo)")
+            }
+            
+            updateSlotsLabels()
+            
+        }//if -
+        
+    }//slotsButtonPressed
     
-    /*
-    func setMaxStepper(max: Int){
-        slotStepper.maximumValue = Double(max)
-    }//setMaxStepper
-  */  
+    func updateSlotsLabels(){
+        slotsExpendedLabel.text = String(persSpellList!.getSlotsExpendedForLevel(level: level))
+        slotsMaxLabel.text = String(persSpellList!.getSlotsAvailableForLevel(level: level))
+    }//updateSlotsLabels
+
     
 }//PersonalSpellTableHeader

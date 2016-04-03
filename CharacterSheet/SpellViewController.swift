@@ -76,6 +76,7 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
             }
         }//else
         
+        thisSpellList!.updateSpellSlotsForCharLevel(level: results[0].level, withClassId: results[0].pclass!.id)
         classNameLabel.text = thisSpellList?.getPClassName()
         
         buildHeaders()
@@ -178,7 +179,7 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var headerTitle: String = ""
         if (tableHeaders.count == 0){
-            headerTitle = "Please Add a Spell"
+            headerTitle = ""
         }
         else{
             headerTitle = tableHeaders[section].1
@@ -197,12 +198,10 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         
         let level: Int16 = Int16(tableHeaders[section].0)
         
-        let slotsMax: Int = thisSpellList!.getSlotsAvailableForLevel(level: level)
+        header.level = level
+        header.persSpellList = thisSpellList
         
-        //header.slotStepper.maximumValue = Double(slotsMax)
-        header.slotsMaxLabel.text = String(slotsMax)
-        header.slotsExpendedLabel.text = String(thisSpellList!.getSlotsExpendedForLevel(level: level))
-        
+        header.updateSlotsLabels()
         
         return header
     }//viewForHeaderInSection

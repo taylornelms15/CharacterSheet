@@ -10,8 +10,16 @@ import Foundation
 import CoreData
 
 
-class PersonalSpellList: SpellList {
+enum SpellSlotTableType{
+    case Caster//Bard, Cleric, Druid, Sorcerer, Wizard
+    case Warlock//Warlock
+    case SemiCaster//Paladin, Ranger
+    case BarelyCaster//Fighter, Rogue
+    case NonCaster//Barbarian, Monk
+}//SpellSlotTableType
 
+class PersonalSpellList: SpellList {
+    
     @NSManaged var wasFreeSet: NSMutableSet
     @NSManaged var preparedSet: NSMutableSet
     @NSManaged var pcharacter: PCharacter?
@@ -23,6 +31,101 @@ class PersonalSpellList: SpellList {
         Indeces 9-17: used slots for levels 1-9
         Should be modified only through defined functions
     */
+    
+    static let nonCasterSpellSlotTable: [Int] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    
+    static let casterSpellSlotTable: [[Int]] =
+        [
+            [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 1
+            [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 2
+            [4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 3
+            [4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 4
+            [4, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 5
+            [4, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 6
+            [4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 7
+            [4, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 8
+            [4, 3, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 9
+            [4, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 10
+            [4, 3, 3, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 11
+            [4, 3, 3, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 12
+            [4, 3, 3, 3, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 13
+            [4, 3, 3, 3, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 14
+            [4, 3, 3, 3, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 15
+            [4, 3, 3, 3, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 16
+            [4, 3, 3, 3, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 17
+            [4, 3, 3, 3, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 18
+            [4, 3, 3, 3, 3, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 19
+            [4, 3, 3, 3, 3, 2, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0] //level 20
+        ]
+    static let warlockSpellSlotTable: [[Int]] =
+    [
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 1
+        [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 2
+        [0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 3
+        [0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 4
+        [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 5
+        [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 6
+        [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 7
+        [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 8
+        [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 9
+        [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 10
+        [0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 11
+        [0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 12
+        [0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 13
+        [0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 14
+        [0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 15
+        [0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 16
+        [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 17
+        [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 18
+        [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 19
+        [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] //level 20
+    ]
+    static let semiCasterSpellSlotTable: [[Int]] =
+    [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 1
+        [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 2
+        [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 3
+        [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 4
+        [4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 5
+        [4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 6
+        [4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 7
+        [4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 8
+        [4, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 9
+        [4, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 10
+        [4, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 11
+        [4, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 12
+        [4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 13
+        [4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 14
+        [4, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 15
+        [4, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 16
+        [4, 3, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 17
+        [4, 3, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 18
+        [4, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 19
+        [4, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] //level 20
+    ]
+    static let barelyCasterSpellSlotTable: [[Int]] =
+    [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 1
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 2
+        [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 3
+        [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 4
+        [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 5
+        [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 6
+        [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 7
+        [4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 8
+        [4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 9
+        [4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 10
+        [4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 11
+        [4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 12
+        [4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 13
+        [4, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 14
+        [4, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 15
+        [4, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 16
+        [4, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 17
+        [4, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 18
+        [4, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//level 19
+        [4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] //level 20
+    ]
 
 
     static func makePersonalSpellList(forPChar pchar: PCharacter, withPClass pclass: PClass, inManagedObjectContext context: NSManagedObjectContext) -> PersonalSpellList{
@@ -34,7 +137,8 @@ class PersonalSpellList: SpellList {
         resultList.pclassId = pclass.id
         resultList.pcharacter = pchar;
         
-        resultList.spellSlotStructure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        resultList.spellSlotStructure = NSMutableArray(array: PersonalSpellList.nonCasterSpellSlotTable)
+        resultList.updateSpellSlotsForCharLevel(level: pchar.level, withClassId: pclass.id)
         
         return resultList
         
@@ -109,6 +213,64 @@ class PersonalSpellList: SpellList {
             setSlotsExpendedForLevel(slots: oldSlots - 1, level: level)
         }//else
     }//decrementSlotsExpendedForLevel
+    
+    func updateSpellSlotsForCharLevel(level level: Int16, withClassId: Int16){
+        var tableType: SpellSlotTableType = SpellSlotTableType.Caster//temp
+        
+        switch(withClassId){
+        case 1://Barbarian
+            tableType = SpellSlotTableType.NonCaster
+        case 2://Bard
+            tableType = SpellSlotTableType.Caster
+        case 3://Cleric
+            tableType = SpellSlotTableType.Caster
+        case 4://Druid
+            tableType = SpellSlotTableType.Caster
+        case 5://Fighter
+            tableType = SpellSlotTableType.BarelyCaster
+        case 6://Monk
+            tableType = SpellSlotTableType.NonCaster
+        case 7://Paladin
+            tableType = SpellSlotTableType.SemiCaster
+        case 8://Ranger
+            tableType = SpellSlotTableType.SemiCaster
+        case 9://Rogue
+            tableType = SpellSlotTableType.BarelyCaster
+        case 10://Sorcerer
+            tableType = SpellSlotTableType.Caster
+        case 11://Warlock
+            tableType = SpellSlotTableType.Warlock
+        case 12://Wizard
+            tableType = SpellSlotTableType.Caster
+        default:
+            break
+        }//switch class id
+        
+        switch(tableType){
+        case SpellSlotTableType.Caster:
+            updateSpellSlotsAvailableWithSlotTable(PersonalSpellList.casterSpellSlotTable[level - 1])
+        case SpellSlotTableType.Warlock:
+            updateSpellSlotsAvailableWithSlotTable(PersonalSpellList.warlockSpellSlotTable[level - 1])
+        case SpellSlotTableType.SemiCaster:
+            updateSpellSlotsAvailableWithSlotTable(PersonalSpellList.semiCasterSpellSlotTable[level - 1])
+        case SpellSlotTableType.BarelyCaster:
+            updateSpellSlotsAvailableWithSlotTable(PersonalSpellList.barelyCasterSpellSlotTable[level - 1])
+        case SpellSlotTableType.NonCaster:
+            spellSlotStructure = NSMutableArray(array: PersonalSpellList.nonCasterSpellSlotTable)
+        }//switch tableType
+        
+    }//updateSpellSlotsForCharLevel
+    
+    func updateSpellSlotsAvailableWithSlotTable(tableRow: [Int]){
+        
+        for (var i = 0; i < 9; i++){
+            spellSlotStructure[i] = tableRow[i]
+            if (spellSlotStructure[i + 9] as! Int > spellSlotStructure[i] as! Int){
+                spellSlotStructure[i + 9] = spellSlotStructure[i]
+            }//if expended now exceeds max
+        }//for
+        
+    }//updatSpellSlotsAvailablewithSlotTable
     
     //MARK: spell-marking functions
     
