@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		951AA0F51CB1624F00D399D5 /* PersonalSpellTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 951AA0F41CB1624E00D399D5 /* PersonalSpellTableHeader.xib */; };
 		955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955662A71C570B8E00F5C014 /* CSViewController.swift */; };
 		9558A0291CA0DD160037521B /* CollectionViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9558A0281CA0DD160037521B /* CollectionViewCells.swift */; };
 		95692EB81C5AFE1700DD591D /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95692EB71C5AFE1700DD591D /* Race.swift */; };
@@ -26,6 +27,7 @@
 		959370B91CA5ADD5000E5734 /* AbilityScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */; };
 		959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A30581C790AC900ED83A1 /* SkillViewController.swift */; };
 		95A22B691CA87A44008AA143 /* SpellTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A22B681CA87A44008AA143 /* SpellTableCells.swift */; };
+		95A22B6D1CA9DCD4008AA143 /* PersonalSpellList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A22B6B1CA9DCD4008AA143 /* PersonalSpellList.swift */; };
 		95B029D51C601D5300DC0F3C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */; };
 		95B7A59E1C7FD910008895CA /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A59C1C7FD910008895CA /* Feature.swift */; };
 		95B7A5A21C7FDB27008895CA /* BackgroundFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */; };
@@ -64,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		951AA0F41CB1624E00D399D5 /* PersonalSpellTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalSpellTableHeader.xib; sourceTree = "<group>"; };
 		955662A71C570B8E00F5C014 /* CSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSViewController.swift; sourceTree = "<group>"; };
 		9558A0281CA0DD160037521B /* CollectionViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCells.swift; sourceTree = "<group>"; };
 		95692EB71C5AFE1700DD591D /* Race.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
@@ -89,6 +92,7 @@
 		959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityScoreViewController.swift; sourceTree = "<group>"; };
 		959A30581C790AC900ED83A1 /* SkillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillViewController.swift; sourceTree = "<group>"; };
 		95A22B681CA87A44008AA143 /* SpellTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellTableCells.swift; sourceTree = "<group>"; };
+		95A22B6B1CA9DCD4008AA143 /* PersonalSpellList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalSpellList.swift; sourceTree = "<group>"; };
 		95B029D41C601D5300DC0F3C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		95B7A59C1C7FD910008895CA /* Feature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
 		95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundFeature.swift; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 				958CBAAF1C56E10E00AD833A /* AppDelegate.swift */,
 				955662A61C570B7600F5C014 /* ViewControllers */,
 				958CBAB71C56E10F00AD833A /* Main.storyboard */,
+				951AA0F41CB1624E00D399D5 /* PersonalSpellTableHeader.xib */,
 				958CBABA1C56E10F00AD833A /* Assets.xcassets */,
 				958CBABC1C56E10F00AD833A /* LaunchScreen.storyboard */,
 				958CBABF1C56E10F00AD833A /* Info.plist */,
@@ -227,6 +232,7 @@
 				95D10E7F1C960A7400ACDAC8 /* Traits.swift */,
 				95809ECA1CA5CF0400863E9D /* Spell.swift */,
 				95CF73AD1CA6E863005AD5C8 /* SpellList.swift */,
+				95A22B6B1CA9DCD4008AA143 /* PersonalSpellList.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -337,6 +343,7 @@
 			files = (
 				958CBABE1C56E10F00AD833A /* LaunchScreen.storyboard in Resources */,
 				958CBABB1C56E10F00AD833A /* Assets.xcassets in Resources */,
+				951AA0F51CB1624F00D399D5 /* PersonalSpellTableHeader.xib in Resources */,
 				958CBAB91C56E10F00AD833A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,6 +394,7 @@
 				95B7A5A61C7FDB4D008895CA /* RaceFeature.swift in Sources */,
 				95F7D6261C7405EC00FE3D58 /* PClass.swift in Sources */,
 				95CF73B11CA73F46005AD5C8 /* SpellViewController.swift in Sources */,
+				95A22B6D1CA9DCD4008AA143 /* PersonalSpellList.swift in Sources */,
 				95EDE1F21C7BEF0500554520 /* Background.swift in Sources */,
 				959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */,
 				955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */,

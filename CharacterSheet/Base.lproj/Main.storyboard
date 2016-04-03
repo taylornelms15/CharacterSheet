@@ -1784,7 +1784,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3467" y="-204"/>
+            <point key="canvasLocation" x="3433" y="-188"/>
         </scene>
         <!--Features View Controller-->
         <scene sceneID="rpl-vw-no0">
@@ -2152,8 +2152,25 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uBJ-4e-pFF">
+                                <rect key="frame" x="20" y="8" width="374" height="26"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Class:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6I8-YW-C94">
+                                        <rect key="frame" x="0.0" y="0.0" width="58" height="26"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bard" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6uv-wo-FIo">
+                                        <rect key="frame" x="66" y="0.0" width="308" height="26"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cJe-Kc-a47">
-                                <rect key="frame" x="20" y="0.0" width="374" height="628"/>
+                                <rect key="frame" x="20" y="34" width="374" height="594"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="spellCellBasic" id="dpW-Yt-sev" customClass="SpellTableCell" customModule="CharacterSheet" customModuleProvider="target">
@@ -2166,7 +2183,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Spell Cell Basic" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQs-F3-xs6">
                                                     <rect key="frame" x="8" y="11" width="311" height="21"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -2186,7 +2203,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="292" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -2198,13 +2215,22 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hVH-kH-DZp" firstAttribute="leading" secondItem="8se-Sy-bYB" secondAttribute="leading" id="4Wp-RC-GKi"/>
+                            <constraint firstItem="uBJ-4e-pFF" firstAttribute="centerX" secondItem="8se-Sy-bYB" secondAttribute="centerX" id="EgU-pU-hnd"/>
+                            <constraint firstItem="uBJ-4e-pFF" firstAttribute="top" secondItem="1nC-Wy-XBU" secondAttribute="bottom" constant="8" id="Hiw-s8-JLg"/>
                             <constraint firstItem="kre-Ur-NcR" firstAttribute="top" secondItem="hVH-kH-DZp" secondAttribute="bottom" id="MHj-5T-jPc"/>
                             <constraint firstItem="hVH-kH-DZp" firstAttribute="top" secondItem="cJe-Kc-a47" secondAttribute="bottom" id="MsT-oH-s3B"/>
                             <constraint firstAttribute="trailing" secondItem="hVH-kH-DZp" secondAttribute="trailing" id="VFD-gG-C1v"/>
                             <constraint firstItem="cJe-Kc-a47" firstAttribute="centerX" secondItem="8se-Sy-bYB" secondAttribute="centerX" id="aWk-7a-EMc"/>
                             <constraint firstItem="cJe-Kc-a47" firstAttribute="top" secondItem="1nC-Wy-XBU" secondAttribute="bottom" id="d0a-eF-xVC"/>
+                            <constraint firstItem="cJe-Kc-a47" firstAttribute="top" secondItem="uBJ-4e-pFF" secondAttribute="bottom" id="ibT-ch-kBk"/>
+                            <constraint firstItem="uBJ-4e-pFF" firstAttribute="leading" secondItem="8se-Sy-bYB" secondAttribute="leadingMargin" id="rTD-dp-ViR"/>
                             <constraint firstItem="cJe-Kc-a47" firstAttribute="leading" secondItem="8se-Sy-bYB" secondAttribute="leadingMargin" id="t12-s0-dGo"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="d0a-eF-xVC"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Spells" id="HVi-2X-glM">
@@ -2214,6 +2240,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="addSpellButton" destination="jpU-jd-mPR" id="X7f-b0-T1n"/>
+                        <outlet property="classNameLabel" destination="6uv-wo-FIo" id="cNB-Uh-Lqq"/>
                         <outlet property="spellTableView" destination="cJe-Kc-a47" id="vrG-ki-CA7"/>
                     </connections>
                 </viewController>
@@ -2247,7 +2274,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Spell Cell Basic" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFg-EZ-bVZ">
                                                     <rect key="frame" x="8" y="11" width="257" height="21"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>

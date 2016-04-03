@@ -308,6 +308,67 @@ class Spell: NSManagedObject {
         spell11.duration = "Concentration, up to 1 hour"
         spell11.details = "An invisible sphere of antimagic surrounds you. Within the sphere, spells cannot be cast, summoned creatures disappear, and magic items become mundane. Until the spell ends, the sphere moves with you, centered on you.\nSpells and other magical effects, except those created by an artifact or deity, are suppressed in the sphere and cannot protrude into it. A slot expended to cast a suppressed spell is consumed. While a spell is suppressed, it does not function, but the time it spends suppressed counts against its duration."
         
+        let spell12: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell12.id = 12
+        spell12.name = "Antipathy/Sympathy"
+        spell12.level = 8
+        spell12.school = MagicSchool.Enchantment
+        spell12.ritual = false
+        spell12.range = 60
+        spell12.rangeType = RangeType.Target
+        spell12.effectRangeType = EffectRangeType.Target
+        spell12.componentBlock = (true, true, true)
+        spell12.material = "either a lump of alum soaked in vinegar for the antipathy effect or a drop of honey for the sympathy effect"
+        spell12.castingTime = "1 hour"
+        spell12.duration = "10 days"
+        spell12.details = "This spell attracts or repels creatures of your choice. You target something within range, either a Huge or smaller object or a creature or an area no larger than a 200-ft cube. Then specify a kind of intelligent creature, such as red dragons, goblins, or vampires. You invest the target with an aura that attracts or repels the creatures for the duration. Choose antipathy or sympathy as the aura's effect.\nAntipathy: The enchantment causes creatures of the kind you designated to feel an urge to leave the area and avoid the target. When such a creature can see the target or comes within 60 ft of it, the creature must either succeed on a Wisdom saving throw, or become frightened while the creature is in range.\nSympathy: The enchantment causes creatures of the kind you designated to feel an urge to approach the target while within 60 feet of it or able to see it. When such a creature can see the target or comes within 60 ft of it, the creature must either succeed on a Wisdom saving throw, or use its movement on each of its turns to enter the area or move within reach of the target.\nIf the target damages or otherwise harms an affected creature, the affected creature can make a Wisdom saving throw to end the effect.\nEnding the Effect: if an affected creature ends its turn while not within 60 feet of the target or able to see it, the creature makes a Wisdom saving throw. On a successful save, the creature is no longer affected by the target and recognizes the prior feelings as magical. In addition, a creature affected by the spell is allowed another Wisdom saving throw every 24 hours while the spell persists./nA creature that makes a successful saving throw is immune to this spell's effects for 1 minute."
+        
+        let spell13: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell13.id = 13
+        spell13.name = "Arcane Eye"
+        spell13.level = 4
+        spell13.school = MagicSchool.Divination
+        spell13.ritual = false
+        spell13.range = 30
+        spell13.rangeType = RangeType.Target
+        spell13.effectRangeType = EffectRangeType.Target
+        spell13.componentBlock = (true, true, true)
+        spell13.material = "a bit of bat fur"
+        spell13.castingTime = "1 action"
+        spell13.duration = "Concentration, up to 1 hour"
+        spell13.details = "You create an invisible, magical eye within range that hovers in the air for the duration.\nYou mentally receive visual information from the eye, which has normal vision and dark vision out to 30 ft. The eye can look in every direction.\nAs an action, you can move the eye up to 30 ft in any direction. There is no limit to how far away from you it can move, but it cannot enter another plane of existence or pass through solid barriers. The eye can pass through an opening as small as 1 inch in diameter."
+        
+        let spell14: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell14.id = 14
+        spell14.name = "Arcane Gate"
+        spell14.level = 6
+        spell14.school = MagicSchool.Conjuration
+        spell14.ritual = false
+        spell14.range = 500
+        spell14.rangeType = RangeType.Target
+        spell14.effectRange1 = 5
+        spell14.effectRange2 = 0
+        spell14.effectRangeType = EffectRangeType.Cylinder
+        spell14.componentBlock = (true, true, false)
+        spell14.castingTime = "1 action"
+        spell14.duration = "Concentration, up to 10 minutes"
+        spell14.details = "You create linked teleportation portals that remain open for the duration. Choose two points on the ground that you can see, one within 10 ft of you and one within 500 ft of you. A circular portal opens over each point, though fails to do so if it is in the space occupied by a creature.\nThe portals are two-dimensional glowing rings filled with mist, hovering over the ground and perpendicular to it at the points you choose, and visible only from one side.\nAny creature entering the portal on one end exits the other end as if they were adjacent. The mist that fills each portal blocks vision through it. On your turn, you may rotate the rings as a bonus action so that the active side faces in a different direction."
+        
+        let spell15: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell15.id = 15
+        spell15.name = "Arcane Lock"
+        spell15.level = 2
+        spell15.school = MagicSchool.Abjuration
+        spell15.ritual = false
+        spell15.range = 0
+        spell15.rangeType = RangeType.Touch
+        spell15.effectRangeType = EffectRangeType.Target
+        spell15.componentBlock = (true, true, true)
+        spell15.material = "gold dust worth at least 25 gp, which the spell consumes"
+        spell15.castingTime = "1 action"
+        spell15.duration = "Until dispelled"
+        spell15.details = "You touch a closed door, window, gate, chest, or other entryway, and it becomes locked for the duration. You and any creatures you designate upon casting may open the object normally. You may also set a password that suppresses the spell for one minute when spoken within 5 ft of the object. The object is otherwise impassable until it is borken or the spell is dispelled or suppressed. Casting \"knock\" on the object suppresses the spell for 10 minutes.\nWhuke affected by this spell, the object is more difficult to break or force open; the DC to break it or pick any locks on it increases by 10."
+        
         
         SpellList.spellListInit(context)
         

@@ -46,3 +46,25 @@ class SpellTableCell: UITableViewCell{
 
     
 }//spellCell
+
+class PersonalSpellTableHeader: UITableViewHeaderFooterView{
+    
+    var level: Int = 0
+    var persSpellList: PersonalSpellList? = nil
+    
+    //MARK: Outlets
+    @IBOutlet weak var titleLabel: UILabel!
+    //@IBOutlet weak var slotStepper: UIStepper!
+    @IBOutlet weak var slotsExpendedLabel: UILabel!
+    @IBOutlet weak var slotsMaxLabel: UILabel!
+    @IBOutlet weak var slotsStackView: UIStackView!
+    @IBOutlet weak var overallView: UIView!
+    
+    
+    /*
+    func setMaxStepper(max: Int){
+        slotStepper.maximumValue = Double(max)
+    }//setMaxStepper
+  */  
+    
+}//PersonalSpellTableHeader

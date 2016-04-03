@@ -50,7 +50,7 @@ class AddSpellViewController: CSViewController, UITableViewDataSource, UITableVi
 
         let level: Int = tableHeaders[section].0
         
-        return currentSpellList!.getSpellsForLevel(level: Int16(level)).count
+        return currentSpellList!.getSpellNamesPerLevel(level: Int16(level)).count
 
     }//numberOfRowsInSection
     
@@ -94,7 +94,7 @@ class AddSpellViewController: CSViewController, UITableViewDataSource, UITableVi
         self.delegate!.receiveSpell(thisSpell)
         
         //shut the city down
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController!.popViewControllerAnimated(true)
 
     }//didSelectRowAtIndexPath
     
@@ -103,15 +103,15 @@ class AddSpellViewController: CSViewController, UITableViewDataSource, UITableVi
     func buildHeaders(){
         tableHeaders = []
         
-        var subList: [Spell] = []
+        var subList: [String] = []
         
-        subList = currentSpellList!.getSpellsForLevel(level: 0)
+        subList = currentSpellList!.getSpellNamesPerLevel(level: 0)
         if (subList.count != 0){
             tableHeaders.append((0, "Cantrips"))
         }
         
         for (var i = 1; i < 10; i++){
-            subList = currentSpellList!.getSpellsForLevel(level: Int16(i))
+            subList = currentSpellList!.getSpellNamesPerLevel(level: Int16(i))
             if (subList.count != 0){
                 tableHeaders.append((i, "Level \(i)"))
             }

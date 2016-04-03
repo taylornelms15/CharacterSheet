@@ -45,11 +45,12 @@
         <attribute name="str" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="wis" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="background" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Background" inverseName="inv_char" inverseEntity="Background" syncable="YES"/>
-        <relationship name="featureList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FeatureList" inverseName="character" inverseEntity="FeatureList" syncable="YES"/>
+        <relationship name="featureList" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="FeatureList" inverseName="character" inverseEntity="FeatureList" syncable="YES"/>
         <relationship name="pclass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PClass" inverseName="inv_char" inverseEntity="PClass" syncable="YES"/>
         <relationship name="race" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Race" inverseName="inv_char" inverseEntity="Race" syncable="YES"/>
-        <relationship name="skillProfs" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkillProfs" inverseName="pCharacter" inverseEntity="SkillProfs" syncable="YES"/>
-        <relationship name="traitList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TraitList" inverseName="inv_character" inverseEntity="TraitList" syncable="YES"/>
+        <relationship name="skillProfs" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SkillProfs" inverseName="pCharacter" inverseEntity="SkillProfs" syncable="YES"/>
+        <relationship name="spellLists" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PersonalSpellList" inverseName="pcharacter" inverseEntity="PersonalSpellList" syncable="YES"/>
+        <relationship name="traitList" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TraitList" inverseName="inv_character" inverseEntity="TraitList" syncable="YES"/>
     </entity>
     <entity name="PClass" representedClassName=".PClass" syncable="YES">
         <attribute name="hitDie" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -59,6 +60,13 @@
         <attribute name="saveThrows" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="inv_char" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="pclass" inverseEntity="PCharacter" syncable="YES"/>
         <relationship name="spellList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpellList" inverseName="pclass" inverseEntity="SpellList" syncable="YES"/>
+    </entity>
+    <entity name="PersonalSpellList" representedClassName=".PersonalSpellList" parentEntity="SpellList" syncable="YES">
+        <attribute name="pclassId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="preparedSet" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="spellSlotStructure" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="wasFreeSet" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="pcharacter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="spellLists" inverseEntity="PCharacter" syncable="YES"/>
     </entity>
     <entity name="Race" representedClassName=".Race" syncable="YES">
         <attribute name="chamod" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -127,13 +135,14 @@
         <element name="Feat" positionX="-558" positionY="735" width="128" height="75"/>
         <element name="Feature" positionX="-308" positionY="495" width="128" height="90"/>
         <element name="FeatureList" positionX="-362" positionY="297" width="128" height="103"/>
-        <element name="PCharacter" positionX="-576" positionY="126" width="128" height="330"/>
+        <element name="PCharacter" positionX="-576" positionY="126" width="128" height="343"/>
         <element name="PClass" positionX="-767" positionY="270" width="128" height="150"/>
+        <element name="PersonalSpellList" positionX="-549" positionY="279" width="128" height="120"/>
         <element name="Race" positionX="-729" positionY="423" width="128" height="195"/>
         <element name="RaceFeature" positionX="-567" positionY="504" width="128" height="75"/>
         <element name="SkillProfs" positionX="-963" positionY="407" width="128" height="88"/>
-        <element name="Spell" positionX="-272" positionY="135" width="128" height="345"/>
-        <element name="SpellList" positionX="-774" positionY="279" width="128" height="75"/>
+        <element name="Spell" positionX="-164" positionY="159" width="128" height="345"/>
+        <element name="SpellList" positionX="-326" positionY="15" width="128" height="73"/>
         <element name="Trait" positionX="-981" positionY="774" width="128" height="135"/>
         <element name="TraitList" positionX="-983" positionY="621" width="128" height="90"/>
     </elements>

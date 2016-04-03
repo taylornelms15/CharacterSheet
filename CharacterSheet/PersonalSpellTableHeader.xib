@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="PersonalSpellTableHeader" id="iN0-l3-epB" customClass="PersonalSpellTableHeader" customModule="CharacterSheet">
+            <rect key="frame" x="0.0" y="0.0" width="431" height="116"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BqS-Ze-9gU">
+                    <rect key="frame" x="0.0" y="48" width="431" height="20"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="jlP-7p-VcK">
+                            <rect key="frame" x="0.0" y="0.0" width="431" height="20"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" ambiguous="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQg-0I-5le">
+                                    <rect key="frame" x="0.0" y="0.0" width="268" height="20"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="K1f-5V-ERH">
+                                    <rect key="frame" x="272" y="0.0" width="159" height="20"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHB-bF-zf4">
+                                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="/" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Me9-aC-OAp">
+                                            <rect key="frame" x="24" y="0.0" width="6" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYS-eF-tKB">
+                                            <rect key="frame" x="34" y="0.0" width="20" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Slots Expended" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdA-L8-5aw">
+                                            <rect key="frame" x="58" y="0.0" width="101" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="jlP-7p-VcK" firstAttribute="leading" secondItem="BqS-Ze-9gU" secondAttribute="leadingMargin" id="BIS-94-3Lc"/>
+                        <constraint firstItem="jlP-7p-VcK" firstAttribute="centerX" secondItem="BqS-Ze-9gU" secondAttribute="centerX" id="BTA-7I-2id"/>
+                        <constraint firstItem="jlP-7p-VcK" firstAttribute="leading" secondItem="BqS-Ze-9gU" secondAttribute="leading" id="Gfi-T0-Jqn"/>
+                        <constraint firstItem="jlP-7p-VcK" firstAttribute="centerX" secondItem="BqS-Ze-9gU" secondAttribute="centerX" id="RWn-gn-WU4"/>
+                        <constraint firstItem="jlP-7p-VcK" firstAttribute="centerY" secondItem="BqS-Ze-9gU" secondAttribute="centerY" id="Tjl-aq-lpb"/>
+                        <constraint firstAttribute="trailingMargin" secondItem="jlP-7p-VcK" secondAttribute="trailing" id="sSd-Oj-2gI"/>
+                        <constraint firstItem="jlP-7p-VcK" firstAttribute="height" secondItem="BqS-Ze-9gU" secondAttribute="height" id="yxb-O2-6g3"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="BIS-94-3Lc"/>
+                            <exclude reference="sSd-Oj-2gI"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="BqS-Ze-9gU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8pb-y5-lyi"/>
+                <constraint firstItem="BqS-Ze-9gU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="KiQ-Ze-HRE"/>
+                <constraint firstItem="BqS-Ze-9gU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="XNA-3M-7iL"/>
+                <constraint firstItem="BqS-Ze-9gU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="YfG-Xo-IFF"/>
+                <constraint firstItem="BqS-Ze-9gU" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bMg-dJ-GEI"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="KiQ-Ze-HRE"/>
+                    <exclude reference="XNA-3M-7iL"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="overallView" destination="BqS-Ze-9gU" id="ciZ-7k-Ld1"/>
+                <outlet property="slotsExpendedLabel" destination="EHB-bF-zf4" id="ZG5-an-UEh"/>
+                <outlet property="slotsMaxLabel" destination="AYS-eF-tKB" id="thZ-fE-m9J"/>
+                <outlet property="slotsStackView" destination="K1f-5V-ERH" id="6UC-ZB-ZdK"/>
+                <outlet property="titleLabel" destination="TQg-0I-5le" id="xyU-Jh-uH3"/>
+            </connections>
+            <point key="canvasLocation" x="440.5" y="187"/>
+        </view>
+    </objects>
+</document>
