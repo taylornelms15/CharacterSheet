@@ -239,12 +239,21 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell: SpellTableCell = spellTableView.dequeueReusableCellWithIdentifier("spellCellBasic")! as! SpellTableCell
+        var reuseIdentifier: String = ""
+        if (thisSpellList!.preparesSpells){
+            reuseIdentifier = "personalSpellCellPrep"
+        }
+        else{
+            reuseIdentifier = "personalSpellCell"
+        }
+        
+        let cell: PersonalSpellTableCell = spellTableView.dequeueReusableCellWithIdentifier(reuseIdentifier)! as! PersonalSpellTableCell
         
         let level: Int16 = Int16(tableHeaders[indexPath.section].0)
         let subList: [Spell] = thisSpellList!.getSpellsForLevel(level: level)
         let thisSpell: Spell = subList[indexPath.row]
         
+        cell.persList = thisSpellList!
         cell.setInfoWithSpell(spell: thisSpell)
         
         return cell

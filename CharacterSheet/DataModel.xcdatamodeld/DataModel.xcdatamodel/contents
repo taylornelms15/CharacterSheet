@@ -64,6 +64,7 @@
     <entity name="PersonalSpellList" representedClassName=".PersonalSpellList" parentEntity="SpellList" syncable="YES">
         <attribute name="pclassId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="preparedSet" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="preparesSpells" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="spellSlotStructure" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="wasFreeSet" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="pcharacter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="spellLists" inverseEntity="PCharacter" syncable="YES"/>
@@ -137,7 +138,7 @@
         <element name="FeatureList" positionX="-362" positionY="297" width="128" height="103"/>
         <element name="PCharacter" positionX="-576" positionY="126" width="128" height="343"/>
         <element name="PClass" positionX="-767" positionY="270" width="128" height="150"/>
-        <element name="PersonalSpellList" positionX="-549" positionY="279" width="128" height="120"/>
+        <element name="PersonalSpellList" positionX="-549" positionY="279" width="128" height="135"/>
         <element name="Race" positionX="-729" positionY="423" width="128" height="195"/>
         <element name="RaceFeature" positionX="-567" positionY="504" width="128" height="75"/>
         <element name="SkillProfs" positionX="-963" positionY="407" width="128" height="88"/>

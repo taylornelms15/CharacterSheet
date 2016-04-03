@@ -2173,15 +2173,15 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cJe-Kc-a47">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cJe-Kc-a47">
                                 <rect key="frame" x="20" y="34" width="374" height="593"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="spellCellBasic" id="dpW-Yt-sev" customClass="SpellTableCell" customModule="CharacterSheet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="374" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dpW-Yt-sev" id="ePV-oL-hy2">
-                                            <rect key="frame" x="0.0" y="0.0" width="327" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="327" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Spell Cell Basic" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQs-F3-xs6">
@@ -2194,6 +2194,149 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="spellNameLabel" destination="qQs-F3-xs6" id="dpY-Nk-aWV"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="personalSpellCell" rowHeight="66" id="sWC-YZ-jPf" customClass="PersonalSpellTableCell" customModule="CharacterSheet">
+                                        <rect key="frame" x="0.0" y="94" width="374" height="66"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sWC-YZ-jPf" id="mTn-Qc-atb">
+                                            <rect key="frame" x="0.0" y="0.0" width="327" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personal Spell Cell" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2H-Rq-9Hm">
+                                                    <rect key="frame" x="8" y="8" width="311" height="20"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="d0F-ab-oVp">
+                                                    <rect key="frame" x="8" y="40" width="311" height="17"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Range:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNW-Wz-Azo">
+                                                            <rect key="frame" x="0.0" y="0.0" width="45" height="17"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="251" text="Self (15-ft Cone)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSE-QL-jAe">
+                                                            <rect key="frame" x="53" y="0.0" width="158" height="17"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="700" text="Damage:" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pfc-gs-QSh">
+                                                            <rect key="frame" x="219" y="0.0" width="58" height="17"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="3d6" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YyY-Jn-rfO">
+                                                            <rect key="frame" x="285" y="0.0" width="26" height="17"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Z2H-Rq-9Hm" firstAttribute="leading" secondItem="mTn-Qc-atb" secondAttribute="leadingMargin" id="Cg3-SX-c4Z"/>
+                                                <constraint firstItem="Z2H-Rq-9Hm" firstAttribute="centerX" secondItem="mTn-Qc-atb" secondAttribute="centerX" id="OYi-U6-eSf"/>
+                                                <constraint firstItem="Z2H-Rq-9Hm" firstAttribute="top" secondItem="mTn-Qc-atb" secondAttribute="topMargin" id="URv-l0-3Az"/>
+                                                <constraint firstItem="d0F-ab-oVp" firstAttribute="bottom" secondItem="mTn-Qc-atb" secondAttribute="bottomMargin" id="dFL-Y8-zAr"/>
+                                                <constraint firstItem="d0F-ab-oVp" firstAttribute="centerX" secondItem="mTn-Qc-atb" secondAttribute="centerX" id="hC8-0T-pGq"/>
+                                                <constraint firstItem="d0F-ab-oVp" firstAttribute="leading" secondItem="mTn-Qc-atb" secondAttribute="leadingMargin" id="rCt-kl-8iG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="damageLabel" destination="YyY-Jn-rfO" id="UHs-tC-JDC"/>
+                                            <outlet property="damageNameLabel" destination="Pfc-gs-QSh" id="HQJ-Ix-cJd"/>
+                                            <outlet property="rangeLabel" destination="MSE-QL-jAe" id="5aW-1X-OSl"/>
+                                            <outlet property="spellNameLabel" destination="Z2H-Rq-9Hm" id="dzr-g7-bGQ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="personalSpellCellPrep" id="5iX-6X-0Jv" customClass="PersonalSpellTableCellPrep" customModule="CharacterSheet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="160" width="374" height="66"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5iX-6X-0Jv" id="sDH-rm-xNJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="327" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="a8g-F3-5PO">
+                                                    <rect key="frame" x="8" y="40" width="311" height="17"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Range:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EG8-Ie-5QA">
+                                                            <rect key="frame" x="0.0" y="0.0" width="45" height="17"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="251" text="Self (15-ft Cone)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmR-03-cmc">
+                                                            <rect key="frame" x="53" y="0.0" width="158" height="17"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="700" text="Damage:" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nn6-Ap-YKX">
+                                                            <rect key="frame" x="219" y="0.0" width="58" height="17"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="3d6" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1g-ii-j8i">
+                                                            <rect key="frame" x="285" y="0.0" width="26" height="17"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="up6-9e-gOV">
+                                                    <rect key="frame" x="8" y="8" width="311" height="20"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="240" verticalHuggingPriority="251" text="Personal Spell Cell" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emK-Jb-Wco">
+                                                            <rect key="frame" x="0.0" y="0.0" width="231" height="20"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="742" text="Prep:" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJH-Gg-UP4">
+                                                            <rect key="frame" x="239" y="0.0" width="34" height="20"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WGy-JS-cgZ">
+                                                            <rect key="frame" x="281" y="0.0" width="30" height="20"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20" id="jj3-C4-YVd"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <state key="normal" title="v"/>
+                                                            <connections>
+                                                                <action selector="prepButtonPressed:" destination="5iX-6X-0Jv" eventType="touchUpInside" id="kTT-4z-jjw"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="up6-9e-gOV" firstAttribute="top" secondItem="sDH-rm-xNJ" secondAttribute="topMargin" id="6T1-Nb-KQ0"/>
+                                                <constraint firstItem="up6-9e-gOV" firstAttribute="leading" secondItem="sDH-rm-xNJ" secondAttribute="leadingMargin" id="A0u-wC-vWw"/>
+                                                <constraint firstItem="up6-9e-gOV" firstAttribute="centerX" secondItem="sDH-rm-xNJ" secondAttribute="centerX" id="A9j-a0-NkH"/>
+                                                <constraint firstItem="up6-9e-gOV" firstAttribute="top" secondItem="sDH-rm-xNJ" secondAttribute="topMargin" id="D7R-zl-Fva"/>
+                                                <constraint firstItem="a8g-F3-5PO" firstAttribute="bottom" secondItem="sDH-rm-xNJ" secondAttribute="bottomMargin" id="Q3e-1r-aKo"/>
+                                                <constraint firstItem="up6-9e-gOV" firstAttribute="trailing" secondItem="sDH-rm-xNJ" secondAttribute="trailingMargin" id="WkS-a5-6XB"/>
+                                                <constraint firstItem="a8g-F3-5PO" firstAttribute="leading" secondItem="sDH-rm-xNJ" secondAttribute="leadingMargin" id="esc-lV-TB5"/>
+                                                <constraint firstItem="a8g-F3-5PO" firstAttribute="centerX" secondItem="sDH-rm-xNJ" secondAttribute="centerX" id="lpo-1n-tvw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="damageLabel" destination="M1g-ii-j8i" id="nyl-E8-oGQ"/>
+                                            <outlet property="damageNameLabel" destination="nn6-Ap-YKX" id="jfM-oT-tNR"/>
+                                            <outlet property="preparedButton" destination="WGy-JS-cgZ" id="hPN-w2-O8c"/>
+                                            <outlet property="rangeLabel" destination="qmR-03-cmc" id="fK5-ZW-eba"/>
+                                            <outlet property="spellNameLabel" destination="emK-Jb-Wco" id="vaR-iF-eB1"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

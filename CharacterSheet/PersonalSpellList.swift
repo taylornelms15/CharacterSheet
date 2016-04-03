@@ -20,6 +20,7 @@ enum SpellSlotTableType{
 
 class PersonalSpellList: SpellList {
     
+    @NSManaged var preparesSpells: Bool
     @NSManaged var wasFreeSet: NSMutableSet
     @NSManaged var preparedSet: NSMutableSet
     @NSManaged var pcharacter: PCharacter?
@@ -137,8 +138,18 @@ class PersonalSpellList: SpellList {
         resultList.pclassId = pclass.id
         resultList.pcharacter = pchar;
         
+        if ([3, 4, 7, 12].contains(resultList.pclassId)){
+            resultList.preparesSpells = true
+        }//if a preparing-style caster
+        else{
+            resultList.preparesSpells = false
+        }//else
+        
         resultList.spellSlotStructure = NSMutableArray(array: PersonalSpellList.nonCasterSpellSlotTable)
         resultList.updateSpellSlotsForCharLevel(level: pchar.level, withClassId: pclass.id)
+        
+        resultList.preparedSet = NSMutableSet()
+        resultList.wasFreeSet = NSMutableSet()
         
         return resultList
         
@@ -312,6 +323,13 @@ class PersonalSpellList: SpellList {
     }
     func isSpellPrepared(spell: Spell) -> Bool {
         return preparedSet.containsObject(Int(spell.id))
+    }
+    func markIdPrepared(id: Int){
+        preparedSet.addObject(id)
+        print(preparedSet)
+    }
+    func markIdNotPrepared(id: Int){
+        preparedSet.removeObject(id)
     }
     func markAsPrepared(spell: Spell){
         preparedSet.addObject(Int(spell.id))

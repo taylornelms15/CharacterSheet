@@ -105,6 +105,15 @@ class Spell: NSManagedObject {
         }
     }//damageDice
     
+    func damageString()->String{
+        if (damageDieNum != 0){
+            return "\(damageDieNum)d\(damageDieType)"
+        }
+        else{
+            return ""
+        }
+    }//damageString
+    
     func rangeString()->String{
         switch(rangeType){
         case RangeType.PSelf:
@@ -680,7 +689,7 @@ class Spell: NSManagedObject {
         spell37.componentBlock = (true, false, false)
         spell37.castingTime = "1 action"
         spell37.duration = "1 minute"
-        spell37.details = "You can blind or deafen a fore. Choose one creature in range to make a Constitution saving throw. If it fails the target is either blinded or deafened (your choice) for the duration. At the end of each of its turns, it may make a Constitution saving throw. On a successful saving throw, the spell ends.\nWhen using a higher spell slot, you may target one additional creature for each additional spell level."
+        spell37.details = "You can blind or deafen a foe. Choose one creature in range to make a Constitution saving throw. If it fails the target is either blinded or deafened (your choice) for the duration. At the end of each of its turns, it may make a Constitution saving throw. On a successful saving throw, the spell ends.\nWhen using a higher spell slot, you may target one additional creature for each additional spell level."
         
         let spell38: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
         spell38.id = 38
