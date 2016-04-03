@@ -179,7 +179,7 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var headerTitle: String = ""
         if (tableHeaders.count == 0){
-            headerTitle = ""
+            headerTitle = "Please Add a Spell"
         }
         else{
             headerTitle = tableHeaders[section].1
@@ -189,15 +189,19 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         let header = cell as! PersonalSpellTableHeader
         header.titleLabel.text = headerTitle
         
+        header.slotsStackView.removeFromSuperview()
+        
         if (tableHeaders.count == 0){
-            header.slotsStackView.alpha = 0.0
             return header
         }
         
-        header.slotsStackView.alpha = 1.0
-        
         let level: Int16 = Int16(tableHeaders[section].0)
         
+        if (level > 0){
+            header.rowStackView.addArrangedSubview(header.slotsStackView)
+            header.rowStackView.addConstraint(NSLayoutConstraint(item: header.slotsStackView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.GreaterThanOrEqual, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 232.0))
+        }//if not cantrip
+            
         header.level = level
         header.persSpellList = thisSpellList
         

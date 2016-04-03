@@ -179,6 +179,7 @@ class PersonalSpellList: SpellList {
     //MARK: slot-modifying functions
     
     func getSlotsAvailableForLevel(level level: Int16) -> Int{
+        if (level == 0) {return 0}
         return spellSlotStructure.objectAtIndex(Int(level) - 1) as! Int
     }//getSlotsAvailableForLevel
     
@@ -187,6 +188,7 @@ class PersonalSpellList: SpellList {
     }//setSlotsAvailableForLevel
     
     func getSlotsExpendedForLevel(level level: Int16) -> Int{
+        if (level == 0) {return 0}
         return spellSlotStructure.objectAtIndex(Int(level) + 8) as! Int
     }//getSlotsExpendedForLevel
     

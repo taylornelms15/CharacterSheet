@@ -369,6 +369,135 @@ class Spell: NSManagedObject {
         spell15.duration = "Until dispelled"
         spell15.details = "You touch a closed door, window, gate, chest, or other entryway, and it becomes locked for the duration. You and any creatures you designate upon casting may open the object normally. You may also set a password that suppresses the spell for one minute when spoken within 5 ft of the object. The object is otherwise impassable until it is borken or the spell is dispelled or suppressed. Casting \"knock\" on the object suppresses the spell for 10 minutes.\nWhuke affected by this spell, the object is more difficult to break or force open; the DC to break it or pick any locks on it increases by 10."
         
+        let spell16: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell16.id = 16
+        spell16.name = "Armor of Agathys"
+        spell16.level = 1
+        spell16.school = MagicSchool.Abjuration
+        spell16.ritual = false
+        spell16.rangeType = RangeType.PSelf
+        spell16.effectRangeType = EffectRangeType.Target
+        spell16.componentBlock = (true, true, true)
+        spell16.material = "a cup of water"
+        spell16.castingTime = "1 action"
+        spell16.duration = "1 hour"
+        spell16.details = "A protective magical force surrounds you, manifesting as a spectral frost that covers you and your gear. You gain 5 temporary hit points for the duration. If a creature hits you with a melee attack while you have these hit points, the creature takes 5 cold damage.\nWhen using a higher spell slot, both the temporary hit points and the cold damage increase by 5 for each additional spell level."
+        
+        let spell17: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell17.id = 17
+        spell17.name = "Arms of Hadar"
+        spell17.level = 1
+        spell17.school = MagicSchool.Conjuration
+        spell17.ritual = false
+        spell17.rangeType = RangeType.PSelf
+        spell17.effectRange1 = 10
+        spell17.effectRangeType = EffectRangeType.Sphere
+        spell17.damageDice = (2, 6)
+        spell17.componentBlock = (true, true, false)
+        spell17.castingTime = "1 action"
+        spell17.duration = "Instantaneous"
+        spell17.details = "You invoke the power of Hadar, the Dark Hunger. Tendrils of dark energy erupt from you and batter all creatures within range. Each creature must make a Strength saving throw. On a failed save, each target takes 2d6 necrotic damage, and cannot take reactions until its next turn. On a successful save, the creature takes half this damage, but suffers no other ill effects.\nWhen using a higher spell slot, the damage increases by 1d6 for each additional spell level."
+        
+        let spell18: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell18.id = 18
+        spell18.name = "Astral Projection"
+        spell18.level = 9
+        spell18.school = MagicSchool.Necromancy
+        spell18.ritual = false
+        spell18.range = 10
+        spell18.rangeType = RangeType.Target
+        spell18.effectRangeType = EffectRangeType.Target
+        spell18.componentBlock = (true, true, false)
+        spell18.material = "for each creature you affect with this spell, you must provide one jacinth worth at least 1000gp and one ornately carved bar of silver worth at least 100gp, all of which the spell consumes"
+        spell18.castingTime = "1 hour"
+        spell18.duration = "Special"
+        spell18.details = "You and up to eight willing creatures within range project your astral bodies into the Astral Plane (the spell fails and the casting is wasted if you are already on that plane). The material body you leave behind is unconscious and in a state of suspended animation; it doesn't need food or air and doesn't age.\nYour astral body resembles your mortal form in almost every way, replicating your game statistics and possessions. The principal difference is the adoption of a silvery cord that extends from between your shoulder blades and trails behind you, fading to invisibility after 1 foot. This cord is your tether to your material body. As long as the tether remains intact, you can find your way home. If the cord is cut - something that can happen only when an effect specifically states that it does - your soul and body are separated, killing you instantly.\nYour astral form can freely travel through the Astral Plane and can pass through portals there leading to any other plane. If you enter a new plane or return to the plane you were on when casting this spell, your body and possessions are transported along the silver cord, allowing you to re-enter your mody as you enter the new plane. Your astral form is a separate incarnation. Any damage or other effects that apply to it have no effect on your physical body, nor do they persist when you return to it.\nThe spell ends for you and your companions when you use your action to dismiss it. When the spell ends, the affected creature returns to its physical body, and it awakens.\nThe spell might also end early for you or one of your companions. A successful Dispel Magic spell used against an astral or physical body ends the spell for that creature. If a creature's original body or its astral form drops to 0 hit points, the spell ends for that creature. If the spell ends and the silver cord is intact, the cord pulls the creature's astral form back to its body, ending its state of suspended animation.\nIf you are returned to your body prematurely, your companions remain in their astral forms and must find their own way back to their bodies, usually by dropping to 0 hit points."
+        
+        let spell19: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell19.id = 19
+        spell19.name = "Augury"
+        spell19.level = 2
+        spell19.school = MagicSchool.Divination
+        spell19.ritual = true
+        spell19.rangeType = RangeType.PSelf
+        spell19.effectRangeType = EffectRangeType.Target
+        spell19.componentBlock = (true, true, false)
+        spell19.material = "specially marked sticks, bones, or similar tokens worth at least 25gp"
+        spell19.castingTime = "1 minute"
+        spell19.duration = "Instantaneous"
+        spell19.details = "By casting gem-inlaid sticks, rolling dragon bones, laying out cards, or employing some other divining tool, you receive an omen from an otherworldly entity about the results of a specific course of action that you plan to take within the next 30 minutes. The DM chooses from the following possible omens:\nWeal, for good results\nWoe, for bad results\nWeal and Woe, for both good and bad results\nNothing, for results that are neither good nor bad\nThe spell doesn't take into account any possible circumstances that might change the outcome, such as the casting of additional spells or the loss or gain of a companion.\nIf you cast the spell two or more times before completing your next long rest, there is a cumulative 25% chance for each casting after the first that you get a random reading. The DM makes this roll in secret."
+        
+        let spell20: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell20.id = 20
+        spell20.name = "Aura of Life"
+        spell20.level = 4
+        spell20.school = MagicSchool.Abjuration
+        spell20.ritual = false
+        spell20.rangeType = RangeType.PSelf
+        spell20.effectRange1 = 30
+        spell20.effectRangeType = EffectRangeType.Sphere
+        spell20.componentBlock = (true, false, false)
+        spell20.castingTime = "1 action"
+        spell20.duration = "Concentration, up to 10 minutes"
+        spell20.details = "Life-preserving energy radiates from you in an aura with a 30-ft radius. Until the spell ends, the aura moves with you. Each nonhostile creature in the aura (including yourself) has resistance to necrotic damage, and its hit point maximum can't be reduced. In addition, a nonhostile, living creature regains 1 hit point when it starts its turn in the aura with 0 hit points."
+        
+        let spell21: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell21.id = 21
+        spell21.name = "Aura of Purity"
+        spell21.level = 4
+        spell21.school = MagicSchool.Abjuration
+        spell21.ritual = false
+        spell21.rangeType = RangeType.PSelf
+        spell21.effectRange1 = 30
+        spell21.effectRangeType = EffectRangeType.Sphere
+        spell21.componentBlock = (true, false, false)
+        spell21.castingTime = "1 action"
+        spell21.duration = "Concentration, up to 10 minutes"
+        spell21.details = "Purifying energy radiates from you in an aura with a 30-ft radius. Until the spell ends, the aura moves with you. Each nonhostile creature in the aura (including yourself) has resistance to poison damage, can't become diseased, and has advantage on savings throws against effects that cause any of the following conditions: blinded, charmed, deafened, frightened, paralyzed, poisoned, and stunned."
+        
+        let spell22: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell22.id = 22
+        spell22.name = "Aura of Vitality"
+        spell22.level = 3
+        spell22.school = MagicSchool.Evocation
+        spell22.ritual = false
+        spell22.rangeType = RangeType.PSelf
+        spell22.effectRange1 = 30
+        spell22.effectRangeType = EffectRangeType.Sphere
+        spell22.componentBlock = (true, false, false)
+        spell22.castingTime = "1 action"
+        spell22.duration = "Concentration, up to 10 minutes"
+        spell22.details = "Healing energy radiates from you in an aura with a 30-ft radius. Until the spell ends, the aura moves with you. You can use a bonus action to cause one creature in the aura (including yourself) to regain 2d6 hit points."
+        
+        let spell23: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell23.id = 23
+        spell23.name = "Awaken"
+        spell23.level = 5
+        spell23.school = MagicSchool.Transmutation
+        spell23.ritual = false
+        spell23.rangeType = RangeType.Touch
+        spell23.effectRangeType = EffectRangeType.Target
+        spell23.componentBlock = (true, true, true)
+        spell23.material = "an agate worth at least 1000gp, which the spell consumes"
+        spell23.castingTime = "8 hours"
+        spell23.duration = "Instantaneous"
+        spell23.details = "After spending the casting time tracing magical pathways within a precious gemstone, you touch a Huge or smaller beast or plant. The target must have either no Intelligence score or an Intelligence of 3 or less. The target gains an Intelligence of 10. The target also gains the ability to speak one language you know. If the target is a plant, it gains the ability to move its limbs, roots, vines, creepers, and so forth, and it gains senses similar to a human's. Your DM chooses statistics appropriate for the awakened plant.\nThe awakened beast or plant is charmed by you for 30 days or until you or your companions do anything harmful to it. When the charmed condition ends, the awakened creature chooses whether to remain friendly to you, based on how you treated it while it was charmed."
+        
+        let spell24: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell24.id = 24
+        spell24.name = "Bane"
+        spell24.level = 1
+        spell24.school = MagicSchool.Enchantment
+        spell24.ritual = false
+        spell24.range = 30
+        spell24.rangeType = RangeType.Target
+        spell24.effectRangeType = EffectRangeType.Target
+        spell24.componentBlock = (true, false, true)
+        spell24.material = "a drop of blood"
+        spell24.castingTime = "1 action"
+        spell24.duration = "Concentration, up to 1 minute"
+        spell24.details = "Up to three creatures of your choice in range must make Charisma saving throws. Whenever a target that fails this saving throw makes an attack roll or a saving throw before the spell ends, the target must roll a d4 and subtract the number rolled from the attack roll or saving throw.\nWhen using a higher spell slot, you can target one additional creature for each additional spell level."
+        
         
         SpellList.spellListInit(context)
         

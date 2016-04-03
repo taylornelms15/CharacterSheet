@@ -396,6 +396,122 @@ class SpellList: NSManagedObject {
             spellList5.spells.insert(spellResults[i])
         }
         
+        //Sorcerer
+        let spellList6: SpellList = NSManagedObject(entity: spellListEntity, insertIntoManagedObjectContext: context) as! SpellList
+        spellNames =
+            [
+                "Acid Splash", "Blade Ward", "Chill Touch", "Dancing Lights", "Fire Bolt", "Friends", "Light", "Mage Hand", "Mending", "Message", "Minor Illusion",
+                "Poison Spray", "Prestidigitation", "Ray of Frost", "Shocking Grasp", "True Strike", "Burning Hands", "Charm Person", "Chromatic Orb", "Color Spray",
+                "Comprehend Languages", "Detect Magic", "Disguise Self", "Expeditious Retreat", "False Life", "Feather Fall", "Fog Cloud", "Jump", "Mage Armor",
+                "Magic Missile", "Ray of Sickness", "Shield", "Silent Image", "Sleep", "Thunderwave", "Witch Bolt", "Alter Self", "Blindness/Deafness",
+                "Blur", "Cloud of Daggers", "Crown of Madness", "Darkness", "Darkvision", "Detect Thoughts", "Enhance Ability", "Enlarge/Reduce", "Gust of Wind",
+                "Hold Person", "Invisibility", "Knock", "Levitate", "Mirror Image", "Misty Step", "Phantasmal Force", "Scorching Ray", "See Invisibility",
+                "Shatter", "Spider Climb", "Suggestion", "Web", "Blink", "Clairvoyance", "Counterspell", "Daylight", "Dispel Magic", "Fear", "Fireball",
+                "Fly", "Gaseous Form", "Haste", "Hypnotic Pattern", "Lighting Bolt", "Major Image", "Protection from Energy", "Sleet Storm", "Slow",
+                "Stinking Cloud", "Tongues", "Water Breathing", "Water Walk", "Banishment", "Blight", "Confusion", "Dimension Door", "Dominate Beast",
+                "Greater Invisibility", "Ice Storm", "Polymorph", "Stoneskin", "Wall of Fire", "Animate Objects", "Cloudkill", "Cone of Cold",
+                "Creation", "Dominate Person", "Hold Monster", "Insect Plague", "Seeming", "Telekinesis", "Teleportation Circle", "Wall of Stone",
+                "Arcane Gate", "Chain Lightning", "Circle of Death", "Disintegrate", "Eyebite", "Globe of Invulnerability", "Mass Suggestion", "Move Earth",
+                "Sunbeam", "True Seeing", "Delayed Blast Fireball", "Etherealness", "Finger of Death", "Fire Storm", "Plane Shift", "Prismatic Spray",
+                "Reverse Gravity", "Teleport", "Dominate Monster", "Earthquake", "Incendiary Cloud", "Power Word Stun", "Sunburst", "Gate", "Meteor Swarm",
+                "Power Word Kill", "Time Stop", "Wish"
+        ]
+        classFetch.predicate = NSPredicate(format: "name = %@", "Sorcerer");
+        spellFetch.predicate = NSPredicate(format: "name IN %@", spellNames)
+        spellFetch.sortDescriptors = [NSSortDescriptor(key: "level", ascending: true), NSSortDescriptor(key: "id", ascending: true)]//sort by level, then by id
+        classResults = []
+        spellResults = []
+        do{
+            classResults = try context.executeFetchRequest(classFetch) as! [PClass]
+            spellResults = try context.executeFetchRequest(spellFetch) as! [Spell]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }//classResults[0] is the Sorcerer class, spellResults[0] are the Sorcerer spells
+        spellList6.pclass = classResults[0]
+        
+        for (var i = 0; i < spellResults.count; i++){
+            spellList6.spells.insert(spellResults[i])
+        }
+        
+        //Warlock
+        let spellList7: SpellList = NSManagedObject(entity: spellListEntity, insertIntoManagedObjectContext: context) as! SpellList
+        spellNames =
+            [
+                "Blade Ward", "Chill Touch", "Eldritch Blast", "Friends", "Mage Hand", "Minor Illusion", "Poison Spray", "Prestidigitation", "True Strike",
+                "Armor of Agathys", "Arms of Hadar", "Charm Person", "Comprehend Languages", "Expeditious Retreat", "Hellish Rebuke", "Hex",
+                "Illusory Script", "Protection from Evil and Good", "Unseen Servant", "Witch Bolt", "Cloud of Daggers", "Crown of Madness", "Darkness",
+                "Enthrall", "Hold Person", "Invisibility", "Mirror Image", "Misty Step", "Ray of Enfeeblement", "Shatter", "Spider Climb", "Suggestion",
+                "Counterspell", "Dispel Magic", "Fear", "Fly", "Gaseous Form", "Hunger of Hadar", "Hypnotic Pattern", "Magic Circle", "Major Image",
+                "Remove Curse", "Tongues", "Vampiric Touch", "Banishment", "Blight", "Dimension Door", "Hallucinatory Terrain", "Contact Other Plane", "Dream",
+                "Hold Monster", "Scrying", "Arcane Gate", "Circle of Death", "Conjure Fey", "Create Undead", "Eyebite", "Flesh to Stone", "Mass Suggestion",
+                "True Seeing", "Etherealness", "Finger of Death", "Forcecage", "Plane Shift", "Demiplane", "Dominate Monster", "feeblemind", "Glibness",
+                "Power Word Stun", "Astral Projection", "Foresight", "Imprisonment", "Power Word Kill", "True Polymorph"
+            ]
+        classFetch.predicate = NSPredicate(format: "name = %@", "Warlock");
+        spellFetch.predicate = NSPredicate(format: "name IN %@", spellNames)
+        spellFetch.sortDescriptors = [NSSortDescriptor(key: "level", ascending: true), NSSortDescriptor(key: "id", ascending: true)]//sort by level, then by id
+        classResults = []
+        spellResults = []
+        do{
+            classResults = try context.executeFetchRequest(classFetch) as! [PClass]
+            spellResults = try context.executeFetchRequest(spellFetch) as! [Spell]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }//classResults[0] is the Warlock class, spellResults[0] are the Warlock spells
+        spellList7.pclass = classResults[0]
+        
+        for (var i = 0; i < spellResults.count; i++){
+            spellList7.spells.insert(spellResults[i])
+        }
+        
+        //Warlock
+        let spellList8: SpellList = NSManagedObject(entity: spellListEntity, insertIntoManagedObjectContext: context) as! SpellList
+        spellNames =
+            [
+                "Acid Splash", "Blade Ward", "Chill Touch", "Dancing Lights", "Fire Bolt", "Friends", "Light", "Mage Hand", "Mending", "Message", "Minor Illusion",
+                "Poison Spray", "Prestidigitation", "Ray of Frost", "Shocking Grasp", "True Strike", "Alarm", "Burning Hands", "Charm Person",
+                "Chromatic Orb", "Color Spray", "Comprehend Languages", "Detect Magic", "Disguise Self", "Expeditious Retreat", "False Life", "Feather Fall",
+                "Find Familiar", "Fog Cloud", "Grease", "Indentify", "Illusory Script", "Jump", "Longstrider", "Mage Armor", "Magic Missile",
+                "Protection from Evil and Good", "Ray of Sickness", "Shield", "Silent Image", "Sleep", "Tasha's Hideous Laughter", "Tenser's Floating Disk",
+                "Thunderwave", "Unseen Servant", "Witch Bolt", "Alter Self", "Arcane Lock", "Blindness/Deafness", "Blur", "Cloud of Daggers", "Continual Flame",
+                "Crown of Madness", "Darkness", "Darkvision", "Detect Thoughts", "Enlarge/Reduce", "Flaming Sphere", "Gentle Repose", "Gust of Wind",
+                "Hold Person", "Invisibility", "Knock", "Levitate", "Locate Object", "Magic Mouth", "Magic Weapon", "Melf's Acid Arrow", "Mirror Image",
+                "Misty Step", "Nystul's Magic Aura", "Phantasmal Force", "Ray of Enfeeblement", "Rope Trick", "Scorching Ray", "See Invisibility", "Shatter",
+                "Spider Climb", "Suggestion", "Web", "Animate Dead", "Bestow Curse", "Blink", "Clairvoyance", "Counterspell", "Dispel Magic", "Fear", "Feign Death",
+                "Fireball", "Fly", "Gaseous Form", "Glyph of Warding", "Haste", "Hypnotic Pattern", "Leomund's Tiny Hut", "Lightning Bolt", "Magic Circle",
+                "Major Image", "Nondetection", "Phantom Steed", "Protection from Energy", "Remove Curse", "Sending", "Sleet Storm", "Slow", "Stinking Cloud",
+                "Tongues", "Vampiric Touch", "Water Breathing", "Arcane Eye", "Banishment", "Blight", "Confusion", "Conjure Minor Elementals", "Control Water",
+                "Dimension Door", "Evard's Black Tentacles", "Fabricate", "Fire Shield", "Greater Invisibility", "Hallucinatory Terrain", "Ice Storm",
+                "Leomund's Secret Chest", "Locate Creature", "Mordenkainen's Faithful Hound", "Mordenkainen's Private Sanctum", "Otiluke's Resilient Sphere",
+                "Phantasmal Killer", "Polymorph", "Stone Shape", "Stoneskin", "Wall of Fire", "Animate Objects", "Bigby's Hand", "Cloudkill", "Cone of Cold",
+                "Conjure Elemental", "Contact Other Plane", "Creation", "Dominate Person", "Dream", "Geas", "Hold Monster", "Legend Lore", "Mislead", "Modify Memory",
+                "Passwall", "Planar Binding", "Rary's Telepathic Bond", "Scrying", "Seeming", "Telekinesis", "Teleporation Circle", "Wall of Force", "Wall of Stone",
+                "Arcane Gate", "Chain Lightning", "Circle of Death", "Contingency", "Create Undead", "Disintegrate", "Drawmij's Instant Summons", "Eyebite",
+                "Flesh to Stone", "Globe of Invulnerability", "Guards and Wards", "Magic Jar", "Mass Suggestion", "Move Earth", "Otiluke's Freezing Sphere",
+                "Otto's Irresistable Dance", "Programmed Illusion", "Sunbeam", "True Seeing", "Wall of Ice", "Delayed Blast Fireball", "Etherealness",
+                "Finger of Death", "Forcecage", "Mirage Arcane", "Mordenkainen's Magnificent Mansion", "Mordenkainen's Sword", "Plane Shift",
+                "Prismatic Spray", "Project Image", "Reverse Gravity", "Sequester", "Simulacrum", "Symbol", "Teleport", "Antimagic Field",
+                "Antipathy/Sympathy", "Clone", "Control Weather", "Demiplane", "Dominate Monster", "Feeblemind", "Incendiary Cloud", "Maze", "Mind Blank",
+                "Power Word Stun", "Sunburst", "Telepathy", "Astral Projection", "Foresight", "Gate", "Imprisonment", "Meteor Swarm", "Power Word Kill",
+                "Prismatic Wall", "Shapechange", "Time Stop", "True Polymorph", "Weird", "Wish"
+            ]
+        classFetch.predicate = NSPredicate(format: "name = %@", "Wizard");
+        spellFetch.predicate = NSPredicate(format: "name IN %@", spellNames)
+        spellFetch.sortDescriptors = [NSSortDescriptor(key: "level", ascending: true), NSSortDescriptor(key: "id", ascending: true)]//sort by level, then by id
+        classResults = []
+        spellResults = []
+        do{
+            classResults = try context.executeFetchRequest(classFetch) as! [PClass]
+            spellResults = try context.executeFetchRequest(spellFetch) as! [Spell]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }//classResults[0] is the Wizard class, spellResults[0] are the Wizard spells
+        spellList8.pclass = classResults[0]
+        
+        for (var i = 0; i < spellResults.count; i++){
+            spellList8.spells.insert(spellResults[i])
+        }
+        
         
     }//spellListInit
     

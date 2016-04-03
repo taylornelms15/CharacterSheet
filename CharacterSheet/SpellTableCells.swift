@@ -60,6 +60,7 @@ class PersonalSpellTableHeader: UITableViewHeaderFooterView{
     @IBOutlet weak var overallView: UIView!
     @IBOutlet weak var incSlotsButton: UIButton!
     @IBOutlet weak var decSlotsButton: UIButton!
+    @IBOutlet weak var rowStackView: UIStackView!
     
     @IBAction func slotsButtonPressed(sender: UIButton) {
         
