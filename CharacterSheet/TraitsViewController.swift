@@ -32,6 +32,12 @@ class TraitsViewController: CSViewController, UIScrollViewDelegate{
     
     //MARK: Segue handling
     
+    @IBAction func makeSegueToEditTraits(sender: UIButton) {
+    
+        self.performSegueWithIdentifier("editTraitSegue", sender: sender)
+    
+    }//makeSegueToEditTraits
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
         
@@ -87,6 +93,22 @@ class TraitsViewController: CSViewController, UIScrollViewDelegate{
     override func viewDidAppear(animated: Bool) {
         
         super.viewDidAppear(animated)
+        
+        //Get our character out
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: "PCharacter");
+        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
+        var results: [PCharacter] = [];
+        do{
+            results = try context.executeFetchRequest(fetchRequest) as! [PCharacter]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        results[0].updateAScores()
+        //Note that now results[0] is our character
+
+        
         
     }//viewDidAppear
  

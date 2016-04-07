@@ -326,7 +326,6 @@ class PersonalSpellList: SpellList {
     }
     func markIdPrepared(id: Int){
         preparedSet.addObject(id)
-        print(preparedSet)
     }
     func markIdNotPrepared(id: Int){
         preparedSet.removeObject(id)

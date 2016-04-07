@@ -266,15 +266,15 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         let subList: [Spell] = thisSpellList!.getSpellsForLevel(level: level)
         let thisSpell: Spell = subList[indexPath.row]
         
-        let detailViewController = UIAlertController(title: thisSpell.name, message: thisSpell.details, preferredStyle: .ActionSheet)
-        let doneAction = UIAlertAction(title: "Done", style: .Cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
-            
+        let newVC: SpellDetailViewController = storyboard!.instantiateViewControllerWithIdentifier("SpellDetailViewController") as! SpellDetailViewController
+        newVC.modalPresentationStyle = .OverCurrentContext
+        newVC.modalTransitionStyle = .CoverVertical
+        newVC.mySpell = thisSpell
+        
+        self.presentViewController(newVC, animated: true, completion: {
+            ()->Void in
         })
-        
-        detailViewController.addAction(doneAction)
-        
-        self.presentViewController(detailViewController, animated: true, completion: nil)
+
     }//accessory button tapped
     
     //MARK: UITableView removal functions
@@ -368,7 +368,7 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         
         for (var i = 1; i < 10; i++){
             subList = thisSpellList!.getSpellNamesPerLevel(level: Int16(i))
-            if (subList.count != 0){
+            if (subList.count != 0 || thisSpellList!.getSlotsAvailableForLevel(level: Int16(i)) > 0){
                 tableHeaders.append((i, "Level \(i)"))
             }
         }//for

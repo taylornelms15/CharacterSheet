@@ -7,10 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9502C2FC1CB6954E009DAFBA /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9502C2FA1CB6954E009DAFBA /* Inventory.swift */; };
+		9502C3001CB69754009DAFBA /* InventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9502C2FE1CB69754009DAFBA /* InventoryItem.swift */; };
+		9502C3041CB69777009DAFBA /* WeaponInventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9502C3021CB69777009DAFBA /* WeaponInventoryItem.swift */; };
+		9502C3081CB6979C009DAFBA /* ArmorInventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9502C3061CB6979C009DAFBA /* ArmorInventoryItem.swift */; };
+		9502C30A1CB6A9D7009DAFBA /* InventoryTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9502C3091CB6A9D7009DAFBA /* InventoryTableCells.swift */; };
 		951AA0F51CB1624F00D399D5 /* PersonalSpellTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 951AA0F41CB1624E00D399D5 /* PersonalSpellTableHeader.xib */; };
+		951B4AF01CB4883D008A04F2 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951B4AEF1CB4883D008A04F2 /* InventoryViewController.swift */; };
 		955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955662A71C570B8E00F5C014 /* CSViewController.swift */; };
 		9558A0291CA0DD160037521B /* CollectionViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9558A0281CA0DD160037521B /* CollectionViewCells.swift */; };
 		95692EB81C5AFE1700DD591D /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95692EB71C5AFE1700DD591D /* Race.swift */; };
+		9576C6831CB1F47800D130AA /* SpellDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9576C6821CB1F47800D130AA /* SpellDetailViewController.swift */; };
 		957E15BD1C7E891900391977 /* FeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E15BC1C7E891900391977 /* FeaturesViewController.swift */; };
 		95809ECC1CA5CF0400863E9D /* Spell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95809ECA1CA5CF0400863E9D /* Spell.swift */; };
 		958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CBAAF1C56E10E00AD833A /* AppDelegate.swift */; };
@@ -66,10 +73,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9502C2FA1CB6954E009DAFBA /* Inventory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
+		9502C2FE1CB69754009DAFBA /* InventoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryItem.swift; sourceTree = "<group>"; };
+		9502C3021CB69777009DAFBA /* WeaponInventoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponInventoryItem.swift; sourceTree = "<group>"; };
+		9502C3061CB6979C009DAFBA /* ArmorInventoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArmorInventoryItem.swift; sourceTree = "<group>"; };
+		9502C3091CB6A9D7009DAFBA /* InventoryTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryTableCells.swift; sourceTree = "<group>"; };
 		951AA0F41CB1624E00D399D5 /* PersonalSpellTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalSpellTableHeader.xib; sourceTree = "<group>"; };
+		951B4AEF1CB4883D008A04F2 /* InventoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		955662A71C570B8E00F5C014 /* CSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSViewController.swift; sourceTree = "<group>"; };
 		9558A0281CA0DD160037521B /* CollectionViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCells.swift; sourceTree = "<group>"; };
 		95692EB71C5AFE1700DD591D /* Race.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
+		9576C6821CB1F47800D130AA /* SpellDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellDetailViewController.swift; sourceTree = "<group>"; };
 		957E15BC1C7E891900391977 /* FeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturesViewController.swift; sourceTree = "<group>"; };
 		95809ECA1CA5CF0400863E9D /* Spell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spell.swift; sourceTree = "<group>"; };
 		958CBAAC1C56E10E00AD833A /* CharacterSheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CharacterSheet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +152,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9502C2F61CB694F6009DAFBA /* Spells */ = {
+			isa = PBXGroup;
+			children = (
+				95809ECA1CA5CF0400863E9D /* Spell.swift */,
+				95CF73AD1CA6E863005AD5C8 /* SpellList.swift */,
+				95A22B6B1CA9DCD4008AA143 /* PersonalSpellList.swift */,
+			);
+			name = Spells;
+			sourceTree = "<group>";
+		};
+		9502C2F71CB6950A009DAFBA /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				95B7A5A81C7FDB76008895CA /* FeatureList.swift */,
+				95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */,
+				95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */,
+				95B7A59C1C7FD910008895CA /* Feature.swift */,
+				95E3DD8E1C839D42008736D1 /* Feat.swift */,
+			);
+			name = Features;
+			sourceTree = "<group>";
+		};
+		9502C2F81CB69521009DAFBA /* Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				9502C2FA1CB6954E009DAFBA /* Inventory.swift */,
+				9502C2FE1CB69754009DAFBA /* InventoryItem.swift */,
+				9502C3021CB69777009DAFBA /* WeaponInventoryItem.swift */,
+				9502C3061CB6979C009DAFBA /* ArmorInventoryItem.swift */,
+			);
+			name = Inventory;
+			sourceTree = "<group>";
+		};
 		955662A61C570B7600F5C014 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,8 +200,11 @@
 				957E15BC1C7E891900391977 /* FeaturesViewController.swift */,
 				95D10E7D1C9605EE00ACDAC8 /* TraitsViewController.swift */,
 				95D124CF1C9A57E500AC4CDF /* EditTraitViewController.swift */,
+				951B4AEF1CB4883D008A04F2 /* InventoryViewController.swift */,
+				9502C3091CB6A9D7009DAFBA /* InventoryTableCells.swift */,
 				95CF73B01CA73F46005AD5C8 /* SpellViewController.swift */,
 				95CF73B41CA76DF2005AD5C8 /* AddSpellViewController.swift */,
+				9576C6821CB1F47800D130AA /* SpellDetailViewController.swift */,
 				95A22B681CA87A44008AA143 /* SpellTableCells.swift */,
 			);
 			name = ViewControllers;
@@ -224,15 +274,10 @@
 				95EDE1F01C7BEF0500554520 /* Background.swift */,
 				95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */,
 				95DA20BE1C79149F001E66A2 /* SkillProfs.swift */,
-				95B7A5A81C7FDB76008895CA /* FeatureList.swift */,
-				95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */,
-				95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */,
-				95B7A59C1C7FD910008895CA /* Feature.swift */,
-				95E3DD8E1C839D42008736D1 /* Feat.swift */,
 				95D10E7F1C960A7400ACDAC8 /* Traits.swift */,
-				95809ECA1CA5CF0400863E9D /* Spell.swift */,
-				95CF73AD1CA6E863005AD5C8 /* SpellList.swift */,
-				95A22B6B1CA9DCD4008AA143 /* PersonalSpellList.swift */,
+				9502C2F71CB6950A009DAFBA /* Features */,
+				9502C2F81CB69521009DAFBA /* Inventory */,
+				9502C2F61CB694F6009DAFBA /* Spells */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -370,21 +415,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				958CBAB21C56E10F00AD833A /* RootViewController.swift in Sources */,
+				9502C3081CB6979C009DAFBA /* ArmorInventoryItem.swift in Sources */,
 				959370B71CA5ADA2000E5734 /* SummaryViewController.swift in Sources */,
 				95B029D51C601D5300DC0F3C /* DataModel.xcdatamodeld in Sources */,
 				95F7D6201C73D55A00FE3D58 /* PCharacter.swift in Sources */,
 				95CF73B51CA76DF2005AD5C8 /* AddSpellViewController.swift in Sources */,
 				958CBAB61C56E10F00AD833A /* ModelController.swift in Sources */,
 				957E15BD1C7E891900391977 /* FeaturesViewController.swift in Sources */,
+				951B4AF01CB4883D008A04F2 /* InventoryViewController.swift in Sources */,
+				9502C2FC1CB6954E009DAFBA /* Inventory.swift in Sources */,
 				958CBAE31C56E17900AD833A /* AScores.swift in Sources */,
 				95CF73AF1CA6E863005AD5C8 /* SpellList.swift in Sources */,
 				95692EB81C5AFE1700DD591D /* Race.swift in Sources */,
+				9502C30A1CB6A9D7009DAFBA /* InventoryTableCells.swift in Sources */,
 				95B7A5AA1C7FDB76008895CA /* FeatureList.swift in Sources */,
 				95A22B691CA87A44008AA143 /* SpellTableCells.swift in Sources */,
+				9502C3041CB69777009DAFBA /* WeaponInventoryItem.swift in Sources */,
 				95DD0EE21C82459600D456D2 /* CharacterSelectViewController.swift in Sources */,
 				95CF73B31CA764C2005AD5C8 /* CSNavigationController.swift in Sources */,
 				95D124D01C9A57E600AC4CDF /* EditTraitViewController.swift in Sources */,
 				9558A0291CA0DD160037521B /* CollectionViewCells.swift in Sources */,
+				9502C3001CB69754009DAFBA /* InventoryItem.swift in Sources */,
 				95E3DD901C839D42008736D1 /* Feat.swift in Sources */,
 				95809ECC1CA5CF0400863E9D /* Spell.swift in Sources */,
 				958CBAE51C56E27600AD833A /* AScore.swift in Sources */,
@@ -397,6 +448,7 @@
 				95A22B6D1CA9DCD4008AA143 /* PersonalSpellList.swift in Sources */,
 				95EDE1F21C7BEF0500554520 /* Background.swift in Sources */,
 				959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */,
+				9576C6831CB1F47800D130AA /* SpellDetailViewController.swift in Sources */,
 				955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */,
 				959370B91CA5ADD5000E5734 /* AbilityScoreViewController.swift in Sources */,
 				958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */,

@@ -263,11 +263,14 @@ class PCharacter: NSManagedObject{
         skillProfs1.setValue(0, forKey: "profList")
         let traitList1 = NSManagedObject(entity: NSEntityDescription.entityForName("TraitList",
             inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
+        let inventory1 = NSManagedObject(entity: NSEntityDescription.entityForName("Inventory",
+            inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
 
         
         myCharacter.setValue(skillProfs1, forKey: "SkillProfs")
         myCharacter.setValue(featureList1, forKey: "featureList")
         myCharacter.setValue(traitList1, forKey: "traitList")
+        myCharacter.setValue(inventory1, forKey: "inventory")
         
         do{
             try context.save()
@@ -293,7 +296,8 @@ func characterInit(entity: NSEntityDescription, context: NSManagedObjectContext)
     skillProfs1.setValue(0, forKey: "profList")
     let traitList1 = NSManagedObject(entity: NSEntityDescription.entityForName("TraitList",
         inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
-    
+    let inventory1 = NSManagedObject(entity: NSEntityDescription.entityForName("Inventory",
+        inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
     
     character1.setValue(1, forKey: "id");
     character1.setValue("Jason", forKey: "name");
@@ -310,6 +314,7 @@ func characterInit(entity: NSEntityDescription, context: NSManagedObjectContext)
     character1.setValue(0, forKey: "alignment")
     character1.setValue(0, forKey: "currHp")
     character1.setValue(0, forKey: "maxHp")
+    character1.setValue(inventory1, forKey: "inventory")
     
     /*
     

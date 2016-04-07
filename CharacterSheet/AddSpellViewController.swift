@@ -73,15 +73,15 @@ class AddSpellViewController: CSViewController, UITableViewDataSource, UITableVi
         let subList: [Spell] = currentSpellList!.getSpellsForLevel(level: level)
         let thisSpell: Spell = subList[indexPath.row]
         
-        let detailViewController = UIAlertController(title: thisSpell.name, message: thisSpell.details, preferredStyle: .ActionSheet)
-        let doneAction = UIAlertAction(title: "Done", style: .Cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
-            
+        let newVC: SpellDetailViewController = storyboard!.instantiateViewControllerWithIdentifier("SpellDetailViewController") as! SpellDetailViewController
+        newVC.modalPresentationStyle = .OverCurrentContext
+        newVC.modalTransitionStyle = .CoverVertical
+        newVC.mySpell = thisSpell
+        
+        self.presentViewController(newVC, animated: true, completion: {
+            ()->Void in
         })
         
-        detailViewController.addAction(doneAction)
-        
-        self.presentViewController(detailViewController, animated: true, completion: nil)
     }//accessory button tapped
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

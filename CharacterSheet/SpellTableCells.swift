@@ -55,7 +55,6 @@ class PersonalSpellTableCell: SpellTableCell{
     //MARK: Outlets
     @IBOutlet weak var rangeLabel: UILabel!
     @IBOutlet weak var damageLabel: UILabel!
-    @IBOutlet weak var damageNameLabel: UILabel!
     
     override func setInfoWithSpell(spell spell: Spell) {
         super.setInfoWithSpell(spell: spell)
@@ -63,11 +62,7 @@ class PersonalSpellTableCell: SpellTableCell{
         spellId = Int(spell.id)
         
         rangeLabel.text = spell.rangeString()
-        let damStr: String = spell.damageString()
-        damageLabel.text = damStr
-        if (damStr == ""){
-            damageNameLabel.text = ""
-        }//if no damage to spell
+        damageLabel.text = spell.damageString()
         
     }//setInfoWithSpell
     
