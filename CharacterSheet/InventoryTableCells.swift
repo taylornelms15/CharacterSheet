@@ -14,6 +14,8 @@ protocol InventoryTableCell{
     weak var nameField: UITextField! {get set}
     weak var detailField: UITextField! {get set}
     
+    weak var inventoryItem: InventoryItem? {get set}
+    
     func setInfoWithItem(item item: InventoryItem)->Void
     
 }//InventoryTableCell
@@ -30,6 +32,8 @@ class ArmorTableCell: UITableViewCell, InventoryTableCell{
     @IBOutlet weak var armorTypeField: UITextField!
     @IBOutlet weak var equipButton: UIButton!
     
+    weak var inventoryItem: InventoryItem?
+    
     func setInfoWithItem(item item: InventoryItem) {
         let armorItem: ArmorInventoryItem = item as! ArmorInventoryItem
         
@@ -37,9 +41,20 @@ class ArmorTableCell: UITableViewCell, InventoryTableCell{
         detailField.text = armorItem.details
         baseACField.text = String(armorItem.baseAC)
         armorTypeField.text = String(armorItem.armorType)
+        setEquippedButtonText(equipped: armorItem.equipped)
+        
+        inventoryItem = item
         
     }//setInfoWithItem
     
+    func setEquippedButtonText(equipped equipped: Bool){
+        if (equipped){
+            equipButton.setTitle(ArmorTableCell.checkBoxChecked, forState: .Normal)
+        }
+        else{
+            equipButton.setTitle(ArmorTableCell.checkBoxUnChecked, forState: .Normal)
+        }
+    }//setEquippedButtonText
     
 }//ArmorTableCell
 
@@ -57,6 +72,8 @@ class WeaponTableCell: UITableViewCell, InventoryTableCell{
     @IBOutlet weak var finessebutton: UIButton!
     @IBOutlet weak var equipButton: UIButton!
     
+    weak var inventoryItem: InventoryItem?
+    
     func setInfoWithItem(item item: InventoryItem) {
         let weaponItem: WeaponInventoryItem = item as! WeaponInventoryItem
         
@@ -65,6 +82,9 @@ class WeaponTableCell: UITableViewCell, InventoryTableCell{
         damageDieNumField.text = String(weaponItem.damageDice.0)
         damageDieTypeField.text = String(weaponItem.damageDice.1)
         setFinesseButtonText(finesse: weaponItem.finesse)
+        setEquippedButtonText(equipped: weaponItem.equipped)
+        
+        inventoryItem = item
         
     }//setInfoWithItem
     
@@ -76,6 +96,15 @@ class WeaponTableCell: UITableViewCell, InventoryTableCell{
             finessebutton.setTitle(WeaponTableCell.checkBoxUnChecked, forState: .Normal)
         }
     }//setFinesseButtonText
+    
+    func setEquippedButtonText(equipped equipped: Bool){
+        if (equipped){
+            equipButton.setTitle(WeaponTableCell.checkBoxChecked, forState: .Normal)
+        }
+        else{
+            equipButton.setTitle(WeaponTableCell.checkBoxUnChecked, forState: .Normal)
+        }
+    }//setEquippedButtonText
     
     
 }//WeaponTableCell
@@ -91,12 +120,16 @@ class ItemTableCell: UITableViewCell, InventoryTableCell{
     @IBOutlet weak var quantityField: UITextField!
     @IBOutlet weak var weightField: UITextField!
     
+    weak var inventoryItem: InventoryItem?
+    
     func setInfoWithItem(item item: InventoryItem) {
         
         nameField.text = item.name
         detailField.text = item.details
         quantityField.text = String(item.quantity)
         weightField.text = String(item.weight)
+        
+        inventoryItem = item
         
     }//setInfoWithItem
     

@@ -20,6 +20,7 @@ class WeaponInventoryItem: InventoryItem {
     @NSManaged var damageTypeValue: Int16
     @NSManaged var finesse: Bool
     @NSManaged var inv_inventory_w: Inventory?
+    @NSManaged var equipped: Bool
 
     var damageDice: (Int16, Int16){
         get{

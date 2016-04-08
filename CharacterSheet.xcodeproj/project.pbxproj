@@ -12,6 +12,7 @@
 		9502C3041CB69777009DAFBA /* WeaponInventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9502C3021CB69777009DAFBA /* WeaponInventoryItem.swift */; };
 		9502C3081CB6979C009DAFBA /* ArmorInventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9502C3061CB6979C009DAFBA /* ArmorInventoryItem.swift */; };
 		9502C30A1CB6A9D7009DAFBA /* InventoryTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9502C3091CB6A9D7009DAFBA /* InventoryTableCells.swift */; };
+		9502C30C1CB7EE99009DAFBA /* AddItemTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9502C30B1CB7EE99009DAFBA /* AddItemTabController.swift */; };
 		951AA0F51CB1624F00D399D5 /* PersonalSpellTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 951AA0F41CB1624E00D399D5 /* PersonalSpellTableHeader.xib */; };
 		951B4AF01CB4883D008A04F2 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951B4AEF1CB4883D008A04F2 /* InventoryViewController.swift */; };
 		955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955662A71C570B8E00F5C014 /* CSViewController.swift */; };
@@ -78,6 +79,7 @@
 		9502C3021CB69777009DAFBA /* WeaponInventoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponInventoryItem.swift; sourceTree = "<group>"; };
 		9502C3061CB6979C009DAFBA /* ArmorInventoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArmorInventoryItem.swift; sourceTree = "<group>"; };
 		9502C3091CB6A9D7009DAFBA /* InventoryTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryTableCells.swift; sourceTree = "<group>"; };
+		9502C30B1CB7EE99009DAFBA /* AddItemTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemTabController.swift; sourceTree = "<group>"; };
 		951AA0F41CB1624E00D399D5 /* PersonalSpellTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalSpellTableHeader.xib; sourceTree = "<group>"; };
 		951B4AEF1CB4883D008A04F2 /* InventoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		955662A71C570B8E00F5C014 /* CSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				95D10E7D1C9605EE00ACDAC8 /* TraitsViewController.swift */,
 				95D124CF1C9A57E500AC4CDF /* EditTraitViewController.swift */,
 				951B4AEF1CB4883D008A04F2 /* InventoryViewController.swift */,
+				9502C30B1CB7EE99009DAFBA /* AddItemTabController.swift */,
 				9502C3091CB6A9D7009DAFBA /* InventoryTableCells.swift */,
 				95CF73B01CA73F46005AD5C8 /* SpellViewController.swift */,
 				95CF73B41CA76DF2005AD5C8 /* AddSpellViewController.swift */,
@@ -424,6 +427,7 @@
 				957E15BD1C7E891900391977 /* FeaturesViewController.swift in Sources */,
 				951B4AF01CB4883D008A04F2 /* InventoryViewController.swift in Sources */,
 				9502C2FC1CB6954E009DAFBA /* Inventory.swift in Sources */,
+				9502C30C1CB7EE99009DAFBA /* AddItemTabController.swift in Sources */,
 				958CBAE31C56E17900AD833A /* AScores.swift in Sources */,
 				95CF73AF1CA6E863005AD5C8 /* SpellList.swift in Sources */,
 				95692EB81C5AFE1700DD591D /* Race.swift in Sources */,

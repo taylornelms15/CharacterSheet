@@ -32,6 +32,7 @@ class PCharacter: NSManagedObject{
     @NSManaged var featureList: FeatureList?
     @NSManaged var traitList: TraitList
     @NSManaged var spellLists: Set<PersonalSpellList>
+    @NSManaged var inventory: Inventory
     
     var ascores: AScores = AScores();
     

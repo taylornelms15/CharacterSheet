@@ -18,6 +18,7 @@ class ArmorInventoryItem: InventoryItem {
     @NSManaged var baseAC: Int16
     @NSManaged var armorTypeValue: Int16
     @NSManaged var inv_inventory_a: Inventory?
+    @NSManaged var equipped: Bool
     
     var armorType: ArmorType{
         get{

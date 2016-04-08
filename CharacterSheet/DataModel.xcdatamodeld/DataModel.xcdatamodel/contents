@@ -3,6 +3,7 @@
     <entity name="ArmorInventoryItem" representedClassName=".ArmorInventoryItem" parentEntity="InventoryItem" syncable="YES">
         <attribute name="armorTypeValue" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="baseAC" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="equipped" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="inv_inventory_a" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Inventory" inverseName="armor" inverseEntity="Inventory" syncable="YES"/>
     </entity>
     <entity name="Background" representedClassName=".Background" syncable="YES">
@@ -36,12 +37,12 @@
         <relationship name="raceFeatures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RaceFeature" inverseName="inv_featureList" inverseEntity="RaceFeature" syncable="YES"/>
     </entity>
     <entity name="Inventory" representedClassName=".Inventory" syncable="YES">
-        <attribute name="copper" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="gold" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="silver" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="copper" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="gold" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="silver" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="armor" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ArmorInventoryItem" inverseName="inv_inventory_a" inverseEntity="ArmorInventoryItem" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="InventoryItem" inverseName="inv_inventory" inverseEntity="InventoryItem" syncable="YES"/>
-        <relationship name="pchar" maxCount="1" deletionRule="Nullify" destinationEntity="PCharacter" syncable="YES"/>
+        <relationship name="pchar" maxCount="1" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="inventory" inverseEntity="PCharacter" syncable="YES"/>
         <relationship name="weapons" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="WeaponInventoryItem" inverseName="inv_inventory_w" inverseEntity="WeaponInventoryItem" syncable="YES"/>
     </entity>
     <entity name="InventoryItem" representedClassName=".InventoryItem" syncable="YES">
@@ -68,7 +69,7 @@
         <attribute name="wis" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="background" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Background" inverseName="inv_char" inverseEntity="Background" syncable="YES"/>
         <relationship name="featureList" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="FeatureList" inverseName="character" inverseEntity="FeatureList" syncable="YES"/>
-        <relationship name="inventory" maxCount="1" deletionRule="Cascade" destinationEntity="Inventory" syncable="YES"/>
+        <relationship name="inventory" maxCount="1" deletionRule="Cascade" destinationEntity="Inventory" inverseName="pchar" inverseEntity="Inventory" syncable="YES"/>
         <relationship name="pclass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PClass" inverseName="inv_char" inverseEntity="PClass" syncable="YES"/>
         <relationship name="race" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Race" inverseName="inv_char" inverseEntity="Race" syncable="YES"/>
         <relationship name="skillProfs" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SkillProfs" inverseName="pCharacter" inverseEntity="SkillProfs" syncable="YES"/>
@@ -156,6 +157,7 @@
         <attribute name="damageDieNum" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="damageDieType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="damageTypeValue" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="equipped" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="finesse" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="inv_inventory_w" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Inventory" inverseName="weapons" inverseEntity="Inventory" syncable="YES"/>
     </entity>
@@ -178,7 +180,7 @@
         <element name="TraitList" positionX="-983" positionY="621" width="128" height="90"/>
         <element name="Inventory" positionX="-774" positionY="171" width="128" height="150"/>
         <element name="InventoryItem" positionX="-765" positionY="180" width="128" height="135"/>
-        <element name="WeaponInventoryItem" positionX="-756" positionY="189" width="128" height="120"/>
-        <element name="ArmorInventoryItem" positionX="-747" positionY="198" width="128" height="90"/>
+        <element name="WeaponInventoryItem" positionX="-756" positionY="189" width="128" height="135"/>
+        <element name="ArmorInventoryItem" positionX="-747" positionY="198" width="128" height="105"/>
     </elements>
 </model>

@@ -24,6 +24,18 @@ class Inventory: NSManagedObject {
     
     //MARK: UITableView datasource helpers
     
+    func getArmorAtIndex(index index: Int)->ArmorInventoryItem{
+        return armor[index] as! ArmorInventoryItem
+    }//getArmorAtIndex
+    
+    func getWeaponAtIndex(index index: Int)->WeaponInventoryItem{
+        return weapons[index] as! WeaponInventoryItem
+    }//getWeaponAtIndex
+    
+    func getItemAtIndex(index index: Int)->InventoryItem{
+        return items[index] as! InventoryItem
+    }//getItemAtIndex
+    
     func getNumItems() -> Int{
         return items.count
     }//getNumItems
