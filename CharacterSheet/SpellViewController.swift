@@ -366,7 +366,7 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
             tableHeaders.append((0, "Cantrips"))
         }
         
-        for (var i = 1; i < 10; i++){
+        for i in 1 ..< 10 {
             subList = thisSpellList!.getSpellNamesPerLevel(level: Int16(i))
             if (subList.count != 0 || thisSpellList!.getSlotsAvailableForLevel(level: Int16(i)) > 0){
                 tableHeaders.append((i, "Level \(i)"))

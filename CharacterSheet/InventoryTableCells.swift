@@ -22,8 +22,6 @@ protocol InventoryTableCell{
 
 class ArmorTableCell: UITableViewCell, InventoryTableCell{
     
-    static let checkBoxChecked: String = "\u{2611}"
-    static let checkBoxUnChecked: String = "\u{2B1C}"
     
     //MARK: Outlets
     @IBOutlet weak var nameField: UITextField!
@@ -49,19 +47,16 @@ class ArmorTableCell: UITableViewCell, InventoryTableCell{
     
     func setEquippedButtonText(equipped equipped: Bool){
         if (equipped){
-            equipButton.setTitle(ArmorTableCell.checkBoxChecked, forState: .Normal)
+            equipButton.setTitle(CheckBox.Checked, forState: .Normal)
         }
         else{
-            equipButton.setTitle(ArmorTableCell.checkBoxUnChecked, forState: .Normal)
+            equipButton.setTitle(CheckBox.UnChecked, forState: .Normal)
         }
     }//setEquippedButtonText
     
 }//ArmorTableCell
 
 class WeaponTableCell: UITableViewCell, InventoryTableCell{
-    
-    static let checkBoxChecked: String = "\u{2611}"
-    static let checkBoxUnChecked: String = "\u{2B1C}"
     
     //MARK: Outlets
     @IBOutlet weak var nameField: UITextField!
@@ -90,19 +85,19 @@ class WeaponTableCell: UITableViewCell, InventoryTableCell{
     
     func setFinesseButtonText(finesse finesse: Bool){
         if (finesse){
-            finessebutton.setTitle(WeaponTableCell.checkBoxChecked, forState: .Normal)
+            finessebutton.setTitle(CheckBox.Checked, forState: .Normal)
         }
         else{
-            finessebutton.setTitle(WeaponTableCell.checkBoxUnChecked, forState: .Normal)
+            finessebutton.setTitle(CheckBox.UnChecked, forState: .Normal)
         }
     }//setFinesseButtonText
     
     func setEquippedButtonText(equipped equipped: Bool){
         if (equipped){
-            equipButton.setTitle(WeaponTableCell.checkBoxChecked, forState: .Normal)
+            equipButton.setTitle(CheckBox.Checked, forState: .Normal)
         }
         else{
-            equipButton.setTitle(WeaponTableCell.checkBoxUnChecked, forState: .Normal)
+            equipButton.setTitle(CheckBox.UnChecked, forState: .Normal)
         }
     }//setEquippedButtonText
     
@@ -110,9 +105,6 @@ class WeaponTableCell: UITableViewCell, InventoryTableCell{
 }//WeaponTableCell
 
 class ItemTableCell: UITableViewCell, InventoryTableCell{
-    
-    static let checkBoxChecked: String = "\u{2611}"
-    static let checkBoxUnChecked: String = "\u{2B1C}"
     
     //MARK: Outlets
     @IBOutlet weak var nameField: UITextField!

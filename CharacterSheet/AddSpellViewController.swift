@@ -110,7 +110,7 @@ class AddSpellViewController: CSViewController, UITableViewDataSource, UITableVi
             tableHeaders.append((0, "Cantrips"))
         }
         
-        for (var i = 1; i < 10; i++){
+        for i in 1 ..< 10 {
             subList = currentSpellList!.getSpellNamesPerLevel(level: Int16(i))
             if (subList.count != 0){
                 tableHeaders.append((i, "Level \(i)"))

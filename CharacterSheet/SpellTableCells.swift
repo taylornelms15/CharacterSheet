@@ -73,9 +73,6 @@ class PersonalSpellTableCellPrep: PersonalSpellTableCell{
     
     var prepared: Bool = false
     
-    static let checkBoxChecked: String = "\u{2611}"
-    static let checkBoxUnChecked: String = "\u{2B1C}"
-    
     //MARK: Outlets
     @IBOutlet weak var preparedButton: UIButton!
     
@@ -85,10 +82,10 @@ class PersonalSpellTableCellPrep: PersonalSpellTableCell{
         prepared = persList!.isSpellPrepared(spell)
         
         if(prepared){
-            preparedButton.setTitle(PersonalSpellTableCellPrep.checkBoxChecked, forState: UIControlState.Normal)
+            preparedButton.setTitle(CheckBox.Checked, forState: UIControlState.Normal)
         }//if prepared, checkmark
         else{
-            preparedButton.setTitle(PersonalSpellTableCellPrep.checkBoxUnChecked, forState: UIControlState.Normal)
+            preparedButton.setTitle(CheckBox.UnChecked, forState: UIControlState.Normal)
         }//else, no checkmark
     
     }//setInfoWithSpell
@@ -98,7 +95,7 @@ class PersonalSpellTableCellPrep: PersonalSpellTableCell{
         if (prepared){
             
             prepared = false
-            preparedButton.setTitle(PersonalSpellTableCellPrep.checkBoxUnChecked, forState: UIControlState.Normal)
+            preparedButton.setTitle(CheckBox.UnChecked, forState: UIControlState.Normal)
             
             persList!.markIdNotPrepared(spellId)
             
@@ -106,7 +103,7 @@ class PersonalSpellTableCellPrep: PersonalSpellTableCell{
         else{
             
             prepared = true
-            preparedButton.setTitle(PersonalSpellTableCellPrep.checkBoxChecked, forState: UIControlState.Normal)
+            preparedButton.setTitle(CheckBox.Checked, forState: UIControlState.Normal)
             
             persList!.markIdPrepared(spellId)
             
