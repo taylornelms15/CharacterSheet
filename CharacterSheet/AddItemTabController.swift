@@ -14,11 +14,7 @@ class AddItemTabController: UITabBarController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.preferredContentSize = CGSize(width: 350, height: 300)
-        
-        self.view.layer.cornerRadius = 5.0
-        self.view.layer.borderWidth = 1.0
-        self.view.layer.borderColor = UIColor.darkGrayColor().CGColor
+        self.preferredContentSize = CGSize(width: 300, height: 300)
         
         self.view.backgroundColor = UIColor.clearColor()
         
@@ -26,13 +22,24 @@ class AddItemTabController: UITabBarController{
     
 }//AddItemTabController
 
-class AddItemParentController: UIViewController{
+class AddItemParentController: UIViewController, UITextFieldDelegate, UITextViewDelegate{
     
     @IBOutlet weak var addButton: UIButton!
+    
+    var containerViewController: UIViewController? = nil
     
     override func viewDidLoad() {
 
     }//viewDidLoad
+    
+    //MARK: Text Delegate Functions
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        resignFirstResponder()
+    }//textViewDidEndEditing
+    func textFieldDidEndEditing(textField: UITextField) {
+        resignFirstResponder()
+    }//textFieldDidEndEditing
     
 }//AddItemParentController
 
@@ -47,3 +54,30 @@ class AddWeaponViewController: AddItemParentController{
 class AddItemViewController: AddItemParentController{
     
 }//AddItemViewController
+
+class AddItemContainerViewController: UIViewController{
+    
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var borderView: UIView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        borderView.layer.cornerRadius = 8.0
+        borderView.layer.borderWidth = 3.0
+        borderView.layer.borderColor = UIColor.darkGrayColor().CGColor
+        
+    }//viewDidLoad
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "addItemEmbedSegue"){
+            let tabVC: UITabBarController = segue.destinationViewController as! UITabBarController
+            
+            for a in tabVC.viewControllers!{
+                let b: AddItemParentController = a as! AddItemParentController
+                b.containerViewController = self
+            }//for each tab
+        }
+    }
+    
+}//AddItemContainerViewController

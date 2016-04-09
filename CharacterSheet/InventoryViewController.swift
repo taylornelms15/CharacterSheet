@@ -27,7 +27,7 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
 
     @IBAction func addItemButtonPressed(sender: UIBarButtonItem) {
         
-        let newVC: UIViewController = storyboard!.instantiateViewControllerWithIdentifier("abc123") //as! UIViewController
+        let newVC: UIViewController = storyboard!.instantiateViewControllerWithIdentifier("addItemContainerView") //as! UIViewController
         newVC.modalPresentationStyle = .OverCurrentContext
         newVC.modalTransitionStyle = .CrossDissolve
         

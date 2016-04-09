@@ -187,6 +187,36 @@
 			name = Inventory;
 			sourceTree = "<group>";
 		};
+		9502C30D1CB817E8009DAFBA /* Spell ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				95CF73B01CA73F46005AD5C8 /* SpellViewController.swift */,
+				95CF73B41CA76DF2005AD5C8 /* AddSpellViewController.swift */,
+				9576C6821CB1F47800D130AA /* SpellDetailViewController.swift */,
+				95A22B681CA87A44008AA143 /* SpellTableCells.swift */,
+			);
+			name = "Spell ViewControllers";
+			sourceTree = "<group>";
+		};
+		9502C30E1CB817F7009DAFBA /* Inventory ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				951B4AEF1CB4883D008A04F2 /* InventoryViewController.swift */,
+				9502C30B1CB7EE99009DAFBA /* AddItemTabController.swift */,
+				9502C3091CB6A9D7009DAFBA /* InventoryTableCells.swift */,
+			);
+			name = "Inventory ViewControllers";
+			sourceTree = "<group>";
+		};
+		9502C30F1CB81804009DAFBA /* Trait ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				95D10E7D1C9605EE00ACDAC8 /* TraitsViewController.swift */,
+				95D124CF1C9A57E500AC4CDF /* EditTraitViewController.swift */,
+			);
+			name = "Trait ViewControllers";
+			sourceTree = "<group>";
+		};
 		955662A61C570B7600F5C014 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,15 +230,9 @@
 				959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */,
 				959A30581C790AC900ED83A1 /* SkillViewController.swift */,
 				957E15BC1C7E891900391977 /* FeaturesViewController.swift */,
-				95D10E7D1C9605EE00ACDAC8 /* TraitsViewController.swift */,
-				95D124CF1C9A57E500AC4CDF /* EditTraitViewController.swift */,
-				951B4AEF1CB4883D008A04F2 /* InventoryViewController.swift */,
-				9502C30B1CB7EE99009DAFBA /* AddItemTabController.swift */,
-				9502C3091CB6A9D7009DAFBA /* InventoryTableCells.swift */,
-				95CF73B01CA73F46005AD5C8 /* SpellViewController.swift */,
-				95CF73B41CA76DF2005AD5C8 /* AddSpellViewController.swift */,
-				9576C6821CB1F47800D130AA /* SpellDetailViewController.swift */,
-				95A22B681CA87A44008AA143 /* SpellTableCells.swift */,
+				9502C30F1CB81804009DAFBA /* Trait ViewControllers */,
+				9502C30E1CB817F7009DAFBA /* Inventory ViewControllers */,
+				9502C30D1CB817E8009DAFBA /* Spell ViewControllers */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
