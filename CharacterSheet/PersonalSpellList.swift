@@ -285,7 +285,7 @@ class PersonalSpellList: SpellList {
     
     func updateSpellSlotsAvailableWithSlotTable(tableRow: [Int]){
         
-        for (var i = 0; i < 9; i++){
+        for i in 0 ..< 9{
             spellSlotStructure[i] = tableRow[i]
             if (spellSlotStructure[i + 9] as! Int > spellSlotStructure[i] as! Int){
                 spellSlotStructure[i + 9] = spellSlotStructure[i]

@@ -187,7 +187,7 @@ class SkillViewController: CSViewController, UIScrollViewDelegate{
     
     func updateProfSwitches(){
 
-        for (var i = 0; i < getSkillProfFuncArray.count; i++){
+        for i in 0 ..< getSkillProfFuncArray.count{
             profSwitches[i].setOn(getSkillProfFuncArray[i](), animated: false);
         }//for
         
@@ -195,7 +195,7 @@ class SkillViewController: CSViewController, UIScrollViewDelegate{
     
     func updateProfBonusLabels(myChar: PCharacter){
         
-        for (var i = 0; i < getSkillProfFuncArray.count; i++){
+        for i in 0 ..< getSkillProfFuncArray.count{
             let isProf: Bool = getSkillProfFuncArray[i]();
             var bonus: Int = 0;
             

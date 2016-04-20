@@ -396,8 +396,8 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SummaryViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SummaryViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
                 
         //do delegate things
@@ -410,7 +410,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         racePicker.delegate = self;
         racePickerToolbar.barStyle = UIBarStyle.Default
         racePickerToolbar.sizeToFit()
-        racePickerDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicker:")
+        racePickerDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SummaryViewController.donePicker(_:)))
         racePickerToolbar.setItems([pickerSpaceButton, racePickerDoneButton], animated: false)
         racePickerToolbar.userInteractionEnabled = true
         
@@ -420,7 +420,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         classPicker.delegate = self;
         classPickerToolbar.barStyle = UIBarStyle.Default
         classPickerToolbar.sizeToFit()
-        classPickerDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicker:")
+        classPickerDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SummaryViewController.donePicker(_:)))
         classPickerToolbar.setItems([pickerSpaceButton, classPickerDoneButton], animated: false)
         classPickerToolbar.userInteractionEnabled = true
         
@@ -430,7 +430,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         backgroundPicker.delegate = self
         backgroundPickerToolbar.barStyle = UIBarStyle.Default
         backgroundPickerToolbar.sizeToFit()
-        backgroundPickerDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicker:")
+        backgroundPickerDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SummaryViewController.donePicker(_:)))
         backgroundPickerToolbar.setItems([pickerSpaceButton, backgroundPickerDoneButton], animated: false)
         backgroundPickerToolbar.userInteractionEnabled = true
         
@@ -438,7 +438,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         alignmentPicker.delegate = self
         alignmentPickerToolbar.barStyle = UIBarStyle.Default
         alignmentPickerToolbar.sizeToFit()
-        alignmentPickerDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicker:")
+        alignmentPickerDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SummaryViewController.donePicker(_:)))
         alignmentPickerToolbar.setItems([pickerSpaceButton, alignmentPickerDoneButton], animated: false)
         alignmentPickerToolbar.userInteractionEnabled = true
         

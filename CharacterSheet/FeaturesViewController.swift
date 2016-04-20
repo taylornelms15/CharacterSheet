@@ -82,8 +82,8 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
         
         featPickerToolbar.barStyle = UIBarStyle.Default
         featPickerToolbar.sizeToFit()
-        featDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "doneFeatPicker:")
-        featCancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "cancelFeatPicker:")
+        featDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(FeaturesViewController.doneFeatPicker(_:)))
+        featCancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(FeaturesViewController.cancelFeatPicker(_:)))
         
         featPickerToolbar.setItems([featCancelButton, featSpaceButton, featDoneButton], animated: false)
         featPickerToolbar.userInteractionEnabled = true

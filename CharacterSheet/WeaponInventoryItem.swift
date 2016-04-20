@@ -41,4 +41,28 @@ class WeaponInventoryItem: InventoryItem {
         }
     }//damageType
     
+    func setInfoWithCore(core: WeaponInventoryItemCore) {
+        name = core.name
+        details = core.details
+        damageDice = core.damageDice
+        damageType = core.damageType
+        finesse = core.finesse
+    }
+    
 }//WeaponInventoryItem
+
+struct WeaponInventoryItemCore{
+    var name: String
+    var details: String
+    var damageDice: (Int16, Int16)
+    var finesse: Bool
+    var damageType: PhysicalDamageType
+    
+    init(){
+        name = ""
+        details = ""
+        damageDice = (0,0)
+        finesse = false
+        damageType = PhysicalDamageType.Other
+    }
+}

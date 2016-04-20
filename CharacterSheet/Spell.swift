@@ -955,6 +955,35 @@ class Spell: NSManagedObject {
         spell53.duration = "Concentration, up to 10 minutes"
         spell53.details = "\tYou create a 20-ft radius sphere of poisonous, yellow-green fog centered on a point you choose within range, which spreads around corners and lasts for the duration of the spell or until strong wind disperses the fog. Its area is heavily obscured.\n\tWhen a creature enters the spell's area for the first time on a turn or starts its turn there, the creature must make a Constitution saving throw, taking 5d8 poison damage on a failed save or half as much on a successful one. Creatures are affected regardless of whether they are breathing in the fog.\n\tThe fog moves 10 ft away from you at the start of each of your turns, rolling along the surface of the ground. The vapors, being heavier than air, sink to the lowest level of the land, even pouring down openings.\n\tWhen using a higher-level spell slot, the damage increases by 1d8 for each additional spell level."
         
+        let spell54: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell54.id = 54
+        spell54.name = "Color Spray"
+        spell54.level = 1
+        spell54.school = MagicSchool.Illusion
+        spell54.ritual = false
+        spell54.rangeType = RangeType.PSelf
+        spell54.effectRange1 = 15
+        spell54.effectRangeType = EffectRangeType.Cone
+        spell54.componentBlock = (true, true, true)
+        spell54.material = "a pinch of powder or sand that is colored red, yellow, and blue"
+        spell54.castingTime = "1 action"
+        spell54.duration = "1 round"
+        spell54.details = "\tA dazzling array of flashing, colored light springs from your hand. Roll 6d10; the total is how many hit points of creatures this spell can affect. Creatures in a 15-ft cone originating from you are affected in ascending order of their current hit points (ignoring unconscious creatures and ones that cannot see).\n\tStarting with the lowest-hit-point creature, each creature is blinded until the spell ends, subtracting each creature's hit points from the total rolled before moving on to the next creature. A creature's hit points must be equal to or less than the remaining total to be affected.\n\tWhen using a higher-level spell slot, the roll increases by 2d10 for each additional spell level."
+        
+        let spell55: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell55.id = 55
+        spell55.name = "Command"
+        spell55.level = 1
+        spell55.school = MagicSchool.Enchantment
+        spell55.ritual = false
+        spell55.range = 60
+        spell55.rangeType = RangeType.Target
+        spell55.effectRangeType = EffectRangeType.Target
+        spell55.componentBlock = (true, false, false)
+        spell55.castingTime = "1 action"
+        spell55.duration = "1 round"
+        spell55.details = "\tYou speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. This spell has no effect if the target is undead, if it doesn't understand your language, or if your command is directly harmful to it.\n\tHere are some typical commands and their effects. You may issue a different command if you wish; discuss the effects with your DM.\n  \u{2022} Approach: The target moved towards you by the shortest and most direct route, ending its turn if it moves within 5 ft of you.\n  \u{2022} Drop: The target drops whatever it is holding and then ends its turn.\n  \u{2022} Flee: The target spends its turn moving away from you by the fastest available means.\n  \u{2022} Grovel: The target falls prone and then ends its turn.\n  \u{2022} Halt: The target doesn't move and takes no actions. A flying creature stays aloft, provided that it is able to do so. If it must move to stay aloft, it flies the minimum distance needed to remain in the air.\n\tWhen using a higher spell slot, you can target one additional creature for each additional spell level, providing all creatures are within 30ft of each other."
+        
         SpellList.spellListInit(context)
         
         do{

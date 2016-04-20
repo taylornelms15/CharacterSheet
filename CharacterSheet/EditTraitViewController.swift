@@ -181,8 +181,8 @@ class EditTraitViewController: UIViewController, UIPickerViewDataSource, UIPicke
         
         traitPickerToolbar.barStyle = UIBarStyle.Default
         traitPickerToolbar.sizeToFit()
-        traitDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "doneTraitPicker:")
-        traitCancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "cancelTraitPicker:")
+        traitDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(EditTraitViewController.doneTraitPicker(_:)))
+        traitCancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(EditTraitViewController.cancelTraitPicker(_:)))
         
         traitPickerToolbar.setItems([traitCancelButton, traitSpaceButton, traitDoneButton], animated: false)
         traitPickerToolbar.userInteractionEnabled = true

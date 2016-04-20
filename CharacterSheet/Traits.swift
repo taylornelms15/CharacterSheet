@@ -53,7 +53,7 @@ class Trait: NSManagedObject{
         }//if this is first canon entry
         else{
             var newId: Int64 = results[results.count - 1].id
-            newId++
+            newId += 1
             id = newId
         }//there are other non-canon traits
         
@@ -403,12 +403,12 @@ class TraitList: NSManagedObject{
         
         var traitLists: [TraitList] = []
         
-        for (var i = 0; i < traitsData.count; i++){
+        for i in 0 ..< traitsData.count{
             
             let thisTraitList: TraitList = NSManagedObject(entity: tlEntity, insertIntoManagedObjectContext: context) as! TraitList
             traitLists.append(thisTraitList)
             
-            for (var j = 0; j < 8; j++){
+            for j in 0 ..< 8{
                 let thisTrait: Trait = NSManagedObject(entity: tEntity, insertIntoManagedObjectContext: context) as! Trait
                 
                 thisTrait.id = 1 + i * 26 + j
@@ -419,7 +419,7 @@ class TraitList: NSManagedObject{
                 
                 traitLists[i].traits.insert(thisTrait)
             }// personality traits
-            for (var j = 8; j < 14; j++){
+            for j in 8 ..< 14{
                 let thisTrait: Trait = NSManagedObject(entity: tEntity, insertIntoManagedObjectContext: context) as! Trait
                 
                 thisTrait.id = 1 + i * 26 + j
@@ -430,7 +430,7 @@ class TraitList: NSManagedObject{
                 
                 traitLists[i].traits.insert(thisTrait)
             }// ideals
-            for (var j = 14; j < 20; j++){
+            for j in 14 ..< 20{
                 let thisTrait: Trait = NSManagedObject(entity: tEntity, insertIntoManagedObjectContext: context) as! Trait
                 
                 thisTrait.id = 1 + i * 26 + j
@@ -441,7 +441,7 @@ class TraitList: NSManagedObject{
                 
                 traitLists[i].traits.insert(thisTrait)
             }// bonds
-            for (var j = 20; j < 26; j++){
+            for j in 20 ..< 26{
                 let thisTrait: Trait = NSManagedObject(entity: tEntity, insertIntoManagedObjectContext: context) as! Trait
                 
                 thisTrait.id = 1 + i * 26 + j

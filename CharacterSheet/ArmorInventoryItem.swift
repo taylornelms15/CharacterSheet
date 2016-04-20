@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 enum ArmorType: Int16{
-    case Light, Medium, Heavy, Shield
+    case Light, Medium, Heavy, Shield, Other
 }
 
 class ArmorInventoryItem: InventoryItem {
@@ -28,5 +28,26 @@ class ArmorInventoryItem: InventoryItem {
             self.armorTypeValue = newValue.rawValue
         }
     }//armorType
+    
+    func setInfoWithCore(core: ArmorInventoryItemCore){
+        name = core.name
+        details = core.details
+        baseAC = core.baseAC
+        armorType = core.armorType
+    }
 
 }//ArmorInventoryItem
+
+struct ArmorInventoryItemCore{
+    var name: String
+    var details: String
+    var baseAC: Int16
+    var armorType: ArmorType
+    
+    init(){
+        name = ""
+        details = ""
+        baseAC = 0
+        armorType = ArmorType.Other
+    }
+}

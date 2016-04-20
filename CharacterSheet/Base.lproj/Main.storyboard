@@ -2470,12 +2470,12 @@
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="245" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="10" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sZO-iH-Mq0">
                                                             <rect key="frame" x="0.0" y="0.0" width="131" height="30"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                         </textField>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="253" horizontalCompressionResistancePriority="760" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Base AC" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="NKg-IF-Any">
                                                             <rect key="frame" x="131" y="0.0" width="76" height="30"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                         </textField>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="255" horizontalCompressionResistancePriority="755" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Armor Type" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pDM-Tz-Knv">
                                                             <rect key="frame" x="207" y="0.0" width="97" height="30"/>
@@ -2504,9 +2504,6 @@
                                                             <state key="normal" title="v"/>
                                                         </button>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="Ixe-pL-mdk" firstAttribute="baseline" secondItem="yAj-lY-dkr" secondAttribute="baseline" id="5PM-vC-2Q6"/>
-                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -2608,11 +2605,6 @@
                                                             <state key="normal" title="v"/>
                                                         </button>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="Uhe-eA-TtA" firstAttribute="baseline" secondItem="txC-JC-9Ny" secondAttribute="baseline" id="Lbt-FL-XhI"/>
-                                                        <constraint firstItem="8lD-xx-pTB" firstAttribute="baseline" secondItem="txC-JC-9Ny" secondAttribute="baseline" id="sk3-NL-gIJ"/>
-                                                        <constraint firstItem="FwK-wP-KlU" firstAttribute="baseline" secondItem="txC-JC-9Ny" secondAttribute="baseline" id="yFg-yx-z5V"/>
-                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -2833,6 +2825,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addItemButtonPressed:" destination="P5n-kW-mYM" eventType="touchUpInside" id="c5a-Sf-Mgn"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HYN-Tb-EJC">
                                 <rect key="frame" x="89" y="47" width="195" height="30"/>
@@ -2891,7 +2886,7 @@
                                     <action selector="finesseButtonPressed:" destination="P5n-kW-mYM" eventType="touchUpInside" id="Qla-px-xzL"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Press to Edit Details" translatesAutoresizingMaskIntoConstraints="NO" id="gFA-ug-XYg">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Press to edit details" translatesAutoresizingMaskIntoConstraints="NO" id="gFA-ug-XYg">
                                 <rect key="frame" x="89" y="146" width="195" height="57"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -3074,7 +3069,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Press to Edit Details" translatesAutoresizingMaskIntoConstraints="NO" id="k4g-Vc-uiV">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Press to edit details" translatesAutoresizingMaskIntoConstraints="NO" id="k4g-Vc-uiV">
                                 <rect key="frame" x="114" y="146" width="170" height="57"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -3091,6 +3086,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addItemButtonPressed:" destination="74J-qA-M5m" eventType="touchUpInside" id="Koh-DU-Tpp"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qHi-Q8-bCi">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="39"/>
@@ -3646,6 +3644,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addItemButtonPressed:" destination="wDJ-pW-YcD" eventType="touchUpInside" id="f9T-dM-Zmv"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwG-dL-tOK">
                                 <rect key="frame" x="16" y="52" width="67" height="20"/>
@@ -3702,7 +3703,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Press to Edit Details" translatesAutoresizingMaskIntoConstraints="NO" id="NXq-vY-Sqd">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Press to edit details" translatesAutoresizingMaskIntoConstraints="NO" id="NXq-vY-Sqd">
                                 <rect key="frame" x="91" y="151" width="193" height="57"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>

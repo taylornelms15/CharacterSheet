@@ -270,7 +270,7 @@ class CharacterSelectViewController: CSViewController, UITableViewDataSource, UI
                 context.deleteObject(results[0].traitList)
                 context.deleteObject(results[0].featureList!)
                 context.deleteObject(results[0])
-                for var i = 1; i < results.count; i += 1{
+                for i in 1 ..< results.count{
                     results[i].id -= 1
                 }//for
             }//else (decrementing id's)

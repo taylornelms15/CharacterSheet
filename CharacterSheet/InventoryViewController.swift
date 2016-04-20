@@ -22,14 +22,15 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var inventoryTableView: UITableView!
     
     var headers: [String] = ["Armor", "Weapons", "Items"]
-    
-    //MARK: ViewController Navigation Functions
 
+    //MARK: adding items
+    
     @IBAction func addItemButtonPressed(sender: UIBarButtonItem) {
         
-        let newVC: UIViewController = storyboard!.instantiateViewControllerWithIdentifier("addItemContainerView") //as! UIViewController
+        let newVC: AddItemContainerViewController = storyboard!.instantiateViewControllerWithIdentifier("addItemContainerView") as! AddItemContainerViewController
         newVC.modalPresentationStyle = .OverCurrentContext
         newVC.modalTransitionStyle = .CrossDissolve
+        newVC.parentVC = self
         
         self.presentViewController(newVC, animated: true, completion: {
             ()->Void in
@@ -37,6 +38,39 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
         
     }//addItemButtonPressed
     
+    /**
+     The idea is to call this from the addItem pages, and by doing so close things out and then add the item to the inventory
+     It should receive a non-saved item with no ties to any inventory
+     */
+    func receiveCreatedItem(item: InventoryItem){
+        
+        //kills the add item controller stack
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        //adds item to inventory
+        if (item.isMemberOfClass(ArmorInventoryItem)){
+            thisInventory!.addArmorItem(item as! ArmorInventoryItem)
+        }//if
+        else if (item.isMemberOfClass(WeaponInventoryItem)){
+            thisInventory!.addWeaponItem(item as! WeaponInventoryItem)
+        }//elif
+        else{
+            thisInventory!.addItem(item)
+        }//else
+        
+        do{
+            let context = thisInventory!.managedObjectContext!
+            try context.save()
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+
+        
+        inventoryTableView.reloadData()
+        
+    }//receiveCreatedItem
+    
+    //MARK: ViewController Navigation Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()

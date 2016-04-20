@@ -17,11 +17,19 @@ protocol InventoryTableCell{
     weak var inventoryItem: InventoryItem? {get set}
     
     func setInfoWithItem(item item: InventoryItem)->Void
+    func setDelegateHandlers()->Void
     
 }//InventoryTableCell
 
-class ArmorTableCell: UITableViewCell, InventoryTableCell{
+class ArmorTableCell: UITableViewCell, InventoryTableCell, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
     
+    //MARK: view/field things
+    var armorTypePicker: UIPickerView = UIPickerView()
+    let armorTypePickerToolbar: UIToolbar = UIToolbar()
+    var armorTypePickerDoneButton: UIBarButtonItem? = nil
+    let pickerSpaceButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+    let armorTypePickerTitles: [String] = ["Light Armor", "Medium Armor", "Heavy Armor", "Shield", "Other"]
+    let armorTypeStringDict: [String: ArmorType] = ["Light Armor" : ArmorType.Light, "Medium Armor" : ArmorType.Medium, "Heavy Armor" : ArmorType.Heavy, "Shield" : ArmorType.Shield, "Other" : ArmorType.Other]
     
     //MARK: Outlets
     @IBOutlet weak var nameField: UITextField!
@@ -32,6 +40,18 @@ class ArmorTableCell: UITableViewCell, InventoryTableCell{
     
     weak var inventoryItem: InventoryItem?
     
+    func setDelegateHandlers(){
+        nameField.delegate = self
+        detailField.delegate = self
+        baseACField.delegate = self
+        armorTypeField.inputView = armorTypePicker
+        armorTypePicker.dataSource = self
+        armorTypePicker.delegate = self
+    }//setDelegateHandlers
+    
+    /**
+     This sets the content of the cell, based on an item
+    */
     func setInfoWithItem(item item: InventoryItem) {
         let armorItem: ArmorInventoryItem = item as! ArmorInventoryItem
         
@@ -54,9 +74,45 @@ class ArmorTableCell: UITableViewCell, InventoryTableCell{
         }
     }//setEquippedButtonText
     
+    //MARK: Picker Functions
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        if (pickerView == armorTypePicker){return 1}
+        else {
+            return 0
+        }
+    }//numberOfComponentsInPickerView
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if (pickerView == armorTypePicker){return armorTypePickerTitles.count}
+        else{
+            return 0
+        }
+    }//numberOfRowsInComponent
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if (pickerView == armorTypePicker){
+            return armorTypePickerTitles[row]
+        }
+        else{
+            return nil
+        }
+    }//titleForRowInPicker
+    
+    func donePicker(sender: UIBarButtonItem){
+        
+        if (sender == armorTypePickerDoneButton){
+            let armorString: String = armorTypePickerTitles[armorTypePicker.selectedRowInComponent(0)]
+            armorTypeField.text = armorString
+            
+            armorTypeField.endEditing(true)
+        }//if
+        
+    }//donePicker
+    
+    
 }//ArmorTableCell
 
-class WeaponTableCell: UITableViewCell, InventoryTableCell{
+class WeaponTableCell: UITableViewCell, InventoryTableCell, UITextFieldDelegate{
     
     //MARK: Outlets
     @IBOutlet weak var nameField: UITextField!
@@ -68,6 +124,14 @@ class WeaponTableCell: UITableViewCell, InventoryTableCell{
     @IBOutlet weak var equipButton: UIButton!
     
     weak var inventoryItem: InventoryItem?
+    
+    func setDelegateHandlers() {
+        nameField.delegate = self
+        detailField.delegate = self
+        damageDieNumField.delegate = self
+        damageDieTypeField.delegate = self
+        
+    }//setDelegateHandlers
     
     func setInfoWithItem(item item: InventoryItem) {
         let weaponItem: WeaponInventoryItem = item as! WeaponInventoryItem
@@ -104,7 +168,7 @@ class WeaponTableCell: UITableViewCell, InventoryTableCell{
     
 }//WeaponTableCell
 
-class ItemTableCell: UITableViewCell, InventoryTableCell{
+class ItemTableCell: UITableViewCell, InventoryTableCell, UITextFieldDelegate{
     
     //MARK: Outlets
     @IBOutlet weak var nameField: UITextField!
@@ -113,6 +177,13 @@ class ItemTableCell: UITableViewCell, InventoryTableCell{
     @IBOutlet weak var weightField: UITextField!
     
     weak var inventoryItem: InventoryItem?
+    
+    func setDelegateHandlers() {
+        nameField.delegate = self
+        detailField.delegate = self
+        quantityField.delegate = self
+        weightField.delegate = self
+    }//setDelegateHandlers
     
     func setInfoWithItem(item item: InventoryItem) {
         
