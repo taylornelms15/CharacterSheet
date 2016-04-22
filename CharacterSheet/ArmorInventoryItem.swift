@@ -34,7 +34,7 @@ class ArmorInventoryItem: InventoryItem {
         details = core.details
         baseAC = core.baseAC
         armorType = core.armorType
-    }
+    }//setInfoWithCore
 
 }//ArmorInventoryItem
 

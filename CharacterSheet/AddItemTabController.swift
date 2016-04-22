@@ -77,6 +77,7 @@ class AddItemParentController: UIViewController, UITextFieldDelegate, UITextView
     //MARK: Outlets
     
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var detailField: UITextView!
     
@@ -86,6 +87,10 @@ class AddItemParentController: UIViewController, UITextFieldDelegate, UITextView
     
     //MARK: Actions
     
+    /**
+     When the user presses "add", the program checks if the item can be added (read: has all the necessary info), and if so, makes the 
+     item to be added, and passes it back to the Inventory View Controller, which handles dismissing the add item VC's
+     */
     @IBAction func addItemButtonPressed(sender: UIButton) {
      
         if (canAddItem() == false){
@@ -97,6 +102,13 @@ class AddItemParentController: UIViewController, UITextFieldDelegate, UITextView
         self.containerViewController!.parentVC!.receiveCreatedItem(newItem)
         
     }//addItemButtonPressed
+    
+    /**
+     When the user presses cancel, just dismiss this whole shebang
+     */
+    @IBAction func cancelButtonPressed(sender: UIButton) {
+        self.containerViewController!.parentVC!.dismissViewControllerAnimated(true, completion: nil)
+    }//cancelButtonPressed
     
     func makeInventoryItem()->InventoryItem?{
         

@@ -155,7 +155,8 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
         }//switch
         
         myCell!.setInfoWithItem(item: myItem!)
-        
+        myCell!.setDelegateHandlers()
+        myCell!.parentTableView = tableView
         
         return myCell as! UITableViewCell
     }//cellForRowAtIndexPath
