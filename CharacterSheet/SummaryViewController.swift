@@ -201,6 +201,8 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
         summaryCollectionView.reloadData()
         
+        NSNotificationCenter.defaultCenter().postNotificationName(pcharModNotificationKey, object: self)
+        
     }//setClassField
     
     ///Changes the background field and sets the character background when editing completes
@@ -242,6 +244,8 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         }
         
         summaryCollectionView.reloadData()
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(pcharModNotificationKey, object: self)
         
     }//setBackgroundField
     

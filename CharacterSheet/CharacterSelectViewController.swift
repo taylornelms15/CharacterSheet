@@ -335,6 +335,8 @@ class CharacterSelectViewController: CSViewController, UITableViewDataSource, UI
         }catch let error as NSError{
             print("Could not save \(error), \(error.userInfo)")
         }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(pcharModNotificationKey, object: self)
 
     }
     

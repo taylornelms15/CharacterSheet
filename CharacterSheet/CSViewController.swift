@@ -10,8 +10,8 @@ import UIKit
 
 class CSViewController: UIViewController{
     
-    var nextViewController: CSViewController?;
-    var prevViewController: CSViewController?;
+    weak var nextViewController: CSViewController?;
+    weak var prevViewController: CSViewController?;
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);

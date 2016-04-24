@@ -42,7 +42,7 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
             return pages[index];
         }
         
-        for (var i = 0; i < pageList.count; i++){
+        for i in 0..<pageList.count{
             let viewController = storyboard.instantiateViewControllerWithIdentifier(pageList[i]) as! CSViewController;
             pages.append(viewController);
             if (i > 0){

@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             currentCharacterId = 1;
 
         }//if no CurrentId (init)
-        else{
+        else{//wow, what crazy compile error was I trying to avoid here...
             let x = results[0].valueForKey("currentId")!
             let y: NSNumber = x as! NSNumber
             let z: Int = y.integerValue

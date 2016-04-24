@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BD1-Fh-Pjz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tQ6-N6-zNt">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -8,24 +8,24 @@
         <!--Character Select View Controller-->
         <scene sceneID="kW0-z8-DNM">
             <objects>
-                <viewController storyboardIdentifier="CharacterSelectViewController" title="Character Select View Controller" extendedLayoutIncludesOpaqueBars="YES" id="ZzE-y2-1SX" customClass="CharacterSelectViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CharacterSelectViewController" title="Character Select View Controller" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZzE-y2-1SX" customClass="CharacterSelectViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ySK-80-rPD"/>
                         <viewControllerLayoutGuide type="bottom" id="4gK-RQ-GNF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mN2-lp-2Zt">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fK-RB-x7R">
-                                <rect key="frame" x="20" y="498" width="124" height="30"/>
+                                <rect key="frame" x="20" y="518" width="124" height="30"/>
                                 <state key="normal" title="Delete Characters"/>
                                 <connections>
                                     <action selector="deleteCharactersButtonPress:" destination="ZzE-y2-1SX" eventType="touchUpInside" id="UGV-SL-5fM"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0lh-SR-Xzp">
-                                <rect key="frame" x="20" y="0.0" width="560" height="490"/>
+                                <rect key="frame" x="20" y="0.0" width="560" height="510"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="0.0" reuseIdentifier="characterCell" textLabel="4jH-xy-C8X" detailTextLabel="ScZ-um-ysa" style="IBUITableViewCellStyleValue2" id="SkF-rh-OVm">
@@ -93,14 +93,7 @@
                         </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Character Select" id="Rb8-xc-asv">
-                        <barButtonItem key="backBarButtonItem" title="Select..." id="idL-Oo-AOO"/>
-                        <barButtonItem key="rightBarButtonItem" title="Summary" id="OPP-25-xHS">
-                            <connections>
-                                <segue destination="tY0-ja-mAV" kind="show" id="V09-I4-ZI8"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Character Select" id="Rb8-xc-asv"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="characterSelectTableView" destination="0lh-SR-Xzp" id="2JE-m2-gVs"/>
@@ -119,7 +112,7 @@
         <!--Summary View Controller-->
         <scene sceneID="4Fh-vC-PJN">
             <objects>
-                <viewController storyboardIdentifier="SummaryViewController" title="Summary View Controller" id="tY0-ja-mAV" customClass="SummaryViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SummaryViewController" title="Summary View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tY0-ja-mAV" customClass="SummaryViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fyg-uh-uzj"/>
                         <viewControllerLayoutGuide type="bottom" id="KLl-9C-IP3"/>
@@ -505,14 +498,7 @@
                         </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Summary" id="GsB-av-lqc">
-                        <barButtonItem key="backBarButtonItem" title="Summary" id="yRI-75-A5I"/>
-                        <barButtonItem key="rightBarButtonItem" title="Ability Scores" id="SIV-AV-3TB">
-                            <connections>
-                                <segue destination="uj0-pZ-7zK" kind="show" id="TSB-i1-IWq"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Summary" id="GsB-av-lqc"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="backgroundTextField" destination="6VT-BU-TkA" id="h3j-d9-Aoy"/>
@@ -536,7 +522,7 @@
         <!--Ability Score View Controller-->
         <scene sceneID="tpK-az-Ohg">
             <objects>
-                <viewController storyboardIdentifier="AbilityScoreViewController" title="Ability Score View Controller" id="uj0-pZ-7zK" customClass="AbilityScoreViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AbilityScoreViewController" title="Ability Score View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uj0-pZ-7zK" customClass="AbilityScoreViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LyD-0X-rkX"/>
                         <viewControllerLayoutGuide type="bottom" id="gmo-Hq-deX"/>
@@ -921,11 +907,6 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Ability Scores" id="8ES-e2-NDR">
                         <barButtonItem key="backBarButtonItem" title="Ability Scores" id="HS0-6Z-uxg"/>
-                        <barButtonItem key="rightBarButtonItem" title="Skills" id="Yoy-Xm-uCJ">
-                            <connections>
-                                <segue destination="6lO-Kg-TmI" kind="show" id="cPS-El-lHj"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -964,7 +945,7 @@
         <!--Skill View Controller-->
         <scene sceneID="7vQ-DZ-9UY">
             <objects>
-                <viewController storyboardIdentifier="SkillViewController" title="Skill View Controller" id="6lO-Kg-TmI" customClass="SkillViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SkillViewController" title="Skill View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6lO-Kg-TmI" customClass="SkillViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WzJ-ca-FB7"/>
                         <viewControllerLayoutGuide type="bottom" id="Bv3-qY-YTZ"/>
@@ -1719,13 +1700,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Skills" id="EcN-K4-u17">
-                        <barButtonItem key="rightBarButtonItem" title="Features" id="g59-Y6-cPn">
-                            <connections>
-                                <segue destination="U3z-on-VPC" kind="show" id="pWf-4m-MuO"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Skills" id="EcN-K4-u17"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -1789,7 +1764,7 @@
         <!--Features View Controller-->
         <scene sceneID="rpl-vw-no0">
             <objects>
-                <viewController storyboardIdentifier="FeaturesViewController" title="Features View Controller" id="U3z-on-VPC" customClass="FeaturesViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeaturesViewController" title="Features View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U3z-on-VPC" customClass="FeaturesViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dlu-rb-sad"/>
                         <viewControllerLayoutGuide type="bottom" id="NSj-Vw-2zR"/>
@@ -1861,14 +1836,7 @@
                         </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Features" id="5kg-vq-gei">
-                        <barButtonItem key="backBarButtonItem" title="Features" id="ph8-IA-o1H"/>
-                        <barButtonItem key="rightBarButtonItem" title="Traits" id="lPS-dT-37X">
-                            <connections>
-                                <segue destination="Vdg-C7-9aO" kind="show" id="mgg-54-jhG"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Features" id="5kg-vq-gei"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -1891,7 +1859,7 @@
         <!--Traits View Controller-->
         <scene sceneID="ShB-y4-JLc">
             <objects>
-                <viewController storyboardIdentifier="TraitsViewController" title="Traits View Controller" id="Vdg-C7-9aO" customClass="TraitsViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TraitsViewController" title="Traits View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vdg-C7-9aO" customClass="TraitsViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nWe-5U-80k"/>
                         <viewControllerLayoutGuide type="bottom" id="l2q-fC-B57"/>
@@ -2097,11 +2065,6 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Traits" id="4fi-w4-R95">
                         <barButtonItem key="backBarButtonItem" title="Traits" id="SgE-Oi-kOm"/>
-                        <barButtonItem key="rightBarButtonItem" title="Spells" id="65w-Rp-ivL">
-                            <connections>
-                                <segue destination="Vm7-j8-T9L" kind="show" id="wbF-rO-y5v"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -2132,7 +2095,7 @@
         <!--Spell View Controller-->
         <scene sceneID="MnY-Cn-JQh">
             <objects>
-                <viewController storyboardIdentifier="SpellViewController" title="Spell View Controller" id="Vm7-j8-T9L" customClass="SpellViewController" customModule="CharacterSheet" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SpellViewController" title="Spell View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vm7-j8-T9L" customClass="SpellViewController" customModule="CharacterSheet" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1nC-Wy-XBU"/>
                         <viewControllerLayoutGuide type="bottom" id="kre-Ur-NcR"/>
@@ -2352,11 +2315,6 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Spells" id="HVi-2X-glM">
                         <barButtonItem key="backBarButtonItem" title="Spells" id="vIy-0N-eD6"/>
-                        <barButtonItem key="rightBarButtonItem" title="Inventory" id="XEh-Ku-roW">
-                            <connections>
-                                <segue destination="QNK-V5-nyP" kind="show" id="Mow-cj-ixO"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
@@ -2374,7 +2332,7 @@
         <!--Inventory View Controller-->
         <scene sceneID="3Gz-gT-wAO">
             <objects>
-                <viewController storyboardIdentifier="InventoryViewController" title="Inventory View Controller" id="QNK-V5-nyP" customClass="InventoryViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InventoryViewController" title="Inventory View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QNK-V5-nyP" customClass="InventoryViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wqh-1w-dGi"/>
                         <viewControllerLayoutGuide type="bottom" id="0To-TS-YhQ"/>
@@ -2733,7 +2691,6 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Inventory" id="NUK-BW-S5J">
                         <barButtonItem key="backBarButtonItem" title="Inventory" id="4ud-TS-olK"/>
-                        <barButtonItem key="rightBarButtonItem" title="Other Stuff" id="phk-i9-4ry"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -3127,7 +3084,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="u43-VO-nuT">
                                 <rect key="frame" x="66" y="211" width="168" height="32"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="755" verticalCompressionResistancePriority="755" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FK8-Zz-VDr">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="755" verticalCompressionResistancePriority="755" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FK8-Zz-VDr">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="7RF-D6-TYp"/>
@@ -3146,7 +3103,7 @@
                                             <action selector="cancelButtonPressed:" destination="74J-qA-M5m" eventType="touchUpInside" id="Btv-cu-3fl"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="755" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnr-EK-WZz">
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="755" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnr-EK-WZz">
                                         <rect key="frame" x="88" y="0.0" width="80" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="b5j-c2-MY4"/>
@@ -3664,6 +3621,112 @@
             </objects>
             <point key="canvasLocation" x="4576" y="653"/>
         </scene>
+        <!--Character Page-->
+        <scene sceneID="8yP-Zi-C1e">
+            <objects>
+                <tableViewController storyboardIdentifier="RootMenuTableViewController" clearsSelectionOnViewWillAppear="NO" id="MAP-et-Fdh" customClass="RootMenuTableViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="vIQ-ZV-vxw">
+                        <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="rootMenuCell" textLabel="UwE-hv-A0i" style="IBUITableViewCellStyleDefault" id="VYp-ns-DAU">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VYp-ns-DAU" id="JFT-1k-ARN">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UwE-hv-A0i">
+                                            <rect key="frame" x="15" y="0.0" width="550" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MAP-et-Fdh" id="CMx-rR-kBE"/>
+                            <outlet property="delegate" destination="MAP-et-Fdh" id="Tkq-qc-5Nw"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Character Page" id="uUY-IG-Jph"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qbA-qG-Otl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="796" y="-823"/>
+        </scene>
+        <!--Menu-->
+        <scene sceneID="0mI-2I-FvQ">
+            <objects>
+                <navigationController title="Menu" id="Gqw-yE-Fk8" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nnP-YY-1Ts">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="MAP-et-Fdh" kind="relationship" relationship="rootViewController" id="yNo-yz-7KA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4zq-oJ-ylv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-24" y="-823"/>
+        </scene>
+        <!--Container View Controller-->
+        <scene sceneID="b0S-CH-MZU">
+            <objects>
+                <viewController id="tQ6-N6-zNt" customClass="ContainerViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1kC-VS-A5z"/>
+                        <viewControllerLayoutGuide type="bottom" id="PmU-Rn-WBY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Fx-D9-Qlc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H6K-Jr-lMR">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <connections>
+                                    <segue destination="rX9-A6-ruk" kind="embed" identifier="splitViewEmbedSegue" id="oPL-pR-7qj"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="H6K-Jr-lMR" firstAttribute="centerX" secondItem="0Fx-D9-Qlc" secondAttribute="centerX" id="6R2-Fr-BcG"/>
+                            <constraint firstItem="PmU-Rn-WBY" firstAttribute="top" secondItem="H6K-Jr-lMR" secondAttribute="bottom" id="bVJ-X8-TSj"/>
+                            <constraint firstItem="H6K-Jr-lMR" firstAttribute="leading" secondItem="0Fx-D9-Qlc" secondAttribute="leading" id="rOD-G1-2PQ"/>
+                            <constraint firstItem="H6K-Jr-lMR" firstAttribute="centerY" secondItem="0Fx-D9-Qlc" secondAttribute="centerY" id="zdW-zq-XXH"/>
+                            <constraint firstItem="H6K-Jr-lMR" firstAttribute="top" secondItem="1kC-VS-A5z" secondAttribute="bottom" id="zzB-Yd-cfa"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="zdW-zq-XXH"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="waH-aP-KLA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1600" y="-494"/>
+        </scene>
+        <!--SplitViewController-->
+        <scene sceneID="AP9-xh-jHa">
+            <objects>
+                <splitViewController storyboardIdentifier="CSSplitViewController" title="SplitViewController" id="rX9-A6-ruk" customClass="CSSplitViewController" customModule="CharacterSheet" customModuleProvider="target" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="Gqw-yE-Fk8" kind="relationship" relationship="masterViewController" id="e2N-pu-JrZ"/>
+                        <segue destination="BD1-Fh-Pjz" kind="relationship" relationship="detailViewController" id="6bP-YL-omJ"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YZb-UC-25c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-844" y="-494"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="lFm-5F-Pqs">
             <objects>
@@ -3876,11 +3939,4 @@
         <image name="shield_icon" width="25" height="25"/>
         <image name="sword_icon" width="25" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="pWf-4m-MuO"/>
-        <segue reference="TSB-i1-IWq"/>
-        <segue reference="rLq-qa-3rU"/>
-        <segue reference="mgg-54-jhG"/>
-        <segue reference="PDY-lh-NV9"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -34,6 +34,8 @@
 		959370B71CA5ADA2000E5734 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959370B61CA5ADA2000E5734 /* SummaryViewController.swift */; };
 		959370B91CA5ADD5000E5734 /* AbilityScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */; };
 		959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A30581C790AC900ED83A1 /* SkillViewController.swift */; };
+		959B70E01CCAC57600164774 /* CSVCHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B70DF1CCAC57500164774 /* CSVCHandler.swift */; };
+		959B70E21CCAD67300164774 /* CSSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B70E11CCAD67300164774 /* CSSplitViewController.swift */; };
 		95A22B691CA87A44008AA143 /* SpellTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A22B681CA87A44008AA143 /* SpellTableCells.swift */; };
 		95A22B6D1CA9DCD4008AA143 /* PersonalSpellList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A22B6B1CA9DCD4008AA143 /* PersonalSpellList.swift */; };
 		95B029D51C601D5300DC0F3C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */; };
@@ -107,6 +109,8 @@
 		959370B61CA5ADA2000E5734 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityScoreViewController.swift; sourceTree = "<group>"; };
 		959A30581C790AC900ED83A1 /* SkillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillViewController.swift; sourceTree = "<group>"; };
+		959B70DF1CCAC57500164774 /* CSVCHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVCHandler.swift; sourceTree = "<group>"; };
+		959B70E11CCAD67300164774 /* CSSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSSplitViewController.swift; sourceTree = "<group>"; };
 		95A22B681CA87A44008AA143 /* SpellTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellTableCells.swift; sourceTree = "<group>"; };
 		95A22B6B1CA9DCD4008AA143 /* PersonalSpellList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalSpellList.swift; sourceTree = "<group>"; };
 		95B029D41C601D5300DC0F3C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -220,7 +224,7 @@
 		955662A61C570B7600F5C014 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				95CF73B21CA764C2005AD5C8 /* CSNavigationController.swift */,
+				959B70E31CCAD6B200164774 /* Navigation */,
 				958CBAB11C56E10F00AD833A /* RootViewController.swift */,
 				958CBAB51C56E10F00AD833A /* ModelController.swift */,
 				955662A71C570B8E00F5C014 /* CSViewController.swift */,
@@ -307,6 +311,16 @@
 				9502C2F61CB694F6009DAFBA /* Spells */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		959B70E31CCAD6B200164774 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				959B70E11CCAD67300164774 /* CSSplitViewController.swift */,
+				959B70DF1CCAC57500164774 /* CSVCHandler.swift */,
+				95CF73B21CA764C2005AD5C8 /* CSNavigationController.swift */,
+			);
+			name = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,6 +465,7 @@
 				957E15BD1C7E891900391977 /* FeaturesViewController.swift in Sources */,
 				951B4AF01CB4883D008A04F2 /* InventoryViewController.swift in Sources */,
 				9502C2FC1CB6954E009DAFBA /* Inventory.swift in Sources */,
+				959B70E21CCAD67300164774 /* CSSplitViewController.swift in Sources */,
 				9502C30C1CB7EE99009DAFBA /* AddItemTabController.swift in Sources */,
 				958CBAE31C56E17900AD833A /* AScores.swift in Sources */,
 				95CF73AF1CA6E863005AD5C8 /* SpellList.swift in Sources */,
@@ -482,6 +497,7 @@
 				958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */,
 				95B7A5A21C7FDB27008895CA /* BackgroundFeature.swift in Sources */,
 				95B7A59E1C7FD910008895CA /* Feature.swift in Sources */,
+				959B70E01CCAC57600164774 /* CSVCHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
