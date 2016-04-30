@@ -22,7 +22,7 @@ protocol CSNavigationDataSource{
     
 }//CSNavigationDataSource
 
-class CSNavigationController: UINavigationController{
+class CSNavigationController: UINavigationController, UIGestureRecognizerDelegate{
     
     weak var splitVC: CSSplitViewController? = nil
     var dataSource: CSNavigationDataSource? = nil
@@ -30,6 +30,9 @@ class CSNavigationController: UINavigationController{
     var segControl: UISegmentedControl = UISegmentedControl()
     var myRightItem: UIBarButtonItem = UIBarButtonItem()
     var myLeftItem: UIBarButtonItem = UIBarButtonItem()
+    
+    var swipeRightGesture: UISwipeGestureRecognizer = UISwipeGestureRecognizer()
+    var swipeLeftGesture: UISwipeGestureRecognizer = UISwipeGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +43,19 @@ class CSNavigationController: UINavigationController{
         self.dataSource = splitVC!.csvcHandler
         
         self.setToolbarThings()
+        
+        //self.interactivePopGestureRecognizer?.enabled = false
+        
+        swipeRightGesture.direction = .Right
+        swipeLeftGesture.direction = .Left
+        
+        swipeRightGesture.addTarget(self, action: #selector(self.navigateBackward))
+        swipeLeftGesture.addTarget(self, action: #selector(self.navigateForward))
+        
+        swipeRightGesture.delegate = self
+        swipeLeftGesture.delegate = self
+        
+        addToolbarsAndGestures(self.topViewController! as! CSViewController)
         
     }//viewDidLoad
     
@@ -77,11 +93,13 @@ class CSNavigationController: UINavigationController{
     //MARK: navigation
     
     func navigateToIdentifier(identifier: String){
+        if (self.topViewController!.isBeingPresented() || self.topViewController!.isBeingDismissed()){
+            return
+        }
         
         let nextVC: CSViewController = dataSource!.getVCWithIdentifier(self, identifier: identifier, currentViewController:  self.topViewController as! CSViewController)
         
-        nextVC.navigationItem.rightBarButtonItem = myRightItem
-        nextVC.navigationItem.leftBarButtonItem = myLeftItem
+        addToolbarsAndGestures(nextVC)
         
         if (viewControllers.contains(nextVC)){
             popToViewController(nextVC, animated: true)
@@ -94,32 +112,38 @@ class CSNavigationController: UINavigationController{
     }//navigateToIdentifier
     
     func navigateForward(){
+        if (self.topViewController!.isBeingPresented() || self.topViewController!.isBeingDismissed()){
+            return
+        }
+        
         if (dataSource!.canGoNext(self, currentViewController: self.topViewController as! CSViewController) == false){
             return
         }//if we can't go forward, don't
         
         let nextVC: CSViewController = dataSource!.getNextVC(self, currentViewController: self.topViewController as! CSViewController)!
-        nextVC.navigationItem.rightBarButtonItem = myRightItem
-        nextVC.navigationItem.leftBarButtonItem = myLeftItem
+        addToolbarsAndGestures(nextVC)
         
         pushViewController(nextVC, animated: true)
         
     }//navigateForward
     
     func navigateBackward(){
+        if (self.topViewController!.isBeingPresented() || self.topViewController!.isBeingDismissed()){
+            return
+        }
+        
         if (dataSource!.canGoPrev(self, currentViewController: self.topViewController as! CSViewController) == false){
             return
         }//if we can't go backwards, don't
         
         let nextVC: CSViewController = dataSource!.getPrevVC(self, currentViewController: self.topViewController as! CSViewController)!
+        addToolbarsAndGestures(nextVC)
         
         if (viewControllers.contains(nextVC)){
             popToViewController(nextVC, animated: true)
         }//if we're going straight back
         else{
-            nextVC.navigationItem.rightBarButtonItem = myRightItem
-            nextVC.navigationItem.leftBarButtonItem = myLeftItem
-            
+    
             let steadySlice = viewControllers[Range(0..<(viewControllers.count - 1))]
             var newState: [UIViewController] = Array(steadySlice)
             newState.append(nextVC)
@@ -130,6 +154,25 @@ class CSNavigationController: UINavigationController{
         }//else (inserting backwards)
         
     }//navigateBackward
+    
+    private func addToolbarsAndGestures(nextVC: CSViewController){
+        nextVC.navigationItem.rightBarButtonItem = myRightItem
+        nextVC.navigationItem.leftBarButtonItem = myLeftItem
+        
+        nextVC.view.addGestureRecognizer(swipeLeftGesture)
+        nextVC.view.addGestureRecognizer(swipeRightGesture)
+    }
+    
+    //MARK: gesture things
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if (gestureRecognizer == swipeRightGesture && otherGestureRecognizer == interactivePopGestureRecognizer){
+            return true
+        }
+        else{
+            return false
+        }
+    }
     
 }//CSNavigationController
 

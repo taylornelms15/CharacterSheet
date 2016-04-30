@@ -162,6 +162,39 @@ class CSVCHandler: NSObject, UITableViewDataSource, UITableViewDelegate, UINavig
             }//if
             
         }//if
+        else if (nameArray.contains{$0.0 == "Traits"} == false){
+            
+            let fullTraitIndex: Int = CSVCHandler.fullNameArray.indexOf{
+                $0.0 == "Traits"
+            }!
+            var closestPrevIndex: Int = 0
+            
+            var i = fullTraitIndex
+            while (i >= 0){
+                if (nameArray.contains{
+                    $0.0 == CSVCHandler.fullNameArray[i].0
+                    }){
+                    closestPrevIndex = nameArray.indexOf{$0.0 == CSVCHandler.fullNameArray[i].0}!
+                    break
+                }
+                i -= 1
+            }//for
+            
+            var results: [(String, String)] = []
+            
+            for i in 0...closestPrevIndex{
+                results.append(nameArray[i])
+            }//for
+            results.append(CSVCHandler.fullNameArray[fullTraitIndex])
+            if (closestPrevIndex != nameArray.count - 1){
+                for i in (closestPrevIndex + 1)..<nameArray.count{
+                    results.append(nameArray[i])
+                }//for
+            }//if we have things after spells
+            
+            nameArray = results
+            
+        }//if we didn't have a background but now do
         
         NSNotificationCenter.defaultCenter().postNotificationName(menuNavTableReloadNotificationKey, object: self)
         

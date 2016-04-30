@@ -36,6 +36,7 @@
 		959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A30581C790AC900ED83A1 /* SkillViewController.swift */; };
 		959B70E01CCAC57600164774 /* CSVCHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B70DF1CCAC57500164774 /* CSVCHandler.swift */; };
 		959B70E21CCAD67300164774 /* CSSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B70E11CCAD67300164774 /* CSSplitViewController.swift */; };
+		959B70E71CD4F9B800164774 /* Subclass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B70E51CD4F9B700164774 /* Subclass.swift */; };
 		95A22B691CA87A44008AA143 /* SpellTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A22B681CA87A44008AA143 /* SpellTableCells.swift */; };
 		95A22B6D1CA9DCD4008AA143 /* PersonalSpellList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A22B6B1CA9DCD4008AA143 /* PersonalSpellList.swift */; };
 		95B029D51C601D5300DC0F3C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */; };
@@ -111,6 +112,7 @@
 		959A30581C790AC900ED83A1 /* SkillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillViewController.swift; sourceTree = "<group>"; };
 		959B70DF1CCAC57500164774 /* CSVCHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVCHandler.swift; sourceTree = "<group>"; };
 		959B70E11CCAD67300164774 /* CSSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSSplitViewController.swift; sourceTree = "<group>"; };
+		959B70E51CD4F9B700164774 /* Subclass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subclass.swift; sourceTree = "<group>"; };
 		95A22B681CA87A44008AA143 /* SpellTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellTableCells.swift; sourceTree = "<group>"; };
 		95A22B6B1CA9DCD4008AA143 /* PersonalSpellList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalSpellList.swift; sourceTree = "<group>"; };
 		95B029D41C601D5300DC0F3C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				95F7D61F1C73D55A00FE3D58 /* PCharacter.swift */,
 				95692EB71C5AFE1700DD591D /* Race.swift */,
 				95F7D6241C7405EC00FE3D58 /* PClass.swift */,
+				959B70E51CD4F9B700164774 /* Subclass.swift */,
 				95EDE1F01C7BEF0500554520 /* Background.swift */,
 				95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */,
 				95DA20BE1C79149F001E66A2 /* SkillProfs.swift */,
@@ -496,6 +499,7 @@
 				959370B91CA5ADD5000E5734 /* AbilityScoreViewController.swift in Sources */,
 				958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */,
 				95B7A5A21C7FDB27008895CA /* BackgroundFeature.swift in Sources */,
+				959B70E71CD4F9B800164774 /* Subclass.swift in Sources */,
 				95B7A59E1C7FD910008895CA /* Feature.swift in Sources */,
 				959B70E01CCAC57600164774 /* CSVCHandler.swift in Sources */,
 			);

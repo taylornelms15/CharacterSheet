@@ -112,6 +112,7 @@ class CharacterSelectViewController: CSViewController, UITableViewDataSource, UI
             Spell.spellsInit(managedContext)
         }//if
 
+        NSNotificationCenter.defaultCenter().postNotificationName(pcharModNotificationKey, object: self)
         
     }
     

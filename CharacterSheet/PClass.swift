@@ -17,6 +17,7 @@ class PClass: NSManagedObject {
     @NSManaged var saveThrows: Int16
     @NSManaged var primAbil: Int16
     @NSManaged var spellList: SpellList
+    @NSManaged var subclassIdentifierName: String
 
     /*
         A note on saving throw and primary ability values:
@@ -41,6 +42,7 @@ class PClass: NSManagedObject {
         class1.setValue(12, forKey: "hitDie")
         class1.setValue(13, forKey: "saveThrows")
         class1.setValue(1, forKey: "primAbil")
+        class1.setValue("Primal Path", forKey: "subclassIdentifierName")
         
         let class2 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
         
@@ -49,6 +51,7 @@ class PClass: NSManagedObject {
         class2.setValue(8, forKey: "hitDie")
         class2.setValue(26, forKey: "saveThrows")
         class2.setValue(6, forKey: "primAbil")
+        class2.setValue("Bard College", forKey: "subclassIdentifierName")
         
         let class3 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
         
@@ -57,6 +60,7 @@ class PClass: NSManagedObject {
         class3.setValue(8, forKey: "hitDie")
         class3.setValue(56, forKey: "saveThrows")
         class3.setValue(5, forKey: "primAbil")
+        class3.setValue("Divine Domain", forKey: "subclassIdentifierName")
         
         let class4 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
         
@@ -65,6 +69,7 @@ class PClass: NSManagedObject {
         class4.setValue(8, forKey: "hitDie")
         class4.setValue(45, forKey: "saveThrows")
         class4.setValue(5, forKey: "primAbil")
+        class4.setValue("Druid Circle", forKey: "subclassIdentifierName")
         
         let class5 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
         
@@ -73,6 +78,7 @@ class PClass: NSManagedObject {
         class5.setValue(10, forKey: "hitDie")
         class5.setValue(13, forKey: "saveThrows")
         class5.setValue(12, forKey: "primAbil")
+        class5.setValue("Martial Archetype", forKey: "subclassIdentifierName")
         
         let class6 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
         
@@ -81,6 +87,7 @@ class PClass: NSManagedObject {
         class6.setValue(8, forKey: "hitDie")
         class6.setValue(12, forKey: "saveThrows")
         class6.setValue(25, forKey: "primAbil")
+        class6.setValue("Monastic Tradition", forKey: "subclassIdentifierName")
         
         let class7 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
         
@@ -89,6 +96,7 @@ class PClass: NSManagedObject {
         class7.setValue(10, forKey: "hitDie")
         class7.setValue(56, forKey: "saveThrows")
         class7.setValue(16, forKey: "primAbil")
+        class7.setValue("Sacred Oath", forKey: "subclassIdentifierName")
         
         let class8 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
         
@@ -97,6 +105,7 @@ class PClass: NSManagedObject {
         class8.setValue(10, forKey: "hitDie")
         class8.setValue(12, forKey: "saveThrows")
         class8.setValue(25, forKey: "primAbil")
+        class8.setValue("Ranger Archetype", forKey: "subclassIdentifierName")
         
         let class9 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
         
@@ -105,6 +114,7 @@ class PClass: NSManagedObject {
         class9.setValue(8, forKey: "hitDie")
         class9.setValue(24, forKey: "saveThrows")
         class9.setValue(2, forKey: "primAbil")
+        class9.setValue("Rogueish Archetype", forKey: "subclassIdentifierName")
         
         let class10 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
         
@@ -113,6 +123,7 @@ class PClass: NSManagedObject {
         class10.setValue(6, forKey: "hitDie")
         class10.setValue(36, forKey: "saveThrows")
         class10.setValue(6, forKey: "primAbil")
+        class10.setValue("Sorcerous Origin", forKey: "subclassIdentifierName")
         
         let class11 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
         
@@ -121,6 +132,7 @@ class PClass: NSManagedObject {
         class11.setValue(8, forKey: "hitDie")
         class11.setValue(56, forKey: "saveThrows")
         class11.setValue(6, forKey: "primAbil")
+        class11.setValue("Otherworldly Patron", forKey: "subclassIdentifierName")
         
         let class12 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
         
@@ -129,6 +141,7 @@ class PClass: NSManagedObject {
         class12.setValue(6, forKey: "hitDie")
         class12.setValue(45, forKey: "saveThrows")
         class12.setValue(4, forKey: "primAbil")
+        class12.setValue("Arcane Tradition", forKey: "subclassIdentifierName")
         
         do{
             try context.save()

@@ -88,9 +88,6 @@
                             <constraint firstItem="4gK-RQ-GNF" firstAttribute="top" secondItem="6fK-RB-x7R" secondAttribute="bottom" constant="8" id="sfA-iK-9Nc"/>
                             <constraint firstItem="0lh-SR-Xzp" firstAttribute="centerX" secondItem="mN2-lp-2Zt" secondAttribute="centerX" id="suF-4e-Ur9"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="Xgy-FH-3c2" appends="YES" id="6ui-iy-pPf"/>
-                        </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Character Select" id="Rb8-xc-asv"/>
@@ -101,11 +98,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iFu-mm-s0K" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="Xgy-FH-3c2">
-                    <connections>
-                        <segue destination="tY0-ja-mAV" kind="show" id="rLq-qa-3rU"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1528" y="-204"/>
         </scene>
@@ -493,9 +485,6 @@
                                 <exclude reference="hvR-i1-eTD"/>
                             </mask>
                         </variation>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="Rcb-bH-Gow" appends="YES" id="DJD-uK-gkR"/>
-                        </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Summary" id="GsB-av-lqc"/>
@@ -511,11 +500,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LRF-tu-pyV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="Rcb-bH-Gow">
-                    <connections>
-                        <segue destination="uj0-pZ-7zK" kind="show" id="BHA-Le-6Gm"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2174" y="-204"/>
         </scene>
@@ -900,9 +884,6 @@
                                 <exclude reference="Foi-Pq-GTD"/>
                             </mask>
                         </variation>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="nHx-IV-MCa" appends="YES" id="WNr-Lf-nwm"/>
-                        </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Ability Scores" id="8ES-e2-NDR">
@@ -938,7 +919,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sg2-5d-CZa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="nHx-IV-MCa"/>
             </objects>
             <point key="canvasLocation" x="2831" y="-204"/>
         </scene>
@@ -1694,9 +1674,6 @@
                                 <exclude reference="bMs-IP-EGY"/>
                             </mask>
                         </variation>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="N17-Tb-qO0" appends="YES" id="aaa-sL-VCt"/>
-                        </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
@@ -1753,11 +1730,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZZ5-GD-oEQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="N17-Tb-qO0">
-                    <connections>
-                        <segue destination="U3z-on-VPC" kind="show" id="cyh-r8-vFd"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3433" y="-188"/>
         </scene>
@@ -1831,9 +1803,6 @@
                                 <exclude reference="WDg-Zn-Ewn"/>
                             </mask>
                         </variation>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="wWH-p3-xaz" appends="YES" id="m1L-KR-pT8"/>
-                        </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Features" id="5kg-vq-gei"/>
@@ -1848,11 +1817,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QoC-80-WDa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="wWH-p3-xaz">
-                    <connections>
-                        <segue destination="Vdg-C7-9aO" kind="show" id="iud-CC-JHx"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4112" y="-204"/>
         </scene>
@@ -2049,9 +2013,6 @@
                                     <constraint firstItem="WCO-ed-c5t" firstAttribute="trailing" secondItem="UgX-41-i9L" secondAttribute="trailingMargin" id="gOg-dc-SY1"/>
                                     <constraint firstItem="WCO-ed-c5t" firstAttribute="centerX" secondItem="UgX-41-i9L" secondAttribute="centerX" id="xZi-cy-A7a"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="S0j-Ay-hsc" appends="YES" id="q82-Ug-FDU"/>
-                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2080,15 +2041,10 @@
                         <outlet property="persTrait1TextView" destination="sYp-Ov-pHa" id="uat-uR-Z1l"/>
                         <outlet property="persTrait2EditButton" destination="aoC-jF-wvm" id="MgM-S3-iHe"/>
                         <outlet property="persTrait2TextView" destination="XNN-ol-PXV" id="XpE-Rx-Uey"/>
-                        <segue destination="yo3-BH-oKi" kind="modal" identifier="editTraitSegue" id="Ob5-Wl-ub9"/>
+                        <segue destination="yo3-BH-oKi" kind="presentation" identifier="editTraitSegue" id="Ob5-Wl-ub9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z6F-C4-T8f" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="S0j-Ay-hsc">
-                    <connections>
-                        <segue destination="Vm7-j8-T9L" kind="show" id="PDY-lh-NV9"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4648" y="-204"/>
         </scene>
@@ -3748,7 +3704,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eld-6Z-2Cw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="788" y="-204"/>
+            <point key="canvasLocation" x="786" y="-160"/>
         </scene>
         <!--Item-->
         <scene sceneID="Ttc-RG-b17">

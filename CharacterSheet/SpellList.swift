@@ -267,7 +267,7 @@ class SpellList: NSManagedObject {
         }//classResults[0] is the Bard class, spellResults[0] are the bard spells
         spellList1.pclass = classResults[0]
         
-        for (var i = 0; i < spellResults.count; i++){
+        for i in 0 ..< spellResults.count{
             spellList1.spells.insert(spellResults[i])
         }
         
@@ -302,7 +302,7 @@ class SpellList: NSManagedObject {
         }//classResults[0] is the Cleric class, spellResults[0] are the Cleric spells
         spellList2.pclass = classResults[0]
         
-        for (var i = 0; i < spellResults.count; i++){
+        for i in 0 ..< spellResults.count{
             spellList2.spells.insert(spellResults[i])
         }
         
@@ -337,7 +337,7 @@ class SpellList: NSManagedObject {
         }//classResults[0] is the Druid class, spellResults[0] are the Druid spells
         spellList3.pclass = classResults[0]
         
-        for (var i = 0; i < spellResults.count; i++){
+        for i in 0 ..< spellResults.count{
             spellList3.spells.insert(spellResults[i])
         }
         
@@ -365,7 +365,7 @@ class SpellList: NSManagedObject {
         }//classResults[0] is the Paladin class, spellResults[0] are the Paladin spells
         spellList4.pclass = classResults[0]
         
-        for (var i = 0; i < spellResults.count; i++){
+        for i in 0 ..< spellResults.count{
             spellList4.spells.insert(spellResults[i])
         }
         
@@ -393,7 +393,7 @@ class SpellList: NSManagedObject {
         }//classResults[0] is the Ranger class, spellResults[0] are the Ranger spells
         spellList5.pclass = classResults[0]
         
-        for (var i = 0; i < spellResults.count; i++){
+        for i in 0 ..< spellResults.count{
             spellList5.spells.insert(spellResults[i])
         }
         
@@ -430,7 +430,7 @@ class SpellList: NSManagedObject {
         }//classResults[0] is the Sorcerer class, spellResults[0] are the Sorcerer spells
         spellList6.pclass = classResults[0]
         
-        for (var i = 0; i < spellResults.count; i++){
+        for i in 0 ..< spellResults.count{
             spellList6.spells.insert(spellResults[i])
         }
         
@@ -461,7 +461,7 @@ class SpellList: NSManagedObject {
         }//classResults[0] is the Warlock class, spellResults[0] are the Warlock spells
         spellList7.pclass = classResults[0]
         
-        for (var i = 0; i < spellResults.count; i++){
+        for i in 0 ..< spellResults.count{
             spellList7.spells.insert(spellResults[i])
         }
         
@@ -509,7 +509,7 @@ class SpellList: NSManagedObject {
         }//classResults[0] is the Wizard class, spellResults[0] are the Wizard spells
         spellList8.pclass = classResults[0]
         
-        for (var i = 0; i < spellResults.count; i++){
+        for i in 0 ..< spellResults.count{
             spellList8.spells.insert(spellResults[i])
         }
         

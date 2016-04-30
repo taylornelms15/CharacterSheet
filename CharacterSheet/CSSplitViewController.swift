@@ -21,6 +21,8 @@ class CSSplitViewController: UISplitViewController{
         self.delegate = csvcHandler
         csvcHandler.splitVC = self
         
+        self.presentsWithGesture = false
+        
     }//viewDidLoad
     
 }//CSSplitViewController
