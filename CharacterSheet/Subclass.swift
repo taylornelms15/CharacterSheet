@@ -16,10 +16,56 @@ class Subclass: NSManagedObject {
     @NSManaged var id: Int16
     @NSManaged var name: String
     ///Format: as many as 20 arrays, each corresponding to a player level, containing id's of the spells that are free at that level
-    @NSManaged var freeSpellLevelData: [[Int]]
+    @NSManaged var freeSpellLevelData: [[Int]]?
     @NSManaged var freeSpellList: SpellList?
     @NSManaged var parentClass: PClass
 
+    /**
+     Gives an array of spells for all the free spells up to the given level for the subclass, cumulatively.
+     Sorts results by id; may want to change to sort by level?
+     */
+    func getAllSpellsUpToLevel(level level: Int)->[Spell]?{
+        if (freeSpellList == nil || freeSpellLevelData == nil){
+            return nil
+        }
+       
+        var results: [Spell] = []
+        
+        for spell in freeSpellList!.spells{
+            for i in 0..<freeSpellLevelData![level - 1].count{
+                if (freeSpellLevelData![i].contains(Int(spell.id))){
+                    results.append(spell)
+                }
+            }
+        }//for
+        
+        results.sortInPlace({$0.0.id < $0.1.id})//sorting by id
+        
+        return results
+    }//getAllSpellsUpToLevel
+    
+    /**
+     Gives array of the free subclass spells specific to the given level.
+     If not a spellcasting subclass, returns nil.
+     */
+    func getSpellsForLevel(level level: Int)->[Spell]?{
+        if (freeSpellList == nil || freeSpellLevelData == nil){
+            return nil
+        }
+        
+        let thisLevelIds:[Int] = freeSpellLevelData![level - 1]
+        
+        var results: [Spell] = []
+        
+        for spell in freeSpellList!.spells{
+            if (thisLevelIds.contains(Int(spell.id))){
+                results.append(spell)
+            }//if
+        }//for each spell in the free spell list
+        
+        return results
+
+    }//getSpellsForLevel
     
     static func subClassesInit(context: NSManagedObjectContext){
         
@@ -88,7 +134,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass5Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass5.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass5.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass5.freeSpellList = subclass5Spells
@@ -115,7 +161,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass6Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass6.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass6.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass6.freeSpellList = subclass6Spells
@@ -142,7 +188,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass7Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass7.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass7.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass7.freeSpellList = subclass7Spells
@@ -169,7 +215,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass8Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass8.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass8.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass8.freeSpellList = subclass8Spells
@@ -196,7 +242,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass9Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass9.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass9.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass9.freeSpellList = subclass9Spells
@@ -223,7 +269,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass10Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass10.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass10.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass10.freeSpellList = subclass10Spells
@@ -250,7 +296,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass11Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass11.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass11.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass11.freeSpellList = subclass11Spells
@@ -284,7 +330,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass13Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass13.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass13.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass13.freeSpellList = subclass13Spells
@@ -311,7 +357,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass14Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass14.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass14.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass14.freeSpellList = subclass14Spells
@@ -338,7 +384,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass15Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass15.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass15.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass15.freeSpellList = subclass15Spells
@@ -365,7 +411,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass16Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass16.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass16.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass16.freeSpellList = subclass16Spells
@@ -392,7 +438,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass17Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass17.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass17.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass17.freeSpellList = subclass17Spells
@@ -419,7 +465,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass18Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass18.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass18.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass18.freeSpellList = subclass18Spells
@@ -446,7 +492,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass19Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass19.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass19.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass19.freeSpellList = subclass19Spells
@@ -473,7 +519,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass20Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass20.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass20.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass20.freeSpellList = subclass20Spells
@@ -539,7 +585,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass27Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass27.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass27.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass27.freeSpellList = subclass27Spells
@@ -569,7 +615,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass28Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass28.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass28.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass28.freeSpellList = subclass28Spells
@@ -599,7 +645,7 @@ class Subclass: NSManagedObject {
         for i in 0..<spellResults.count{
             subclass29Spells.spells.insert(spellResults[i])
             let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
-            subclass29.freeSpellLevelData[levelIndex].append(Int(spellResults[i].id))
+            subclass29.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
         }//for
         
         subclass29.freeSpellList = subclass29Spells

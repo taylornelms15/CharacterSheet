@@ -100,6 +100,15 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
         
     }//viewDidLoad
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if (thisInventory != nil){
+            inventoryTableView.reloadData()
+        }
+        
+    }//viewWillAppear
+    
     //MARK: UITableView functions
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -116,6 +125,24 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
             return thisInventory!.getNumItems()
         }//switch
     }//numberOfRowsInSection
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var header: InventoryTableHeader? = nil
+        
+        switch(section){
+        case 0:
+            header = tableView.dequeueReusableCellWithIdentifier("armorHeader") as! ArmorHeader
+        case 1:
+            header = tableView.dequeueReusableCellWithIdentifier("weaponHeader") as! WeaponHeader
+        default:
+            header = tableView.dequeueReusableCellWithIdentifier("itemHeader") as! ItemHeader
+        }//switch
+        
+        header!.setLabelsWithInventory(thisInventory!)
+        
+        return header
+
+    }//viewForHeaderInSection
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return headers[section]

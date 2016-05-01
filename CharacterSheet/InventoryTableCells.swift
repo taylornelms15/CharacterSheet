@@ -22,6 +22,88 @@ protocol InventoryTableCell{
     
 }//InventoryTableCell
 
+class InventoryTableHeader: UITableViewCell{
+    
+    func setLabelsWithInventory(inventory: Inventory){}
+    
+}//InventoryTableHeader
+
+class ArmorHeader: InventoryTableHeader{
+    
+    //MARK: Outlets
+    @IBOutlet weak var acValueLabel: UILabel!
+    @IBOutlet weak var acLabelLabel: UILabel!
+    
+    override func setLabelsWithInventory(inventory: Inventory){
+        
+        acValueLabel.text = String(inventory.computeArmorClass())
+        
+    }//setACLabels
+    
+}//ArmorHeader
+
+class WeaponHeader: InventoryTableHeader{
+    
+    //MARK: Outlets
+    @IBOutlet weak var meleeBonusLabel: UILabel!
+    @IBOutlet weak var rangedBonusLabel: UILabel!
+    
+    override func setLabelsWithInventory(inventory: Inventory) {
+        
+        let meleeBonus: Int = Int(inventory.computeMeleeBonus())
+        let rangedBonus: Int = Int(inventory.computeRangedBonus())
+        
+        var meleeString: String = ""
+        var rangedString: String = ""
+        
+        if (meleeBonus >= 0){
+            meleeString = "+\(meleeBonus)"
+        }
+        else{
+            meleeString = "\(meleeBonus)"
+        }
+        
+        if (rangedBonus >= 0){
+            rangedString = "+\(rangedBonus)"
+        }
+        else{
+            rangedString = "\(rangedBonus)"
+        }
+        
+        meleeBonusLabel.text = meleeString
+        rangedBonusLabel.text = rangedString
+        
+    }//setLabelsWithInventory
+    
+    
+}//WeaponHeader
+
+class ItemHeader: InventoryTableHeader{
+    
+    //MARK: Outlets
+    @IBOutlet weak var weightLabel: UILabel!
+    
+    override func setLabelsWithInventory(inventory: Inventory) {
+        let weight: Double = inventory.computePackWeight()
+        let weightString: String = roundWeight(weight)
+        
+        weightLabel.text = weightString
+        
+    }//setLabelsWithInventory
+    
+    func roundWeight(weight: Double)->String{
+        
+        if (abs(weight - round(weight)) < 0.0000001){
+            return String(Int(round(weight)))
+        }//if essentially a whole number
+        else{
+            return String(format: "%0.2f", weight)
+        }//if given a decimal quantity
+        
+    }//setQuantityText
+    
+}//ItemHeader
+
 class ArmorTableCell: UITableViewCell, InventoryTableCell, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
     
     var currentTextField: UIView? = nil

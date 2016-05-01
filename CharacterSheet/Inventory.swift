@@ -273,9 +273,11 @@ class Inventory: NSManagedObject {
         
         var mainArmorContribution: Int16 = 0
         var shieldContribution: Int16 = 0
+        var otherContribution: Int16 = 0
         
         let equippedMain = getEquippedMainArmor()
         let equippedShields = getEquippedShields()
+        let equippedOther = getEquippedOtherArmor()
         
         if (equippedMain.count != 0){
             switch (equippedMain[0].armorType){
@@ -294,7 +296,10 @@ class Inventory: NSManagedObject {
         }//if armored
         else{
             let dexMod: Int16 = Int16(pchar.ascores.getDexMod())
-            if (pchar.pclass!.name! == "Barbarian"){
+            if (pchar.pclass == nil){
+                mainArmorContribution = 10 + dexMod
+            }
+            else if (pchar.pclass!.name! == "Barbarian"){
                 let conMod: Int16 = Int16(pchar.ascores.getConMod())
                 mainArmorContribution = 10 + dexMod + conMod
             }//if barbarian unarmored
@@ -316,7 +321,13 @@ class Inventory: NSManagedObject {
             shieldContribution = equippedShields[0].baseAC
         }
         
-        return mainArmorContribution + shieldContribution
+        if (equippedOther.count != 0){
+            for otherArmor in equippedOther{
+                otherContribution += otherArmor.baseAC
+            }
+        }//if
+        
+        return mainArmorContribution + shieldContribution + otherContribution
     }//computeArmorClass
     
     func computeMeleeBonus()->Int16{

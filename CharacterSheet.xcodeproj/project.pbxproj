@@ -17,6 +17,7 @@
 		951B4AF01CB4883D008A04F2 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951B4AEF1CB4883D008A04F2 /* InventoryViewController.swift */; };
 		955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955662A71C570B8E00F5C014 /* CSViewController.swift */; };
 		9558A0291CA0DD160037521B /* CollectionViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9558A0281CA0DD160037521B /* CollectionViewCells.swift */; };
+		95649CD91CD595FF002C58A2 /* CustomFeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95649CD81CD595FF002C58A2 /* CustomFeatViewController.swift */; };
 		95692EB81C5AFE1700DD591D /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95692EB71C5AFE1700DD591D /* Race.swift */; };
 		9576C6831CB1F47800D130AA /* SpellDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9576C6821CB1F47800D130AA /* SpellDetailViewController.swift */; };
 		957E15BD1C7E891900391977 /* FeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E15BC1C7E891900391977 /* FeaturesViewController.swift */; };
@@ -87,6 +88,7 @@
 		951B4AEF1CB4883D008A04F2 /* InventoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		955662A71C570B8E00F5C014 /* CSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSViewController.swift; sourceTree = "<group>"; };
 		9558A0281CA0DD160037521B /* CollectionViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCells.swift; sourceTree = "<group>"; };
+		95649CD81CD595FF002C58A2 /* CustomFeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFeatViewController.swift; sourceTree = "<group>"; };
 		95692EB71C5AFE1700DD591D /* Race.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
 		9576C6821CB1F47800D130AA /* SpellDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellDetailViewController.swift; sourceTree = "<group>"; };
 		957E15BC1C7E891900391977 /* FeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturesViewController.swift; sourceTree = "<group>"; };
@@ -235,12 +237,21 @@
 				9558A0281CA0DD160037521B /* CollectionViewCells.swift */,
 				959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */,
 				959A30581C790AC900ED83A1 /* SkillViewController.swift */,
-				957E15BC1C7E891900391977 /* FeaturesViewController.swift */,
+				95649CDA1CD59647002C58A2 /* Features ViewControllers */,
 				9502C30F1CB81804009DAFBA /* Trait ViewControllers */,
 				9502C30E1CB817F7009DAFBA /* Inventory ViewControllers */,
 				9502C30D1CB817E8009DAFBA /* Spell ViewControllers */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		95649CDA1CD59647002C58A2 /* Features ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				957E15BC1C7E891900391977 /* FeaturesViewController.swift */,
+				95649CD81CD595FF002C58A2 /* CustomFeatViewController.swift */,
+			);
+			name = "Features ViewControllers";
 			sourceTree = "<group>";
 		};
 		958CBAA31C56E10E00AD833A = {
@@ -493,6 +504,7 @@
 				95CF73B11CA73F46005AD5C8 /* SpellViewController.swift in Sources */,
 				95A22B6D1CA9DCD4008AA143 /* PersonalSpellList.swift in Sources */,
 				95EDE1F21C7BEF0500554520 /* Background.swift in Sources */,
+				95649CD91CD595FF002C58A2 /* CustomFeatViewController.swift in Sources */,
 				959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */,
 				9576C6831CB1F47800D130AA /* SpellDetailViewController.swift in Sources */,
 				955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */,

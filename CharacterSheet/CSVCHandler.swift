@@ -217,7 +217,7 @@ class CSVCHandler: NSObject, UITableViewDataSource, UITableViewDelegate, UINavig
      Called when the navigation controller shows a viewcontroller.
      Use this to handle the array of VC's?
      */
-    func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
+    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         
         vcArray = navigationController.viewControllers as! [CSViewController]
         

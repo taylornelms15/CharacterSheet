@@ -1231,6 +1231,51 @@ class Spell: NSManagedObject {
         spell72.duration = "7 days"
         spell72.details = "\tYour touch inflicts disease. Make a melee spell attack against a creature within your reach. On a hit, you afflict the creature with a disease of your choice from any of the ones described below.\n\tAt the end of the target's turns, it must make a Constitution saving throw. After failing three of these saving throws, the disease's effects last for the duration, and the creature stops making these saves. After succeeding on three of these saving throws, the creature recovers from the disease, and the spell ends.\n\tSince this spell induces a natural disease in its target, any effect that removes a disease or otherwise ameliorates a disease's effects apply to it.\n  \u{2022} Blinding Sickness: Pain grips the creature's mind, and its eyes turn milky white. The creature has disadvantage on Wisdom checks and Wisdom saving throws and is blinded.\n  \u{2022} Filth Fever: A raging fever sweeps through the creature's body. The creature has disadvantage on Strength checks, Strength saving throws, and attack rolls that use Strength.\n  \u{2022} Flesh Rot: The creature's flesh decays. The creature has disadvantage on Charisma checks and vulnerability to all damage.\n  \u{2022} Mindfire: The creature's mind becomes feverish. The creature has disadvantage on Intelligence checks and Intelligence saving throws, and the creature behaves as if under the effects of the confusion spell during combat.\n  \u{2022} Seizure: The creature is overcome with shaking. The creature has disadvantage on Dexterity checks, Dexterity saving throws, and attack rolls that use Dexterity.\n  \u{2022} Slimy Doom: The creature begins to bleed uncontrollably. The creature has disadvantage on Constitution checks and Constitution saving throws. In addition, whenever the creature takes damage, it is stunned until the end of its next turn."
         
+        let spell73: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell73.id = 73
+        spell73.name = "Contingency"
+        spell73.level = 6
+        spell73.school = MagicSchool.Evocation
+        spell73.ritual = false
+        spell73.rangeType = RangeType.PSelf
+        spell73.effectRangeType = EffectRangeType.Target
+        spell73.componentBlock = (true, true, true)
+        spell73.material = "a statuette of yourselve carved from ivory and decorated with gems worth at least 1500 gp"
+        spell73.castingTime = "10 minutes"
+        spell73.duration = "10 days"
+        spell73.details = "\tChoose a spell of 5th level or lower that you can cast, that has a casting time of 1 action, and that can target you. You cast that spell - called the contingent spell - as part of casting contingency, expending spell slots for both, but the contingent spell doesn't come into effect. Instead, it takes effect when a certain circumstance occurs. You describe that circumstance when you cast the two spells. For example, a contingency cast with water breathing might stipulate that water breathing comes into effect when you are engulfed in water or a similar liquid.\n\tThe contingent spell takes effect immediately after the circumstane is met for the first time, whether or not you want it to, and then contingency ends.\n\tThe contingent spell takes effect only on you, even if it can normally target others. You can use only one contingency spell at a time. If you cast this spell again, the effect of another contingency spell on you ends. Also, contingency ends on you if its material component is ever not on your person."
+        
+        let spell74: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell74.id = 74
+        spell74.name = "Continual Flame"
+        spell74.level = 2
+        spell74.school = MagicSchool.Evocation
+        spell74.ritual = false
+        spell74.rangeType = RangeType.Touch
+        spell74.effectRangeType = EffectRangeType.Target
+        spell74.componentBlock = (true, true, true)
+        spell74.material = "ruby dust worth 50 gp, which the spell consumes"
+        spell74.castingTime = "1 action"
+        spell74.duration = "Until dispelled"
+        spell74.details = "\tA flame, equivalent in brightness to a torch, springs forth from an object that you can touch. The effect looks like a regular flame, but it creates no hear and doesn't use oxygen. A contunual flame can be covered or hidden but not smothered or quenched."
+        
+        let spell75: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell75.id = 75
+        spell75.name = "Control Water"
+        spell75.level = 4
+        spell75.school = MagicSchool.Transmutation
+        spell75.ritual = false
+        spell75.range = 300
+        spell75.rangeType = RangeType.Target
+        spell75.effectRange1 = 100
+        spell75.effectRangeType = EffectRangeType.Cube
+        spell75.damageDice = (2, 8)
+        spell75.componentBlock = (true, true, true)
+        spell75.material = "a drop of water and a pinch of dust"
+        spell75.castingTime = "1 action"
+        spell75.duration = "Concentration, up to 10 minutes"
+        spell75.details = "\tUntil the spell ends, you control any freestanding water inside an area you choose that is a cube up to 100 feet on a side. You can choose from any of the following effects when you cast this spell. As an action on your turn, you can repeat the same effect or choose a different one.\n  \u{2022} Flood: You cause the water level of all standing water in the area to rise by as much as 20 feet. If the area includes a shore, the flooding water spills over onto dry land. If you choose an area in a large body of water, you instead create a 20-foot tall wave that travels from one side of the area to the other and then crashes down. Any Huge or smaller vehicles caught in its path are carried with it to the other side, and have a 25 percent chance of capsizing.\n  \u{2022} Part Water: You cause water in he area to move apart and create a trench. The trench extends across the spell's area, and the separated water forms a wall to either side.\n  \u{2022} Redirect Flow: You cause flowing water in the area to move in a direction you choose, even if the water has to flow over obstacles, up walls, or in other unlikely directions. The water resumes its normal course of flow if it exits the affected area.\n  \u{2022} Whirlpool: This effect requires a body of water at least 50 feet square and 25 feet deep. You cause a whirlpool to form in the center of the area. It forms a vortex 5 feet wide at the base, up to 50 feet wide at the top, and 25 feet tall. Any creature or object in the area or within 10 feet is pulled in towards it. A creature can swim away from the vortex by making an Athletics saving throw against your spell save DC.\n\tWhen a creature enters the vortex for the first time on a turn or starts its turn there, it must make a Strength saving throw, taking 2d8 bludgeoning damage on a failed save and being caught in the vortex, and half as much damage and not being caught in the vortex on a successful one. A creature caught in the vortex may make take its action to try and swim away, but must succeed on an Athletics check, rolling with disadvantage. A creature takes 2d8 for every turn it starts in the vortex."
+        
         SpellList.spellListInit(context)
         
         do{

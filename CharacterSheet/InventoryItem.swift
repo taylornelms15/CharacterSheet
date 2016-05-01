@@ -24,7 +24,13 @@ class InventoryItem: NSManagedObject {
         name = core.name
         details = core.details
         quantity = core.quantity
-        weight = core.weight
+        
+        if (core.weight == -1){
+            weight = 0.0
+        }
+        else{
+            weight = core.weight
+        }
     }
     
 }

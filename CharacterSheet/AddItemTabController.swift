@@ -228,7 +228,7 @@ class AddItemParentController: UIViewController, UITextFieldDelegate, UITextView
         currentTextField = textField
         
         return true
-    }
+    }//textFieldShouldBeginEditing
     
     func textViewWillEndEditing(textView: UITextView) {
         resignFirstResponder()

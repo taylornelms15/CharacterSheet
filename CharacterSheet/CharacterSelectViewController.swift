@@ -111,6 +111,16 @@ class CharacterSelectViewController: CSViewController, UITableViewDataSource, UI
         if (count == 0){
             Spell.spellsInit(managedContext)
         }//if
+        
+        //Init Subclasses
+        
+        entity = NSEntityDescription.entityForName("Subclass", inManagedObjectContext: managedContext);
+        fetchRequest = NSFetchRequest(entityName: "Subclass");
+        
+        count = managedContext.countForFetchRequest(fetchRequest, error: &error)
+        if (count == 0){
+            Subclass.subClassesInit(managedContext)
+        }//if
 
         NSNotificationCenter.defaultCenter().postNotificationName(pcharModNotificationKey, object: self)
         

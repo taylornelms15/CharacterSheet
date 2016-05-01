@@ -142,6 +142,34 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
         
     }//viewWillDisappear
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        
+        if (segue.identifier == "customFeatSegue"){
+            
+            //Get our character out
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let managedContext = appDelegate.managedObjectContext!
+            let fetchRequest = NSFetchRequest(entityName: "PCharacter");
+            fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
+            var results: [PCharacter] = [];
+            do{
+                results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
+            }catch let error as NSError{
+                print("Could not save \(error), \(error.userInfo)")
+            }
+            results[0].updateAScores()
+            //Note that now results[0] is our character
+            
+            let destVC: CustomFeatViewController = segue.destinationViewController as! CustomFeatViewController
+            
+            destVC.featArray = featArray
+            destVC.featureList = results[0].featureList
+            
+            
+        }//if we're putting in a custom VC
+    }//prepareForSegue
+    
     //MARK: Helper Functions
     
     func addFeat(name: String){

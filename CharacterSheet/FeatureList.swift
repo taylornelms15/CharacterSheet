@@ -49,6 +49,19 @@ class FeatureList: NSManagedObject {
         for feat in feats{
             if (feat.id == oldFeat.id){
                 feats.remove(feat)
+                
+                if ((feat as! Feat).canon == false){
+                    
+                    self.managedObjectContext!.deleteObject(feat)
+                    
+                    do{
+                        try self.managedObjectContext!.save()
+                    }catch let error as NSError{
+                        print("Could not save \(error), \(error.userInfo)")
+                    }
+                    
+                }//if we're deleting the feat
+                
                 break;
             }
         }

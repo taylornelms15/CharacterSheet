@@ -27,8 +27,33 @@ class SpellList: NSManagedObject {
     var lev8spells: [String]? = nil
     var lev9spells: [String]? = nil
     
-    //MARK: Fetchers
     
+    /**
+     Appends another list to this one and returns the new list. Non-destructive. Does save to the given context.
+     */
+    func appendTo(newList: SpellList, inManagedObjectContext context: NSManagedObjectContext) -> SpellList{
+        
+        let spellListEntity: NSEntityDescription = NSEntityDescription.entityForName("SpellList", inManagedObjectContext: context)!
+        let newSpellList: SpellList = NSManagedObject(entity: spellListEntity, insertIntoManagedObjectContext: context) as! SpellList
+        
+        for spell in spells{
+            newSpellList.addSpell(spell: spell)
+        }//for each element in this list
+        for spell in newList.spells{
+            newSpellList.addSpell(spell: spell)
+        }//for each element in the new list
+        
+        do{
+            try context.save()
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+        return newSpellList
+        
+    }//appendTo
+    
+    //MARK: Fetchers
     
     /**
      Gives a list of names of spells for the given level.
@@ -218,6 +243,10 @@ class SpellList: NSManagedObject {
     //MARK: setters
     
     func addSpell(spell spell: Spell){
+        if (spells.contains(spell)){
+            return
+        }
+        
         spells.insert(spell)
     }
     

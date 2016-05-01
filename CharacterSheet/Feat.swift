@@ -12,7 +12,8 @@ import CoreData
 class Feat: Feature {
 
     @NSManaged var canon: Bool
-
+    
+    
     
     static func featsInit(context: NSManagedObjectContext){
         
