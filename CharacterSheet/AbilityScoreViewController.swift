@@ -9,143 +9,117 @@
 import UIKit
 import CoreData
 
-class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
+class AbilityScoreViewController: CSViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource{
     
     //MARK: Properties
     var scores: AScores = AScores.init();
     
     //MARK: Outlets
-    @IBOutlet weak var strLabel: UILabel!
-    @IBOutlet weak var dexLabel: UILabel!
-    @IBOutlet weak var conLabel: UILabel!
-    @IBOutlet weak var intLabel: UILabel!
-    @IBOutlet weak var wisLabel: UILabel!
-    @IBOutlet weak var chaLabel: UILabel!
     
-    @IBOutlet weak var strTextField: UITextField!
-    @IBOutlet weak var dexTextField: UITextField!
-    @IBOutlet weak var conTextField: UITextField!
-    @IBOutlet weak var intTextField: UITextField!
-    @IBOutlet weak var wisTextField: UITextField!
-    @IBOutlet weak var chaTextField: UITextField!
+    weak var strTextField: UITextField? = nil
+    weak var dexTextField: UITextField? = nil
+    weak var conTextField: UITextField? = nil
+    weak var intTextField: UITextField? = nil
+    weak var wisTextField: UITextField? = nil
+    weak var chaTextField: UITextField? = nil
     
-    @IBOutlet weak var strModLabel: UILabel!
-    @IBOutlet weak var dexModLabel: UILabel!
-    @IBOutlet weak var conModLabel: UILabel!
-    @IBOutlet weak var intModLabel: UILabel!
-    @IBOutlet weak var wisModLabel: UILabel!
-    @IBOutlet weak var chaModLabel: UILabel!
+    weak var strModLabel: UILabel? = nil
+    weak var dexModLabel: UILabel? = nil
+    weak var conModLabel: UILabel? = nil
+    weak var intModLabel: UILabel? = nil
+    weak var wisModLabel: UILabel? = nil
+    weak var chaModLabel: UILabel? = nil
     
-    @IBOutlet weak var strSavSwitch: UISwitch!
-    @IBOutlet weak var dexSavSwitch: UISwitch!
-    @IBOutlet weak var conSavSwitch: UISwitch!
-    @IBOutlet weak var intSavSwitch: UISwitch!
-    @IBOutlet weak var wisSavSwitch: UISwitch!
-    @IBOutlet weak var chaSavSwitch: UISwitch!
+    weak var strProfButton: UIButton? = nil
+    weak var dexProfButton: UIButton? = nil
+    weak var conProfButton: UIButton? = nil
+    weak var intProfButton: UIButton? = nil
+    weak var wisProfButton: UIButton? = nil
+    weak var chaProfButton: UIButton? = nil
     
+    let scoreNames: [String] = ["Strength", "Dextrity", "Constitution", "Intellegence", "Wisdom", "Charisma"]
     
-    //MARK: Actions
+    @IBOutlet weak var ascoreTableView: UITableView!
     
-    @IBAction func setStrValue(sender: UITextField) {
-        sender.resignFirstResponder();
-        let newValue: Int = NSNumberFormatter().numberFromString(sender.text!)!.integerValue;
-        scores.setStr(newValue);
-        sender.text = "\(newValue)";//force an int conversion to cut down on trash input
-        let modval: Int = scores.getStrMod();
-        if (modval >= 0){
-            strModLabel.text = "+\(modval)";
-        }//if
-        else{
-            strModLabel.text = "\(modval)";
-        }//else
-        
-        updateScoresInCore()
-    }
-    @IBAction func setDexValue(sender: UITextField) {
-        sender.resignFirstResponder();
-        let newValue: Int = NSNumberFormatter().numberFromString(sender.text!)!.integerValue;
-        scores.setDex(newValue);
-        sender.text = "\(newValue)";//force an int conversion to cut down on trash input
-        let modval: Int = scores.getDexMod();
-        if (modval >= 0){
-            dexModLabel.text = "+\(modval)";
-        }//if
-        else{
-            dexModLabel.text = "\(modval)";
-        }//else
-        
-        updateScoresInCore()
-    }
-    @IBAction func setConValue(sender: UITextField) {
-        sender.resignFirstResponder();
-        let newValue: Int = NSNumberFormatter().numberFromString(sender.text!)!.integerValue;
-        scores.setCon(newValue);
-        sender.text = "\(newValue)";//force an int conversion to cut down on trash input
-        let modval: Int = scores.getConMod();
-        if (modval >= 0){
-            conModLabel.text = "+\(modval)";
-        }//if
-        else{
-            conModLabel.text = "\(modval)";
-        }//else
-        
-        updateScoresInCore()
-    }
-    @IBAction func setIntValue(sender: UITextField) {
-        sender.resignFirstResponder();
-        let newValue: Int = NSNumberFormatter().numberFromString(sender.text!)!.integerValue;
-        scores.setInt(newValue);
-        sender.text = "\(newValue)";//force an int conversion to cut down on trash input
-        let modval: Int = scores.getIntMod();
-        if (modval >= 0){
-            intModLabel.text = "+\(modval)";
-        }//if
-        else{
-            intModLabel.text = "\(modval)";
-        }//else
-        
-        updateScoresInCore()
-    }
-    @IBAction func setWisValue(sender: UITextField) {
-        sender.resignFirstResponder();
-        let newValue: Int = NSNumberFormatter().numberFromString(sender.text!)!.integerValue;
-        scores.setWis(newValue);
-        sender.text = "\(newValue)";//force an int conversion to cut down on trash input
-        let modval: Int = scores.getWisMod();
-        if (modval >= 0){
-            wisModLabel.text = "+\(modval)";
-        }//if
-        else{
-            wisModLabel.text = "\(modval)";
-        }//else
-        
-        updateScoresInCore()
-    }
-    @IBAction func setChaValue(sender: UITextField) {
-        sender.resignFirstResponder();
-        let newValue: Int = NSNumberFormatter().numberFromString(sender.text!)!.integerValue;
-        scores.setCha(newValue);
-        sender.text = "\(newValue)";//force an int conversion to cut down on trash input
-        let modval: Int = scores.getChaMod();
-        if (modval >= 0){
-            chaModLabel.text = "+\(modval)";
-        }//if
-        else{
-            chaModLabel.text = "\(modval)";
-        }//else
-        
-        updateScoresInCore()
-    }
     
     // MARK: UITextFieldDelegate
     
+    ///Enforces numerical entries
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        //Potential todo: restrict this function to the named text fields. Only relevant if we put other text fields in this VC
+            let text = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+            
+            if (text == ""){
+                return true
+            }//allow empty string
+            
+            if (Int(text) == nil){
+                return false
+            }//if the new value wouldn't be an int
+            else{
+                return true
+            }//if we're still talking numerically
+    }//shouldChangeCharactersInRange
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+        if (textField.text == nil || textField.text == ""){
+            textField.text = "10"
+        }//if empty string, make it a default 10
+        
+        let newValue: Int = Int(textField.text!)!
+        var modValue: Int = 0
+        switch(textField){
+        case strTextField!:
+            scores.setStr(newValue)
+            modValue = scores.getStrMod()
+            strModLabel!.text = getModString(modValue)
+        case dexTextField!:
+            scores.setDex(newValue)
+            modValue = scores.getDexMod()
+            dexModLabel!.text = getModString(modValue)
+        case conTextField!:
+            scores.setCon(newValue)
+            modValue = scores.getConMod()
+            conModLabel!.text = getModString(modValue)
+        case intTextField!:
+            scores.setInt(newValue)
+            modValue = scores.getIntMod()
+            intModLabel!.text = getModString(modValue)
+        case wisTextField!:
+            scores.setWis(newValue)
+            modValue = scores.getWisMod()
+            wisModLabel!.text = getModString(modValue)
+        case chaTextField!:
+            scores.setCha(newValue)
+            modValue = scores.getChaMod()
+            chaModLabel!.text = getModString(modValue)
+        default:
+            break
+        }//switch
+        
+        updateScoresInCore()
+        
+        //ascoreTableView.reloadData()
+        
+        
+    }//textFieldDidEndEditing
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true;
-    }
+        textField.endEditing(true)
+        return false;
+    }//textfieldShouldReturn
     
     // MARK: Helper functions
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        ascoreTableView.delegate = self
+        ascoreTableView.dataSource = self
+        
+    }//viewDidLoad
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
@@ -175,16 +149,27 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
             cha: Int(results[0].cha))
         
         updateTextFields(scores);
-        
+
         let myClass: PClass? = results[0].pclass;
         if (myClass != nil){
-            clearPrimAbil()
-            updatePrimAbil(myClass!.primAbil)
             clearSavThrows()
             updateSavThrows(myClass!.saveThrows)
         }//if
         
+        ascoreTableView.reloadData()
+        
+
+        
     }//viewDidAppear
+    
+    func getModString(mod: Int)->String{
+        if (mod >= 0){
+            return "+\(mod)"
+        }
+        else{
+            return "\(mod)"
+        }
+    }//getModString
     
     func updateScoresInCore(){
         let appDelegate =
@@ -222,135 +207,161 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate{
     }//updateScoresInCore
     
     func updateTextFields(newscores: AScores){
-        strTextField.text = "\(newscores.getStr())"
-        dexTextField.text = "\(newscores.getDex())"
-        conTextField.text = "\(newscores.getCon())"
-        intTextField.text = "\(newscores.getInt())"
-        wisTextField.text = "\(newscores.getWis())"
-        chaTextField.text = "\(newscores.getCha())"
+        strTextField?.text = "\(newscores.getStr())"
+        dexTextField?.text = "\(newscores.getDex())"
+        conTextField?.text = "\(newscores.getCon())"
+        intTextField?.text = "\(newscores.getInt())"
+        wisTextField?.text = "\(newscores.getWis())"
+        chaTextField?.text = "\(newscores.getCha())"
         
         var modval: Int = 0;
         
         modval = newscores.getStrMod();
         if (modval >= 0){
-            strModLabel.text = "+\(modval)";
+            strModLabel?.text = "+\(modval)";
         }//if
         else{
-            strModLabel.text = "\(modval)";
+            strModLabel?.text = "\(modval)";
         }//else
         
         modval = newscores.getDexMod();
         if (modval >= 0){
-            dexModLabel.text = "+\(modval)";
+            dexModLabel?.text = "+\(modval)";
         }//if
         else{
-            dexModLabel.text = "\(modval)";
+            dexModLabel?.text = "\(modval)";
         }//else
         
         modval = newscores.getConMod();
         if (modval >= 0){
-            conModLabel.text = "+\(modval)";
+            conModLabel?.text = "+\(modval)";
         }//if
         else{
-            conModLabel.text = "\(modval)";
+            conModLabel?.text = "\(modval)";
         }//else
         
         modval = newscores.getIntMod();
         if (modval >= 0){
-            intModLabel.text = "+\(modval)";
+            intModLabel?.text = "+\(modval)";
         }//if
         else{
-            intModLabel.text = "\(modval)";
+            intModLabel?.text = "\(modval)";
         }//else
         
         modval = newscores.getWisMod();
         if (modval >= 0){
-            wisModLabel.text = "+\(modval)";
+            wisModLabel?.text = "+\(modval)";
         }//if
         else{
-            wisModLabel.text = "\(modval)";
+            wisModLabel?.text = "\(modval)";
         }//else
         
         modval = newscores.getChaMod();
         if (modval >= 0){
-            chaModLabel.text = "+\(modval)";
+            chaModLabel?.text = "+\(modval)";
         }//if
         else{
-            chaModLabel.text = "\(modval)";
+            chaModLabel?.text = "\(modval)";
         }//else
         
     }//updateTextFields
     
     func updateSavThrows(saveThrows: Int16){
         if (saveThrows % 10 == 1 || saveThrows / 10 == 1){
-            strSavSwitch.setOn(true, animated: false)
+            strProfButton?.setTitle(CheckBox.Checked, forState: .Normal)
         }//if
         
         if (saveThrows % 10 == 2 || saveThrows / 10 == 2){
-            dexSavSwitch.setOn(true, animated: false)
+            dexProfButton?.setTitle(CheckBox.Checked, forState: .Normal)
         }//if
         
         if (saveThrows % 10 == 3 || saveThrows / 10 == 3){
-            conSavSwitch.setOn(true, animated: false)
+            conProfButton?.setTitle(CheckBox.Checked, forState: .Normal)
         }//if
         
         if (saveThrows % 10 == 4 || saveThrows / 10 == 4){
-            intSavSwitch.setOn(true, animated: false)
+            intProfButton?.setTitle(CheckBox.Checked, forState: .Normal)
         }//if
         
         if (saveThrows % 10 == 5 || saveThrows / 10 == 5){
-            wisSavSwitch.setOn(true, animated: false)
+            wisProfButton?.setTitle(CheckBox.Checked, forState: .Normal)
         }//if
         
         if (saveThrows % 10 == 6 || saveThrows / 10 == 6){
-            chaSavSwitch.setOn(true, animated: false)
+            chaProfButton?.setTitle(CheckBox.Checked, forState: .Normal)
         }//if
     }//updateSavThrows
     
     func clearSavThrows(){
-        strSavSwitch.setOn(false, animated: false)
-        dexSavSwitch.setOn(false, animated: false)
-        conSavSwitch.setOn(false, animated: false)
-        intSavSwitch.setOn(false, animated: false)
-        wisSavSwitch.setOn(false, animated: false)
-        chaSavSwitch.setOn(false, animated: false)
+        strProfButton?.setTitle(CheckBox.UnChecked, forState: .Normal)
+        dexProfButton?.setTitle(CheckBox.UnChecked, forState: .Normal)
+        conProfButton?.setTitle(CheckBox.UnChecked, forState: .Normal)
+        intProfButton?.setTitle(CheckBox.UnChecked, forState: .Normal)
+        wisProfButton?.setTitle(CheckBox.UnChecked, forState: .Normal)
+        chaProfButton?.setTitle(CheckBox.UnChecked, forState: .Normal)
     }//clearSavThrows
     
-    /**
-    Designed to highlight the skill that is the class's primary ability.
-    Commented out, as it's not visually clear
-    */
-    func updatePrimAbil(primAbil: Int16){
-        /*
-        if (primAbil % 10 == 1 || primAbil / 10 == 1){
-            strLabel.backgroundColor = UIColor.lightGrayColor();
-        }//if
-        if (primAbil % 10 == 2 || primAbil / 10 == 2){
-            dexLabel.backgroundColor = UIColor.lightGrayColor();
-        }//if
-        if (primAbil % 10 == 3 || primAbil / 10 == 3){
-            conLabel.backgroundColor = UIColor.lightGrayColor();
-        }//if
-        if (primAbil % 10 == 4 || primAbil / 10 == 4){
-            intLabel.backgroundColor = UIColor.lightGrayColor();
-        }//if
-        if (primAbil % 10 == 5 || primAbil / 10 == 5){
-            wisLabel.backgroundColor = UIColor.lightGrayColor();
-        }//if
-        if (primAbil % 10 == 6 || primAbil / 10 == 6){
-            chaLabel.backgroundColor = UIColor.lightGrayColor();
-        }//if
-        */
-    }//updatePrimAbil
+    //MARK: UITableViewDelegate
     
-    func clearPrimAbil(){
-        strLabel.backgroundColor = UIColor.clearColor();
-        dexLabel.backgroundColor = UIColor.clearColor();
-        conLabel.backgroundColor = UIColor.clearColor();
-        intLabel.backgroundColor = UIColor.clearColor();
-        wisLabel.backgroundColor = UIColor.clearColor();
-        chaLabel.backgroundColor = UIColor.clearColor();
-    }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }//numberOfSections
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }//numberOfRowsInSection
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerCell: AbilityScoreHeader = tableView.dequeueReusableCellWithIdentifier("ascoreHeader") as! AbilityScoreHeader
+        
+        return headerCell
+    }//viewForHeaderInSection
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell: AbilityScoreTableCell = tableView.dequeueReusableCellWithIdentifier("ascoreRow") as! AbilityScoreTableCell
+        
+        cell.ascoreLabel.text = scoreNames[indexPath.row]
+        
+        switch (indexPath.row){
+        case 0://Strength
+            strTextField = cell.ascoreField
+            strModLabel = cell.ascoreModField
+            strProfButton = cell.ascoreSavThrowButton
+        case 1://Dexterity
+            dexTextField = cell.ascoreField
+            dexModLabel = cell.ascoreModField
+            dexProfButton = cell.ascoreSavThrowButton
+        case 2://Constitution
+            conTextField = cell.ascoreField
+            conModLabel = cell.ascoreModField
+            conProfButton = cell.ascoreSavThrowButton
+        case 3://Intelligence
+            intTextField = cell.ascoreField
+            intModLabel = cell.ascoreModField
+            intProfButton = cell.ascoreSavThrowButton
+        case 4://Wisdom
+            wisTextField = cell.ascoreField
+            wisModLabel = cell.ascoreModField
+            wisProfButton = cell.ascoreSavThrowButton
+        case 5://Charisma
+            chaTextField = cell.ascoreField
+            chaModLabel = cell.ascoreModField
+            chaProfButton = cell.ascoreSavThrowButton
+        default:
+            break
+        }//switch
+        
+        cell.ascoreField.delegate = self
+        
+        return cell
+
+    }//cellForRowAtIndexPath
+    
+    
+    
+    
+    
     
     
     

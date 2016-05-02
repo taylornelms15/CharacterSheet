@@ -27,7 +27,8 @@ class HpCell: UICollectionViewCell{
 
 class ArmorCell: UICollectionViewCell{
     
-    @IBOutlet weak var armorField: UITextField!
+    
+    @IBOutlet weak var armorLabel: UILabel!
     
     
 }//ArmorCell

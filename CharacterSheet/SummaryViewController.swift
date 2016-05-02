@@ -38,6 +38,8 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
     
     var activeField: UITextField? = nil
     
+    var currentTextField: UIView? = nil
+    
     //MARK: Outlets
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var levelTextField: UITextField!
@@ -50,9 +52,9 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
     var currHpField: UITextField = UITextField()
     var maxHpField: UITextField = UITextField()
     var hitDieLabel: UILabel = UILabel()
-    var armorField: UITextField = UITextField()
     var spellSaveDCLabel: UILabel = UILabel()
     var spellAttackLabel: UILabel = UILabel()
+    var armorLabel: UILabel = UILabel()
     
     
     //MARK: Actions
@@ -104,6 +106,10 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         }
         results[0].updateAScores()
         //Note that now results[0] is our character
+        
+        if (levelTextField.text == nil || levelTextField.text == ""){
+            levelTextField.text = "1"
+        }//if blank slate
         
         var newLevel: Int = Int(levelTextField.text!)!
         if (newLevel < 1) {newLevel = 1}
@@ -275,46 +281,6 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         }
     }//setAlignment
     
-    func setArmorClass(sender: UITextField){
-        //Get our character out
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        let fetchRequest = NSFetchRequest(entityName: "PCharacter");
-        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
-        var results: [PCharacter] = [];
-        do{
-            results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
-        }catch let error as NSError{
-            print("Could not save \(error), \(error.userInfo)")
-        }
-        results[0].updateAScores()
-        //Note that now results[0] is our character
-        
-        var armorClassInt: Int? = nil
-        if (sender.text == nil){
-            armorClassInt = nil
-        }
-        else{
-            armorClassInt = Int(sender.text!)
-        }
-        //possible values for armorClassInt: nil for empty text or non-int text, ints for all else
-        
-        var newAC: Int64 = 0
-        
-        if (armorClassInt != nil){
-            newAC = Int64(armorClassInt!)
-        }
-        
-        results[0].armorClass = newAC
-        
-        //save
-        do{
-            try managedContext.save()
-        }catch let error as NSError{
-            print("Could not save \(error), \(error.userInfo)")
-        }
-    }//setArmorClass
-    
     func setCurrHp(sender: UITextField){
         //Get our character out
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -410,6 +376,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
         raceTextField.inputView = racePicker;
         raceTextField.inputAccessoryView = racePickerToolbar
+        raceTextField.delegate = self
         racePicker.dataSource = self;
         racePicker.delegate = self;
         racePickerToolbar.barStyle = UIBarStyle.Default
@@ -420,6 +387,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
         classTextField.inputView = classPicker;
         classTextField.inputAccessoryView = classPickerToolbar
+        classTextField.delegate = self
         classPicker.dataSource = self;
         classPicker.delegate = self;
         classPickerToolbar.barStyle = UIBarStyle.Default
@@ -430,6 +398,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         
         backgroundTextField.inputView = backgroundPicker
         backgroundTextField.inputAccessoryView = backgroundPickerToolbar
+        backgroundTextField.delegate = self
         backgroundPicker.dataSource = self
         backgroundPicker.delegate = self
         backgroundPickerToolbar.barStyle = UIBarStyle.Default
@@ -680,12 +649,11 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
             cell = thisCell
         case 2:
             let thisCell = summaryCollectionView.dequeueReusableCellWithReuseIdentifier("armorCell", forIndexPath: indexPath) as! ArmorCell
-            armorField = thisCell.armorField
-            armorField.delegate = self
+            armorLabel = thisCell.armorLabel
             
             //Armor Class Label
-            let armorClass: Int64 = results[0].armorClass
-            armorField.text = "\(armorClass)"
+            let armorClass: Int16 = results[0].inventory.computeArmorClass()
+            armorLabel.text = "\(armorClass)"
             
             cell = thisCell
         case 3:
@@ -720,7 +688,7 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
     
     ///Enforces type of text entry
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        if ([armorField, currHpField, maxHpField].contains(textField)){
+        if ([currHpField, maxHpField].contains(textField)){
             if (string == "") {
                 return true
             }
@@ -737,8 +705,6 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         activeField = nil
         
         switch(textField){
-        case armorField:
-            setArmorClass(textField)
         case currHpField:
             setCurrHp(textField)
         case maxHpField:
@@ -748,10 +714,34 @@ class SummaryViewController: CSViewController, UIPickerViewDataSource, UIPickerV
         }//switch
     }//end editing for text fields
     
+    
+    
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        if([raceTextField, classTextField, backgroundTextField].contains(textField)){
+            
+            switch textField{
+            case raceTextField:
+                raceTextField.text = pickerData[0][racePicker.selectedRowInComponent(0)]
+            case classTextField:
+                classTextField.text = cpickerData[0][classPicker.selectedRowInComponent(0)]
+            default:
+                backgroundTextField.text = bpickerData[0][backgroundPicker.selectedRowInComponent(0)]
+            }//switch
+            
+        }//if we're dealing with the picker fields
+        
+        return true
+    }//textFieldShouldEndEditing
+    
     ///Called when editing starts
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        if (activeField != textField){
+            activeField?.endEditing(false)
+        }//if we're switching from one field to another
         activeField = textField
-    }
+        
+        return true
+    }//textFieldShouldBeginEditing
     
     ///End editing on a return call
     func textFieldShouldReturn(textField: UITextField) -> Bool {

@@ -249,11 +249,13 @@ class ArmorTableCell: UITableViewCell, InventoryTableCell, UITextFieldDelegate, 
         
         return true
     }
-    
-    func textFieldWillEndEditing(textField: UITextField) {
-        resignFirstResponder()
+    /*
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         currentTextField = nil
-    }//textFieldWillEndEditing
+        resignFirstResponder()
+        return true
+    }//textFieldShouldEndEditing
+*/
     
     //MARK: Picker Functions
     

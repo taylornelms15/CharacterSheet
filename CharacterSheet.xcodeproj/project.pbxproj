@@ -40,6 +40,7 @@
 		959B70E71CD4F9B800164774 /* Subclass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B70E51CD4F9B700164774 /* Subclass.swift */; };
 		95A22B691CA87A44008AA143 /* SpellTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A22B681CA87A44008AA143 /* SpellTableCells.swift */; };
 		95A22B6D1CA9DCD4008AA143 /* PersonalSpellList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A22B6B1CA9DCD4008AA143 /* PersonalSpellList.swift */; };
+		95A4F7091CD651360094BBD4 /* AbilityScoreTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A4F7081CD651360094BBD4 /* AbilityScoreTableCells.swift */; };
 		95B029D51C601D5300DC0F3C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B029D31C601D5300DC0F3C /* DataModel.xcdatamodeld */; };
 		95B7A59E1C7FD910008895CA /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A59C1C7FD910008895CA /* Feature.swift */; };
 		95B7A5A21C7FDB27008895CA /* BackgroundFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */; };
@@ -117,6 +118,7 @@
 		959B70E51CD4F9B700164774 /* Subclass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subclass.swift; sourceTree = "<group>"; };
 		95A22B681CA87A44008AA143 /* SpellTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellTableCells.swift; sourceTree = "<group>"; };
 		95A22B6B1CA9DCD4008AA143 /* PersonalSpellList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalSpellList.swift; sourceTree = "<group>"; };
+		95A4F7081CD651360094BBD4 /* AbilityScoreTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityScoreTableCells.swift; sourceTree = "<group>"; };
 		95B029D41C601D5300DC0F3C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		95B7A59C1C7FD910008895CA /* Feature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
 		95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundFeature.swift; sourceTree = "<group>"; };
@@ -235,7 +237,7 @@
 				95DD0EE11C82459600D456D2 /* CharacterSelectViewController.swift */,
 				959370B61CA5ADA2000E5734 /* SummaryViewController.swift */,
 				9558A0281CA0DD160037521B /* CollectionViewCells.swift */,
-				959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */,
+				95A4F70A1CD6513E0094BBD4 /* AbilityScore ViewControllers */,
 				959A30581C790AC900ED83A1 /* SkillViewController.swift */,
 				95649CDA1CD59647002C58A2 /* Features ViewControllers */,
 				9502C30F1CB81804009DAFBA /* Trait ViewControllers */,
@@ -335,6 +337,15 @@
 				95CF73B21CA764C2005AD5C8 /* CSNavigationController.swift */,
 			);
 			name = Navigation;
+			sourceTree = "<group>";
+		};
+		95A4F70A1CD6513E0094BBD4 /* AbilityScore ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				959370B81CA5ADD5000E5734 /* AbilityScoreViewController.swift */,
+				95A4F7081CD651360094BBD4 /* AbilityScoreTableCells.swift */,
+			);
+			name = "AbilityScore ViewControllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -507,6 +518,7 @@
 				95649CD91CD595FF002C58A2 /* CustomFeatViewController.swift in Sources */,
 				959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */,
 				9576C6831CB1F47800D130AA /* SpellDetailViewController.swift in Sources */,
+				95A4F7091CD651360094BBD4 /* AbilityScoreTableCells.swift in Sources */,
 				955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */,
 				959370B91CA5ADD5000E5734 /* AbilityScoreViewController.swift in Sources */,
 				958CBAB01C56E10E00AD833A /* AppDelegate.swift in Sources */,

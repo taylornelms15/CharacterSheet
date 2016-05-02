@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class InventoryViewController: CSViewController, UITableViewDataSource, UITableViewDelegate{
+class InventoryViewController: CSViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate{
     
     var tableHeaderTitles: [String] = ["Armor", "Weapons", "Items"]
     
@@ -22,6 +22,8 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var inventoryTableView: UITableView!
     
     var headers: [String] = ["Armor", "Weapons", "Items"]
+    
+    var currentTextField: UIView? = nil
 
     //MARK: adding items
     
@@ -91,6 +93,10 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
         
         thisInventory = results[0].inventory
         
+        goldField.delegate = self
+        silverField.delegate = self
+        copperField.delegate = self
+        
         updateCurrencyFields()
         
         inventoryTableView.dataSource = self
@@ -108,6 +114,87 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
         }
         
     }//viewWillAppear
+    
+    //MARK: UITextFieldDelegate functions
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+        switch textField{
+        case goldField:
+            if (textField.text == nil || textField.text! == ""){
+                textField.text = "\(0)"
+            }//if
+            thisInventory!.gold = Int64(textField.text!)!
+        case silverField:
+            if (textField.text == nil || textField.text! == ""){
+                textField.text = "\(0)"
+            }//if
+            thisInventory!.silver = Int64(textField.text!)!
+        case copperField:
+            if (textField.text == nil || textField.text! == ""){
+                textField.text = "\(0)"
+            }//if
+            thisInventory!.copper = Int64(textField.text!)!
+        default:
+            return
+        }//switch
+        
+        do{
+            try thisInventory!.managedObjectContext!.save()
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+    }//textFieldDidEndEditing
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        if (currentTextField != nil){
+            if (currentTextField!.isKindOfClass(UITextField)){
+                (currentTextField as! UITextField).endEditing(true)
+            }
+            else {if (currentTextField!.isKindOfClass(UITextView)){
+                (currentTextField as! UITextView).endEditing(true)
+                }}
+        }
+        currentTextField = textField
+        
+        return true
+    }//textFieldShouldBeginEditing
+    
+    //Note: this is a made-up function maybe?
+    func textFieldWillEndEditing(textField: UITextField) {
+        resignFirstResponder()
+        currentTextField = nil
+    }//textFieldWillEndEditing
+ 
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return false
+    }//textFieldShouldReturn
+    
+    ///Used to restrict the currency fields to int values
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        if ([goldField, silverField, copperField].contains(textField)){
+            let text = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+            
+            if (text == ""){
+                return true
+            }//allow empty string (will change to a zero if we end editing on it, in the did end editing function)
+            
+            if (Int(text) == nil){
+                return false
+            }//if the new value wouldn't be an int
+            else{
+                return true
+            }//if we're still talking numerically
+        }//if we're in the currency fields
+        
+        else{
+            return true
+        }//else
+        
+    }//shouldChangeCharactersInRange
     
     //MARK: UITableView functions
     
