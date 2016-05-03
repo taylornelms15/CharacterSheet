@@ -21,10 +21,31 @@ class Subclass: NSManagedObject {
     @NSManaged var parentClass: PClass
 
     /**
+     Similar to the getAllSpellsUpToLevel function (and calls it internally), but just returns the ids for the spells.
+     */
+    func getSpellIdsUpToLevel(level level: Int)->[Int64]?{
+        if (freeSpellList == nil || freeSpellLevelData == nil){
+            return nil
+        }
+        
+        var results: [Int64] = []
+        
+        let spellResults: [Spell] = getAllSpellsUpToLevel(level: level)!
+        
+        for spell in spellResults{
+            results.append(spell.id)
+        }
+        
+        return results
+        
+    }//getSpellIdsUpToLevel
+    
+    /**
      Gives an array of spells for all the free spells up to the given level for the subclass, cumulatively.
      Sorts results by id; may want to change to sort by level?
      */
     func getAllSpellsUpToLevel(level level: Int)->[Spell]?{
+        
         if (freeSpellList == nil || freeSpellLevelData == nil){
             return nil
         }
@@ -32,7 +53,7 @@ class Subclass: NSManagedObject {
         var results: [Spell] = []
         
         for spell in freeSpellList!.spells{
-            for i in 0..<freeSpellLevelData![level - 1].count{
+            for i in 0..<(level - 1){
                 if (freeSpellLevelData![i].contains(Int(spell.id))){
                     results.append(spell)
                 }
@@ -43,29 +64,6 @@ class Subclass: NSManagedObject {
         
         return results
     }//getAllSpellsUpToLevel
-    
-    /**
-     Gives array of the free subclass spells specific to the given level.
-     If not a spellcasting subclass, returns nil.
-     */
-    func getSpellsForLevel(level level: Int)->[Spell]?{
-        if (freeSpellList == nil || freeSpellLevelData == nil){
-            return nil
-        }
-        
-        let thisLevelIds:[Int] = freeSpellLevelData![level - 1]
-        
-        var results: [Spell] = []
-        
-        for spell in freeSpellList!.spells{
-            if (thisLevelIds.contains(Int(spell.id))){
-                results.append(spell)
-            }//if
-        }//for each spell in the free spell list
-        
-        return results
-
-    }//getSpellsForLevel
     
     static func subClassesInit(context: NSManagedObjectContext){
         

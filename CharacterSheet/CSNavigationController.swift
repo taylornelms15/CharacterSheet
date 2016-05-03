@@ -69,7 +69,8 @@ class CSNavigationController: UINavigationController, UIGestureRecognizerDelegat
         segControl.addTarget(self, action: #selector(CSNavigationController.segmentPressed) , forControlEvents: UIControlEvents.ValueChanged)
         myRightItem = UIBarButtonItem(customView: segControl)
         //myLeftItem = splitVC!.displayModeButtonItem()
-        myLeftItem = UIBarButtonItem(title: "Menu", style: .Plain, target: splitVC!.displayModeButtonItem().target, action: splitVC!.displayModeButtonItem().action)
+        //myLeftItem = UIBarButtonItem(title: "Menu", style: .Plain, target: splitVC!.displayModeButtonItem().target, action: splitVC!.displayModeButtonItem().action)
+        myLeftItem = UIBarButtonItem(title: CheckBox.menuIcon, style: .Plain, target: splitVC!.displayModeButtonItem().target, action: splitVC!.displayModeButtonItem().action)
         
         //put the buttons on the bar
         myBar.topItem!.rightBarButtonItem = myRightItem

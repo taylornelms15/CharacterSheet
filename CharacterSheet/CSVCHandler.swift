@@ -13,6 +13,7 @@ import CoreData
 class CheckBox{
     static let Checked: String = "\u{2611}"
     static let UnChecked: String = "\u{2B1C}"
+    static let menuIcon: String = "\u{2630}"
 }//CheckBox
 
 let pcharModNotificationKey: String = "cspcharmodnotificationkey"

@@ -33,6 +33,8 @@ class PersonalSpellList: SpellList {
         Should be modified only through defined functions
     */
     
+    //MARK: Static functions
+    
     static let nonCasterSpellSlotTable: [Int] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     
     static let casterSpellSlotTable: [[Int]] =
@@ -155,6 +157,8 @@ class PersonalSpellList: SpellList {
         
     }//makePersonalSpellList
     
+    //MARK: convenience getters
+    
     func getPClassName()->String{
         switch (pclassId){
         case 1:
@@ -186,6 +190,36 @@ class PersonalSpellList: SpellList {
         }//switch
 
     }//getPClassName
+    func getSubclassTypeName()->String{
+        switch (pclassId){
+        case 1:
+            return "Primal Path"
+        case 2:
+            return "Bard College"
+        case 3:
+            return "Divine Domain"
+        case 4:
+            return "Druid Circle"
+        case 5:
+            return "Martial Archetype"
+        case 6:
+            return "Monastic Tradition"
+        case 7:
+            return "Sacred Oath"
+        case 8:
+            return "Ranger Archetype"
+        case 9:
+            return "Rogueish Archetype"
+        case 10:
+            return "Sorcerous Origin"
+        case 11:
+            return "Otherworldly Patron"
+        case 12:
+            return "Arcane Tradition"
+        default:
+            return ""
+        }//switch
+    }//getSubclassTypeName
     
     //MARK: override funcs
     
@@ -293,6 +327,36 @@ class PersonalSpellList: SpellList {
         }//for
         
     }//updatSpellSlotsAvailablewithSlotTable
+    
+    //MARK: subclass-related functions
+    
+    func changeSubclassFrom(oldSubclass: Subclass?, toNewSubclass: Subclass?, atLevel: Int16){
+        
+        let oldSubclassSpells: [Spell]? = oldSubclass?.getAllSpellsUpToLevel(level: Int(atLevel))
+        let newSubclassSpells: [Spell]? = toNewSubclass?.getAllSpellsUpToLevel(level: Int(atLevel))
+        
+        if (oldSubclassSpells != nil){
+            for spell in oldSubclassSpells!{
+                if (spells.contains(spell)){
+                    markAsNotFree(spell)
+                    removeSpell(spell: spell)
+                }//if our list contains it
+            }//for each spell in the previous subclass
+        }//if we have a set of old subclass spells
+        
+        if (newSubclassSpells != nil){
+            for spell in newSubclassSpells!{
+                if (spells.contains(spell) == false){
+                    addSpell(spell: spell)
+                }//if we didn't have it
+                
+                markAsFree(spell)
+                
+            }//for each spell in new subclass
+        }//if
+        
+        
+    }//changeSubclassFrom
     
     //MARK: spell-marking functions
     

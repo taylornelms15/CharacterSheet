@@ -33,6 +33,7 @@ class PCharacter: NSManagedObject{
     @NSManaged var traitList: TraitList
     @NSManaged var spellLists: Set<PersonalSpellList>
     @NSManaged var inventory: Inventory
+    @NSManaged var subclass: Subclass?
     
     var ascores: AScores = AScores();
     
@@ -160,7 +161,52 @@ class PCharacter: NSManagedObject{
         
         pclass = newClass
         
+        if (subclass == nil || newClass.subClasses.contains(subclass!) == false){
+            changeSubclassTo(nil)
+        }//if we have no subclass, or the new class doesn't contain our current subclass, clear our subclass
+        
     }//changeClassTo
+    
+    func changeSubclassTo(newSubclass: Subclass?){
+        
+        let currentPersonalSpellList: PersonalSpellList? = getCurrentPersonalSpellList()
+        
+        if (pclass!.name! == currentPersonalSpellList?.getPClassName()){
+            currentPersonalSpellList?.changeSubclassFrom(subclass, toNewSubclass: newSubclass, atLevel: level)
+        }//verifying we're switching subclasses within a class
+        
+        subclass = newSubclass
+        
+    }//changeSubclassTo
+    
+    func changeSubclassWithNameTo(newSubclassName: String){
+        
+        let context = self.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: "Subclass")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", newSubclassName)
+        var results: [Subclass] = []
+        do{
+            try results = context.executeFetchRequest(fetchRequest) as! [Subclass]
+        }catch let error as NSError{
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        changeSubclassTo(results[0])
+        
+    }//changesubclassTo
+    
+    func getCurrentPersonalSpellList()->PersonalSpellList?{
+        let currentPclassId: Int16 = pclass!.id
+        
+        for spellList in spellLists{
+            if (spellList.pclassId == currentPclassId){
+                return spellList
+            }//if id match
+        }//for each personal spell list in our set of them
+        
+        return nil
+        
+    }//getCurrentPersonalSpellList
     
     func changeBackgroundTo(newBackground: Background){
         

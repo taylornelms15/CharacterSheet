@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDataSource, SpellDataReceiverDelegate{
+class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDataSource, SpellDataReceiverDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
     
     //MARK: Outlets
     
@@ -17,9 +17,19 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var addSpellButton: UIBarButtonItem!
     @IBOutlet weak var removeSpellButton: UIBarButtonItem!
     @IBOutlet weak var classNameLabel: UILabel!
+    @IBOutlet weak var subclassTypeLabel: UILabel!
+    @IBOutlet weak var subclassNameField: UITextField!
+    
+    var subclassPickerView = UIPickerView()
+    var subclassPickerViewToolbar = UIToolbar()
+    var subclassPickerDoneButton = UIBarButtonItem()
+    var subclassPickerCancelButton = UIBarButtonItem()
+    var subclassSpaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
     
     var tableHeaders: [(Int, String)] = []
     var thisSpellList: PersonalSpellList? = nil
+    
+    var subclassPickerTitles: [String] = []
     
     //MARK: Viewcontroller Navigation functions
     
@@ -79,6 +89,16 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         
         thisSpellList!.updateSpellSlotsForCharLevel(level: results[0].level, withClassId: results[0].pclass!.id)
         classNameLabel.text = thisSpellList?.getPClassName()
+        subclassTypeLabel.text = thisSpellList?.getSubclassTypeName()
+        subclassPickerTitles = buildSubclassNames((thisSpellList?.pclassId)!)
+        
+        if (results[0].subclass == nil){
+            subclassNameField.text = "None"
+        }
+        else{
+            subclassNameField.text = results[0].subclass!.name
+        }
+        
         
         buildHeaders()
         
@@ -106,6 +126,20 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         
         let headerNib: UINib = UINib(nibName: "PersonalSpellTableHeader", bundle: nil)
         spellTableView.registerNib(headerNib, forHeaderFooterViewReuseIdentifier: "header1")
+        
+        subclassPickerView.delegate = self
+        subclassPickerView.dataSource = self
+        subclassPickerCancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(self.subclassPickerCancelButtonPressed))
+        subclassPickerDoneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(self.subclassPickerDoneButtonPressed))
+        
+        subclassPickerViewToolbar.barStyle = UIBarStyle.Default
+        subclassPickerViewToolbar.sizeToFit()
+        subclassPickerViewToolbar.setItems([subclassPickerCancelButton, subclassSpaceButton, subclassPickerDoneButton], animated: false)
+        
+        
+        subclassNameField.inputView = subclassPickerView
+        subclassNameField.inputAccessoryView = subclassPickerViewToolbar
+        subclassNameField.delegate = self
         
     }//viewDidLoad
     
@@ -159,6 +193,101 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         
     }//receiveSpell
 
+    //MARK: UIPickerView things
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        if (pickerView == subclassPickerView){
+            return 1
+        }
+        
+        return 1
+        
+    }//numberOfComponentsInPickerView
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if (pickerView == subclassPickerView && component == 0){
+            return subclassPickerTitles.count
+        }//if
+        
+        return 0
+    }//numberOfRowsInComponent
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if (pickerView == subclassPickerView && component == 0){
+            return subclassPickerTitles[row]
+        }//if
+        return ""
+    }//titleForRowInComponent
+    
+    func subclassPickerCancelButtonPressed(){
+        
+        //Get our character out
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: "PCharacter");
+        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
+        var results: [PCharacter] = [];
+        do{
+            results = try context.executeFetchRequest(fetchRequest) as! [PCharacter]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        results[0].updateAScores()
+        //Note that now results[0] is our character
+        
+        var desiredText: String = ""
+        
+        if (results[0].subclass == nil){
+            desiredText = "None"
+        }
+        else{
+            desiredText = results[0].subclass!.name
+        }
+        
+        let desiredRow: Int = subclassPickerTitles.indexOf(desiredText)!
+        
+        subclassPickerView.selectRow(desiredRow, inComponent: 0, animated: false)
+        
+        subclassNameField.resignFirstResponder()
+        
+    }//subclassPickerCancelButtonPressed
+    
+    func subclassPickerDoneButtonPressed(){
+        
+        subclassNameField.endEditing(true)
+        
+    }//subclassPickerDoneButtonPressed
+    
+    //MARK: UITextFieldDelegate
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        if (textField == subclassNameField){
+            
+            let newSubclassName = subclassPickerTitles[subclassPickerView.selectedRowInComponent(0)]
+            
+            textField.text = newSubclassName
+            
+            if (newSubclassName == "None"){
+                thisSpellList!.pcharacter!.changeSubclassTo(nil)
+            }//if we're clearing subclass
+            else{
+                thisSpellList!.pcharacter!.changeSubclassWithNameTo(newSubclassName)
+            }//if not clearing subclass
+            
+            do{
+                try thisSpellList!.managedObjectContext!.save()
+            }catch let error as NSError{
+                print("Could not save \(error), \(error.userInfo)")
+            }
+
+            for i in 1...20{
+                thisSpellList!.updateSpellNamesPerLevel(level: Int16(i))
+            }
+            
+            reloadTable()
+            
+        }//if the subclass name field
+    }//textFieldDidEndEditing
     
     //MARK: UITableView things
     
@@ -248,6 +377,15 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         }
         
         let cell: PersonalSpellTableCell = spellTableView.dequeueReusableCellWithIdentifier(reuseIdentifier)! as! PersonalSpellTableCell
+        
+        /* DEBUG!!!
+        print(indexPath.row)
+        if(thisSpellList != nil){
+            for spell in thisSpellList!.spells{
+                print(spell)
+            }
+        }
+ */
         
         let level: Int16 = Int16(tableHeaders[indexPath.section].0)
         let subList: [Spell] = thisSpellList!.getSpellsForLevel(level: level)
@@ -374,6 +512,30 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         }//for
         
     }//buildHeaders
+    
+    func buildSubclassNames(pclassId: Int16)->[String]{
+        
+        var results: [String] = ["None"]
+        
+        let context = thisSpellList!.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: "Subclass")
+        fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "id", ascending: true)]
+        fetchRequest.predicate = NSPredicate(format: "%K = %@", "parentClass.id", "\(pclassId)")
+        var subclassResults: [Subclass] = []
+        do{
+            try subclassResults = context.executeFetchRequest(fetchRequest) as! [Subclass]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+        for subclass in subclassResults{
+            results.append(subclass.name)
+        }
+        
+        return results
+        
+        
+    }//buildSubclassNames
     
 }//SpellViewController
 

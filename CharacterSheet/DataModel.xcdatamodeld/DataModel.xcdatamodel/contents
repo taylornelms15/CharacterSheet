@@ -74,6 +74,7 @@
         <relationship name="race" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Race" inverseName="inv_char" inverseEntity="Race" syncable="YES"/>
         <relationship name="skillProfs" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SkillProfs" inverseName="pCharacter" inverseEntity="SkillProfs" syncable="YES"/>
         <relationship name="spellLists" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PersonalSpellList" inverseName="pcharacter" inverseEntity="PersonalSpellList" syncable="YES"/>
+        <relationship name="subclass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subclass" inverseName="inv_pchar" inverseEntity="Subclass" syncable="YES"/>
         <relationship name="traitList" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TraitList" inverseName="inv_character" inverseEntity="TraitList" syncable="YES"/>
     </entity>
     <entity name="PClass" representedClassName=".PClass" syncable="YES">
@@ -148,6 +149,7 @@
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="freeSpellList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpellList" inverseName="inv_subclass" inverseEntity="SpellList" syncable="YES"/>
+        <relationship name="inv_pchar" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="subclass" inverseEntity="PCharacter" syncable="YES"/>
         <relationship name="parentClass" maxCount="1" deletionRule="Nullify" destinationEntity="PClass" inverseName="subClasses" inverseEntity="PClass" syncable="YES"/>
     </entity>
     <entity name="Trait" representedClassName=".Trait" syncable="YES">
@@ -181,7 +183,7 @@
         <element name="FeatureList" positionX="-362" positionY="297" width="128" height="103"/>
         <element name="Inventory" positionX="-774" positionY="171" width="128" height="150"/>
         <element name="InventoryItem" positionX="-765" positionY="180" width="128" height="135"/>
-        <element name="PCharacter" positionX="-576" positionY="126" width="128" height="360"/>
+        <element name="PCharacter" positionX="-576" positionY="126" width="128" height="375"/>
         <element name="PClass" positionX="-767" positionY="270" width="128" height="180"/>
         <element name="PersonalSpellList" positionX="-549" positionY="279" width="128" height="135"/>
         <element name="Race" positionX="-729" positionY="423" width="128" height="195"/>
@@ -189,9 +191,9 @@
         <element name="SkillProfs" positionX="-963" positionY="407" width="128" height="88"/>
         <element name="Spell" positionX="-164" positionY="159" width="128" height="345"/>
         <element name="SpellList" positionX="-326" positionY="15" width="128" height="90"/>
+        <element name="Subclass" positionX="-774" positionY="171" width="128" height="135"/>
         <element name="Trait" positionX="-981" positionY="774" width="128" height="135"/>
         <element name="TraitList" positionX="-983" positionY="621" width="128" height="90"/>
         <element name="WeaponInventoryItem" positionX="-756" positionY="189" width="128" height="135"/>
-        <element name="Subclass" positionX="-774" positionY="171" width="128" height="120"/>
     </elements>
 </model>
