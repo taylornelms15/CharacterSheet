@@ -53,6 +53,7 @@
 		95D10E7E1C9605EE00ACDAC8 /* TraitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D10E7D1C9605EE00ACDAC8 /* TraitsViewController.swift */; };
 		95D10E801C960A7400ACDAC8 /* Traits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D10E7F1C960A7400ACDAC8 /* Traits.swift */; };
 		95D124D01C9A57E600AC4CDF /* EditTraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D124CF1C9A57E500AC4CDF /* EditTraitViewController.swift */; };
+		95D31F081CD95DE200958F9A /* FeatureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D31F071CD95DE200958F9A /* FeatureDetailViewController.swift */; };
 		95DA20C01C79149F001E66A2 /* SkillProfs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DA20BE1C79149F001E66A2 /* SkillProfs.swift */; };
 		95DD0EE21C82459600D456D2 /* CharacterSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD0EE11C82459600D456D2 /* CharacterSelectViewController.swift */; };
 		95E3DD901C839D42008736D1 /* Feat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E3DD8E1C839D42008736D1 /* Feat.swift */; };
@@ -131,6 +132,7 @@
 		95D10E7D1C9605EE00ACDAC8 /* TraitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraitsViewController.swift; sourceTree = "<group>"; };
 		95D10E7F1C960A7400ACDAC8 /* Traits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Traits.swift; sourceTree = "<group>"; };
 		95D124CF1C9A57E500AC4CDF /* EditTraitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTraitViewController.swift; sourceTree = "<group>"; };
+		95D31F071CD95DE200958F9A /* FeatureDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureDetailViewController.swift; sourceTree = "<group>"; };
 		95DA20BE1C79149F001E66A2 /* SkillProfs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillProfs.swift; sourceTree = "<group>"; };
 		95DD0EE11C82459600D456D2 /* CharacterSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSelectViewController.swift; sourceTree = "<group>"; };
 		95E3DD8E1C839D42008736D1 /* Feat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feat.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 			children = (
 				957E15BC1C7E891900391977 /* FeaturesViewController.swift */,
 				95649CD81CD595FF002C58A2 /* CustomFeatViewController.swift */,
+				95D31F071CD95DE200958F9A /* FeatureDetailViewController.swift */,
 			);
 			name = "Features ViewControllers";
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				95A22B691CA87A44008AA143 /* SpellTableCells.swift in Sources */,
 				9502C3041CB69777009DAFBA /* WeaponInventoryItem.swift in Sources */,
 				95DD0EE21C82459600D456D2 /* CharacterSelectViewController.swift in Sources */,
+				95D31F081CD95DE200958F9A /* FeatureDetailViewController.swift in Sources */,
 				95CF73B31CA764C2005AD5C8 /* CSNavigationController.swift in Sources */,
 				95D124D01C9A57E600AC4CDF /* EditTraitViewController.swift in Sources */,
 				9558A0291CA0DD160037521B /* CollectionViewCells.swift in Sources */,

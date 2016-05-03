@@ -37,7 +37,7 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate, UITable
     weak var wisProfButton: UIButton? = nil
     weak var chaProfButton: UIButton? = nil
     
-    let scoreNames: [String] = ["Strength", "Dextrity", "Constitution", "Intellegence", "Wisdom", "Charisma"]
+    let scoreNames: [String] = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
     
     @IBOutlet weak var ascoreTableView: UITableView!
     
@@ -53,7 +53,6 @@ class AbilityScoreViewController: CSViewController, UITextFieldDelegate, UITable
             if (text == ""){
                 return true
             }//allow empty string
-            
             if (Int(text) == nil){
                 return false
             }//if the new value wouldn't be an int

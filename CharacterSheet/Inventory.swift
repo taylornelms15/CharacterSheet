@@ -307,7 +307,7 @@ class Inventory: NSManagedObject {
                 let wisMod: Int16 = Int16(pchar.ascores.getWisMod())
                 mainArmorContribution = 10 + dexMod + wisMod
             }//if monk unarmored
-            else if (pchar.pclass!.name! == "Sorcerer"){
+            else if (pchar.pclass!.name! == "Sorcerer" && pchar.subclass?.name == "Draconic Bloodline"){
                 mainArmorContribution = 13 + dexMod
             }//if sorcerer unarmored
             //TODO: when dealing with subclass, make this draconic sorcerer only

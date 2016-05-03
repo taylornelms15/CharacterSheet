@@ -294,6 +294,17 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
             myFeature = nil
         }//switch
         
+        let newVC: FeatureDetailViewController = storyboard!.instantiateViewControllerWithIdentifier("FeatureDetailViewController") as! FeatureDetailViewController
+        newVC.modalPresentationStyle = .OverCurrentContext
+        newVC.modalTransitionStyle = .CoverVertical
+        newVC.myFeature = myFeature
+        
+        self.presentViewController(newVC, animated: true, completion: {
+            ()->Void in
+        })
+        
+        
+        /*
         let detailViewController = UIAlertController(title: nil, message: myFeature!.details, preferredStyle: .ActionSheet)
         let doneAction = UIAlertAction(title: "Done", style: .Cancel, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -303,7 +314,7 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
         detailViewController.addAction(doneAction)
         
         self.presentViewController(detailViewController, animated: true, completion: nil)
-        
+        */
     }
     
     

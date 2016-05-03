@@ -64,7 +64,7 @@ class CSNavigationController: UINavigationController, UIGestureRecognizerDelegat
         let myBar: UINavigationBar = self.navigationBar
         
         //make the right buttons
-        segControl = UISegmentedControl(items: ["<", ">"])
+        segControl = UISegmentedControl(items: [CheckBox.leftArrow, CheckBox.rightArrow])
         segControl.momentary = true
         segControl.addTarget(self, action: #selector(CSNavigationController.segmentPressed) , forControlEvents: UIControlEvents.ValueChanged)
         myRightItem = UIBarButtonItem(customView: segControl)

@@ -14,6 +14,8 @@ class CheckBox{
     static let Checked: String = "\u{2611}"
     static let UnChecked: String = "\u{2B1C}"
     static let menuIcon: String = "\u{2630}"
+    static let leftArrow: String = "\u{25C0}\u{FE0E}"
+    static let rightArrow: String = "\u{25B6}\u{FE0E}"
 }//CheckBox
 
 let pcharModNotificationKey: String = "cspcharmodnotificationkey"
