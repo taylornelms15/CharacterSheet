@@ -1276,6 +1276,154 @@ class Spell: NSManagedObject {
         spell75.duration = "Concentration, up to 10 minutes"
         spell75.details = "\tUntil the spell ends, you control any freestanding water inside an area you choose that is a cube up to 100 feet on a side. You can choose from any of the following effects when you cast this spell. As an action on your turn, you can repeat the same effect or choose a different one.\n  \u{2022} Flood: You cause the water level of all standing water in the area to rise by as much as 20 feet. If the area includes a shore, the flooding water spills over onto dry land. If you choose an area in a large body of water, you instead create a 20-foot tall wave that travels from one side of the area to the other and then crashes down. Any Huge or smaller vehicles caught in its path are carried with it to the other side, and have a 25 percent chance of capsizing.\n  \u{2022} Part Water: You cause water in he area to move apart and create a trench. The trench extends across the spell's area, and the separated water forms a wall to either side.\n  \u{2022} Redirect Flow: You cause flowing water in the area to move in a direction you choose, even if the water has to flow over obstacles, up walls, or in other unlikely directions. The water resumes its normal course of flow if it exits the affected area.\n  \u{2022} Whirlpool: This effect requires a body of water at least 50 feet square and 25 feet deep. You cause a whirlpool to form in the center of the area. It forms a vortex 5 feet wide at the base, up to 50 feet wide at the top, and 25 feet tall. Any creature or object in the area or within 10 feet is pulled in towards it. A creature can swim away from the vortex by making an Athletics saving throw against your spell save DC.\n\tWhen a creature enters the vortex for the first time on a turn or starts its turn there, it must make a Strength saving throw, taking 2d8 bludgeoning damage on a failed save and being caught in the vortex, and half as much damage and not being caught in the vortex on a successful one. A creature caught in the vortex may make take its action to try and swim away, but must succeed on an Athletics check, rolling with disadvantage. A creature takes 2d8 for every turn it starts in the vortex."
         
+        let spell76: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell76.id = 76
+        spell76.name = "Control Weather"
+        spell76.level = 8
+        spell76.school = MagicSchool.Transmutation
+        spell76.ritual = false
+        spell76.rangeType = RangeType.PSelf
+        spell76.effectRange1 = 26400
+        spell76.effectRangeType = EffectRangeType.Sphere
+        spell76.componentBlock = (true, true, true)
+        spell76.material = "burning incense and bits of earth and wood mixed in water"
+        spell76.castingTime = "10 minutes"
+        spell76.duration = "Concentration, up to 8 hours"
+        spell76.details = "\tYou take control of the weather within 5 miles of you for the duration. You must be outdoors to cast this spell. Moving to a place where you don't have a clear path to the sky ends the spell early.\n\tWhen you cast the spell, you change the current weather conditions, which are determined by the DM based on the climate and season. You can change precipitation, temperature, and wind. It takes 1d4 x 10 minutes for the new conditions to take effect. Once they do so, you can change the conditions again. When the spell ends, the weather gradually returns to normal.\n\tWhen you change the weather conditions, you may modify the precipitation, temperature, or wind to be slightly more or less sever (or slightly hotter/colder for temperature)."
+        //TODO: put in the weather tables?
+        
+        let spell77: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell77.id = 77
+        spell77.name = "Cordon of Arrows"
+        spell77.level = 2
+        spell77.school = MagicSchool.Transmutation
+        spell77.ritual = false
+        spell77.range = 5
+        spell77.rangeType = RangeType.Target
+        spell77.effectRange1 = 30
+        spell77.effectRangeType = EffectRangeType.Sphere
+        spell77.damageDice = (1, 6)
+        spell77.componentBlock = (true, true, true)
+        spell77.material = "four or more arrows or bolts"
+        spell77.castingTime = "1 action"
+        spell77.duration = "8 hours"
+        spell77.details = "\tYou plant four pieces of nonmagical ammunition - arrows or crossbow bolts - in the ground within range and lay magic upon them to protect an area. Until the spell ends, whenever a creature other than you comes within 30 feet of the ammunition for the first time on a turn or ends its turn there, one piece of ammunition flies up to strike it. The creature must succeed on a Dexterity saving throw or take 1d6 piercing damage. The piece of ammunition is then destroyed. The spell ends when no ammunition remains.\n\tWhen you cast this spell, you can designate any creatures you choose, and the spell ignores them.\n\tWhen using a higher-level spell slot, the amount of ammunition that can be affected increases by two per spell level."
+        
+        let spell78: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell78.id = 78
+        spell78.name = "Counterspell"
+        spell78.level = 3
+        spell78.school = MagicSchool.Abjuration
+        spell78.ritual = false
+        spell78.range = 60
+        spell78.rangeType = RangeType.Target
+        spell78.effectRangeType = EffectRangeType.Target
+        spell78.componentBlock = (false, true, false)
+        spell78.castingTime = "1 reaction, which you take when you see a creature within 60 feet of you casting a spell"
+        spell78.duration = "Instantaneous"
+        spell78.details = "\tYou attempt to interrupt a creature in the process of casting a spell. If the creature is casting a spell of 3rd level or lower, its spell fails and has no effect. If it is casting a spell of 4th level or higher, make an ability check using your spellcasting ability. The DC equals 10 plus the spell's level. On a success, the creature's spell fails and has no effect.\n\tWhen using a higher level spell splot, the interrupted spell has no effect if its level is less than or equal to the spell slot you are using."
+        
+        let spell79: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell79.id = 79
+        spell79.name = "Create Food and Water"
+        spell79.level = 3
+        spell79.school = MagicSchool.Conjuration
+        spell79.ritual = false
+        spell79.range = 30
+        spell79.rangeType = RangeType.Target
+        spell79.effectRangeType = EffectRangeType.Target
+        spell79.componentBlock = (true, true, false)
+        spell79.castingTime = "1 action"
+        spell79.duration = "Instantaneous"
+        spell79.details = "\tYou create 45 pounds of food and 30 gallons of water on the ground or in containers within range, enough to sustain up to fifteen humanoids or five steeds for 24 hours. The food is bland but nourishing, and spoils if uneated after 24 hours. The water is clean and doesn't go bad."
+        
+        let spell80: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell80.id = 80
+        spell80.name = "Create or Destroy Water"
+        spell80.level = 1
+        spell80.school = MagicSchool.Transmutation
+        spell80.ritual = false
+        spell80.range = 30
+        spell80.rangeType = RangeType.Target
+        spell80.effectRangeType = EffectRangeType.Target
+        spell80.componentBlock = (true, true, true)
+        spell80.material = "a drop of water if creating water or a few grains of sand if destroying it"
+        spell80.castingTime = "1 action"
+        spell80.duration = "Instantaneous"
+        spell80.details = "\tYou either create or destroy water.\n  \u{2022} Create water: You create up to 10 gallons of clean water within range in an open container. Alternatively, the water falls as rain in a 30-foot cube within range, extinguishing exposed flames in the area.\n  \u{2022} Destroy Water: You destroy up to 10 gallons of water in an open container within range. Alternatively, you destroy fog in a 30-foot cube within range.\n\tWhen using a higher-level spell slot, you create or destroy 10 additional gallons of water, or the size of the cube increases by 5 feet, for each additional spell level."
+        
+        let spell81: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell81.id = 81
+        spell81.name = "Create Undead"
+        spell81.level = 6
+        spell81.school = MagicSchool.Necromancy
+        spell81.ritual = false
+        spell81.range = 10
+        spell81.rangeType = RangeType.Target
+        spell81.effectRangeType = EffectRangeType.Target
+        spell81.componentBlock = (true, true, true)
+        spell81.material = "one clay pot filled with grave dirt, one clay pot filled with brackish water, and one 150gp black onyx stone for each corpse"
+        spell81.castingTime = "1 minute"
+        spell81.duration = "Instantaneous"
+        spell81.details = "\tYou can cast this spell only at night. Choose up to three corpses of Medium or Small humanoids within range. Each corpse becomes a ghoul under your control. (The DM has game statistics for these creatures.)\n\tAs a bonus action on each of your turns, you can mentally command any creature you animated with this spell if the creature is within 120 feet of you (if you control multiple creatures, you can command any or all of them at the same time, issuing the same command to each one). You decide what action the creature will take and where it will move during its next turn, or you can issue a general command, such as to guard a particular chamber or corridor. If you issue no commands, the creature only defends itself against hostile creatures. Once given an order, the creature continues to follow it until its task is complete.\n\tThe creature is under your control for 24 hours, after which it stops obeying any command you have given it. You may cast this spell again to extend the duration by 24 hours, reasserting control for up to three creatures instead of animating new ones.\n\tWhen using a higher-level spell slot: using a 7th-level spell slots allows you to control four ghouls, while an 8th-level slot allows you to control five ghouls or two ghasts or wights, and a 9th-level spell slot allows you to control six ghouls, three ghasts or wights, or two mummies."
+        
+        let spell82: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell82.id = 82
+        spell82.name = "Creation"
+        spell82.level = 5
+        spell82.school = MagicSchool.Illusion
+        spell82.ritual = false
+        spell82.range = 30
+        spell82.rangeType = RangeType.Target
+        spell82.effectRangeType = EffectRangeType.Target
+        spell82.componentBlock = (true, true, true)
+        spell82.material = "a tiny piece of matter of the same type of the item you plan to create"
+        spell82.castingTime = "1 minute"
+        spell82.duration = "Special"
+        spell82.details = "\tYou pull wisps of shadow material from the Shadowfell to create a nonliving object of vegetable matter within range: soft goods, rope, wood, or something similar. You can also create mineral objects. The object created must be no larger than a 5-foot cube, and the object must be of a form and material that you have seen before.\n\tThe duration depends on the object's material. If creating an object of multiple materials, use the shortest duration:\n  \u{2022} Vegetable Matter: 1 day\n  \u{2022} Stone or Crystal: 12 hours\n  \u{2022} Precious Metals: 1 hour\n  \u{2022} Gems: 10 minutes\n  \u{2022} Adamantite or Mithral: 1 minute\n\tUsing any material created by this spell as another spell's material component causes that spell to fail.\n\tWhen using a higher-level spell slot, the cube increases by 5 feet for each additional spell level."
+        
+        let spell83: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell83.id = 83
+        spell83.name = "Crown of Madness"
+        spell83.level = 2
+        spell83.school = MagicSchool.Enchantment
+        spell83.ritual = false
+        spell83.range = 120
+        spell83.rangeType = RangeType.Target
+        spell83.effectRangeType = EffectRangeType.Target
+        spell83.componentBlock = (true, true, false)
+        spell83.castingTime = "1 action"
+        spell83.duration = "Concentration, up to 1 minute"
+        spell83.details = "\tYou cast this spell on a humanoid target you can see, which must succeed on a Wisdom saving throw or become charmed by you for the duration. While charmed, a twisted crown of jagged iron appears on its head, and a madness glows in its eyes.\n\tThe charmed target must use its action before moving on each of its turns to make a melee attack against a creature other than itself that you mentally choose. The target may act normally if you choose no creature or if none are within its reach.\n\tOn your subsequent turns, you must use your action to maintain control over the target, or the spell ends. Also, the target can make a Wisdom saving throw at the end of each of its turns, ending the spell on a successful save."
+        
+        let spell84: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell84.id = 84
+        spell84.name = "Crusader's Mantle"
+        spell84.level = 3
+        spell84.school = MagicSchool.Evocation
+        spell84.ritual = false
+        spell84.rangeType = RangeType.PSelf
+        spell84.effectRange1 = 30
+        spell84.effectRangeType = EffectRangeType.Sphere
+        spell84.damageDice = (1, 4)
+        spell84.componentBlock = (true, false, false)
+        spell84.castingTime = "1 action"
+        spell84.duration = "Concentration, up to 1 minute"
+        spell84.details = "\tHoly power radiates from you in an aura with a 30-foot radius, awakening boldness in friendly creatures. Until the spell ends, the aura moves with you, centered on you. While in the aura, each nonhostile creature in the aura (including you) deals an extra 1d4 radiant damage when it hits with a weapon attack."
+        
+        let spell85: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell85.id = 85
+        spell85.name = "Cure Wounds"
+        spell85.level = 1
+        spell85.school = MagicSchool.Evocation
+        spell85.ritual = false
+        spell85.rangeType = RangeType.Touch
+        spell85.effectRangeType = EffectRangeType.Target
+        spell85.componentBlock = (true, true, false)
+        spell85.castingTime = "1 action"
+        spell85.duration = "Instantaneous"
+        spell85.details = "\tA creature you touch regains a number of hit points equal to 1d8 plus your spellcasting ability modifier. This spell has no effect on undead or constructs.\n\tWhen using a higher-level spell slot, the healing increases by 1d8 for each additional spell level."
+        
         SpellList.spellListInit(context)
         
         do{
