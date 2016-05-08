@@ -35,6 +35,7 @@
         <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="featureList" inverseEntity="PCharacter" syncable="YES"/>
         <relationship name="feats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Feat" inverseName="inv_featureList" inverseEntity="Feat" syncable="YES"/>
         <relationship name="raceFeatures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RaceFeature" inverseName="inv_featureList" inverseEntity="RaceFeature" syncable="YES"/>
+        <relationship name="spellList" maxCount="1" deletionRule="Cascade" destinationEntity="SpellList" inverseName="inv_featurelist" inverseEntity="SpellList" syncable="YES"/>
     </entity>
     <entity name="Inventory" representedClassName=".Inventory" syncable="YES">
         <attribute name="copper" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -53,6 +54,12 @@
         <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="inv_inventory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Inventory" inverseName="items" inverseEntity="Inventory" syncable="YES"/>
     </entity>
+    <entity name="OtherNotesStrings" representedClassName=".OtherNotesStrings" syncable="YES">
+        <attribute name="charDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="langDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="otherDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="pchar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="otherNotes" inverseEntity="PCharacter" syncable="YES"/>
+    </entity>
     <entity name="PCharacter" representedClassName=".PCharacter" syncable="YES">
         <attribute name="alignment" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="armorClass" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -70,6 +77,7 @@
         <relationship name="background" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Background" inverseName="inv_char" inverseEntity="Background" syncable="YES"/>
         <relationship name="featureList" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="FeatureList" inverseName="character" inverseEntity="FeatureList" syncable="YES"/>
         <relationship name="inventory" maxCount="1" deletionRule="Cascade" destinationEntity="Inventory" inverseName="pchar" inverseEntity="Inventory" syncable="YES"/>
+        <relationship name="otherNotes" maxCount="1" deletionRule="Nullify" destinationEntity="OtherNotesStrings" inverseName="pchar" inverseEntity="OtherNotesStrings" syncable="YES"/>
         <relationship name="pclass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PClass" inverseName="inv_char" inverseEntity="PClass" syncable="YES"/>
         <relationship name="race" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Race" inverseName="inv_char" inverseEntity="Race" syncable="YES"/>
         <relationship name="skillProfs" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SkillProfs" inverseName="pCharacter" inverseEntity="SkillProfs" syncable="YES"/>
@@ -140,6 +148,8 @@
         <relationship name="inv_list" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SpellList" inverseName="spells" inverseEntity="SpellList" syncable="YES"/>
     </entity>
     <entity name="SpellList" representedClassName=".SpellList" syncable="YES">
+        <attribute name="temporary" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <relationship name="inv_featurelist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FeatureList" inverseName="spellList" inverseEntity="FeatureList" syncable="YES"/>
         <relationship name="inv_subclass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subclass" inverseName="freeSpellList" inverseEntity="Subclass" syncable="YES"/>
         <relationship name="pclass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PClass" inverseName="spellList" inverseEntity="PClass" syncable="YES"/>
         <relationship name="spells" toMany="YES" deletionRule="Nullify" destinationEntity="Spell" inverseName="inv_list" inverseEntity="Spell" syncable="YES"/>
@@ -174,26 +184,27 @@
         <relationship name="inv_inventory_w" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Inventory" inverseName="weapons" inverseEntity="Inventory" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ArmorInventoryItem" positionX="-747" positionY="198" width="128" height="105"/>
-        <element name="Background" positionX="-749" positionY="647" width="128" height="135"/>
+        <element name="ArmorInventoryItem" positionX="-306" positionY="1062" width="128" height="105"/>
+        <element name="Background" positionX="-749" positionY="693" width="128" height="135"/>
         <element name="BackgroundFeature" positionX="-551" positionY="648" width="128" height="75"/>
         <element name="CurrentId" positionX="-747" positionY="126" width="128" height="60"/>
         <element name="Feat" positionX="-558" positionY="735" width="128" height="75"/>
-        <element name="Feature" positionX="-308" positionY="495" width="128" height="90"/>
-        <element name="FeatureList" positionX="-362" positionY="297" width="128" height="103"/>
-        <element name="Inventory" positionX="-774" positionY="171" width="128" height="150"/>
-        <element name="InventoryItem" positionX="-765" positionY="180" width="128" height="135"/>
-        <element name="PCharacter" positionX="-576" positionY="126" width="128" height="375"/>
-        <element name="PClass" positionX="-767" positionY="270" width="128" height="180"/>
-        <element name="PersonalSpellList" positionX="-549" positionY="279" width="128" height="135"/>
-        <element name="Race" positionX="-729" positionY="423" width="128" height="195"/>
+        <element name="Feature" positionX="-333" positionY="486" width="128" height="90"/>
+        <element name="FeatureList" positionX="-362" positionY="297" width="128" height="118"/>
+        <element name="Inventory" positionX="-389" positionY="786" width="128" height="150"/>
+        <element name="InventoryItem" positionX="-209" positionY="774" width="128" height="135"/>
+        <element name="PCharacter" positionX="-576" positionY="126" width="128" height="390"/>
+        <element name="PClass" positionX="-864" positionY="216" width="128" height="180"/>
+        <element name="PersonalSpellList" positionX="-738" positionY="-225" width="128" height="135"/>
+        <element name="Race" positionX="-792" positionY="423" width="128" height="195"/>
         <element name="RaceFeature" positionX="-567" positionY="504" width="128" height="75"/>
-        <element name="SkillProfs" positionX="-963" positionY="407" width="128" height="88"/>
+        <element name="SkillProfs" positionX="-972" positionY="407" width="128" height="88"/>
         <element name="Spell" positionX="-164" positionY="159" width="128" height="345"/>
-        <element name="SpellList" positionX="-326" positionY="15" width="128" height="90"/>
-        <element name="Subclass" positionX="-774" positionY="171" width="128" height="135"/>
+        <element name="SpellList" positionX="-326" positionY="15" width="128" height="118"/>
+        <element name="Subclass" positionX="-776" positionY="-45" width="128" height="135"/>
         <element name="Trait" positionX="-981" positionY="774" width="128" height="135"/>
         <element name="TraitList" positionX="-983" positionY="621" width="128" height="90"/>
-        <element name="WeaponInventoryItem" positionX="-756" positionY="189" width="128" height="135"/>
+        <element name="WeaponInventoryItem" positionX="-137" positionY="927" width="128" height="135"/>
+        <element name="OtherNotesStrings" positionX="-774" positionY="-72" width="128" height="105"/>
     </elements>
 </model>

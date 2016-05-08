@@ -40,8 +40,83 @@ class SkillProfs: NSManagedObject {
                 "per": SkillProfs.perMask, "sur": SkillProfs.surMask, "dec": SkillProfs.decMask,
                 "int": SkillProfs.intMask, "prf": SkillProfs.prfMask, "prs": SkillProfs.prsMask]
 
+    /**
+     Table relating the skills to their relevant ability scores. 
+     The index is the index of the skill (overall).
+     The value is a tuple indicating the indexPath for each skill: the first value is the section, the second is the row
+     The section corresponds to an ability score. Notably, Constitution is missing.
+     */
+    static let SkillStatTable: [(Int, Int)] = [
+        (0, 0),
+        (1, 0),
+        (1, 1),
+        (1, 2),
+        (2, 0),
+        (2, 1),
+        (2, 2),
+        (2, 3),
+        (2, 4),
+        (3, 0),
+        (3, 1),
+        (3, 2),
+        (3, 3),
+        (3, 4),
+        (4, 0),
+        (4, 1),
+        (4, 2),
+        (4, 3)
+    ]
+    
+    ///A table containing the long name of all the skills
+    static let skillNameTable: [String] = [
+        "Athletics", "Acrobatics", "Sleight of Hand", "Stealth", "Arcana", "History", "Investigation",
+        "Nature", "Religion", "Animal Handling", "Insight", "Medicine", "Perception", "Survival", "Deception", "Intimidation", "Performance", "Persuasion"
+    ]
     
     //MARK: Get proficiency booleans
+    
+    func getProf(atIndex index: Int)-> Bool{
+        switch(index){
+        case 0:
+            return getAthProf()
+        case 1:
+            return getAcrProf()
+        case 2:
+            return getSleProf()
+        case 3:
+            return getSteProf()
+        case 4:
+            return getArcProf()
+        case 5:
+            return getHisProf()
+        case 6:
+            return getInvProf()
+        case 7:
+            return getNatProf()
+        case 8:
+            return getRelProf()
+        case 9:
+            return getAniProf()
+        case 10:
+            return getInsProf()
+        case 11:
+            return getMedProf()
+        case 12:
+            return getPerProf()
+        case 13:
+            return getSurProf()
+        case 14:
+            return getDecProf()
+        case 15:
+            return getIntProf()
+        case 16:
+            return getPrfProf()
+        case 17:
+            return getPrsProf()
+        default:
+            return false
+        }//switch
+    }//getProf
     
     func getAthProf()->Bool{
         return (profList&SkillProfs.athMask != 0)

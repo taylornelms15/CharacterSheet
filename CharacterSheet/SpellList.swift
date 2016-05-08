@@ -14,6 +14,7 @@ class SpellList: NSManagedObject {
 
     @NSManaged var spells: Set<Spell>
     @NSManaged var pclass: PClass? //Only exists for top-level spell lists
+    @NSManaged var temporary: Bool
     
     //These arrays hold the names of spells per level for easy access
     var cantrips: [String]? = nil
@@ -52,6 +53,45 @@ class SpellList: NSManagedObject {
         return newSpellList
         
     }//appendTo
+    
+    /**
+     Appends another list to this one. Does so destructively.
+     */
+    func appendContentsOf(otherList newSpellList: SpellList){
+        
+        for spell in newSpellList.spells{
+            addSpell(spell: spell)
+        }//for each spell in the other list
+        
+    }//appendContentsOf
+    
+    /**
+     Sets the spells in this list to the array of spells given
+     - Parameter newSpells: the array of spells to which this list will now refer
+     */
+    func setSpellsTo(newSpells: [Spell]){
+        
+        spells.removeAll()
+        
+        for spell in newSpells{
+            addSpell(spell: spell)
+        }//for each spell in the array
+        
+    }//setSpellsTo
+    
+    /**
+     Sets the spells in this list to the contents of the other spell list
+     - Parameter newSpellList: the other spell list whose spells we are copying
+     */
+    func setSpellsTo(otherlist newSpellList: SpellList){
+        
+        spells.removeAll()
+        
+        for spell in newSpellList.spells{
+            addSpell(spell: spell)
+        }//for each spell in other spell list
+        
+    }//setSpellsTo
     
     //MARK: Fetchers
     
@@ -494,8 +534,10 @@ class SpellList: NSManagedObject {
             spellList7.spells.insert(spellResults[i])
         }
         
-        //Warlock
+        //Wizard, Fighter (Eldritch Knight), Rogue (Arcane Trickster)
         let spellList8: SpellList = NSManagedObject(entity: spellListEntity, insertIntoManagedObjectContext: context) as! SpellList
+        let spellList9: SpellList = NSManagedObject(entity: spellListEntity, insertIntoManagedObjectContext: context) as! SpellList
+        let spellList10: SpellList = NSManagedObject(entity: spellListEntity, insertIntoManagedObjectContext: context) as! SpellList
         spellNames =
             [
                 "Acid Splash", "Blade Ward", "Chill Touch", "Dancing Lights", "Fire Bolt", "Friends", "Light", "Mage Hand", "Mending", "Message", "Minor Illusion",
@@ -529,18 +571,29 @@ class SpellList: NSManagedObject {
         spellFetch.predicate = NSPredicate(format: "name IN %@", spellNames)
         spellFetch.sortDescriptors = [NSSortDescriptor(key: "level", ascending: true), NSSortDescriptor(key: "id", ascending: true)]//sort by level, then by id
         classResults = []
+        var classResults2: [PClass] = []
+        var classResults3: [PClass] = []
         spellResults = []
         do{
             classResults = try context.executeFetchRequest(classFetch) as! [PClass]
             spellResults = try context.executeFetchRequest(spellFetch) as! [Spell]
+            classFetch.predicate = NSPredicate(format: "name = %@", "Fighter");
+            classResults2 = try context.executeFetchRequest(classFetch) as! [PClass]
+            classFetch.predicate = NSPredicate(format: "name = %@", "Rogue");
+            classResults3 = try context.executeFetchRequest(classFetch) as! [PClass]
         }catch let error as NSError{
             print("Could not save \(error), \(error.userInfo)")
-        }//classResults[0] is the Wizard class, spellResults[0] are the Wizard spells
+        }//classResults[0] is the Wizard class, spellResults[0] are the Wizard spells, classResults2[0] is the Fighter class
         spellList8.pclass = classResults[0]
+        spellList9.pclass = classResults2[0]
+        spellList10.pclass = classResults3[0]
         
         for i in 0 ..< spellResults.count{
-            spellList8.spells.insert(spellResults[i])
-        }
+            spellList8.spells.insert(spellResults[i])//wizard
+            spellList9.spells.insert(spellResults[i])//fighter
+            spellList10.spells.insert(spellResults[i])//rogue
+        }//for each spell
+        
         
         
     }//spellListInit

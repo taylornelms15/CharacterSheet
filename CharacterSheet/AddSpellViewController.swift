@@ -18,7 +18,6 @@ class AddSpellViewController: CSViewController, UITableViewDataSource, UITableVi
     var delegate: SpellDataReceiverDelegate?
     
     //MARK: Variables
-    var currentClass: PClass? = nil
     var currentSpellList: SpellList? = nil
     var tableHeaders: [(Int, String)] = []
     
@@ -35,6 +34,25 @@ class AddSpellViewController: CSViewController, UITableViewDataSource, UITableVi
         addSpellTable.delegate = self
         
     }//viewDidLoad
+    
+    override func viewWillDisappear(animated: Bool) {
+        
+        super.viewWillDisappear(animated)
+        
+        if (currentSpellList != nil && currentSpellList!.temporary){
+            
+            let context: NSManagedObjectContext = currentSpellList!.managedObjectContext!
+            
+            context.deleteObject(currentSpellList!)
+            
+            do{
+                try context.save()
+            }catch let error as NSError{
+                print("Could not save \(error), \(error.userInfo)")
+            }
+            
+        }//if temporary spell list, delete it
+    }//viewWillDisappear
     
     //MARK: UITableView functions
     
@@ -94,6 +112,7 @@ class AddSpellViewController: CSViewController, UITableViewDataSource, UITableVi
         self.delegate!.receiveSpell(thisSpell)
         
         //shut the city down
+        //self.dismissViewControllerAnimated(true, completion: nil)
         self.navigationController!.popViewControllerAnimated(true)
 
     }//didSelectRowAtIndexPath

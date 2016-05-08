@@ -34,6 +34,90 @@ class PClass: NSManagedObject {
 
     }//hitDieLabel
     
+    func getRelevantSpellList(atLevel level: Int, inManagedContext context: NSManagedObjectContext, withSubclass: Subclass?)->SpellList{
+        
+        let slEntity = NSEntityDescription.entityForName("SpellList", inManagedObjectContext: context)!
+        var resultList: SpellList? = nil
+        
+        switch(name!){
+        case "Bard":
+            return self.spellList
+        case "Cleric":
+            return self.spellList
+        case "Druid":
+            return self.spellList
+        case "Fighter"://filter based on level and subclass
+            resultList = NSManagedObject(entity: slEntity, insertIntoManagedObjectContext: context) as? SpellList
+            
+            if (withSubclass != nil && withSubclass!.name == "Eldritch Knight" && level >= 3){
+                
+                resultList!.setSpellsTo(otherlist: self.spellList)//start with base (Wizard) list
+                
+                if (level < 8){
+                    
+                    for spell in resultList!.spells{
+                        if (spell.level > 0 && spell.school != MagicSchool.Evocation && spell.school != MagicSchool.Abjuration){
+                            resultList?.removeSpell(spell: spell)
+                        }//if it's not an abjuration or evocation non-cantrip
+                    }//for each spell in our resulting list
+                    
+                }//if under level 8, filter this shit
+
+            }//if we're an eldritch knight of at least 3rd level
+            
+        case "Paladin":
+            return self.spellList
+        case "Ranger":
+            return self.spellList
+        case "Rogue"://filter based on level and subclass
+            resultList = NSManagedObject(entity: slEntity, insertIntoManagedObjectContext: context) as? SpellList
+            
+            if (withSubclass != nil && withSubclass!.name == "Arcane Trickster" && level >= 3){
+                
+                resultList!.setSpellsTo(otherlist: self.spellList)//start with base (Wizard) list
+                
+                if (level < 8){
+                    
+                    for spell in resultList!.spells{
+                        if (spell.level > 0 && spell.school != MagicSchool.Illusion && spell.school != MagicSchool.Enchantment){
+                            resultList?.removeSpell(spell: spell)
+                        }//if it's not an illusion or enchantment non-cantrip
+                    }//for each spell in our resulting list
+                    
+                }//if under level 8, filter this shit
+                
+            }//if we're an arcane trickster of at least 3rd level
+            
+        case "Sorcerer":
+            return self.spellList
+        case "Warlock"://add sublass options
+            resultList = NSManagedObject(entity: slEntity, insertIntoManagedObjectContext: context) as? SpellList
+            
+            resultList!.setSpellsTo(otherlist: self.spellList)
+            
+            if (withSubclass != nil){
+                let subClassList: SpellList = withSubclass!.freeSpellList!
+                resultList!.appendContentsOf(otherList: subClassList)
+            }//if we have a subclass, put its spells in our options
+            
+        case "Wizard":
+            return self.spellList
+        default:
+            break
+        }
+        
+        resultList!.temporary = true//so it gets cleaned up after we exit the addSpellVc
+        
+        do{
+            try context.save()
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+        return resultList!
+        
+    }//getRelevantSpellList
+    
     static func classesInit(entity: NSEntityDescription, context: NSManagedObjectContext){
         
         let class1 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)

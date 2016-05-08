@@ -36,7 +36,8 @@ class CSVCHandler: NSObject, UITableViewDataSource, UITableViewDelegate, UINavig
     ("Features", "FeaturesViewController"),
     ("Inventory", "InventoryViewController"),
     ("Spells", "SpellViewController"),
-    ("Traits", "TraitsViewController")
+    ("Traits", "TraitsViewController"),
+    ("Other Notes", "OtherNotesViewController")
     ]
     
     weak var splitVC: CSSplitViewController? = nil

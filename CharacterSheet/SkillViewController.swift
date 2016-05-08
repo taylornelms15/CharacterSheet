@@ -9,64 +9,30 @@
 import UIKit
 import CoreData
 
-class SkillViewController: CSViewController, UIScrollViewDelegate{
+class SkillViewController: CSViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource{
     //MARK: Outlets
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var profBonusLabel: UILabel!
-    @IBOutlet weak var mainVertStack: UIStackView!
-    @IBOutlet weak var strBonusLabel: UILabel!
-    @IBOutlet weak var dexBonusLabel: UILabel!
-    @IBOutlet weak var intlBonusLabel: UILabel!
-    @IBOutlet weak var wisBonusLabel: UILabel!
-    @IBOutlet weak var chaBonusLabel: UILabel!
-    @IBOutlet weak var athSwitch: UISwitch!
-    @IBOutlet weak var acrSwitch: UISwitch!
-    @IBOutlet weak var sleSwitch: UISwitch!
-    @IBOutlet weak var steSwitch: UISwitch!
-    @IBOutlet weak var arcSwitch: UISwitch!
-    @IBOutlet weak var hisSwitch: UISwitch!
-    @IBOutlet weak var invSwitch: UISwitch!
-    @IBOutlet weak var natSwitch: UISwitch!
-    @IBOutlet weak var relSwitch: UISwitch!
-    @IBOutlet weak var aniSwitch: UISwitch!
-    @IBOutlet weak var insSwitch: UISwitch!
-    @IBOutlet weak var medSwitch: UISwitch!
-    @IBOutlet weak var perSwitch: UISwitch!
-    @IBOutlet weak var surSwitch: UISwitch!
-    @IBOutlet weak var decSwitch: UISwitch!
-    @IBOutlet weak var intSwitch: UISwitch!
-    @IBOutlet weak var prfSwitch: UISwitch!
-    @IBOutlet weak var prsSwitch: UISwitch!
-    @IBOutlet weak var athBonusLabel: UILabel!
-    @IBOutlet weak var acrBonusLabel: UILabel!
-    @IBOutlet weak var sleBonusLabel: UILabel!
-    @IBOutlet weak var steBonusLabel: UILabel!
-    @IBOutlet weak var arcBonusLabel: UILabel!
-    @IBOutlet weak var hisBonusLabel: UILabel!
-    @IBOutlet weak var invBonusLabel: UILabel!
-    @IBOutlet weak var natBonusLabel: UILabel!
-    @IBOutlet weak var relBonusLabel: UILabel!
-    @IBOutlet weak var aniBonusLabel: UILabel!
-    @IBOutlet weak var insBonusLabel: UILabel!
-    @IBOutlet weak var medBonusLabel: UILabel!
-    @IBOutlet weak var perBonusLabel: UILabel!
-    @IBOutlet weak var surBonusLabel: UILabel!
-    @IBOutlet weak var decBonusLabel: UILabel!
-    @IBOutlet weak var intBonusLabel: UILabel!
-    @IBOutlet weak var prfBonusLabel: UILabel!
-    @IBOutlet weak var prsBonusLabel: UILabel!
     
+    @IBOutlet weak var profBonusLabel: UILabel!
+    @IBOutlet weak var skillTableView: UITableView!
     
     //MARK: variables
     
-    var statBonusLabels: [UILabel] = []
-    var profSwitches: [UISwitch] = []
-    var getSkillProfFuncArray: [()->Bool] = []
-    var profBonusLabels: [UILabel] = []
+    var pchar: PCharacter? = nil
+    var skillProfs: SkillProfs? = nil
     
-    //MARK: Actions
-
-    @IBAction func profChanged(sender: UISwitch) {
+    //MARK: viewcontroller lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        skillTableView.dataSource = self
+        skillTableView.delegate = self
+        
+    }//viewDidLoad
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         //Get our character out
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
@@ -80,157 +46,100 @@ class SkillViewController: CSViewController, UIScrollViewDelegate{
         }
         results[0].updateAScores()
         //Note that now results[0] is our character
-    
-        let index: Int = profSwitches.indexOf(sender)!
         
-        results[0].skillProfs.toggleProficiency(index)
+        pchar = results[0]
+        skillProfs = results[0].skillProfs
         
-        do{
-            try managedContext.save()
-        }catch let error as NSError{
-            print("Could not save \(error), \(error.userInfo)")
-        }
+        profBonusLabel.text = "+\(pchar!.getProfBonus())"
         
-        updateLabels()
-    }
-    
-    
-    //MARK: Other functions
-    
-    func scrollViewDidScroll(sender: UIScrollView) {
-        if (sender.contentOffset.x != 0) {
-            var offset: CGPoint = sender.contentOffset;
-            offset.x = 0;
-            sender.contentOffset = offset;
-        }
-    }
+    }//viewWillAppear
     
     override func viewDidAppear(animated: Bool) {
 
         super.viewDidAppear(animated);
-        
-        
-        statBonusLabels =   [strBonusLabel, dexBonusLabel, intlBonusLabel, wisBonusLabel, chaBonusLabel]
-        profSwitches =      [athSwitch, acrSwitch, sleSwitch, steSwitch, arcSwitch, hisSwitch,
-                             invSwitch, natSwitch, relSwitch, aniSwitch, insSwitch, medSwitch,
-                             perSwitch, surSwitch, decSwitch, intSwitch, prfSwitch, prsSwitch]
-        profBonusLabels =   [athBonusLabel, acrBonusLabel, sleBonusLabel, steBonusLabel, arcBonusLabel, hisBonusLabel,
-                             invBonusLabel, natBonusLabel, relBonusLabel, aniBonusLabel, insBonusLabel, medBonusLabel,
-                             perBonusLabel, surBonusLabel, decBonusLabel, intBonusLabel, prfBonusLabel, prsBonusLabel]
-        
-        
-        
-        //mainVertStack.frame.size.width = scrollView.frame.size.width - 16;
-        
-        updateLabels();
-    }
-    
-    func updateLabels(){
-        
-        //Get our character out
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        let fetchRequest = NSFetchRequest(entityName: "PCharacter");
-        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
-        var results: [PCharacter] = [];
-        do{
-            results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
-        }catch let error as NSError{
-            print("Could not save \(error), \(error.userInfo)")
-        }
-        results[0].updateAScores()
-        //Note that now results[0] is our character
-        
-        let mySkillProfs: SkillProfs = results[0].skillProfs
-        
-        updateStatBonusLabels(results[0].ascores.getStrMod(),
-            newDex: results[0].ascores.getDexMod(),
-            newInt: results[0].ascores.getIntMod(),
-            newWis: results[0].ascores.getWisMod(),
-            newCha: results[0].ascores.getChaMod())
-        
-        getSkillProfFuncArray = [SkillProfs.getAthProf(mySkillProfs),
-            SkillProfs.getAcrProf(mySkillProfs), SkillProfs.getSleProf(mySkillProfs),
-            SkillProfs.getSteProf(mySkillProfs), SkillProfs.getArcProf(mySkillProfs),
-            SkillProfs.getHisProf(mySkillProfs), SkillProfs.getInvProf(mySkillProfs),
-            SkillProfs.getNatProf(mySkillProfs), SkillProfs.getRelProf(mySkillProfs),
-            SkillProfs.getAniProf(mySkillProfs), SkillProfs.getInsProf(mySkillProfs),
-            SkillProfs.getMedProf(mySkillProfs), SkillProfs.getPerProf(mySkillProfs),
-            SkillProfs.getSurProf(mySkillProfs), SkillProfs.getDecProf(mySkillProfs),
-            SkillProfs.getIntProf(mySkillProfs), SkillProfs.getPrfProf(mySkillProfs),
-            SkillProfs.getPrsProf(mySkillProfs)]
-        
-        updateProfSwitches()
-        
-        updateProfBonusLabels(results[0])
-        
-        let profBonus = results[0].getProfBonus();
-        if (profBonus >= 0) {profBonusLabel.text = "+\(profBonus)"}
-        else {profBonusLabel.text = "\(profBonus)"}
-        
-    }//updateLabels
-    
-    func updateStatBonusLabels(newStr: Int, newDex: Int, newInt: Int, newWis: Int, newCha: Int){
-        
-        if (newStr >= 0){strBonusLabel.text = "+\(newStr)"}
-        else {strBonusLabel.text = "\(newStr)"}
-        if (newDex >= 0){dexBonusLabel.text = "+\(newDex)"}
-        else {dexBonusLabel.text = "\(newDex)"}
-        if (newInt >= 0){intlBonusLabel.text = "+\(newInt)"}
-        else {intlBonusLabel.text = "\(newInt)"}
-        if (newWis >= 0){wisBonusLabel.text = "+\(newWis)"}
-        else {wisBonusLabel.text = "\(newWis)"}
-        if (newCha >= 0){chaBonusLabel.text = "+\(newCha)"}
-        else {chaBonusLabel.text = "\(newCha)"}
-        
-    }//updateStatBonusLabels
-    
-    func updateProfSwitches(){
 
-        for i in 0 ..< getSkillProfFuncArray.count{
-            profSwitches[i].setOn(getSkillProfFuncArray[i](), animated: false);
-        }//for
-        
-    }//updateProfSwitches
+    }//viewDidAppear
+
     
-    func updateProfBonusLabels(myChar: PCharacter){
+    //MARK: UITableView functions
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 5
+    }//numberOfSectionsInTableView
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch(section){
+        case 0:
+            return 1
+        case 1:
+            return 3
+        case 2:
+            return 5
+        case 3:
+            return 5
+        case 4:
+            return 4
+        default:
+            return 0
+        }//switch
+    }//numberOfRowsInSection
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        for i in 0 ..< getSkillProfFuncArray.count{
-            let isProf: Bool = getSkillProfFuncArray[i]();
-            var bonus: Int = 0;
-            
-            if (i == 0){//Strength
-                bonus = myChar.ascores.getStrMod();
-                if isProf {bonus += myChar.getProfBonus()}
-                if (bonus >= 0){profBonusLabels[i].text = "+\(bonus)"}
-                else {profBonusLabels[i].text = "\(bonus)"}
-            }
-            else if (i < 4){//Dexterity
-                bonus = myChar.ascores.getDexMod();
-                if isProf {bonus += myChar.getProfBonus()}
-                if (bonus >= 0){profBonusLabels[i].text = "+\(bonus)"}
-                else {profBonusLabels[i].text = "\(bonus)"}
-            }
-            else if (i < 9){//Intelligence
-                bonus = myChar.ascores.getIntMod();
-                if isProf {bonus += myChar.getProfBonus()}
-                if (bonus >= 0){profBonusLabels[i].text = "+\(bonus)"}
-                else {profBonusLabels[i].text = "\(bonus)"}
-            }
-            else if (i < 14){//Wisdom
-                bonus = myChar.ascores.getWisMod();
-                if isProf {bonus += myChar.getProfBonus()}
-                if (bonus >= 0){profBonusLabels[i].text = "+\(bonus)"}
-                else {profBonusLabels[i].text = "\(bonus)"}
-            }
-            else{//Charisma
-                bonus = myChar.ascores.getChaMod();
-                if isProf {bonus += myChar.getProfBonus()}
-                if (bonus >= 0){profBonusLabels[i].text = "+\(bonus)"}
-                else {profBonusLabels[i].text = "\(bonus)"}
-            }
-        }//for
+        let mySkillIndex: Int = SkillProfs.SkillStatTable.indexOf({
+            return $0.0 == indexPath.section && $0.1 == indexPath.row
+        })!
         
-    }//updateProfBonusLabels
+        let cell: SkillTableRowCell = tableView.dequeueReusableCellWithIdentifier("skillTableRow") as! SkillTableRowCell
+        
+        cell.index = mySkillIndex
+        cell.pchar = pchar!
+        cell.skillProfs = skillProfs!
+        
+        let name: String = SkillProfs.skillNameTable[mySkillIndex]
+        
+        cell.rowTitleLabel.text = name
+        
+        cell.updateLabels()
+        
+        return cell
+    }//cellForRowAtIndexPath
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let header: SkillTableHeaderCell = tableView.dequeueReusableCellWithIdentifier("skillTableHeader") as! SkillTableHeaderCell
+        
+        var modVal: Int = 0
+        
+        switch(section){
+        case 0:
+            header.headerTitleLabel.text = "Strength"
+            modVal = pchar!.ascores.getStrMod()
+        case 1:
+            header.headerTitleLabel.text = "Dexterity"
+            modVal = pchar!.ascores.getDexMod()
+        case 2:
+            header.headerTitleLabel.text = "Intelligence"
+            modVal = pchar!.ascores.getIntMod()
+        case 3:
+            header.headerTitleLabel.text = "Wisdom"
+            modVal = pchar!.ascores.getWisMod()
+        case 4:
+            header.headerTitleLabel.text = "Charisma"
+            modVal = pchar!.ascores.getChaMod()
+        default:
+            break
+        }//switch
+        
+        if (modVal < 0){
+            header.headerModLabel.text = "\(modVal)"
+        }
+        else{
+            header.headerModLabel.text = "+\(modVal)"
+        }
+        
+        return header
+        
+    }//viewForHeaderInSection
     
 }//SkillViewController

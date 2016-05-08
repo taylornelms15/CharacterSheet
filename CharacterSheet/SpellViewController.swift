@@ -146,7 +146,7 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
         
-        if (sender!.isKindOfClass(UIBarButtonItem) && (sender! as! UIBarButtonItem) == addSpellButton){
+        if (sender!.isKindOfClass(UIBarButtonItem) && (sender! as! UIBarButtonItem) == addSpellButton){//if we're adding a spell
             let destController: AddSpellViewController = segue.destinationViewController as! AddSpellViewController
             
             
@@ -166,8 +166,7 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
             
             destController.delegate = self
             
-            destController.currentClass = results[0].pclass!
-            destController.currentSpellList = results[0].pclass!.spellList
+            destController.currentSpellList = results[0].pclass!.getRelevantSpellList(atLevel: Int(results[0].level), inManagedContext: context, withSubclass: results[0].subclass)
             
             destController.buildHeaders()
             

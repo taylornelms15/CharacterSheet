@@ -262,7 +262,7 @@ class Feat: Feature {
         feat35.setValue(95, forKey: "id")
         feat35.setValue(true, forKey: "canon")
         feat35.setValue("Ritual Caster", forKey: "name")
-        feat35.setValue("\tYou acquire a ritual book containing two 1st-level spells of your choice from the bard, cleric, druid, sorcerer, warlock, or wizard spell list, provided they have the Ritual tag. You may also add spells you come across in written form. The spellcasting ability for these spells matches that for the class you have chosen.", forKey: "details")
+        feat35.setValue("\tYou acquire a ritual book containing two 1st-level spells of your choice from the bard, cleric, druid, sorcerer, warlock, or wizard spell list, provided they have the Ritual tag. You may also add spells you come across in written form, providing the spell level is no higher than half your level(rounded up), and the spell is a ritual. The spellcasting ability for these spells matches that for the class you have chosen.", forKey: "details")
         
         let feat36 = NSManagedObject(entity: featEntity, insertIntoManagedObjectContext: context) as! Feat
         

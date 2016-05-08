@@ -673,9 +673,30 @@ class Subclass: NSManagedObject {
         subclass33.parentClass = pclassResults[8]
         
         let subclass34: Subclass = NSManagedObject(entity: subclassEntity, insertIntoManagedObjectContext: context) as! Subclass
+        let subclass34Spells: SpellList = NSManagedObject(entity: spellListEntity, insertIntoManagedObjectContext: context) as! SpellList
         subclass34.id = 34
         subclass34.name = "Arcane Trickster"
         subclass34.parentClass = pclassResults[8]
+        subclass34.freeSpellLevelData = [ [],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[] ] //20 empty arrays (level 1 through 20)
+        
+        spellNames = ["Mage Hand"]//Arcane Trickster gets mage hand for free!
+        leveledSpellNames = ["Mage Hand" : 3]
+        
+        spellFetch.predicate = NSPredicate(format: "name IN %@", spellNames)
+        spellFetch.sortDescriptors = [NSSortDescriptor(key: "level", ascending: true), NSSortDescriptor(key: "id", ascending: true)]//sort by level, then by id
+        
+        do{
+            spellResults = try context.executeFetchRequest(spellFetch) as! [Spell]
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        for i in 0..<spellResults.count{
+            subclass34Spells.spells.insert(spellResults[i])
+            let levelIndex: Int = leveledSpellNames[spellResults[i].name]! - 1
+            subclass34.freeSpellLevelData![levelIndex].append(Int(spellResults[i].id))
+        }//for
+        
+        subclass34.freeSpellList = subclass34Spells
         
         //MARK: Sorcerer
         

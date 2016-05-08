@@ -191,7 +191,7 @@ class Spell: NSManagedObject {
         spell1.componentBlock = (true, true, false)
         spell1.castingTime = "1 action"
         spell1.duration = "Instantaneous"
-        spell1.details = "\t\tYou hurl a bubble of acid. Does 1d6 damage to either one creature in range, or two creatues in range within 5 feet of each other. Target must make a Dexterity saving throw, or else takes acid damage.\n\tDamage increases by 1d6 at 5th level, 11th level, and 17th level."
+        spell1.details = "\tYou hurl a bubble of acid. Does 1d6 damage to either one creature in range, or two creatues in range within 5 feet of each other. Target must make a Dexterity saving throw, or else takes acid damage.\n\tDamage increases by 1d6 at 5th level, 11th level, and 17th level."
         
         let spell2: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
         spell2.id = 2

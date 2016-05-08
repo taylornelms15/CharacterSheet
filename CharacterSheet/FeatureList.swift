@@ -15,6 +15,19 @@ class FeatureList: NSManagedObject {
     @NSManaged var backgroundFeatures: Set<Feature>
     @NSManaged var raceFeatures: Set<Feature>
     @NSManaged var feats: Set<Feature>
+    @NSManaged var spellList: SpellList
+    
+    func addSpell(spell: Spell){
+        spellList.addSpell(spell: spell)
+    }//addSpell
+    
+    func removeSpell(spell: Spell){
+        spellList.removeSpell(spell: spell)
+    }//removeSpell
+    
+    func getNumberOfSpells() -> Int{
+        return spellList.spells.count
+    }//getNumberOfSpells
     
     func addFeature(newFeat: Feature){
         

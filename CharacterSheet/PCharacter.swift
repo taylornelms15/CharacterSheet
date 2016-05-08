@@ -34,6 +34,7 @@ class PCharacter: NSManagedObject{
     @NSManaged var spellLists: Set<PersonalSpellList>
     @NSManaged var inventory: Inventory
     @NSManaged var subclass: Subclass?
+    @NSManaged var otherNotes: OtherNotesStrings
     
     var ascores: AScores = AScores();
     
@@ -276,7 +277,6 @@ class PCharacter: NSManagedObject{
     static func createBlankCharacter(context: NSManagedObjectContext)->PCharacter{
         
         let entity = NSEntityDescription.entityForName("PCharacter", inManagedObjectContext: context)!
-        //let tlEntity = NSEntityDescription.entityForName("TraitList", inManagedObjectContext: context)!
         
         let fetchRequest = NSFetchRequest(entityName: "PCharacter");
         fetchRequest.predicate = NSPredicate(format: "id==max(id)")
@@ -312,12 +312,19 @@ class PCharacter: NSManagedObject{
             inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
         let inventory1 = NSManagedObject(entity: NSEntityDescription.entityForName("Inventory",
             inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
+        let otherNotes1 = NSManagedObject(entity: NSEntityDescription.entityForName("OtherNotesStrings",
+            inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
+        
+        let featureSpellList1 = NSManagedObject(entity: NSEntityDescription.entityForName("SpellList",
+            inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
+        featureList1.setValue(featureSpellList1, forKey: "spellList")
 
         
         myCharacter.setValue(skillProfs1, forKey: "SkillProfs")
         myCharacter.setValue(featureList1, forKey: "featureList")
         myCharacter.setValue(traitList1, forKey: "traitList")
         myCharacter.setValue(inventory1, forKey: "inventory")
+        myCharacter.setValue(otherNotes1, forKey: "otherNotes")
         
         do{
             try context.save()
@@ -345,6 +352,12 @@ func characterInit(entity: NSEntityDescription, context: NSManagedObjectContext)
         inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
     let inventory1 = NSManagedObject(entity: NSEntityDescription.entityForName("Inventory",
         inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
+    let otherNotes1 = NSManagedObject(entity: NSEntityDescription.entityForName("OtherNotesStrings",
+        inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
+    
+    let featureSpellList1 = NSManagedObject(entity: NSEntityDescription.entityForName("SpellList",
+        inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
+    featureList1.setValue(featureSpellList1, forKey: "spellList")
     
     character1.setValue(1, forKey: "id");
     character1.setValue("Jason", forKey: "name");
@@ -362,30 +375,8 @@ func characterInit(entity: NSEntityDescription, context: NSManagedObjectContext)
     character1.setValue(0, forKey: "currHp")
     character1.setValue(0, forKey: "maxHp")
     character1.setValue(inventory1, forKey: "inventory")
-    
-    /*
-    
-    let character2 = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
-    let skillProfs2 = NSManagedObject(entity: NSEntityDescription.entityForName("SkillProfs",
-        inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
-    let featureList2 = NSManagedObject(entity: NSEntityDescription.entityForName("FeatureList",
-        inManagedObjectContext:context)!, insertIntoManagedObjectContext: context)
-    skillProfs2.setValue(0, forKey: "profList")
-    
-    
-    character2.setValue(2, forKey: "id");
-    character2.setValue("Ricky", forKey: "name");
-    character2.setValue(4, forKey: "level");
-    character2.setValue(10, forKey: "str");
-    character2.setValue(12, forKey: "dex");
-    character2.setValue(10, forKey: "con");
-    character2.setValue(14, forKey: "intl");
-    character2.setValue(10, forKey: "wis");
-    character2.setValue(10, forKey: "cha");
-    character2.setValue(skillProfs2, forKey: "SkillProfs")
-    character2.setValue(featureList2, forKey: "featureList")
+    character1.setValue(otherNotes1, forKey: "otherNotes")
 
-*/
     
     do{
         try context.save()
