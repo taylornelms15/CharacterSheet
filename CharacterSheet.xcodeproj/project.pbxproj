@@ -19,6 +19,9 @@
 		954481A11CDE480300AC1C82 /* OtherNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954481A01CDE480300AC1C82 /* OtherNotesViewController.swift */; };
 		954481A51CDE4EDB00AC1C82 /* OtherNotesStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954481A31CDE4EDB00AC1C82 /* OtherNotesStrings.swift */; };
 		954481A71CDFDC6500AC1C82 /* SkillTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954481A61CDFDC6500AC1C82 /* SkillTableCells.swift */; };
+		954481AC1CDFFC7600AC1C82 /* ArmorHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 954481AB1CDFFC7600AC1C82 /* ArmorHeader.xib */; };
+		954481AE1CDFFDB300AC1C82 /* WeaponHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 954481AD1CDFFDB300AC1C82 /* WeaponHeader.xib */; };
+		954481B01CDFFE9400AC1C82 /* ItemHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 954481AF1CDFFE9400AC1C82 /* ItemHeader.xib */; };
 		955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955662A71C570B8E00F5C014 /* CSViewController.swift */; };
 		9558A0291CA0DD160037521B /* CollectionViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9558A0281CA0DD160037521B /* CollectionViewCells.swift */; };
 		95649CD91CD595FF002C58A2 /* CustomFeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95649CD81CD595FF002C58A2 /* CustomFeatViewController.swift */; };
@@ -96,6 +99,9 @@
 		954481A01CDE480300AC1C82 /* OtherNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherNotesViewController.swift; sourceTree = "<group>"; };
 		954481A31CDE4EDB00AC1C82 /* OtherNotesStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherNotesStrings.swift; sourceTree = "<group>"; };
 		954481A61CDFDC6500AC1C82 /* SkillTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillTableCells.swift; sourceTree = "<group>"; };
+		954481AB1CDFFC7600AC1C82 /* ArmorHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArmorHeader.xib; sourceTree = "<group>"; };
+		954481AD1CDFFDB300AC1C82 /* WeaponHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeaponHeader.xib; sourceTree = "<group>"; };
+		954481AF1CDFFE9400AC1C82 /* ItemHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemHeader.xib; sourceTree = "<group>"; };
 		955662A71C570B8E00F5C014 /* CSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSViewController.swift; sourceTree = "<group>"; };
 		9558A0281CA0DD160037521B /* CollectionViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCells.swift; sourceTree = "<group>"; };
 		95649CD81CD595FF002C58A2 /* CustomFeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFeatViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +220,7 @@
 				95CF73B41CA76DF2005AD5C8 /* AddSpellViewController.swift */,
 				9576C6821CB1F47800D130AA /* SpellDetailViewController.swift */,
 				95A22B681CA87A44008AA143 /* SpellTableCells.swift */,
+				951AA0F41CB1624E00D399D5 /* PersonalSpellTableHeader.xib */,
 			);
 			name = "Spell ViewControllers";
 			sourceTree = "<group>";
@@ -224,6 +231,9 @@
 				951B4AEF1CB4883D008A04F2 /* InventoryViewController.swift */,
 				9502C30B1CB7EE99009DAFBA /* AddItemTabController.swift */,
 				9502C3091CB6A9D7009DAFBA /* InventoryTableCells.swift */,
+				954481AB1CDFFC7600AC1C82 /* ArmorHeader.xib */,
+				954481AD1CDFFDB300AC1C82 /* WeaponHeader.xib */,
+				954481AF1CDFFE9400AC1C82 /* ItemHeader.xib */,
 			);
 			name = "Inventory ViewControllers";
 			sourceTree = "<group>";
@@ -304,7 +314,6 @@
 				958CBAAF1C56E10E00AD833A /* AppDelegate.swift */,
 				955662A61C570B7600F5C014 /* ViewControllers */,
 				958CBAB71C56E10F00AD833A /* Main.storyboard */,
-				951AA0F41CB1624E00D399D5 /* PersonalSpellTableHeader.xib */,
 				958CBABA1C56E10F00AD833A /* Assets.xcassets */,
 				958CBABC1C56E10F00AD833A /* LaunchScreen.storyboard */,
 				958CBABF1C56E10F00AD833A /* Info.plist */,
@@ -475,8 +484,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				954481B01CDFFE9400AC1C82 /* ItemHeader.xib in Resources */,
+				954481AE1CDFFDB300AC1C82 /* WeaponHeader.xib in Resources */,
 				958CBABE1C56E10F00AD833A /* LaunchScreen.storyboard in Resources */,
 				958CBABB1C56E10F00AD833A /* Assets.xcassets in Resources */,
+				954481AC1CDFFC7600AC1C82 /* ArmorHeader.xib in Resources */,
 				951AA0F51CB1624F00D399D5 /* PersonalSpellTableHeader.xib in Resources */,
 				958CBAB91C56E10F00AD833A /* Main.storyboard in Resources */,
 			);

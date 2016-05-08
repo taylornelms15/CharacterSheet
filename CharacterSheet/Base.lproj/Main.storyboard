@@ -1852,51 +1852,8 @@
                                 <rect key="frame" x="0.0" y="61" width="320" height="398"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="armorHeader" selectionStyle="default" indentationWidth="10" reuseIdentifier="armorHeader" rowHeight="33" id="vys-xl-Le4" customClass="ArmorHeader" customModule="CharacterSheet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="33"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vys-xl-Le4" id="8xI-gp-yVS">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="32"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gwO-UQ-BS0">
-                                                    <rect key="frame" x="8" y="6" width="304" height="20"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Armor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hzo-3b-ETP">
-                                                            <rect key="frame" x="0.0" y="0.0" width="246" height="20"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="755" text="AC:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMC-Ys-x0Q">
-                                                            <rect key="frame" x="254" y="0.0" width="23" height="20"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyE-7Q-qnI">
-                                                            <rect key="frame" x="285" y="0.0" width="19" height="20"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="gwO-UQ-BS0" firstAttribute="centerY" secondItem="8xI-gp-yVS" secondAttribute="centerY" id="Oti-eW-cMP"/>
-                                                <constraint firstItem="gwO-UQ-BS0" firstAttribute="centerX" secondItem="8xI-gp-yVS" secondAttribute="centerX" id="n0D-nh-5gI"/>
-                                                <constraint firstItem="gwO-UQ-BS0" firstAttribute="leading" secondItem="8xI-gp-yVS" secondAttribute="leadingMargin" id="nNo-1f-fk0"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.87197905779999996" green="0.87195301059999997" blue="0.87196779250000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="acLabelLabel" destination="lMC-Ys-x0Q" id="WaD-ME-sRI"/>
-                                            <outlet property="acValueLabel" destination="eyE-7Q-qnI" id="eYd-xS-ZU0"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="armorInventoryCell" id="VYD-6w-C11" customClass="ArmorTableCell" customModule="CharacterSheet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="61" width="320" height="77"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VYD-6w-C11" id="fiw-4o-qJH">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
@@ -1964,81 +1921,8 @@
                                             <outlet property="nameField" destination="sZO-iH-Mq0" id="rRe-3D-D0l"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="weaponHeader" selectionStyle="default" indentationWidth="10" reuseIdentifier="weaponHeader" rowHeight="33" id="GOx-OX-pLn" customClass="WeaponHeader" customModule="CharacterSheet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="138" width="320" height="33"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GOx-OX-pLn" id="jmi-Dp-NHB">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="32"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VmA-rU-n3p">
-                                                    <rect key="frame" x="8" y="2" width="304" height="28"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Weapons" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RL6-9t-1oo">
-                                                            <rect key="frame" x="0.0" y="0.0" width="157" height="28"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bhI-sR-bEH">
-                                                            <rect key="frame" x="165" y="0.0" width="139" height="28"/>
-                                                            <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1c0-W5-JYV">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="139" height="14"/>
-                                                                    <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Melee Attack Bonus:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ngn-mA-HiP">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="116" height="14"/>
-                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
-                                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+6" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbQ-6k-JeP">
-                                                                            <rect key="frame" x="124" y="0.0" width="15" height="14"/>
-                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
-                                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                </stackView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9qA-YQ-aO6">
-                                                                    <rect key="frame" x="0.0" y="14" width="139" height="14"/>
-                                                                    <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ranged Attack Bonus:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycT-VE-DgW">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="116" height="14"/>
-                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
-                                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpk-hY-LY0">
-                                                                            <rect key="frame" x="124" y="0.0" width="15" height="14"/>
-                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
-                                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                </stackView>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="ycT-VE-DgW" firstAttribute="trailing" secondItem="Ngn-mA-HiP" secondAttribute="trailing" id="6sj-xU-J02"/>
-                                                            </constraints>
-                                                        </stackView>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="VmA-rU-n3p" firstAttribute="leading" secondItem="jmi-Dp-NHB" secondAttribute="leadingMargin" id="7Yi-7c-hj3"/>
-                                                <constraint firstItem="VmA-rU-n3p" firstAttribute="centerY" secondItem="jmi-Dp-NHB" secondAttribute="centerY" id="GPp-ga-rkP"/>
-                                                <constraint firstItem="VmA-rU-n3p" firstAttribute="centerX" secondItem="jmi-Dp-NHB" secondAttribute="centerX" id="wDZ-1K-fPM"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.87197905779999996" green="0.87195301059999997" blue="0.87196779250000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="meleeBonusLabel" destination="GbQ-6k-JeP" id="CTe-t4-FnJ"/>
-                                            <outlet property="rangedBonusLabel" destination="Mpk-hY-LY0" id="0zR-wh-TYy"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="weaponInventoryCell" id="Ydi-sA-xhK" customClass="WeaponTableCell" customModule="CharacterSheet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="171" width="320" height="77"/>
+                                        <rect key="frame" x="0.0" y="105" width="320" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ydi-sA-xhK" id="alj-8T-cXe">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
@@ -2146,56 +2030,8 @@
                                             <outlet property="nameField" destination="02T-0q-CoR" id="D9v-jW-7Em"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="itemHeader" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemHeader" rowHeight="33" id="KwG-v3-04i" customClass="ItemHeader" customModule="CharacterSheet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="248" width="320" height="33"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KwG-v3-04i" id="mdd-Ij-Cht">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="32"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="a0S-Zj-KQb">
-                                                    <rect key="frame" x="8" y="6" width="304" height="20"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Items" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grG-Q3-ymR">
-                                                            <rect key="frame" x="0.0" y="0.0" width="142" height="20"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="755" text="Pack Weight:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eZ-Z9-VM2">
-                                                            <rect key="frame" x="150" y="0.0" width="85" height="20"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6CN-ea-zKS">
-                                                            <rect key="frame" x="243" y="0.0" width="29" height="20"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lbs." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DpK-v0-umO">
-                                                            <rect key="frame" x="280" y="0.0" width="24" height="20"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="a0S-Zj-KQb" firstAttribute="centerX" secondItem="mdd-Ij-Cht" secondAttribute="centerX" id="Eq0-3A-GMr"/>
-                                                <constraint firstItem="a0S-Zj-KQb" firstAttribute="leading" secondItem="mdd-Ij-Cht" secondAttribute="leadingMargin" id="PTF-MZ-xnu"/>
-                                                <constraint firstItem="a0S-Zj-KQb" firstAttribute="centerY" secondItem="mdd-Ij-Cht" secondAttribute="centerY" id="TAb-z6-sBc"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.87197905779999996" green="0.87195301059999997" blue="0.87196779250000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="weightLabel" destination="6CN-ea-zKS" id="Zb0-Ui-Vui"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemInventoryCell" id="9RO-X9-zsL" customClass="ItemTableCell" customModule="CharacterSheet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="281" width="320" height="77"/>
+                                        <rect key="frame" x="0.0" y="182" width="320" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9RO-X9-zsL" id="4rE-yD-PP5">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
@@ -2259,7 +2095,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9S4-ql-Cpa">
                                 <rect key="frame" x="0.0" y="460" width="320" height="44"/>
                                 <items>
-                                    <barButtonItem title="Remove" id="KJl-1w-R4D"/>
+                                    <barButtonItem title="Remove" id="KJl-1w-R4D">
+                                        <connections>
+                                            <action selector="removeItemButtonPressed:" destination="QNK-V5-nyP" id="g23-tQ-ERZ"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="pJ5-qA-Ar7"/>
                                     <barButtonItem systemItem="add" id="PAI-RT-wKa">
                                         <connections>
@@ -2296,9 +2136,11 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="addItemButton" destination="PAI-RT-wKa" id="yRL-cZ-Ck5"/>
                         <outlet property="copperField" destination="Bod-gA-MDg" id="ScK-4Q-gbO"/>
                         <outlet property="goldField" destination="bfS-WI-i82" id="5QP-SM-PqN"/>
                         <outlet property="inventoryTableView" destination="Q5z-dW-WF1" id="0MO-2k-4JB"/>
+                        <outlet property="removeItemButton" destination="KJl-1w-R4D" id="oJO-D7-QeR"/>
                         <outlet property="silverField" destination="BVO-Nl-hDp" id="6kG-kp-AMG"/>
                     </connections>
                 </viewController>

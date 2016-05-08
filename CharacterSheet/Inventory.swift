@@ -74,6 +74,30 @@ class Inventory: NSManagedObject {
         
     }//addWeaponItem
     
+    //MARK: Removing functions
+    
+    func removeItem(item: InventoryItem){
+        
+        var currentIndex: Int = 0
+        
+        if (item.isMemberOfClass(ArmorInventoryItem)){
+            currentIndex = armor.indexOfObject(item as! ArmorInventoryItem)
+            
+            armor.removeObjectAtIndex(currentIndex)//will decrement indexes appropriately
+        }//armor
+        else if (item.isMemberOfClass(WeaponInventoryItem)){
+            currentIndex = weapons.indexOfObject(item as! WeaponInventoryItem)
+            
+            weapons.removeObjectAtIndex(currentIndex)
+        }//weapon
+        else{
+            currentIndex = items.indexOfObject(item)
+            
+            items.removeObjectAtIndex(currentIndex)
+        }//item
+        
+    }//removeItem
+    
     //MARK: modification functions
     
     func changeName(item: InventoryItem, newName: String){

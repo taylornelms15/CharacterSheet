@@ -22,7 +22,7 @@ protocol InventoryTableCell{
     
 }//InventoryTableCell
 
-class InventoryTableHeader: UITableViewCell{
+class InventoryTableHeader: UITableViewHeaderFooterView{
     
     func setLabelsWithInventory(inventory: Inventory){}
     
@@ -32,7 +32,7 @@ class ArmorHeader: InventoryTableHeader{
     
     //MARK: Outlets
     @IBOutlet weak var acValueLabel: UILabel!
-    @IBOutlet weak var acLabelLabel: UILabel!
+
     
     override func setLabelsWithInventory(inventory: Inventory){
         

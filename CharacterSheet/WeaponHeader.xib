@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="WeaponHeader" id="iN0-l3-epB" customClass="WeaponHeader" customModule="CharacterSheet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1gB-fA-NYY">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FhV-xS-sM7">
+                            <rect key="frame" x="8" y="0.0" width="384" height="50"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Weapons" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2p-Kd-D8R">
+                                    <rect key="frame" x="0.0" y="0.0" width="237" height="50"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Gct-BR-eKq">
+                                    <rect key="frame" x="245" y="0.0" width="139" height="50"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rx7-bW-fAm">
+                                            <rect key="frame" x="0.0" y="0.0" width="139" height="25"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Melee Attack Bonus:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UrM-LH-SHj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="116" height="25"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+6" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flg-oW-gcx">
+                                                    <rect key="frame" x="124" y="0.0" width="15" height="25"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dFt-z0-Ds7">
+                                            <rect key="frame" x="0.0" y="25" width="139" height="25"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ranged Attack Bonus:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egD-7X-cY3">
+                                                    <rect key="frame" x="0.0" y="0.0" width="116" height="25"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6M-qU-bBP">
+                                                    <rect key="frame" x="124" y="0.0" width="15" height="25"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dFt-z0-Ds7" firstAttribute="height" secondItem="rx7-bW-fAm" secondAttribute="height" id="YEt-Dg-MBB"/>
+                                        <constraint firstItem="egD-7X-cY3" firstAttribute="trailing" secondItem="UrM-LH-SHj" secondAttribute="trailing" id="mHo-Up-mhe"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.87197905779999996" green="0.87195301059999997" blue="0.87196779250000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="FhV-xS-sM7" firstAttribute="leading" secondItem="1gB-fA-NYY" secondAttribute="leadingMargin" id="HvD-vh-g6y"/>
+                        <constraint firstAttribute="trailingMargin" secondItem="FhV-xS-sM7" secondAttribute="trailing" id="bND-WA-4vm"/>
+                        <constraint firstItem="FhV-xS-sM7" firstAttribute="top" secondItem="1gB-fA-NYY" secondAttribute="top" id="fnx-jz-rLb"/>
+                        <constraint firstAttribute="bottom" secondItem="FhV-xS-sM7" secondAttribute="bottom" id="wiU-ic-dgK"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="1gB-fA-NYY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="76b-5w-3KU"/>
+                <constraint firstItem="1gB-fA-NYY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="YRs-bT-rKx"/>
+                <constraint firstAttribute="trailing" secondItem="1gB-fA-NYY" secondAttribute="trailing" id="bi3-X1-TfO"/>
+                <constraint firstAttribute="bottom" secondItem="1gB-fA-NYY" secondAttribute="bottom" id="yw3-tm-s2o"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="meleeBonusLabel" destination="flg-oW-gcx" id="MHh-il-XdE"/>
+                <outlet property="rangedBonusLabel" destination="n6M-qU-bBP" id="nVh-UD-bag"/>
+            </connections>
+        </view>
+    </objects>
+</document>

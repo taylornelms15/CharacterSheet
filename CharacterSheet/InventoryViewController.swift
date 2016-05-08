@@ -20,6 +20,8 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var silverField: UITextField!
     @IBOutlet weak var copperField: UITextField!
     @IBOutlet weak var inventoryTableView: UITableView!
+    @IBOutlet weak var addItemButton: UIBarButtonItem!
+    @IBOutlet weak var removeItemButton: UIBarButtonItem!
     
     var headers: [String] = ["Armor", "Weapons", "Items"]
     
@@ -39,6 +41,17 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
         })
         
     }//addItemButtonPressed
+
+    @IBAction func removeItemButtonPressed(sender: UIBarButtonItem) {
+        
+        if (inventoryTableView.editing){
+            takeOutOfEditingMode()
+        }//if we're in editing mode
+        else{
+            putIntoEditingMode()
+        }//if we're not in editing mode
+        
+    }//removeItemButtonPressed
     
     /**
      The idea is to call this from the addItem pages, and by doing so close things out and then add the item to the inventory
@@ -77,6 +90,15 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let armorHeaderNib: UINib = UINib(nibName: "ArmorHeader", bundle: nil)
+        let weaponHeaderNib: UINib = UINib(nibName: "WeaponHeader", bundle: nil)
+        let itemHeaderNib: UINib = UINib(nibName: "ItemHeader", bundle: nil)
+        inventoryTableView.registerNib(armorHeaderNib, forHeaderFooterViewReuseIdentifier: "armorHeader")
+        inventoryTableView.registerNib(weaponHeaderNib, forHeaderFooterViewReuseIdentifier: "weaponHeader")
+        inventoryTableView.registerNib(itemHeaderNib, forHeaderFooterViewReuseIdentifier: "itemHeader")
+        
+        
+        
         //Get our character out
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
@@ -114,6 +136,13 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
         }
         
     }//viewWillAppear
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        takeOutOfEditingMode()
+        
+    }//viewWillDisappear
     
     //MARK: UITextFieldDelegate functions
     
@@ -218,11 +247,11 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
         
         switch(section){
         case 0:
-            header = tableView.dequeueReusableCellWithIdentifier("armorHeader") as! ArmorHeader
+            header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("armorHeader") as! ArmorHeader
         case 1:
-            header = tableView.dequeueReusableCellWithIdentifier("weaponHeader") as! WeaponHeader
+            header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("weaponHeader") as! WeaponHeader
         default:
-            header = tableView.dequeueReusableCellWithIdentifier("itemHeader") as! ItemHeader
+            header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("itemHeader") as! ItemHeader
         }//switch
         
         header!.setLabelsWithInventory(thisInventory!)
@@ -230,6 +259,10 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
         return header
 
     }//viewForHeaderInSection
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 33
+    }//heightForHeaderInSection
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return headers[section]
@@ -263,9 +296,7 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
             myItem = thisInventory!.getItemAtIndex(index: indexPath.row)
             
         default:
-            
             return cell
-            
         }//switch
         
         myCell!.setInfoWithItem(item: myItem!)
@@ -274,6 +305,57 @@ class InventoryViewController: CSViewController, UITableViewDataSource, UITableV
         
         return myCell as! UITableViewCell
     }//cellForRowAtIndexPath
+    
+    //MARK: Table editing and removal functions
+    
+    func putIntoEditingMode(){
+        
+        inventoryTableView.setEditing(true, animated: true)
+        
+        addItemButton.enabled = false
+        removeItemButton.title = "Cancel"
+        
+    }//putIntoEditingMode
+    
+    func takeOutOfEditingMode(){
+        
+        inventoryTableView.setEditing(false, animated: true)
+        
+        addItemButton.enabled = true
+        removeItemButton.title = "Remove"
+        
+    }//takeOutOfEditingMode
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if (editingStyle == .Delete){
+            
+            var myItem: InventoryItem? = nil
+            
+            switch(indexPath.section){
+            case 0://Armor
+                
+                myItem = thisInventory!.getArmorAtIndex(index: indexPath.row)
+                
+            case 1://Weapon
+                
+                myItem = thisInventory!.getWeaponAtIndex(index: indexPath.row)
+                
+            case 2://Item
+                
+                myItem = thisInventory!.getItemAtIndex(index: indexPath.row)
+                
+            default:
+                break
+            }//switch
+            
+            thisInventory!.removeItem(myItem!)
+            
+            tableView.reloadData()
+            
+        }//if deleting
+        
+    }//commitEditingStyle
     
     //MARK: helper functions
     
