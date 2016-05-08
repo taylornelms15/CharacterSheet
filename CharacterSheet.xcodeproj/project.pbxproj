@@ -15,7 +15,7 @@
 		9502C30C1CB7EE99009DAFBA /* AddItemTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9502C30B1CB7EE99009DAFBA /* AddItemTabController.swift */; };
 		951AA0F51CB1624F00D399D5 /* PersonalSpellTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 951AA0F41CB1624E00D399D5 /* PersonalSpellTableHeader.xib */; };
 		951B4AF01CB4883D008A04F2 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951B4AEF1CB4883D008A04F2 /* InventoryViewController.swift */; };
-		954167781CDD4F6700C65BDD /* InitTests1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954167771CDD4F6700C65BDD /* InitTests1.swift */; };
+		954167781CDD4F6700C65BDD /* InitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954167771CDD4F6700C65BDD /* InitTests.swift */; };
 		954481A11CDE480300AC1C82 /* OtherNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954481A01CDE480300AC1C82 /* OtherNotesViewController.swift */; };
 		954481A51CDE4EDB00AC1C82 /* OtherNotesStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954481A31CDE4EDB00AC1C82 /* OtherNotesStrings.swift */; };
 		954481A71CDFDC6500AC1C82 /* SkillTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954481A61CDFDC6500AC1C82 /* SkillTableCells.swift */; };
@@ -92,7 +92,7 @@
 		9502C30B1CB7EE99009DAFBA /* AddItemTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemTabController.swift; sourceTree = "<group>"; };
 		951AA0F41CB1624E00D399D5 /* PersonalSpellTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalSpellTableHeader.xib; sourceTree = "<group>"; };
 		951B4AEF1CB4883D008A04F2 /* InventoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
-		954167771CDD4F6700C65BDD /* InitTests1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitTests1.swift; sourceTree = "<group>"; };
+		954167771CDD4F6700C65BDD /* InitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitTests.swift; sourceTree = "<group>"; };
 		954481A01CDE480300AC1C82 /* OtherNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherNotesViewController.swift; sourceTree = "<group>"; };
 		954481A31CDE4EDB00AC1C82 /* OtherNotesStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherNotesStrings.swift; sourceTree = "<group>"; };
 		954481A61CDFDC6500AC1C82 /* SkillTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillTableCells.swift; sourceTree = "<group>"; };
@@ -316,7 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				958CBAC81C56E10F00AD833A /* CharacterSheetTests.swift */,
-				954167771CDD4F6700C65BDD /* InitTests1.swift */,
+				954167771CDD4F6700C65BDD /* InitTests.swift */,
 				958CBACA1C56E10F00AD833A /* Info.plist */,
 			);
 			path = CharacterSheetTests;
@@ -561,7 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				958CBAC91C56E10F00AD833A /* CharacterSheetTests.swift in Sources */,
-				954167781CDD4F6700C65BDD /* InitTests1.swift in Sources */,
+				954167781CDD4F6700C65BDD /* InitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
