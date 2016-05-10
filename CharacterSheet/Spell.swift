@@ -152,12 +152,11 @@ class Spell: NSManagedObject {
     }//rangeString
     
     /**
-    Returns a string representing the "V, S, M" block as needed.
+    Returns a string representing the "V, S, M" block as needed, with the material involved
     Implemented in a succinct but virtually unreadable way, involving 5 ternary operators in a line.
-    
     */
     func componentString()->String{
-        return "\(verbalComponent ? "V" : "")\(verbalComponent && somaticComponent ? ", " : "")\(somaticComponent ? "S" : "")\(materialComponent && (verbalComponent || somaticComponent) ? ", " : "")\(materialComponent ? "M" : "")"
+        return "\(verbalComponent ? "V" : "")\(verbalComponent && somaticComponent ? ", " : "")\(somaticComponent ? "S" : "")\(materialComponent && (verbalComponent || somaticComponent) ? ", " : "")\(materialComponent ? "M (\(material!))" : "")"
     }//componentString
     
     func levelTypeString()->String{
@@ -1815,6 +1814,182 @@ class Spell: NSManagedObject {
         spell112.castingTime = "1 action"
         spell112.duration = "Instantaneous"
         spell112.details = "\tWhispering to the spirits of nature, you create one of the following effects within range:\n  \u{2022} You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect persists for 1 round.\n  \u{2022} You instantly make a flower blossom, a seed pod open, or a leaf bud bloom.\n  \u{2022} You create an instantaneous, harmless seonsory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint odor of a skunk. The effect must fit in a 5-foot cube.\n  \u{2022} You instantly light or snuff out a candle, a torch, or a small campfire."
+        
+        let spell113: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell113.id = 113
+        spell113.name = "Earthquake"
+        spell113.level = 8
+        spell113.school = MagicSchool.Evocation
+        spell113.ritual = false
+        spell113.range = 500
+        spell113.rangeType = RangeType.Target
+        spell113.effectRange1 = 100
+        spell113.effectRangeType = EffectRangeType.Sphere
+        spell113.damageDice = (5, 6)
+        spell113.componentBlock = (true, true, true)
+        spell113.material = "a pinch of dirt, a piece of rock, and a lump of clay"
+        spell113.castingTime = "1 action"
+        spell113.duration = "Concentration, up to 1 minute"
+        spell113.details = "\tYou create a seismic disturbance at a point on the ground that you can see within range. For the duration, an intense tremor rips through the ground in a 100-foot-radius circle centered on that point and shakes creatures and structures in contact with the ground in that area.\n\tThe ground in the area becomes difficult terrain. Each creature on the ground that is concentrating must make a Constitution saving throw. On a failed save, the creature's concentration is broken.\n\tWhen you cast this spell and at the end of each turn you spend concentrating on it, each creature on the ground in the area must make a Dexterity saving throw. On a failed save, the creature is knocked prone.\n\tThis spell can have additional effects depending on the terrain in the area, as determined by the DM.\n  \u{2022} Fissures: Fissures open throughout the spell's area at the start of your next turn after you cast the spell. A total of 1d6 such fissures open in locations chosen by the DM. Each is 1d10x10 feet deep, 10 feet wide, and extends from one edge of the spell's area to the opposite side. A creature standing on a spot where a fissure opens must succeed on a Dexterity saving throw or fall in. A creature that successfully saves moves with the fissures edge as it opens.\n\tA fissure that opens beneath a structure causes it to automatically collapse.\n  \u{2022} Structures: The tremor deals 50 bludgeoning damage to any structure in contact with the ground in the area when you cast the spell and at the start of each of your turns until the spell ends. If a structure drops to 0hp, it collapses and potentially damages nearby creatures. A creature within half the distance of a structure's height must make a Dexterity saving throw. On a failed save, the creature takes 5d6 bludgeoning damage, is knocked prone, and is buried in the rubble, requiring a DC 20 Athletics check as an action to escape. The DM can adjust the DC higher or lower depending on the nature of the rubble. On a successful save, the creature takes half as much damage and doesn't fall prone or become buried."
+        
+        let spell114: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell114.id = 114
+        spell114.name = "Eldritch Blast"
+        spell114.level = 0
+        spell114.school = MagicSchool.Evocation
+        spell114.ritual = false
+        spell114.range = 120
+        spell114.rangeType = RangeType.Target
+        spell114.effectRangeType = EffectRangeType.Target
+        spell114.damageDice = (1, 10)
+        spell114.componentBlock = (true, true, false)
+        spell114.castingTime = "1 action"
+        spell114.duration = "Instantaneous"
+        spell114.details = "\tA beam of cracking energy streaks toward a creature within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 force damage.\n\tThe spell creates more than one beam when you reach higher levels: two beams at 5th level, three beams at 11th level, and four beams at 17th level. You can direct the beams at the same target or at different ones. Make a separate attack roll for each beam."
+        
+        let spell115: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell115.id = 115
+        spell115.name = "Elemental Weapon"
+        spell115.level = 3
+        spell115.school = MagicSchool.Transmutation
+        spell115.ritual = false
+        spell115.rangeType = RangeType.Touch
+        spell115.effectRangeType = EffectRangeType.Target
+        spell115.damageDice = (1, 4)
+        spell115.componentBlock = (true, true, false)
+        spell115.castingTime = "1 action"
+        spell115.duration = "Concentration, up to 1 hour"
+        spell115.details = "\tA nonmagical weapon you touch becomes a magic weapon. Choose one of the following damage types: acid, cold, fire, lightning, or thunder. For the duration, the weapon has a +1 bonus to attack rolls and deals an extra 1d4 damage of the chosen type when it hits.\n\tWhen using a higher-level spell slot, the bonus to attack rolls increases by 1 and the extra damage increases by 1d4 for each two additional spell levels."
+        
+        let spell116: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell116.id = 116
+        spell116.name = "Enhance Ability"
+        spell116.level = 2
+        spell116.school = MagicSchool.Transmutation
+        spell116.ritual = false
+        spell116.rangeType = RangeType.Touch
+        spell116.effectRangeType = EffectRangeType.Target
+        spell116.componentBlock = (true, true, true)
+        spell116.material = "fur or a feather from a beast"
+        spell116.castingTime = "1 action"
+        spell116.duration = "Concentration, up to 1 hour"
+        spell116.details = "\tYou touch a creature and bestow upon it a magical enhancement. Choose one of the following effects; the target gains that effect until the spell ends.\n  \u{2022} Bear's Endurance: The target has advantage on Constitution checks. It also gains 2d6 temporary hit points, which are lost when the spell ends.\n  \u{2022} Bull's Strength: The target has advantage on Strength checks, and his or her carrying capacity doubles.\n  \u{2022} Cat's Grace: The target has advantage on Dexterity checks. It also doesn't take damage from falling 20 feet or less if it isn't incapacitated.\n  \u{2022} Eagle's Splendor: The target has advantage on Charisma checks.\n  \u{2022} Fox's Cunning: The target has advantage on Intelligence checks.\n  \u{2022} Owl's Wisdom: The target has advantage on Wisdom checks.\n\tWhen using a higher-level spell slot, you can target an additional creature for each additional spell level."
+        
+        let spell117: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell117.id = 117
+        spell117.name = "Enlarge/Reduce"
+        spell117.level = 2
+        spell117.school = MagicSchool.Transmutation
+        spell117.ritual = false
+        spell117.range = 30
+        spell117.rangeType = RangeType.Target
+        spell117.effectRangeType = EffectRangeType.Target
+        spell117.componentBlock = (true, true, true)
+        spell117.material = "a pinch of powdered iron"
+        spell117.castingTime = "1 action"
+        spell117.duration = "Concentration, up to 1 minute"
+        spell117.details = "\tYou cause a creature or an object you can see within range to grow larger or smaller for the duration. Choose either a creature or an object that is neither worn nor carried. If the target is unwilling, it can make a Constitution saving throw. On a success, the spell has no effect.\n\tIf the target is a creature, everything it is wearing and carrying changes size with it. Any item dropped by an affected creature returns to normal size at once.\n  \u{2022} Enlarge: The target's size doubles in all dimensions, and its weight is multiplied by eight. This growth increases its size by one category. If there isn't enough room for the target to double its size, the creature or object attains the maximum possible size in the space available. Until the spell ends, the target has advantage on Strength checks and Strength saving throws. The target's weapons also grow to match its new size. While these weapons are enlarged, the target's attacks with them deal 1d4 extra damage.\n  \u{2022} Reduce: The target's size is halved in all dimensions, and its weight is reduced to one-eighth of normal. This reduction decreases its size by one category. Until the spell ends, the target also has disadvantage on Strength checks and Strength saving throws. The target's weapons also shrink to match its new size. While these weapons are reduced, the target's attacks with them deal 1d4 less damage (though will not reduce their damage below 1)."
+        
+        let spell118: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell118.id = 118
+        spell118.name = "Ensnaring Strike"
+        spell118.level = 1
+        spell118.school = MagicSchool.Conjuration
+        spell118.ritual = false
+        spell118.rangeType = RangeType.PSelf
+        spell118.effectRangeType = EffectRangeType.Target
+        spell118.damageDice = (1, 6)
+        spell118.componentBlock = (true, false, false)
+        spell118.castingTime = "1 bonus action"
+        spell118.duration = "Concentration, up to 1 minute"
+        spell118.details = "\tThe next time you hit a creature with a weapon attack before this spell ends, a writhing mass of thorny vines appears at the point of impact, and the target must succeed on a Strength saving throw or be restrained by the magical vines until the spell ends. A Large or larger creature has advantage on this saving throw. If the target succeeds on the save, the vines shrivel away.\n\tWhile restrained by this spell, the target takes 1d6 piercing damage at the start of each of its turns. A creature restrained by the vines or one that can touch the creature can use its action to make a Strength check against your spell save DC. On a success, the target is freed.\n\tWhen using a higher-level spell slot, the damage increases by 1d6 for each additional spell level."
+        
+        let spell119: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell119.id = 119
+        spell119.name = "Entangle"
+        spell119.level = 1
+        spell119.school = MagicSchool.Conjuration
+        spell119.ritual = false
+        spell119.range = 90
+        spell119.rangeType = RangeType.Target
+        spell119.effectRange1 = 20
+        spell119.effectRangeType = EffectRangeType.Cube
+        spell119.componentBlock = (true, true, false)
+        spell119.castingTime = "1 action"
+        spell119.duration = "Concentration, up to 1 minute"
+        spell119.details = "\tGrasping weeds and vines sprout from the ground in a 20-foot square starting from a point within range. For the duration, these plants turn the ground in the area into difficult terrain.\n\tA creature in the area when you cast the spell must succeed on a Strength saving throw or be restrained by the entangling plants until the spell ends. A creature restrained by the plants can use its action to make a Strength check against your spell save DC. On a success, it frees itself.\n\tWhen the spell ends, the conjured plants wilt away."
+        
+        let spell120: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell120.id = 120
+        spell120.name = "Enthrall"
+        spell120.level = 2
+        spell120.school = MagicSchool.Enchantment
+        spell120.ritual = false
+        spell120.range = 90
+        spell120.rangeType = RangeType.Target
+        spell120.effectRangeType = EffectRangeType.Target
+        spell120.componentBlock = (true, true, false)
+        spell120.castingTime = "1 action"
+        spell120.duration = "1 minute"
+        spell120.details = "\tYou weave a distracting string of words, causing creatures of your choice that you can see within range and that can hear you to make a Wisdom saving throw. Any creatures that can't be charmed automatically succeed this throw, and if you or your companions are fighting a creature, it has advantage on this throw. On a failed save, the target has disadvantage on Perception checks made to perceive any creature other than you until the spell ends or until the target can no longer hear you. The spell ends if you are incapacitated or can no longer speak."
+        
+        let spell121: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell121.id = 121
+        spell121.name = "Etherealness"
+        spell121.level = 7
+        spell121.school = MagicSchool.Transmutation
+        spell121.ritual = false
+        spell121.rangeType = RangeType.PSelf
+        spell121.effectRangeType = EffectRangeType.Target
+        spell121.componentBlock = (true, true, false)
+        spell121.castingTime = "1 action"
+        spell121.duration = "Up to 8 hours"
+        spell121.details = "\tYou step into the border regions of the Ethereal Plane, in the area where it overlaps with your current plane. You remain in the Border Ethereal for the duration or until you use your action to dismiss the spell. During this time, you can move in any direction. If you move up or down, every foot of movement costs an extra foot. You can see and hear the plane you originated from, but everything there looks gray, and you can't see anything more than 60 feet away.\n\tWhile on the Ethereal Plane, you can only affect and be affected by other creatures on that plane. Creatures that aren't on the Ethereal Plane can't perceive you and can't interact with you, unless a special ability or magic has given them the ability to do so.\n\tYou ignore all objects and effects that arent on the Ethereal Plane, allowing you to move through objects you perceive on the plane you originated from.\n\tWhen the spell ends, you immediately return to the plane you originated from in the spot you currently occupy. If you occupy the same spot as a solid object or creature when this happens, you are immediately shunted to the nearest unoccupied space that you can occupy and take force damage equal to twice the number of feet you are moved.\n\tThis spell has no effect if you cast it while you are on the Ethereal Plane or on a plane that doesn't border it, such as one of the Outer Planes.\n\tWhen using a higher-level spell slot, you may target up to three willing creatures (including you) for each additional spell level, providing they are all within 10 feet of you when you cast this spell."
+        
+        let spell122: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell122.id = 122
+        spell122.name = "Evard's Black Tentacles"
+        spell122.level = 4
+        spell122.school = MagicSchool.Conjuration
+        spell122.ritual = false
+        spell122.range = 90
+        spell122.rangeType = RangeType.Target
+        spell122.effectRange1 = 20
+        spell122.effectRangeType = EffectRangeType.Cube
+        spell122.damageDice = (3, 6)
+        spell122.componentBlock = (true, true, true)
+        spell122.material = "a piece of tentacle from a giant octopus or a giant squid"
+        spell122.castingTime = "1 action"
+        spell122.duration = "Concentration, up to 1 minute"
+        spell122.details = "\tSquirming, ebony tentacles fill a 20-foot square on the ground that you can see within range. For the duration, these tentacles turn the ground in the area into difficult terrain.\n\tWhen a creature enters the affected area for the first time on a turn or starts its turn there, the creature must succeed on a Dexterity saving throw or take 3d6 bludgeoning damage and be restrained by the tentacles until the spell ends. A creature that starts its turn in the area and is already restrained by the tentacles takes 3d6 bludgeoning damage.\n\tA creature restrained by the tentacles can use its action to make a Strength or Dexterity check (its choice) against your spell save DC. On a success, it frees itself."
+        
+        let spell123: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell123.id = 123
+        spell123.name = "Expeditious Retreat"
+        spell123.level = 1
+        spell123.school = MagicSchool.Transmutation
+        spell123.ritual = false
+        spell123.rangeType = RangeType.PSelf
+        spell123.effectRangeType = EffectRangeType.Target
+        spell123.componentBlock = (true, true, true)
+        spell123.material = "a piece of tentacle from a giant octopus or a giant squid"
+        spell123.castingTime = "1 bonus action"
+        spell123.duration = "Concentration, up to 10 minutes"
+        spell123.details = "\tThis spell allows you to move at an incredible pace. When you cast this spell, and then as a bonus action on each of your turns until the spell ends, you can take the Dash action."
+        
+        let spell124: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell124.id = 124
+        spell124.name = "Eyebite"
+        spell124.level = 6
+        spell124.school = MagicSchool.Necromancy
+        spell124.ritual = false
+        spell124.rangeType = RangeType.PSelf
+        spell124.effectRange1 = 60
+        spell124.effectRangeType = EffectRangeType.Sphere
+        spell124.componentBlock = (true, true, false)
+        spell124.castingTime = "1 action"
+        spell124.duration = "Concentration, up to 1 minute"
+        spell124.details = "\tFor the spell's duration, your eyes become an inky void imbued with dread power. One creature of your choice within 60 feet of you that you can see must succeed on a Wisdom saving throw or be affected by one of the following effects of your choice for the duration. On each of your turns until the spell ends, you can use your action to target another creature but can't target a creature again if it has succeeded on a saving throw against this casting of Eyebite.\n  \u{2022} Asleep: The target falls unconscious. It wakes up if it takes any damage or if another creature uses its action to shake the sleeper awake.\n  \u{2022} Panicked: The target is frightened of you. On each of its turns, the frightened creature must take the Dash action and move away from you by the safest and shortest available route, unless there is nowhere to move. If the target moves to a place at least 60 feet away from you where it can no longer see you, this effect ends.\n  \u{2022} Sickened: The target has disadvantage on attack rolls and ability checks. At the end of each of its turns, it can make another Wisdom saving throw. If it succeeds, the effect ends."
         
         SpellList.spellListInit(context)
         

@@ -100,7 +100,7 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         }
         
         
-        buildHeaders()
+        reloadTable()
         
     }//viewWillAppear
     
@@ -376,15 +376,6 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         }
         
         let cell: PersonalSpellTableCell = spellTableView.dequeueReusableCellWithIdentifier(reuseIdentifier)! as! PersonalSpellTableCell
-        
-        /* DEBUG!!!
-        print(indexPath.row)
-        if(thisSpellList != nil){
-            for spell in thisSpellList!.spells{
-                print(spell)
-            }
-        }
- */
         
         let level: Int16 = Int16(tableHeaders[indexPath.section].0)
         let subList: [Spell] = thisSpellList!.getSpellsForLevel(level: level)
