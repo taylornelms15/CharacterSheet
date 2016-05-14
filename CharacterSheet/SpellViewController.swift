@@ -90,7 +90,7 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         thisSpellList!.updateSpellSlotsForCharLevel(level: results[0].level, withClassId: results[0].pclass!.id)
         classNameLabel.text = thisSpellList?.getPClassName()
         subclassTypeLabel.text = thisSpellList?.getSubclassTypeName()
-        subclassPickerTitles = buildSubclassNames((thisSpellList?.pclassId)!)
+        subclassPickerTitles = SpellViewController.buildSubclassNames((thisSpellList?.pclassId)!)
         
         if (results[0].subclass == nil){
             subclassNameField.text = "None"
@@ -348,14 +348,6 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         return header
     }//viewForHeaderInSection
     
-    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header = view as! PersonalSpellTableHeader
-        
-        header.overallView.backgroundColor = UIColor.lightGrayColor()
-        
-    }//willDisplayHeaderView
-    
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (tableHeaders.count == 0) {return 0}
         
@@ -503,11 +495,12 @@ class SpellViewController: CSViewController, UITableViewDelegate, UITableViewDat
         
     }//buildHeaders
     
-    func buildSubclassNames(pclassId: Int16)->[String]{
+    static func buildSubclassNames(pclassId: Int16)->[String]{
         
         var results: [String] = ["None"]
         
-        let context = thisSpellList!.managedObjectContext!
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
         let fetchRequest = NSFetchRequest(entityName: "Subclass")
         fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "id", ascending: true)]
         fetchRequest.predicate = NSPredicate(format: "%K = %@", "parentClass.id", "\(pclassId)")

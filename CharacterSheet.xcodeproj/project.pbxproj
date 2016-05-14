@@ -15,6 +15,10 @@
 		9502C30C1CB7EE99009DAFBA /* AddItemTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9502C30B1CB7EE99009DAFBA /* AddItemTabController.swift */; };
 		951AA0F51CB1624F00D399D5 /* PersonalSpellTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 951AA0F41CB1624E00D399D5 /* PersonalSpellTableHeader.xib */; };
 		951B4AF01CB4883D008A04F2 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951B4AEF1CB4883D008A04F2 /* InventoryViewController.swift */; };
+		95206D671CE1657100693ACE /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 95206D661CE1657100693ACE /* TODO */; };
+		95206D6B1CE21B6D00693ACE /* ClassFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95206D691CE21B6D00693ACE /* ClassFeature.swift */; };
+		95206D6D1CE7820300693ACE /* FeatureHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95206D6C1CE7820300693ACE /* FeatureHeader.xib */; };
+		95206D6F1CE7B1AC00693ACE /* ClassFeatureHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95206D6E1CE7B1AC00693ACE /* ClassFeatureHeader.xib */; };
 		954167781CDD4F6700C65BDD /* InitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954167771CDD4F6700C65BDD /* InitTests.swift */; };
 		954481A11CDE480300AC1C82 /* OtherNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954481A01CDE480300AC1C82 /* OtherNotesViewController.swift */; };
 		954481A51CDE4EDB00AC1C82 /* OtherNotesStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954481A31CDE4EDB00AC1C82 /* OtherNotesStrings.swift */; };
@@ -95,6 +99,10 @@
 		9502C30B1CB7EE99009DAFBA /* AddItemTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemTabController.swift; sourceTree = "<group>"; };
 		951AA0F41CB1624E00D399D5 /* PersonalSpellTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalSpellTableHeader.xib; sourceTree = "<group>"; };
 		951B4AEF1CB4883D008A04F2 /* InventoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
+		95206D661CE1657100693ACE /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TODO; path = CharacterSheet/TODO; sourceTree = "<group>"; };
+		95206D691CE21B6D00693ACE /* ClassFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassFeature.swift; sourceTree = "<group>"; };
+		95206D6C1CE7820300693ACE /* FeatureHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeatureHeader.xib; sourceTree = "<group>"; };
+		95206D6E1CE7B1AC00693ACE /* ClassFeatureHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassFeatureHeader.xib; sourceTree = "<group>"; };
 		954167771CDD4F6700C65BDD /* InitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitTests.swift; sourceTree = "<group>"; };
 		954481A01CDE480300AC1C82 /* OtherNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherNotesViewController.swift; sourceTree = "<group>"; };
 		954481A31CDE4EDB00AC1C82 /* OtherNotesStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherNotesStrings.swift; sourceTree = "<group>"; };
@@ -194,9 +202,10 @@
 			isa = PBXGroup;
 			children = (
 				95B7A5A81C7FDB76008895CA /* FeatureList.swift */,
+				95B7A59C1C7FD910008895CA /* Feature.swift */,
+				95206D691CE21B6D00693ACE /* ClassFeature.swift */,
 				95B7A5A41C7FDB4D008895CA /* RaceFeature.swift */,
 				95B7A5A01C7FDB27008895CA /* BackgroundFeature.swift */,
-				95B7A59C1C7FD910008895CA /* Feature.swift */,
 				95E3DD8E1C839D42008736D1 /* Feat.swift */,
 			);
 			name = Features;
@@ -283,6 +292,8 @@
 				957E15BC1C7E891900391977 /* FeaturesViewController.swift */,
 				95649CD81CD595FF002C58A2 /* CustomFeatViewController.swift */,
 				95D31F071CD95DE200958F9A /* FeatureDetailViewController.swift */,
+				95206D6C1CE7820300693ACE /* FeatureHeader.xib */,
+				95206D6E1CE7B1AC00693ACE /* ClassFeatureHeader.xib */,
 			);
 			name = "Features ViewControllers";
 			sourceTree = "<group>";
@@ -290,6 +301,7 @@
 		958CBAA31C56E10E00AD833A = {
 			isa = PBXGroup;
 			children = (
+				95206D661CE1657100693ACE /* TODO */,
 				958CBAAE1C56E10E00AD833A /* CharacterSheet */,
 				958CBAC71C56E10F00AD833A /* CharacterSheetTests */,
 				958CBAD21C56E11000AD833A /* CharacterSheetUITests */,
@@ -486,10 +498,13 @@
 			files = (
 				954481B01CDFFE9400AC1C82 /* ItemHeader.xib in Resources */,
 				954481AE1CDFFDB300AC1C82 /* WeaponHeader.xib in Resources */,
+				95206D671CE1657100693ACE /* TODO in Resources */,
 				958CBABE1C56E10F00AD833A /* LaunchScreen.storyboard in Resources */,
+				95206D6F1CE7B1AC00693ACE /* ClassFeatureHeader.xib in Resources */,
 				958CBABB1C56E10F00AD833A /* Assets.xcassets in Resources */,
 				954481AC1CDFFC7600AC1C82 /* ArmorHeader.xib in Resources */,
 				951AA0F51CB1624F00D399D5 /* PersonalSpellTableHeader.xib in Resources */,
+				95206D6D1CE7820300693ACE /* FeatureHeader.xib in Resources */,
 				958CBAB91C56E10F00AD833A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -557,6 +572,7 @@
 				95649CD91CD595FF002C58A2 /* CustomFeatViewController.swift in Sources */,
 				959A30591C790AC900ED83A1 /* SkillViewController.swift in Sources */,
 				9576C6831CB1F47800D130AA /* SpellDetailViewController.swift in Sources */,
+				95206D6B1CE21B6D00693ACE /* ClassFeature.swift in Sources */,
 				95A4F7091CD651360094BBD4 /* AbilityScoreTableCells.swift in Sources */,
 				955662A81C570B8E00F5C014 /* CSViewController.swift in Sources */,
 				959370B91CA5ADD5000E5734 /* AbilityScoreViewController.swift in Sources */,

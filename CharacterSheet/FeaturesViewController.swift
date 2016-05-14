@@ -9,9 +9,13 @@
 import UIKit
 import CoreData
 
-class FeaturesViewController: CSViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, SpellDataReceiverDelegate{
+class FeaturesViewController: CSViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, SpellDataReceiverDelegate{
 
+    weak var currentFeatureList: FeatureList? = nil
+    
     var raceFeatArray: [RaceFeature] = []
+    var classFeatArray: [ClassFeature] = []
+    var subclassNameArray: [String] = []
     var backgroundFeatArray: [BackgroundFeature] = []
     var featArray: [Feat] = []
     var spellArray: [Spell] = []
@@ -34,10 +38,18 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
     var featCancelButton: UIBarButtonItem = UIBarButtonItem();
     var dummyTextField: UITextField = UITextField(frame: CGRectZero)
     
+    var subclassTextField: UITextField? = nil
+    var subclassPicker: UIPickerView = UIPickerView()
+    var subclassPickerToolbar: UIToolbar = UIToolbar();
+    var subclassDoneButton: UIBarButtonItem = UIBarButtonItem();
+    var subclassSpaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+    var subclassCancelButton: UIBarButtonItem = UIBarButtonItem();
+    
     //MARK: outlets
     @IBOutlet weak var featureTableView: UITableView!
     @IBOutlet weak var removeFeatButton: UIBarButtonItem!
     @IBOutlet weak var addFeatButton: UIBarButtonItem!
+    @IBOutlet weak var customFeatButton: UIBarButtonItem!
 
     //MARK: actions
     
@@ -146,25 +158,90 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
     
     @IBAction func removeFeatButtonPress(sender: UIBarButtonItem) {
         if (featureTableView.editing){
-            removeFeatButton.title = "Remove Feat"
-            featureTableView.setEditing(false, animated: true)
+            setDeletionMode(false)
         }//if in editing mode
         else{
-            removeFeatButton.title = "Cancel"
-            featureTableView.setEditing(true, animated: true)
+            setDeletionMode(true)
         }//if not in editing mode
     }//removeFeatButtonPress
+    
+    private func setDeletionMode(mode: Bool){
+        if (mode){
+            removeFeatButton.title = "Cancel"
+            featureTableView.setEditing(true, animated: true)
+            addFeatButton.enabled = false
+            customFeatButton.enabled = false
+        }
+        else{
+            removeFeatButton.title = "Remove Feat"
+            featureTableView.setEditing(false, animated: true)
+            addFeatButton.enabled = true
+            customFeatButton.enabled = true
+        }
+    }//setDeletionMode
     
     func doneFeatPicker(sender: UIBarButtonItem){
         
         addFeat(featNameArray[featPicker.selectedRowInComponent(0)])
         
-        dummyTextField.resignFirstResponder()
+        dummyTextField.endEditing(true)
     }//doneFeatPicker
     
     func cancelFeatPicker(sender: UIBarButtonItem){
-        dummyTextField.resignFirstResponder()
+        
+        dummyTextField.endEditing(true)
     }//cancelFeatPicker
+    
+    func doneSubclassPicker(sender: UIBarButtonItem){
+        
+        let newSubclassName: String = pickerView(subclassPicker, titleForRow: subclassPicker.selectedRowInComponent(0), forComponent: 0)!
+        
+        currentFeatureList!.character!.changeSubclassWithNameTo(newSubclassName)
+        
+        do{
+            try currentFeatureList!.managedObjectContext!.save()
+        }catch let error as NSError{
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+        
+        
+        subclassTextField?.text = newSubclassName
+        
+        subclassTextField?.endEditing(true)
+        
+        updateClassFeatArray()
+        
+        print("---")
+        for feat in classFeatArray{
+            if (feat.subclass != nil){
+                print(feat.name)
+            }
+        }
+        
+        featureTableView.reloadData()
+        
+    }//doneSubclassPicker
+    
+    func cancelSubclassPicker(sender: UIBarButtonItem){
+        
+        let oldSubclass: Subclass? = currentFeatureList!.character!.subclass
+        
+        if (oldSubclass == nil){
+            subclassTextField?.text = "None"
+        }
+        else{
+            subclassTextField?.text = oldSubclass!.name
+        }
+        
+        subclassTextField?.endEditing(true)
+    }//cancelSubclassPicker
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+        textField.resignFirstResponder()
+        
+    }//textFieldDidEndEditing
     
     /**
      Called when the addSpellVC exits, with a spell in it that we'll want to add to our feature page
@@ -201,13 +278,23 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
         
         self.view.addSubview(dummyTextField)
         
+        let featureHeaderNib: UINib = UINib(nibName: "FeatureHeader", bundle: nil)
+        let classFeatureHeaderNib: UINib = UINib(nibName: "ClassFeatureHeader", bundle: nil)
+        featureTableView.registerNib(featureHeaderNib, forHeaderFooterViewReuseIdentifier: "featureHeader")
+        featureTableView.registerNib(classFeatureHeaderNib, forHeaderFooterViewReuseIdentifier: "classFeatureHeader")
         
-        //featPicker things
+        //delegate things
         featPicker.dataSource = self
         featPicker.delegate = self
+        subclassPicker.dataSource = self
+        subclassPicker.delegate = self
+        dummyTextField.delegate = self
+        subclassTextField?.delegate = self
         
         dummyTextField.inputView = featPicker
         dummyTextField.inputAccessoryView = featPickerToolbar
+        
+        //feat picker things
         
         featPickerToolbar.barStyle = UIBarStyle.Default
         featPickerToolbar.sizeToFit()
@@ -216,6 +303,18 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
         
         featPickerToolbar.setItems([featCancelButton, featSpaceButton, featDoneButton], animated: false)
         featPickerToolbar.userInteractionEnabled = true
+        
+        //subclass picker things
+        
+        subclassPickerToolbar.barStyle = .Default
+        subclassPickerToolbar.sizeToFit()
+        subclassDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(FeaturesViewController.doneSubclassPicker(_:)))
+        subclassCancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(FeaturesViewController.cancelSubclassPicker(_:)))
+        
+        subclassPickerToolbar.setItems([subclassCancelButton, subclassSpaceButton, subclassDoneButton], animated: false)
+        subclassPickerToolbar.userInteractionEnabled = true
+        
+        
         
     }//viewDidLoad
     
@@ -235,22 +334,34 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
         }
         results[0].updateAScores()
         //Note that now results[0] is our character
+        
+        results[0].buildClassFeatures(context: managedContext)
 
+        currentFeatureList = results[0].featureList!
+        
         raceFeatArray.removeAll()
-        for raceFeat in results[0].featureList!.raceFeatures{
+        for raceFeat in currentFeatureList!.raceFeatures{
             raceFeatArray.append(raceFeat as! RaceFeature)
         }
+
+        updateClassFeatArray()
+        
         backgroundFeatArray.removeAll()
-        for backgroundFeat in results[0].featureList!.backgroundFeatures{
+        for backgroundFeat in currentFeatureList!.backgroundFeatures{
             backgroundFeatArray.append(backgroundFeat as! BackgroundFeature)
         }
         featArray.removeAll()
-        for feat in results[0].featureList!.feats{
+        for feat in currentFeatureList!.feats{
             featArray.append(feat as! Feat)
         }
         spellArray.removeAll()
-        spellArray = buildSpellArray(results[0].featureList!)
-
+        spellArray = buildSpellArray(currentFeatureList!)
+        
+        if (results[0].pclass != nil){
+            subclassNameArray = SpellViewController.buildSubclassNames(results[0].pclass!.id)
+        }
+        
+        
     }//viewWillAppear
     
     override func viewDidAppear(animated: Bool) {
@@ -263,9 +374,7 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        removeFeatButton.title = "Remove Feat"
-        
-        featureTableView.setEditing(false, animated: false)
+        setDeletionMode(false)
         
         dummyTextField.resignFirstResponder()
         
@@ -300,6 +409,13 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
     }//prepareForSegue
     
     //MARK: Helper Functions
+    
+    func updateClassFeatArray(){
+        classFeatArray.removeAll()
+        for classFeat in currentFeatureList!.getFilteredClassFeatures(atLevel: currentFeatureList!.character!.level){
+            classFeatArray.append(classFeat)
+        }
+    }
     
     /**
      Makes the spell list we're about to use for the addspellVC match the specifications of the feature allowing us to add a spell
@@ -448,18 +564,9 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
         var thisFeature: Feature? = nil
         var thisSpell: Spell? = nil
         
-        switch(indexPath.section){
-        case 0:
-            thisFeature = raceFeatArray[indexPath.row]
-        case 1:
-            thisFeature = backgroundFeatArray[indexPath.row]
-        case 2:
-            thisFeature = featArray[indexPath.row]
-        case 3:
-            thisSpell = spellArray[indexPath.row]
-        default:
-            _ = 2 + 2
-        }//switch
+        let featureSpellBlock: (Feature?, Spell?) = getRelevantFeatureOrSpell(atIndexPath: indexPath)
+        thisFeature = featureSpellBlock.0
+        thisSpell = featureSpellBlock.1
         
         if (thisFeature != nil){
             name = thisFeature!.name
@@ -485,22 +592,61 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
             cell = tableView.dequeueReusableCellWithIdentifier("personalSpellCell", forIndexPath: indexPath)
             (cell as! PersonalSpellTableCell).setInfoWithSpell(spell: thisSpell!)
             
-        }//if a cell spell
+        }//if a spell cell
         
         return cell
             
     }//tableView Cell for row at index path
     
-    func tableView(tableView: UITableView,
-        numberOfRowsInSection section: Int) -> Int{
-            switch (section){
-            case 0:
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        var header: FeatureHeader? = nil
+        
+        if (currentFeatureList!.getNthLowestExtantHeaderIndex(section) == 1){
+            header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("classFeatureHeader") as? ClassFeatureHeader
+            
+            let currentSubclass: Subclass? = currentFeatureList!.character!.subclass
+            
+            subclassTextField = (header as! ClassFeatureHeader).subclassTextField
+            subclassTextField!.delegate = self
+            
+            //make sure the label for the subclass is decent
+            (header as! ClassFeatureHeader).subclassTitleLabel.text = "\(currentFeatureList!.character!.pclass!.subclassIdentifierName):"
+            
+            (header as! ClassFeatureHeader).subclassTextField.inputView = subclassPicker
+            (header as! ClassFeatureHeader).subclassTextField.inputAccessoryView = subclassPickerToolbar
+            
+            if (currentSubclass == nil){
+                (header as! ClassFeatureHeader).subclassTextField.text = "None"
+            }
+            else{
+                (header as! ClassFeatureHeader).subclassTextField.text = currentSubclass!.name
+            }
+            
+        }//if we're looking at the class features
+        else{
+            header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("featureHeader") as? FeatureHeader
+        }
+        
+        let title: String = currentFeatureList!.getTitleOfSection(section)
+        
+        header!.titleLabel.text = title
+        
+        return header!
+        
+    }//viewForHeaderInSection
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+            switch (currentFeatureList!.getNthLowestExtantHeaderIndex(section)){
+            case 0://race
                 return raceFeatArray.count
-            case 1:
+            case 1://class
+                return classFeatArray.count
+            case 2://background
                 return backgroundFeatArray.count
-            case 2:
+            case 3://feat
                 return featArray.count
-            case 3:
+            case 4://spell
                 return spellArray.count
             default:
                 return 0;
@@ -509,108 +655,95 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        //Get our character out
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        let fetchRequest = NSFetchRequest(entityName: "PCharacter");
-        fetchRequest.predicate = NSPredicate(format: "id = %@", String(appDelegate.currentCharacterId));
-        var results: [PCharacter] = [];
-        do{
-            results = try managedContext.executeFetchRequest(fetchRequest) as! [PCharacter]
-        }catch let error as NSError{
-            print("Could not save \(error), \(error.userInfo)")
-        }
-        results[0].updateAScores()
-        //Note that now results[0] is our character
-        
-        let featureList: FeatureList = results[0].featureList!
-        
-        if (featureList.getNumberOfSpells() == 0){
-            return 3
-        }
-        else{
-            return 4
-        }
+        return currentFeatureList!.getNumberOfSections()
         
     }//numberOfSectionsInTableView
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch (section){
-        case 0:
-            return "Racial Features"
-        case 1:
-            return "Background Features"
-        case 2:
-            return "Features"
-        case 3:
-            return "Spells"
-        default:
-            return "Oh shit you broke it!"
-        }
-    }
+        
+        return currentFeatureList!.getTitleOfSection(section)
+
+    }//titleForHeaderInSection
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        switch(indexPath.section){
-        case 0:
+        switch(currentFeatureList!.getNthLowestExtantHeaderIndex(indexPath.section)){
+        case 0://Race
             return 44
-        case 1:
+        case 1://Class
             return 44
-        case 2:
+        case 2://Background
             return 44
-        case 3:
+        case 3://Feat
+            return 44
+        case 4://Spell
             return 66
         default:
             return 44
         }//switch
     }//heightForRowAtIndexPath
     
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 35
+    }//heightForHeaderInSection
+    
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        switch (indexPath.section){
+        switch (currentFeatureList!.getNthLowestExtantHeaderIndex(indexPath.section)){
         case 0://race
             return false
-        case 1://background
+        case 1://class
             return false
-        case 2://feat
+        case 2://background
+            return false
+        case 3://feat
             return true
-        case 3://spells
+        case 4://spells
             return true
         default:
             return false
         }//switch
-    }
+    }//canEditRowAtIndexPath
     
-    
-    
-    //MARK: UITableViewDelegate functions
-    
-    func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-
+    private func getRelevantFeatureOrSpell(atIndexPath indexPath: NSIndexPath)->(Feature?, Spell?){
+        
         var myFeature: Feature? = nil
         var mySpell: Spell? = nil
         
-        switch (indexPath.section){
+        let headerIndex = currentFeatureList!.getNthLowestExtantHeaderIndex(indexPath.section)
+        switch headerIndex{
         case 0:
             myFeature = raceFeatArray[indexPath.row]
         case 1:
-            myFeature = backgroundFeatArray[indexPath.row]
+            myFeature = classFeatArray[indexPath.row]
         case 2:
-            myFeature = featArray[indexPath.row]
+            myFeature = backgroundFeatArray[indexPath.row]
         case 3:
+            myFeature = featArray[indexPath.row]
+        case 4:
             mySpell = spellArray[indexPath.row]
         default:
             myFeature = nil
         }//switch
         
-        if (myFeature != nil){
-            presentFeatureDetailVC(withFeature: myFeature!)
+        return (myFeature, mySpell)
+        
+    }//getRelevantFeatureOrSpell
+    
+    //MARK: UITableViewDelegate functions
+    
+    func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+
+        let featureSpellBlock: (Feature?, Spell?) = getRelevantFeatureOrSpell(atIndexPath: indexPath)
+        
+        if (featureSpellBlock.0 != nil){
+            presentFeatureDetailVC(withFeature: featureSpellBlock.0!)
         }
-        if (mySpell != nil){
-            presentSpellDetailVC(withSpell: mySpell!)
+        if (featureSpellBlock.1 != nil){
+            presentSpellDetailVC(withSpell: featureSpellBlock.1!)
         }
 
     }//accessoryButtonTappedForRowWithIndexPath
     
-    
+    //TODO: make this work
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         //Delete a feat
@@ -633,18 +766,9 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
             var oldFeat: Feature? = nil;
             var oldSpell: Spell? = nil
             
-            switch(indexPath.section){
-            case 0:
-                oldFeat = raceFeatArray[indexPath.row]
-            case 1:
-                oldFeat = backgroundFeatArray[indexPath.row]
-            case 2:
-                oldFeat = featArray[indexPath.row]
-            case 3:
-                oldSpell = spellArray[indexPath.row]
-            default:
-                oldFeat = nil
-            }
+            let featureSpellBlock: (Feature?, Spell?) = getRelevantFeatureOrSpell(atIndexPath: indexPath)
+            oldFeat = featureSpellBlock.0
+            oldSpell = featureSpellBlock.1
 
             if (oldFeat != nil){
                 results[0].featureList!.subtractFeature(oldFeat!)
@@ -687,21 +811,32 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView,
-        numberOfRowsInComponent component: Int) -> Int{
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        if (pickerView == featPicker){
             return featNameArray.count
-    }
+        }
+        if (pickerView == subclassPicker){
+            return subclassNameArray.count
+        }
+        
+        return 0
+    }//numberOfRowsInComponent
 
     
     //MARK: UIPickerViewDelegate functions
     
-    func pickerView(
-        pickerView: UIPickerView,
-        titleForRow row: Int,
-        forComponent component: Int
-        ) -> String? {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 
+        
+        if (pickerView == featPicker){
             return featNameArray[row]
+        }
+        if (pickerView == subclassPicker){
+            return subclassNameArray[row]
+        }
+
+        return nil
+        
     }//titleForRowInComponent
     
     
@@ -712,10 +847,28 @@ class FeatureCellAddSpell: UITableViewCell{
     //MARK: Outlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var addSpellButton: UIBarButtonItem!
-
-    
     
 }//featureCellAddSpell
+
+class FeatureHeader: UITableViewHeaderFooterView{
+    
+    //MARK: Outlets
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    
+}//FeatureHeader
+
+class ClassFeatureHeader: FeatureHeader{
+    
+    //MARK: Outlets
+    @IBOutlet weak var subclassTitleLabel: UILabel!
+    @IBOutlet weak var subclassTextField: UITextField!
+    
+    
+}//ClassFeatureHeader
+
+
+
 
 
 

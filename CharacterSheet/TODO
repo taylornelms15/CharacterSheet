@@ -1,0 +1,18 @@
+CharacterSheet TODO List:
+
+Features (hp):
+Custom feature table headers
+    Class Features
+    Subclass picker in table header for class features
+Spell data entry
+
+
+Features (lp):
+Automated UI tests
+    Will likely require each UI to be of a kind that I actually like
+
+
+Bug Fixes:
+Switching between text views/fields overall
+    Especially relevant to inventory VC's, because there are so many of them
+Can't "cancel" on character select deletion option, at least when there's only one deletion point left

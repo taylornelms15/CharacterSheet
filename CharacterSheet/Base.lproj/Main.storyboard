@@ -1260,6 +1260,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="addFeatButton" destination="8gy-GL-IkR" id="OVN-Se-DeT"/>
+                        <outlet property="customFeatButton" destination="mjG-u2-M5p" id="Dix-MM-9aM"/>
                         <outlet property="featureTableView" destination="l9Y-0M-3EK" id="aGl-xu-paU"/>
                         <outlet property="removeFeatButton" destination="paj-24-QK0" id="CXe-Za-73b"/>
                     </connections>
@@ -2947,7 +2948,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Casting Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRB-by-ucf">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Casting Time" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRB-by-ucf">
                                         <rect key="frame" x="104" y="61" width="180" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -3011,6 +3012,7 @@
                                     <constraint firstItem="lpU-nJ-lKP" firstAttribute="top" secondItem="iHT-vQ-hef" secondAttribute="bottom" constant="8" id="6G1-5o-3kA"/>
                                     <constraint firstItem="tlr-Fs-zmF" firstAttribute="width" secondItem="nAn-el-KJh" secondAttribute="width" id="9Oo-VE-cs1"/>
                                     <constraint firstItem="cRB-by-ucf" firstAttribute="leading" secondItem="nAn-el-KJh" secondAttribute="trailing" constant="8" id="DHG-oH-dUV"/>
+                                    <constraint firstItem="cRB-by-ucf" firstAttribute="top" secondItem="nAn-el-KJh" secondAttribute="top" id="EIy-76-pyE"/>
                                     <constraint firstItem="fX1-TP-bvH" firstAttribute="centerX" secondItem="RgE-z3-NlY" secondAttribute="centerX" id="FMD-OW-rr9"/>
                                     <constraint firstItem="ZZ5-sf-2hV" firstAttribute="centerY" secondItem="RT8-H6-iL0" secondAttribute="centerY" id="FlO-lo-Hh3"/>
                                     <constraint firstItem="U3G-ls-s3I" firstAttribute="width" secondItem="cRB-by-ucf" secondAttribute="width" id="FnH-MJ-h4N"/>
@@ -3053,12 +3055,13 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="Xbo-fg-x3M"/>
+                                        <exclude reference="Yme-n1-QVw"/>
                                         <exclude reference="Hux-kl-6GJ"/>
                                         <exclude reference="4iE-ih-QMA"/>
                                         <exclude reference="dq2-8T-BnH"/>
+                                        <exclude reference="wtg-eb-gek"/>
                                         <exclude reference="Z8h-aN-5XT"/>
                                         <exclude reference="xHF-Xj-7Fg"/>
-                                        <exclude reference="wtg-eb-gek"/>
                                     </mask>
                                 </variation>
                             </view>

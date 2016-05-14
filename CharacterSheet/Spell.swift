@@ -45,7 +45,6 @@ class Spell: NSManagedObject {
     @NSManaged var somaticComponent: Bool
     @NSManaged var materialComponent: Bool
     @NSManaged var material: String?
-    //TODO: Casting Time, Duration (proper encoding)
     @NSManaged var castingTime: String?
     @NSManaged var duration: String?
 
@@ -1990,6 +1989,124 @@ class Spell: NSManagedObject {
         spell124.castingTime = "1 action"
         spell124.duration = "Concentration, up to 1 minute"
         spell124.details = "\tFor the spell's duration, your eyes become an inky void imbued with dread power. One creature of your choice within 60 feet of you that you can see must succeed on a Wisdom saving throw or be affected by one of the following effects of your choice for the duration. On each of your turns until the spell ends, you can use your action to target another creature but can't target a creature again if it has succeeded on a saving throw against this casting of Eyebite.\n  \u{2022} Asleep: The target falls unconscious. It wakes up if it takes any damage or if another creature uses its action to shake the sleeper awake.\n  \u{2022} Panicked: The target is frightened of you. On each of its turns, the frightened creature must take the Dash action and move away from you by the safest and shortest available route, unless there is nowhere to move. If the target moves to a place at least 60 feet away from you where it can no longer see you, this effect ends.\n  \u{2022} Sickened: The target has disadvantage on attack rolls and ability checks. At the end of each of its turns, it can make another Wisdom saving throw. If it succeeds, the effect ends."
+        
+        let spell125: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell125.id = 125
+        spell125.name = "Fabricate"
+        spell125.level = 4
+        spell125.school = MagicSchool.Transmutation
+        spell125.ritual = false
+        spell125.range = 120
+        spell125.rangeType = RangeType.Target
+        spell125.effectRangeType = EffectRangeType.Target
+        spell125.componentBlock = (true, true, false)
+        spell125.castingTime = "10 minutes"
+        spell125.duration = "Instantaneous"
+        spell125.details = "\tYou convert raw materials into products of the same material. For example, you can fabricate a wooden bridge from a clump of trees, a rope from a patch of help, and clothes from flax or wool.\n\tChoose raw materials that you can see within range. You can fabricate a Large or smaller objects (contained within a 10-foot cube, or eight connected 5-foot cubes), given a sufficient quantity of raw material. If you are working with metal, stone, or another mineral substance, however, the fabricated object can be no larger than Medium (contained within a single 5-foot cube). The quality of objects made by the spell is commensurate with the quality of the raw materials.\n\tCreatures or magic items can't be created or transmuted by this spell, as it would violate equivalent exchange. You also can't use it to create items that ordinarily require a high degree of craftsmanship, such as jewelry, weapons, glass, or armor, unless you have proficiency with the type of artisan's tools used to craft such objects."
+        
+        let spell126: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell126.id = 126
+        spell126.name = "Faerie Fire"
+        spell126.level = 0
+        spell126.school = MagicSchool.Evocation
+        spell126.ritual = false
+        spell126.range = 60
+        spell126.rangeType = RangeType.Target
+        spell126.effectRange1 = 20
+        spell126.effectRangeType = EffectRangeType.Cube
+        spell126.componentBlock = (true, false, false)
+        spell126.castingTime = "1 action"
+        spell126.duration = "Concentration, up to 1 minute"
+        spell126.details = "\tEach object in a 20-foot cube within range is outlines in blue, green, or violet light (your choice). Any creature in the area when the spell is cast is also outlined in light if it fails a Dexterity saving throw. For the duration, objects and affected creatures shed dim light in a 10-foot radius.\n\tAny attack roll against an affected creature or object has advantage if the attacker can see it, and the affected creature or object can't benefit from being invisible."
+        
+        let spell127: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell127.id = 127
+        spell127.name = "False Life"
+        spell127.level = 1
+        spell127.school = MagicSchool.Necromancy
+        spell127.ritual = false
+        spell127.rangeType = RangeType.PSelf
+        spell127.effectRangeType = EffectRangeType.Target
+        spell127.componentBlock = (true, true, true)
+        spell127.material = "a small amount of alcohol or distilled spirits"
+        spell127.castingTime = "1 action"
+        spell127.duration = "1 hour"
+        spell127.details = "\tBolstering yourself with a necromantic facsimile of life, you gain 1d4 + 4 temporary hit points for the duration.\n\tWhen using a higher-level spell slot, you gain 5 additional temporary hit points for each additional spell level."
+        
+        let spell128: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell128.id = 128
+        spell128.name = "Fear"
+        spell128.level = 3
+        spell128.school = MagicSchool.Illusion
+        spell128.ritual = false
+        spell128.rangeType = RangeType.PSelf
+        spell128.effectRange1 = 30
+        spell128.effectRangeType = EffectRangeType.Cone
+        spell128.componentBlock = (true, true, true)
+        spell128.material = "a white feather or the heart of a hen"
+        spell128.castingTime = "1 action"
+        spell128.duration = "Concentration, up to 1 minute"
+        spell128.details = "\tYou project a phantasmal image of a creature's worst fears. Each creature in a 30-foot cone must succeed on a Wisdom saving throw or drop whatever it is holding and become frightened for the duration.\n\tWhile frightened by this spell, a creature must take the Dash action and move away from you by the safest available route on each of its turns, unless there is nowhere to move. If the creature ends its turn in a location where it doesn't have line of sight to you, the creature can make a Wisdom saving throw. On a successful save, the spell ends for that creature."
+        
+        let spell129: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell129.id = 129
+        spell129.name = "Feather Fall"
+        spell129.level = 1
+        spell129.school = MagicSchool.Transmutation
+        spell129.ritual = false
+        spell129.range = 60
+        spell129.rangeType = RangeType.Target
+        spell129.effectRangeType = EffectRangeType.Target
+        spell129.componentBlock = (true, false, true)
+        spell129.material = "a small feather or a piece of down"
+        spell129.castingTime = "1 reaction, which you take when you or a creature within 60 feet of you falls"
+        spell129.duration = "Concentration, up to 1 minute"
+        spell129.details = "\tChoose up to five falling creatures within range. A falling creature's rate of descent slows to 60 feet per round until the spell ends. If the creature lands before the spell ends, it takes no falling damage and can land on its feet, and the spell ends for that creature."
+        
+        let spell130: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell130.id = 130
+        spell130.name = "Feeblemind"
+        spell130.level = 8
+        spell130.school = MagicSchool.Enchantment
+        spell130.ritual = false
+        spell130.range = 150
+        spell130.rangeType = RangeType.Target
+        spell130.effectRangeType = EffectRangeType.Target
+        spell130.damageDice = (4, 6)
+        spell130.componentBlock = (true, true, true)
+        spell130.material = "a handful of clay, crystal, glass, or mineral spheres"
+        spell130.castingTime = "1 action"
+        spell130.duration = "Instantaneous"
+        spell130.details = "\tYou blast the mind of a creatue that you can see within range, attempting to shatter its intellect and personality. The target takes 4d6 psychic damage and must make an Intelligence saving throw.\n\tOn a failed save, the creature's Intelligence and Charisma scores become 1. The creature can't cast spells, activate magic items, understand language, or communicate in any intelligible way. The creature can, however, identify its friends, follow them, and even protect them.\n\tAt the end of every 30 days, the creature can repeat its saving throw against htis spell. If it succeeds on its saving throw, the spell ends.\n\tThe spell can also be ended by Greater Restoration, Heal, or Wish."
+        
+        let spell131: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell131.id = 131
+        spell131.name = "Feign Death"
+        spell131.level = 3
+        spell131.school = MagicSchool.Necromancy
+        spell131.ritual = true
+        spell131.rangeType = RangeType.Touch
+        spell131.effectRangeType = EffectRangeType.Target
+        spell131.componentBlock = (true, true, true)
+        spell131.material = "a pinch of graveyard dirt"
+        spell131.castingTime = "1 action"
+        spell131.duration = "1 hour"
+        spell131.details = "\tYou touch a willing creature and put it into a cataleptic state that is indistinguishable from death.\n\tFor the spell's duration, or until you use an action to touch the target and dismiss the spell, the target appears dead to all outward inspection and to spells used to determine the target's status. The target is blinded and incapacitated, and its speed drops to 0. The target has resistance to all damage except psychic damage. If the target is diseased or poisoned while under the spell's effect, the disease and poison have no effect until the spell ends."
+        
+        let spell132: Spell = NSManagedObject(entity: spellEntity, insertIntoManagedObjectContext: context) as! Spell
+        spell132.id = 132
+        spell132.name = "Find Familiar"
+        spell132.level = 1
+        spell132.school = MagicSchool.Conjuration
+        spell132.ritual = true
+        spell132.range = 10
+        spell132.rangeType = RangeType.Target
+        spell132.effectRangeType = EffectRangeType.Target
+        spell132.componentBlock = (true, true, true)
+        spell132.material = "10gp worth of charcoal, incense, and herbs that must be consumed by fire in a brass brazier"
+        spell132.castingTime = "1 action"
+        spell132.duration = "1 hour"
+        spell132.details = "\tYou gain the service of a familiar, a spirit that takes an animal form you choose: bat, cat, crab, frog (toad), hawk, lizard, octopus, owl, poisonous snake, fish (quipper), rat, raven, sea horse, spider, or weasel. Appearing in an unoccupied space within range, the familiar has the statistics of the chosen form, though it is a celestial, fey, or fiend (your choice) instead of a beast.\n\tYour familiar acts independently of you, but it always obeys your commands. In combat, it rolls its own initiative and acts on its own turn. A familar can't attack, but it can take other actions as normal.\n\tWhen the familiar drops to 0hp, it disappears, leaving behind no physical form. It reappears after you cast this spell again.\n\tWhile your familiar is within 100 feet of you, you can communicate with it telepathically. Additionally, as an action, you can see through your familiar's eyes and hear what it hears until the start of your next turn, gaining the benefits of any special senses that the familiar has. During this time, you are deaf and blind with regard to your own senses.\n\tAs an action, you can temporarily dismiss your familiar. It disappears into a pocket dimension where it awaits your summons. Alternatively, you can dismiss it forever. As an action while it is temporarily dismissed, you can cause it to reappear in any unoccupied space within 30 feet of you.\n\tYou can't have more than one familiar at a time. If you cast this spell while you already have a familiar, you instead cause it to adopt a new form. Choose one of the forms from the above list. Your familiar transforms into the chosen creature.\n\tFinally, when you cast a spell with a range of touch, your familiar can deliver the spell as if it had cast the spell. Your familiar must be within 100 feet of you, and it must use its reaction to deliver the spell when you cast it. If the spell requires an attack roll, you use your attack modifier for the roll."
         
         SpellList.spellListInit(context)
         

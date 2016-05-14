@@ -19,6 +19,7 @@ class PClass: NSManagedObject {
     @NSManaged var spellList: SpellList
     @NSManaged var subclassIdentifierName: String
     @NSManaged var subClasses: Set<Subclass>
+    @NSManaged var features: Set<ClassFeature>
 
     /*
         A note on saving throw and primary ability values:

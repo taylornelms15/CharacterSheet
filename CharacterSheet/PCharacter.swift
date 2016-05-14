@@ -64,6 +64,13 @@ class PCharacter: NSManagedObject{
         return 6
     }//getProfBonus
     
+    /**
+     Placeholder function. Will expand when I begin to explore multiclassing.
+     */
+    func getLevel(forClass pclass: PClass?)->Int16{
+        return level
+    }//getLevel
+    
     static func getAlignmentStringLong(code: Int16)->String{
         return PCharacter.alignmentTable[code]!
     }
@@ -162,6 +169,9 @@ class PCharacter: NSManagedObject{
         
         pclass = newClass
         
+        featureList!.subtractAllClassFeatures()
+        featureList!.buildClassFeatures(fromClass: newClass, usingSubclass: subclass)
+        
         if (subclass == nil || newClass.subClasses.contains(subclass!) == false){
             changeSubclassTo(nil)
         }//if we have no subclass, or the new class doesn't contain our current subclass, clear our subclass
@@ -176,25 +186,50 @@ class PCharacter: NSManagedObject{
             currentPersonalSpellList?.changeSubclassFrom(subclass, toNewSubclass: newSubclass, atLevel: level)
         }//verifying we're switching subclasses within a class
         
+        featureList!.changeSubclass(from: subclass, toNewSubclass: newSubclass)
+        
         subclass = newSubclass
         
     }//changeSubclassTo
     
     func changeSubclassWithNameTo(newSubclassName: String){
         
-        let context = self.managedObjectContext!
-        let fetchRequest = NSFetchRequest(entityName: "Subclass")
-        fetchRequest.predicate = NSPredicate(format: "name = %@", newSubclassName)
-        var results: [Subclass] = []
+        if (newSubclassName == "None"){
+            changeSubclassTo(nil)
+        }
+            
+        else{
+            
+            let context = self.managedObjectContext!
+            let fetchRequest = NSFetchRequest(entityName: "Subclass")
+            fetchRequest.predicate = NSPredicate(format: "name = %@", newSubclassName)
+            var results: [Subclass] = []
+            do{
+                try results = context.executeFetchRequest(fetchRequest) as! [Subclass]
+            }catch let error as NSError{
+                print("Could not fetch \(error), \(error.userInfo)")
+            }
+            
+            changeSubclassTo(results[0])
+            
+        }
+        
+    }//changesubclassTo
+    
+    func buildClassFeatures(context context: NSManagedObjectContext){
+        
+        if (pclass != nil){
+            featureList!.subtractAllClassFeatures()
+            featureList!.buildClassFeatures(fromClass: pclass!, usingSubclass: subclass)
+        }//if there's a class
+        
         do{
-            try results = context.executeFetchRequest(fetchRequest) as! [Subclass]
+            try context.save()
         }catch let error as NSError{
             print("Could not fetch \(error), \(error.userInfo)")
         }
         
-        changeSubclassTo(results[0])
-        
-    }//changesubclassTo
+    }//buildClassFeatures
     
     func getCurrentPersonalSpellList()->PersonalSpellList?{
         let currentPclassId: Int16 = pclass!.id

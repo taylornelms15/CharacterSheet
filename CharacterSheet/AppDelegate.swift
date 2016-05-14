@@ -129,6 +129,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (count == 0){
             Subclass.subClassesInit(managedContext)
         }//if
+        
+        //Init Class Features
+        
+        entity = NSEntityDescription.entityForName("ClassFeature", inManagedObjectContext: managedContext);
+        fetchRequest = NSFetchRequest(entityName: "ClassFeature");
+        
+        count = managedContext.countForFetchRequest(fetchRequest, error: &error)
+        if (count == 0){
+            ClassFeature.classFeatureInit(managedContext)
+        }//if
     }//initEverything
 
     func applicationWillResignActive(application: UIApplication) {

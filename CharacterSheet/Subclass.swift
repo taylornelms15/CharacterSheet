@@ -19,6 +19,7 @@ class Subclass: NSManagedObject {
     @NSManaged var freeSpellLevelData: [[Int]]?
     @NSManaged var freeSpellList: SpellList?
     @NSManaged var parentClass: PClass
+    @NSManaged var features: Set<ClassFeature>
 
     /**
      Similar to the getAllSpellsUpToLevel function (and calls it internally), but just returns the ids for the spells.

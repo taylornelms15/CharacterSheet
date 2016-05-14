@@ -18,6 +18,22 @@
         <relationship name="background" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Background" inverseName="features" inverseEntity="Background" syncable="YES"/>
         <relationship name="inv_featureList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FeatureList" inverseName="backgroundFeatures" inverseEntity="FeatureList" syncable="YES"/>
     </entity>
+    <entity name="ClassFeature" representedClassName=".ClassFeature" parentEntity="Feature" syncable="YES">
+        <attribute name="level" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <relationship name="childChoiceList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClassFeatureChoiceList" inverseName="parentFeatures" inverseEntity="ClassFeatureChoiceList" syncable="YES"/>
+        <relationship name="higherVariants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClassFeature" inverseName="lowerVariants" inverseEntity="ClassFeature" syncable="YES"/>
+        <relationship name="inv_featureList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FeatureList" inverseName="classFeatures" inverseEntity="FeatureList" syncable="YES"/>
+        <relationship name="lowerVariants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClassFeature" inverseName="higherVariants" inverseEntity="ClassFeature" syncable="YES"/>
+        <relationship name="parentChoiceList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClassFeatureChoiceList" inverseName="features" inverseEntity="ClassFeatureChoiceList" syncable="YES"/>
+        <relationship name="pclass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PClass" inverseName="features" inverseEntity="PClass" syncable="YES"/>
+        <relationship name="subclass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subclass" inverseName="features" inverseEntity="Subclass" syncable="YES"/>
+    </entity>
+    <entity name="ClassFeatureChoiceList" representedClassName=".ClassFeatureChoiceList" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="features" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClassFeature" inverseName="parentChoiceList" inverseEntity="ClassFeature" syncable="YES"/>
+        <relationship name="parentFeatures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClassFeature" inverseName="childChoiceList" inverseEntity="ClassFeature" syncable="YES"/>
+    </entity>
     <entity name="CurrentId" syncable="YES">
         <attribute name="currentId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
@@ -33,6 +49,7 @@
     <entity name="FeatureList" representedClassName=".FeatureList" syncable="YES">
         <relationship name="backgroundFeatures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BackgroundFeature" inverseName="inv_featureList" inverseEntity="BackgroundFeature" syncable="YES"/>
         <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="featureList" inverseEntity="PCharacter" syncable="YES"/>
+        <relationship name="classFeatures" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ClassFeature" inverseName="inv_featureList" inverseEntity="ClassFeature" syncable="YES"/>
         <relationship name="feats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Feat" inverseName="inv_featureList" inverseEntity="Feat" syncable="YES"/>
         <relationship name="raceFeatures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RaceFeature" inverseName="inv_featureList" inverseEntity="RaceFeature" syncable="YES"/>
         <relationship name="spellList" maxCount="1" deletionRule="Cascade" destinationEntity="SpellList" inverseName="inv_featurelist" inverseEntity="SpellList" syncable="YES"/>
@@ -75,7 +92,7 @@
         <attribute name="str" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="wis" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="background" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Background" inverseName="inv_char" inverseEntity="Background" syncable="YES"/>
-        <relationship name="featureList" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="FeatureList" inverseName="character" inverseEntity="FeatureList" syncable="YES"/>
+        <relationship name="featureList" maxCount="1" deletionRule="Cascade" destinationEntity="FeatureList" inverseName="character" inverseEntity="FeatureList" syncable="YES"/>
         <relationship name="inventory" maxCount="1" deletionRule="Cascade" destinationEntity="Inventory" inverseName="pchar" inverseEntity="Inventory" syncable="YES"/>
         <relationship name="otherNotes" maxCount="1" deletionRule="Nullify" destinationEntity="OtherNotesStrings" inverseName="pchar" inverseEntity="OtherNotesStrings" syncable="YES"/>
         <relationship name="pclass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PClass" inverseName="inv_char" inverseEntity="PClass" syncable="YES"/>
@@ -92,6 +109,7 @@
         <attribute name="primAbil" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="saveThrows" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="subclassIdentifierName" attributeType="String" syncable="YES"/>
+        <relationship name="features" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ClassFeature" inverseName="pclass" inverseEntity="ClassFeature" syncable="YES"/>
         <relationship name="inv_char" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="pclass" inverseEntity="PCharacter" syncable="YES"/>
         <relationship name="spellList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpellList" inverseName="pclass" inverseEntity="SpellList" syncable="YES"/>
         <relationship name="subClasses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Subclass" inverseName="parentClass" inverseEntity="Subclass" syncable="YES"/>
@@ -158,6 +176,7 @@
         <attribute name="freeSpellLevelData" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="features" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClassFeature" inverseName="subclass" inverseEntity="ClassFeature" syncable="YES"/>
         <relationship name="freeSpellList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpellList" inverseName="inv_subclass" inverseEntity="SpellList" syncable="YES"/>
         <relationship name="inv_pchar" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PCharacter" inverseName="subclass" inverseEntity="PCharacter" syncable="YES"/>
         <relationship name="parentClass" maxCount="1" deletionRule="Nullify" destinationEntity="PClass" inverseName="subClasses" inverseEntity="PClass" syncable="YES"/>
@@ -187,24 +206,26 @@
         <element name="ArmorInventoryItem" positionX="-306" positionY="1062" width="128" height="105"/>
         <element name="Background" positionX="-749" positionY="693" width="128" height="135"/>
         <element name="BackgroundFeature" positionX="-551" positionY="648" width="128" height="75"/>
+        <element name="ClassFeature" positionX="-774" positionY="-72" width="128" height="165"/>
         <element name="CurrentId" positionX="-747" positionY="126" width="128" height="60"/>
         <element name="Feat" positionX="-558" positionY="735" width="128" height="75"/>
         <element name="Feature" positionX="-333" positionY="486" width="128" height="90"/>
-        <element name="FeatureList" positionX="-362" positionY="297" width="128" height="118"/>
+        <element name="FeatureList" positionX="-362" positionY="297" width="128" height="135"/>
         <element name="Inventory" positionX="-389" positionY="786" width="128" height="150"/>
         <element name="InventoryItem" positionX="-209" positionY="774" width="128" height="135"/>
+        <element name="OtherNotesStrings" positionX="-774" positionY="-72" width="128" height="105"/>
         <element name="PCharacter" positionX="-576" positionY="126" width="128" height="390"/>
-        <element name="PClass" positionX="-864" positionY="216" width="128" height="180"/>
+        <element name="PClass" positionX="-864" positionY="216" width="128" height="195"/>
         <element name="PersonalSpellList" positionX="-738" positionY="-225" width="128" height="135"/>
         <element name="Race" positionX="-792" positionY="423" width="128" height="195"/>
         <element name="RaceFeature" positionX="-567" positionY="504" width="128" height="75"/>
         <element name="SkillProfs" positionX="-972" positionY="407" width="128" height="88"/>
         <element name="Spell" positionX="-164" positionY="159" width="128" height="345"/>
         <element name="SpellList" positionX="-326" positionY="15" width="128" height="118"/>
-        <element name="Subclass" positionX="-776" positionY="-45" width="128" height="135"/>
+        <element name="Subclass" positionX="-776" positionY="-45" width="128" height="150"/>
         <element name="Trait" positionX="-981" positionY="774" width="128" height="135"/>
         <element name="TraitList" positionX="-983" positionY="621" width="128" height="90"/>
         <element name="WeaponInventoryItem" positionX="-137" positionY="927" width="128" height="135"/>
-        <element name="OtherNotesStrings" positionX="-774" positionY="-72" width="128" height="105"/>
+        <element name="ClassFeatureChoiceList" positionX="-765" positionY="-63" width="128" height="105"/>
     </elements>
 </model>
