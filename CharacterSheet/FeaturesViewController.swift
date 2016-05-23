@@ -28,7 +28,7 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
             "Sentinel", "Sharpshooter", "Shield Master", "Skilled", "Skulker", "Spell Sniper", "Tavern Brawler", "Tough", "War Caster", "Weapon Master"]
     
     let casterClassNameArray: [String] = ["Bard", "Cleric", "Druid", "Sorcerer", "Warlock", "Wizard"]
-    let addSpellFeatIds: [Int] = [26, 86, 95]//Cantrip (High Elf), Magic Initiate (feat), Ritual Caster (feat)
+    let addSpellFeatIds: [Int] = [26, 86, 95, 258, 260, 261, 262, 272, 334, 335, 336, 337, 338, 339, 340, 341]//Cantrip (High Elf), Magic Initiate (feat), Ritual Caster (feat), Additional Magical Secrets (Bard), Magical Secrets (Bard), Acolyte of Nature (Cleric), Bonus Cantrip (Druid, Circle of the Land)
     var currentAddSpellId: Int? = nil
     
     var featPicker: UIPickerView = UIPickerView()
@@ -211,13 +211,6 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
         subclassTextField?.endEditing(true)
         
         updateClassFeatArray()
-        
-        print("---")
-        for feat in classFeatArray{
-            if (feat.subclass != nil){
-                print(feat.name)
-            }
-        }
         
         featureTableView.reloadData()
         
@@ -420,7 +413,7 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
     /**
      Makes the spell list we're about to use for the addspellVC match the specifications of the feature allowing us to add a spell
      - Parameter fullSpellList: The class spell list we're filtering down
-     - Parameter usingFeatId: the id of the feat that's allowing us to add spells. Currently, only Cantrip (26), Magic Initiate (86), and Ritual Caster (95) are supported
+     - Parameter usingFeatId: the id of the feat that's allowing us to add spells. Currently, only Cantrip (26), Magic Initiate (86), and Ritual Caster (95) are supported. Update: also supporting Additional Magical Secrets (258, bard, college of lore), Magical Secrets (260-262, bard), Bonus Cantrip (334-341, Druid, Circle of the Land)
      - Parameter intoTempSpellList: The temporary spell list we're putting the filtered spells into. Destructively modifies its internal set of spells
      */
     func filterSpellList(fullSpellList: SpellList, usingFeatId: Int, intoTempSpellList: SpellList){
@@ -481,6 +474,50 @@ class FeaturesViewController: CSViewController, UITableViewDataSource, UITableVi
             
             intoTempSpellList.setSpellsTo(results)
             
+        case 258://Additional Magical Secrets (Bard, College of Lore)
+            //Rules: must be able at current bard level to know this spell level
+            //TODO: give a shit about enforcing the above
+            
+            var levelFilteredArray: [Spell] = []
+            
+            //placeholder: allow access to all spells in chosen spell list
+            for i in 0...9{
+                levelFilteredArray.appendContentsOf(fullSpellList.getSpellsForLevel(level: Int16(i)))
+            }
+            
+            var results: [Spell] = []
+            for spell in levelFilteredArray{
+                results.append(spell)
+            }//for each lev1 spell
+            
+            intoTempSpellList.setSpellsTo(results)
+            
+        case 260, 261, 262:
+            //Rules: must be able at current bard level to know this spell level
+            //TODO: give a shit about enforcing the above
+            
+            var levelFilteredArray: [Spell] = []
+            
+            //placeholder: allow access to all spells in chosen spell list
+            for i in 0...9{
+                levelFilteredArray.appendContentsOf(fullSpellList.getSpellsForLevel(level: Int16(i)))
+            }
+            
+            var results: [Spell] = []
+            for spell in levelFilteredArray{
+                results.append(spell)
+            }//for each lev1 spell
+            
+            intoTempSpellList.setSpellsTo(results)
+            
+        case 272: //Acolyte of Nature (Cleric, Nature subclass)
+            //Rules: druid cantrip
+            //TODO: restrict to druid list
+            intoTempSpellList.setSpellsTo(fullSpellList.getSpellsForLevel(level: 0))
+        case 334, 335, 336, 337, 338, 339, 340, 341://Bonus Cantrip (Druid, Circle of the Land)
+            //Rules: druid cantrip
+            //TODO: restrict to druid list
+            intoTempSpellList.setSpellsTo(fullSpellList.getSpellsForLevel(level: 0))
         default:
             intoTempSpellList.setSpellsTo(fullSpellList.getSpellsForLevel(level: 0))//default to choosing from cantrips
         }//switch

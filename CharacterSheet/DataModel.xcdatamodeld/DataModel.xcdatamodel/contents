@@ -221,7 +221,7 @@
         <element name="RaceFeature" positionX="-567" positionY="504" width="128" height="75"/>
         <element name="SkillProfs" positionX="-972" positionY="407" width="128" height="88"/>
         <element name="Spell" positionX="-164" positionY="159" width="128" height="345"/>
-        <element name="SpellList" positionX="-326" positionY="15" width="128" height="118"/>
+        <element name="SpellList" positionX="-326" positionY="15" width="128" height="120"/>
         <element name="Subclass" positionX="-776" positionY="-45" width="128" height="150"/>
         <element name="Trait" positionX="-981" positionY="774" width="128" height="135"/>
         <element name="TraitList" positionX="-983" positionY="621" width="128" height="90"/>

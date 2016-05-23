@@ -16,3 +16,4 @@ Bug Fixes:
 Switching between text views/fields overall
     Especially relevant to inventory VC's, because there are so many of them
 Can't "cancel" on character select deletion option, at least when there's only one deletion point left
+Subclass spells not happy when subclass chosen before spell list is made; consider making blank personal spell lists at character creation for each caster class, and switching current personal spell list when we switch class?
